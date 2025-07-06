@@ -1,0 +1,73 @@
+<f:if condition="{data.header_link}">
+
+    <script>
+      if (!podigee_podcasts) var podigee_podcasts = [];
+
+      podigee_podcasts[{ data.uid }] = "{data.header_link}";
+    </script>
+    <f:switch expression="{data.tx_mask_campaign}">
+        <f:case value="1">
+            <f:render section="adhs" arguments="{data: data}"/>
+        </f:case>
+        <f:defaultCase>
+            <f:render section="default" arguments="{data: data}"/>
+        </f:defaultCase>
+    </f:switch>
+
+</f:if>
+
+
+<f:section name="default">
+    <f:if condition="{data.tx_mask_hl1} || {data.tx_mask_hl2}">
+        <h3 class="headline">
+            <f:if condition="{data.tx_mask_hl1}">
+                <span>{data.tx_mask_hl1}</span>
+            </f:if>
+            <f:if condition="{data.tx_mask_hl2}">
+                <span>{data.tx_mask_hl2}</span>
+            </f:if>
+        </h3>
+    </f:if>
+    <f:if condition="{data.bodytext}">
+        {data.bodytext -> f:format.html()}
+    </f:if>
+    <div id="podigee_podcasts_{data.uid}" class="podigee_podcast" data-podigee data-link="{data.header_link}">
+        <div class="d-none d-lg-block">
+            <a href="javascript:loadPodigeePodcasts();">Zum Aktivieren der Podcasts klicken Sie bitte hier</a>. Bitte beachten Sie, dass mit der Aktivierung Daten an Podigee übermittelt werden. Weitere Informationen finden Sie in unserer <a
+                href="/datenschutzerklaerung.html" target="_blank" style="display:inline;">Datenschutzerklärung</a>.
+        </div>
+        <div class="d-block d-lg-none">
+            <a href="javascript:loadPodigeePodcasts();">Zum Aktivieren der Podcasts klicken Sie bitte hier</a>. Bitte beachten Sie, dass mit der Aktivierung Daten an Podigee übermittelt werden. Weitere Informationen finden Sie in unserer <a
+                href="/datenschutzerklaerung.html" target="_blank" style="display:inline;">Datenschutzerklärung</a>.
+        </div>
+    </div>
+</f:section>
+
+<f:section name="adhs">
+    <div class="adhs-text-infobox">
+        <f:if condition="{data.tx_mask_hl1} || {data.tx_mask_hl2}">
+            <h3 class="headline">
+                <f:if condition="{data.tx_mask_hl1}">
+                    <span>{data.tx_mask_hl1}</span>
+                </f:if>
+                <f:if condition="{data.tx_mask_hl2}">
+                    <span>{data.tx_mask_hl2}</span>
+                </f:if>
+            </h3>
+        </f:if>
+        <f:if condition="{data.bodytext}">
+            {data.bodytext -> f:format.html()}
+        </f:if>
+        <div id="podigee_podcasts_{data.uid}" class="infobox" data-podigee data-link="{data.header_link}">
+            <div class="d-none d-lg-block">
+                <a href="javascript:loadPodigeePodcasts();" class="link-external">Zum Aktivieren der Podcasts klicken Sie bitte hier.</a><br> <br> Bitte beachten Sie, dass mit der Aktivierung Daten an Podigee übermittelt werden. <br>Weitere
+                Informationen
+                finden Sie in unserer <a href="/datenschutzerklaerung.html" target="_blank" class="link-internal">Datenschutzerklärung</a>.
+            </div>
+            <div class="d-block d-lg-none">
+                <a href="javascript:loadPodigeePodcasts();" class="link-internal">Zum Aktivieren der Podcasts klicken Sie bitte hier.</a><br> <br>Bitte beachten Sie, dass mit der Aktivierung Daten an Podigee übermittelt werden. Weitere Informationen
+                finden Sie in unserer <a href="/datenschutzerklaerung.html" target="_blank" class="link-internal">Datenschutzerklärung</a>.
+            </div>
+        </div>
+    </div>
+</f:section>

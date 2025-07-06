@@ -1,0 +1,72 @@
+TCEFORM {
+    tt_content {
+        # Verfügbare Inhaltselemente entfernen
+        CType {
+            removeItems = textpic, bullets, table, uploads, form_formframework, image, search, login, menu_abstract, menu_categorized_content, menu_categorized_pages, menu_recently_updated, menu_related_pages, menu_section, menu_section_pages, menu_sitemap, menu_sitemap_pages
+        }
+        # Entferne die Bildspaltenanzahl ganz und verwende nur 1 Spalte:
+        imagecols.disabled = 1
+        imagecols = 1
+
+        # Bildrahmen standardmässig deaktiviert
+        imageborder.disabled = 1
+
+        # Verfügbare Bildausrichtungen entfernen
+        imageorient {
+            removeItems = 17,18
+        }
+    }
+    # This will show only the author records, which are stored on page ID = 294
+    tx_news_domain_model_news.news_author.PAGE_TSCONFIG_STR = 294
+    tx_news_domain_model_news.author.disabled = 1
+    tx_news_domain_model_news.author_email.disabled = 1
+
+    # Anpassungen an Standard-Feldern
+    tt_content {
+        # Mask Postcard Layout Auswahl
+        layout {
+            types {
+                mask_postcards {
+                    removeItems =
+                    altLabels {
+                        1 = Einspaltig 33%
+                        2 = Einspaltig 100%
+                        3 = Einspaltig mit fester Höhe
+                    }
+                }
+            }
+            addItems {
+                100 = Hellblauer Hintergrund
+                101 = 50/50 mit Hintergrundfarbe
+            }
+        }
+
+        # Auswahlmöglichkeiten bei "Rahmen" entfernen
+        frame_class {
+            removeItems = ruler-before, ruler-after, indent, indent-left, indent-right, none
+            altLabels {
+                default = Kein Rahmen
+            }
+            addItems {
+                full-width = Ganze Breite
+            }
+        }
+        # Auswahlmöglichkeiten bei "Abstand davor" anpassen
+        space_before_class {
+            removeItems = extra-small, small, medium, large, extra-large
+
+            addItems {
+                3 = Kleiner Abstand (3)
+                5 = Normaler Abstand (5)
+                7 = Großer Abstand (7)
+            }
+        }
+        # Auswahlmöglichkeiten bei "Abstand danach" anpassen
+        space_after_class < .space_before_class
+    }
+    # Labels umbenennen
+    tt_content.space_before_class.label.de = Abstand außen / oben
+    tt_content.space_after_class.label.de = Abstand außen / unten
+    tx_news_domain_model_news.fal_media.label.de = Teaserbild oder Video
+    tx_news_domain_model_news.news_import_data.label.de = Informationen
+}

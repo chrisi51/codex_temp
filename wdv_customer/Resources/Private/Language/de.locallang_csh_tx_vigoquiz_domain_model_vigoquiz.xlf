@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-01-26T15:50:12Z" product-name="vigo_quiz" target-language="de">
+		<header/>
+		<body>
+			<trans-unit id="title.description">
+				<source>Titel</source>
+			</trans-unit>
+			<trans-unit id="quiztype.description">
+				<source>quiztype</source>
+			</trans-unit>
+			<trans-unit id="facebookcard.description">
+				<source>Facebook-Karte anzeigen?</source>
+			</trans-unit>
+			<trans-unit id="facebookcarditem.description">
+				<source>Facebook-Karte</source>
+			</trans-unit>
+			<trans-unit id="individualfeedback.description">
+				<source>Individuelles Feedback?</source>
+			</trans-unit>
+			<trans-unit id="individualfeedbackitem.description">
+				<source>Individuelles Feedback</source>
+			</trans-unit>
+			<trans-unit id="resulttexts.description">
+				<source>Ergebnis-Kategorien und Punktebereich (mit Doppelpunkt trennen, bspw. Nachholbedarf:0-10). Je Ergebniskategorie immer eine neue Zeile anfangen!</source>
+			</trans-unit>
+			<trans-unit id="questions.description">
+				<source>questions</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

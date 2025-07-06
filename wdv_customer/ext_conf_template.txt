@@ -1,0 +1,2 @@
+# cat=RH-Customer/O; type=string; label= List of PLZs (comma or space separated list)
+rh_customer_only_plz =

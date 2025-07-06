@@ -1,0 +1,35 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:if condition="{settings.cssFile}">
+	<f:asset.css identifier="ext-news" href="{settings.cssFile}" />
+</f:if>
+
+<div class="tx_news news-single">
+
+	<f:switch expression="{newsItem.type}">
+
+		<!-- Themenspecial -->
+		<f:case value="3">
+			<div class="news-item special" itemscope="itemscope" itemtype="http://schema.org/Article">
+		</f:case>
+
+		<!-- Rezept -->
+		<f:case value="7">
+			<div class="news-item recipe" itemscope="itemscope" itemtype="http://schema.org/Article">
+		</f:case>
+
+		<!-- Alle anderen -->
+		<f:defaultCase>
+			<div class="news-item article" itemscope="itemscope" itemtype="http://schema.org/Article">
+		</f:defaultCase>
+
+	</f:switch>
+	
+		<f:render section="content" />
+	
+	</div>
+
+</div>
+</html>

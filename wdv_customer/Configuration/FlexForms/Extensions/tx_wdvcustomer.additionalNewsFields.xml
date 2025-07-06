@@ -1,0 +1,18 @@
+<extra>
+    <ROOT>
+        <TCEforms>
+            <sheetTitle>Multipage-Einstellungen</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+            <settings.showImpliedInMultiPage>
+                <TCEforms>
+                    <label>Multipage-Artiken in Listansicht anzeigen</label>
+                    <config>
+                        <type>check</type>
+                    </config>
+                </TCEforms>
+            </settings.showImpliedInMultiPage>
+        </el>
+    </ROOT>
+</extra>

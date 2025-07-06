@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2024 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="icons-funktional-arrow-rounded-rightup" unicode="&#xe800;" d="M860 710c9-10 15-23 15-37l0-515h-104l0 389-552-551-73 73 551 552-389 0v104l515 0c14 0 27-6 37-15" horiz-adv-x="1000" />
+
+<glyph glyph-name="icons-funktional-arrow-rounded-right" unicode="&#xe801;" d="M979 350a52 52 0 0 0-15-37l-365-364-73 74 275 275h-780v104h780l-275 275 73 74 365-364a52 52 0 0 0 15-37" horiz-adv-x="1000" />
+
+<glyph glyph-name="icons-funktional-arrow-rounded-left" unicode="&#xe802;" d="M21 345a52 52 0 0 0 15 37l365 364 73-74-275-275h780v-104h-780l275-276-73-73-365 364a52 52 0 0 0-15 37" horiz-adv-x="1000" />
+
+<glyph glyph-name="icons-funktional-minus" unicode="&#xe803;" d="M21 308h958v105h-958z" horiz-adv-x="1000" />
+
+<glyph glyph-name="icons-funktional-plus" unicode="&#xe804;" d="M448 829v-427h-427v-104h427v-427h104v427h427v104h-427v427z" horiz-adv-x="1000" />
+
+<glyph glyph-name="icons-funktional-play-filled" unicode="&#xe805;" d="M808 395l-563 333a52 52 0 0 1-78-45v-666a52 52 0 0 1 78-45l563 333a52 52 0 0 1 0 90" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

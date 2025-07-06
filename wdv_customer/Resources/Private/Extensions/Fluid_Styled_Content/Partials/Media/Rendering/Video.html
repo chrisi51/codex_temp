@@ -1,0 +1,104 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      xmlns:vhs="FluidTYPO3\Vhs\ViewHelpers\"
+      data-namespace-typo3-fluid="true">
+
+<f:switch expression="{f:cObject(typoscriptObjectPath:'lib.pagename')}">
+    <f:case value="krebs_vigo_de"></f:case>
+    <f:defaultCase>
+        <h2>{file.title}</h2>
+    </f:defaultCase>
+</f:switch>
+
+<f:if condition="{file.description}">
+    <p>
+        {file.description}
+    </p>
+</f:if>
+<div class="embed-responsive embed-responsive-16by9">
+  
+    
+<f:comment>
+	#ehemaliges Video Iframe der WDV
+	<iframe src="https://www.youtube-nocookie.com/embed/jnC2Bh5G1tM?autohide=1&amp;controls=1&amp;enablejsapi=1&amp;origin=https://vigo.de.integration.wdv.de" allowfullscreen class="embed-responsive-item" allow="fullscreen"></iframe>
+	
+	#offizielles Video Iframe von Youtube	    
+	<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/jnC2Bh5G1tM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	#offizielles Video Iframe von Youtube für Playlists
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries/?autoplay=0w&list=PLOlUWgpArj5Z7JQara0LzIaYJml2dUOhV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    
+	#resultierendes Live Video Iframe
+	<iframe src="https://www.youtube-nocookie.com/embed/jnC2Bh5G1tM" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" class="embed-responsive-item" frameborder="0"></iframe>
+</f:comment>
+
+    
+  <f:switch expression="{file.extension}">
+    <f:case value="youtube">
+
+      <div id="vid{file.uid}" class="twoclick_video_wrapper_youtube embed-responsive-item" style="background:url('/fileadmin/mediathek/bilder/hintergruende_maps/screen.PNG');/*width:{dimensions.width}px; height:{dimensions.height}px;*/">
+        <div class="twoclick_video_trigger">
+          <p class="text-center" style="background-color:#ffffff; padding:10px;">
+              <img src="/fileadmin/mediathek/icons/video.png" class="video-icon" alt="" /><br />Wir möchten Sie darauf hinweisen, dass beim Anzeigen des Videos Daten an YouTube übermittelt werden. Weitere Informationen finden Sie in unserer <a href="/datenschutzerklaerung.html" target="_blank" style="display:inline;">Datenschutzerklärung</a>.<br />
+          <input type="button" class="btn" value="Video anzeigen" role="button" aria-pressed="false" /></p>
+        </div>
+	<div class="twoclick_video_layer" data-youtube="{file.contents}" data-type="video"></div>
+      </div>   
+
+	</f:case>
+    <f:case value="youtubeplaylist">
+
+      <div id="vid{file.uid}" class="twoclick_video_wrapper_youtube embed-responsive-item" style="background:url('/fileadmin/mediathek/bilder/hintergruende_maps/screen.PNG');/*width:{dimensions.width}px; height:{dimensions.height}px;*/">
+        <div class="twoclick_video_trigger">
+          <p class="text-center" style="background-color:#ffffff; padding:10px;">
+              <img src="/fileadmin/mediathek/icons/video.png" class="video-icon" alt="" /><br />Wir möchten Sie darauf hinweisen, dass beim Anzeigen des Videos Daten an YouTube übermittelt werden. Weitere Informationen finden Sie in unserer <a href="/datenschutzerklaerung.html" target="_blank" style="display:inline;">Datenschutzerklärung</a>.<br />
+          <input type="button" class="btn" value="Video anzeigen" role="button" aria-pressed="false" /></p>
+        </div>
+        <div class="twoclick_video_layer" data-youtube="{file.contents}" data-type="playlist"></div>
+      </div>   
+
+	</f:case>
+    <f:case value="vimeo">
+
+      <div class="twoclick_video_wrapper_vimeo" style="width:{dimensions.width}px; height:{dimensions.height}px;">
+        <div class="twoclick_video_trigger">
+          <p class="text-center">Wir möchten Sie darauf hinweisen, dass beim Anzeigen des Videos Daten an Vimeo übermittelt werden. Weitere Informationen finden Sie in unserer <a href="/datenschutzerklaerung.html" target="_blank">Datenschutzerklärung</a>.<br />
+          <input type="button" class="btn" value="Akzeptieren" role="button" aria-pressed="false" /></p>
+        </div>
+        <div class="twoclick_video_layer" data-vimeo="<f:format.htmlspecialchars><f:media class="embed-responsive-item" file="{file}" /></f:format.htmlspecialchars>"></div>
+      </div>   
+
+    </f:case>
+    
+    <f:defaultCase>
+      <div id="videoplay_{settings.uid}" class="videoplayer active"></div>
+      <f:variable name="poster"><vhs:format.replace substring="//" replacement="/" content="{file.originalFile.storage.configuration.basePath}{file.properties.identifier}" /></f:variable>
+      <f:variable name="poster"><vhs:format.replace substring="mp4" replacement="jpg" content="{poster}" /></f:variable>
+      <vhs:media.exists file="{poster}">
+        <f:then>
+        </f:then>
+        <f:else>
+          <f:variable name="poster"><vhs:format.replace substring="jpg" replacement="png" content="{poster}" /></f:variable>
+          <vhs:media.exists file="{poster}">
+            <f:then>
+            </f:then>
+            <f:else>
+                  <f:variable name="poster"></f:variable>
+            </f:else>
+          </vhs:media.exists>
+        </f:else>
+      </vhs:media.exists>      
+      <f:media class="video-embed-item" file="{file}" id="video_{settings.uid}" width="{dimensions.width}" height="{dimensions.height}" alt="{file.alternative}" title="{file.title}" additionalConfig="{settings.media.additionalConfig}" additionalAttributes="{poster: poster}" />
+    </f:defaultCase>
+  </f:switch>  
+  
+</div>
+
+<f:if condition="{settings.domain} == 'vigo.de'">
+        <f:then>
+                <p class="mt-3" style="font-size: 15px;">
+                    Ihnen hat das Video gefallen? Weitere Videos finden Sie im <a href="https://www.youtube.com/channel/UCDnuLOIBgx8vAiNNK8PWrZw" class="d-inline" title="Externer Link zum Youtube-Channel der AOK Rheinland/Hamburg. Es öffnet sich ein neues Browserfenster." target="_blank">Youtube-Kanal „AOK - Der Gesundheitskanal“.</a>
+                </p>
+        </f:then>
+</f:if>
+
+</html>

@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="tx_mask rotatingcards mt-4 mb-4 {f:if(condition: data.tx_wdvcustomer_content_breakoutleft, then: 'breakout-md-left')}{f:if(condition: data.tx_wdvcustomer_content_breakoutright, then: ' breakout-md-right')}" id="c{data.uid}">
+    <div class="row">
+
+        <f:for each="{data.tx_mask_rotatingcards}" as="card" iteration="iterator">
+            <div class="col-12 col-md-4 mb-3">
+                <div class="rotate-container">
+                    <div class="card card-front text-center">
+                        <div class="card-body">
+
+                            <f:for each="{card.tx_mask_icon}" as="file">
+                                <f:media class="card-symbol" file="{file}" width="{dimensions.width}" height="{dimensions.height}" alt="{file.alternative}" title="{file.title}" />
+                            </f:for>
+
+                            <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{card.tx_mask_content_front}</f:format.html>
+
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-lg btn-rotate w-100 text-left">Fakt zeigen <span class="icon icon-visible-on float-right"></span></button>
+                        </div>
+                    </div>
+                    <div class="card card-back text-center">
+                        <div class="card-body">
+                            <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{card.tx_mask_content_back}</f:format.html>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-lg btn-rotate w-100 text-left">Fakt verbergen <span class="icon icon-visible-off float-right"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:for>
+
+    </div>
+</div>
+
+</html>

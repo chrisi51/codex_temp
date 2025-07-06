@@ -1,0 +1,17 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+	  xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<a title="{mediaElement.title}"
+	href="{w:getPublicUrlForVideo(originalResource: mediaElement.originalResource)}"
+	target="_self"
+	data-toggle="lightbox"
+	data-type="youtube"
+	data-width="940"
+	data-max-width="940"
+	data-title="{mediaElement.title}">
+	<fp:image image="{mediaElement}" title="{mediaElement.title}" alt="{mediaElement.alternative}" width="750" realCrop="false" />
+</a>
+
+</html>

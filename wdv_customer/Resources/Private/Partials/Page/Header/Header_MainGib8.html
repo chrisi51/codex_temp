@@ -1,0 +1,49 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+		xmlns:w="WDV\WdvCustomer\ViewHelpers"
+		data-namespace-typo3-fluid="true">
+
+<header class="sticky-top">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 p-0">
+				<!-- CONTENTBEREICH HEADER START -->
+				<f:comment><!--
+					<div class="meta-navigation col-12 text-right">
+						<ul>
+							<li><f:link.page pageUid="{headerlinksLeichtesprache}" class="icon leichtesprache" title="Informationen in leichter Sprache">Leichte Sprache</f:link.page></li>
+							<li><f:link.page pageUid="{headerlinksGebaerdensprache}" class="icon gebaerdensprache" title="Informationen in Gebärdensprache">Gebärdensprache</f:link.page></li>
+						</ul>
+					</div>
+				--></f:comment>
+
+				<a id="header-logo" href="/" title="Link zur Startseite">
+					<img src="/typo3conf/ext/wdv_customer/Resources/Public/Images/Logos/gib8-logo.svg" alt="Logo von gib8 Kampagne, dem Content-Hub zum Thema Achtsamkeit der AOK Rheinland/Hamburg - zur Startseite">
+				</a>
+
+				<nav id="mainnav" class="">
+					<label for="navigation-opener">Navigation ein- oder ausblenden</label>
+					<input id="navigation-opener" type="checkbox" autocomplete="off">
+					<span class="mainnav-control"></span>
+					<span class="mainnav-control"></span>
+					<span class="mainnav-control"></span>
+
+					<div id="mainnav-content">
+						<f:cObject typoscriptObjectPath="lib.main-navigationGib8"/>
+
+						<div class="tx-kesearch-pi1">
+							<form method="get" id="form_kesearch_pi1_top" class="underline pb-3 pb-md-0" name="form_kesearch_pi1_top" action="/suche">
+								<span class="icon search-light"></span>
+								<input type="text" id="ke_search_sword_top" name="tx_kesearch_pi1[sword]" value="" placeholder="Suchbegriff eingeben" class="ml-auto mr-auto" />
+								<input type="submit" id="nav-search-submit" value="">
+							</form>
+						</div>
+					</div>
+				</nav>
+
+				<!-- CONTENTBEREICH HEADER ENDE -->
+			</div>
+		</div>
+	</div>
+</header>
+
+</html>

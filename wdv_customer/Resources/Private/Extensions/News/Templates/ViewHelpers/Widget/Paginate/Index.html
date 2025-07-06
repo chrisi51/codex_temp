@@ -1,0 +1,154 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:if condition="{configuration.insertAbove}">
+	<f:render section="paginator" arguments="{pagination: pagination,configuration:configuration}" />
+</f:if>
+
+<f:if condition="{contentArguments.paginatedNews}">
+	<f:renderChildren arguments="{contentArguments}" />
+</f:if>
+
+<f:if condition="{configuration.insertBelow}">
+	<f:render section="paginator" arguments="{pagination: pagination,configuration:configuration}" />
+</f:if>
+
+<f:section name="paginator">
+	<f:if condition="{settings.format} != 'ajax'">
+		<f:if condition="{pagination.numberOfPages} > 1">
+			<f:if condition="{settings.list.paginate.prevNextHeaderTags}">
+				<f:if condition="{pagination.previousPage}">
+					<f:if condition="{pagination.previousPage} > 1">
+						<f:then>
+							<n:headerData><link rel="prev" href="{f:widget.uri(useCacheHash:1,arguments: {currentPage: pagination.previousPage}) -> f:format.htmlentities()}" /></n:headerData>
+						</f:then>
+						<f:else>
+							<n:headerData><link rel="prev" href="{f:widget.uri() -> f:format.htmlentities()}" /></n:headerData>
+						</f:else>
+					</f:if>
+				</f:if>
+				<f:if condition="{pagination.nextPage}">
+					<n:headerData><link rel="next" href="{f:widget.uri(useCacheHash:1,arguments: {currentPage: pagination.nextPage}) -> f:format.htmlentities()}" /></n:headerData>
+				</f:if>
+			</f:if>
+			<div class="row news-paginate news-paginate-human pt-3 mb-7">
+				<div class="col-12">
+					<nav>
+						<ul class="pagination">
+							<f:if condition="{pagination.previousPage}">
+								<li class="page-item">
+									<f:if condition="{pagination.previousPage} > 1">
+										<f:then>
+											<f:widget.link class="page-link" rel="noindex,nofollow" useCacheHash="1" addQueryStringMethod="GET" arguments="{currentPage: pagination.previousPage}">
+												<span aria-hidden="true">&laquo;</span>
+												<span class="sr-only">
+													<f:translate key="paginate_previous" />
+												</span>
+											</f:widget.link>
+										</f:then>
+										<f:else>
+											<f:widget.link class="page-link" rel="noindex,nofollow" addQueryStringMethod="GET">
+												<span aria-hidden="true">&laquo;</span>
+												<span class="sr-only">
+													<f:translate key="paginate_previous" />
+												</span>
+											</f:widget.link>
+										</f:else>
+									</f:if>
+								</li>
+							</f:if>
+							<f:if condition="{pagination.displayRangeStart} > 1">
+								<li class="page-item first">
+									<f:widget.link class="page-link" rel="noindex,nofollow" addQueryStringMethod="GET">
+										1
+									</f:widget.link>
+								</li>
+							</f:if>
+							<f:if condition="{pagination.hasLessPages}">
+								<li class="page-item">
+									...
+								</li>
+							</f:if>
+							<f:for each="{pagination.pages}" as="page">
+								<f:if condition="{page.isCurrent}">
+									<f:then>
+										<li class="page-item active">
+											<a class="page-link" href="#">
+												{page.number} <span class="sr-only">(aktiv)</span>
+											</a>
+										</li>
+									</f:then>
+									<f:else>
+										<li class="page-item">
+											<f:if condition="{page.number} > 1">
+												<f:then>
+													<f:widget.link class="page-link" rel="noindex,nofollow" useCacheHash="1" addQueryStringMethod="GET" arguments="{currentPage: page.number}">{page.number}</f:widget.link>
+												</f:then>
+												<f:else>
+													<f:widget.link class="page-link" rel="noindex,nofollow" addQueryStringMethod="GET">{page.number}</f:widget.link>
+												</f:else>
+											</f:if>
+										</li>
+									</f:else>
+								</f:if>
+							</f:for>
+							<f:if condition="{pagination.hasMorePages}">
+								<li class="page-item">
+									...
+								</li>
+							</f:if>
+							<f:if condition="{pagination.displayRangeEnd} < {pagination.numberOfPages}">
+								<li class="page-item last">
+									<f:widget.link class="page-link" rel="noindex,nofollow" useCacheHash="1" addQueryStringMethod="GET" arguments="{currentPage: pagination.numberOfPages}">
+										{pagination.numberOfPages}
+									</f:widget.link>
+								</li>
+							</f:if>
+							<f:if condition="{pagination.nextPage}">
+								<li class="page-item last next">
+									<f:widget.link class="page-link" rel="noindex,nofollow" useCacheHash="1" addQueryStringMethod="GET" arguments="{currentPage: pagination.nextPage}">
+										<span aria-hidden="true">&raquo;</span>
+										<span class="sr-only">
+											<f:translate key="paginate_next" />
+										</span>
+									</f:widget.link>
+								</li>
+							</f:if>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="row news-paginate news-paginate-ajax pt-3 mb-7">
+				<div class="col-12">
+					<nav>
+						<ul class="pagination">
+							<v:iterator.for from="1" to="{pagination.numberOfPages}" step="1" iteration="pageNumber">
+								<f:if condition="{pageNumber.index} == {pagination.current}">
+									<f:then>
+										<li class="page-item active">
+											<a class="page-link" href="#">
+												{pageNumber.index} <span class="sr-only">(aktiv)</span>
+											</a>
+										</li>
+									</f:then>
+									<f:else>
+										<li class="page-item">
+											<f:if condition="{pageNumber.index} > 1">
+												<f:then>
+													<f:widget.link rel="noindex, nofollow" class="page-link" addQueryStringMethod="GET" arguments="{currentPage: pageNumber.index}">{pageNumber.index}</f:widget.link>
+												</f:then>
+												<f:else>
+													<f:widget.link rel="noindex, nofollow" addQueryStringMethod="GET" class="page-link">{pageNumber.index}</f:widget.link>
+												</f:else>
+											</f:if>
+										</li>
+									</f:else>
+								</f:if>
+							</v:iterator.for>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</f:if>
+	</f:if>
+</f:section>
+</html>

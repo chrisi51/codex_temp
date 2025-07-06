@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+		xmlns:w="WDV\WdvCustomer\ViewHelpers"
+		data-namespace-typo3-fluid="true">
+
+<header class="sticky-top">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 p-0">
+				<!-- CONTENTBEREICH HEADER START -->
+				<div class="meta-navigation col-12 text-right">
+					<ul>
+						<li><f:link.page pageUid="{headerlinksLeichtesprache}" class="icon leichtesprache" title="Informationen in leichter Sprache">Leichte Sprache</f:link.page></li>
+						<li><f:link.page pageUid="{headerlinksGebaerdensprache}" class="icon gebaerdensprache" title="Informationen in Gebärdensprache">Gebärdensprache</f:link.page></li>
+					</ul>
+				</div>
+				<!-- Navigation für Mobile -->
+				<nav class="navbar navbar-expand d-inline-flex d-md-none w-100" aria-label="Hauptnavigation">
+					<f:cObject typoscriptObjectPath="lib.logo.mobile"/>
+					<f:render partial="Navigation/Mobile" arguments="{_all}" />
+				</nav>
+				<!-- Navigation für Mobile -->
+
+				<!-- Navigation für Desktop -->
+				<nav class="navbar navbar-expand-md d-none d-md-flex w-100" aria-label="Hauptnavigation">
+					<f:cObject typoscriptObjectPath="lib.logo.desktop"/>
+					<f:cObject typoscriptObjectPath="lib.main-navigation.desktop"/>
+					<f:comment><!--
+						<f:render partial="Navigation/Desktop" arguments="{_all}" />
+					--></f:comment>
+				</nav>
+				<!-- Navigation für Desktop -->
+
+				<!-- CONTENTBEREICH HEADER ENDE -->
+			</div>
+		</div>
+	</div>
+</header>
+
+</html>

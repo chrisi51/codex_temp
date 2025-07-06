@@ -1,0 +1,108 @@
+{namespace vh=In2code\Powermail\ViewHelpers}
+<f:layout name="Default" />
+
+Render Powermail Form
+{form} 			All Forms with their Pages and their Fields
+{ttContentData}		All values from content element with plugin
+
+<f:section name="main">
+	<f:alias map="{flashMessageClass:'powermail_message_error'}">
+		<f:render partial="Misc/FlashMessages" arguments="{_all}" />
+	</f:alias>
+
+	<f:if condition="{form}">
+		<f:then>
+			<f:form
+					action="{action}"
+					section="c{ttContentData.uid}"
+					name="field"
+					enctype="multipart/form-data"
+                    additionalAttributes="{data-parsley-validate: 'data-parsley-validate'}"
+                    addQueryString="{settings.misc.addQueryString}"
+					class="powermail_form powermail_form_{form.uid} {form.css} {settings.styles.framework.formClasses} {vh:Misc.MorestepClass(activate:settings.main.moresteps)}">
+
+				<f:if condition="{form.css} != 'nolabel'">
+					<h3>{form.title}</h3>
+				</f:if>
+				<f:render partial="Misc/FormError" arguments="{_all}" />
+
+				<f:if condition="{settings.main.broschcheck}">
+					<script>
+				        var lastChecked = undefined;
+						var maxBrosch = <f:format.raw>{settings.main.broschcheck}</f:format.raw>;
+
+						window.addEventListener("load", checkBroschures);
+						function checkBroschures() {
+							$("[id^=powermail_field_brosch_]").on("click", function () {
+								lastChecked = $(this);
+                            });
+					 		$("[id^=powermail_field_brosch_]").on("change", function () {
+                                var countChecked = $("[id^=powermail_field_brosch_]:checked").length;
+								if (countChecked > maxBrosch) {
+                                    $(lastChecked).prop("checked", false);
+                                    $("#maxBrosch").modal('show');
+//						            console.log(countChecked);
+                                } else {
+//						            console.log("Anzahl Broschüren ist ok!");
+                                }
+                            });
+						}
+					</script>
+
+					<div class="modal fade" id="maxBrosch" tabindex="-1" role="dialog" aria-labelledby="maxBroschLabel" aria-hidden="true">
+					    <div class="modal-dialog h-100 d-flex flex-column justify-content-center my-0" role="document">
+					        <div class="modal-content">
+					            <div class="modal-body">
+					                <div class="d-flex justify-content-center mt-4">
+					                    <span class="icon info"></span>
+					                </div>
+					                <div class="d-flex justify-content-center mt-4 mb-4">
+					                    <h3 style="width:auto;" id="maxBroschLabel">Maximale Broschürenanzahl erreicht!</h3>
+					                </div>
+					                <div class="d-flex justify-content-center">
+								<p style="width:auto;">Bitte wählen Sie höchstens <f:format.raw>{settings.main.broschcheck}</f:format.raw> Broschüren aus. Das hilft uns, Papier zu sparen. Mit welchen Maßnahmen wir uns noch für Nachhaltigkeit einsetzen, lesen Sie <a target="_blank" href="https://www.aok.de/pk/rh/footer-navigation/ueber-uns/nachhaltigkeit/">hier</a>.</p>
+					                </div>
+					                <div class="d-flex justify-content-center mt-4 mb-4">
+					                    <button type="button" class="btn btn-lg" data-dismiss="modal" aria-labelledby="Close">Okay und weiter</button>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</f:if>
+
+				<f:for each="{form.pages}" as="page">
+					<f:render partial="Form/Page" arguments="{_all}" />
+				</f:for>
+
+				<div id="smsdoi-container" style="display: none;  position: fixed; width: 100%; height: 100%; top: 0; left: 0; margin: auto; vertical-align: middle; background: rgba(255,255,255,0.85);z-index: 100;">
+					<div id="smsdoi-message" style="display: none;">
+						Bitte bestätigen Sie Ihre Anmeldung für AOK Vigo mit dem Code: _CODE_
+					</div>
+					<div id="smsdoi-start"  >
+						<div class="doi-close"></div>
+						<h1>SMS Bestätigung</h1>
+						<p>Bitte überprüfen Sie die eingegebene Telefonnummer. Ihnen wird eine SMS mit einem Code gesendet, den Sie im Anschluss zur Bestätigung eingeben müssen.</p>
+						<p class="phone">Der Code wird an ihre Telefonnummer "<span style="font-weight: bold; white-space: nowrap" class="doiphonenumber"></span>" gesendet.</p>
+						<div id="smsdoi-send-error" style="display: none;">Die SMS konnte nicht versendet werden. Bitte versuchen Sie es später erneut oder nutzen eine andere Telefonnummer.</div>
+						<button class="sendSMS btn btn-lg">SMS senden</button>
+					</div>
+					<div id="smsdoi-verify" data-hash="" data-message=""  style="display: none;">
+						<div class="doi-close"></div>
+						<h1>SMS Bestätigung</h1>
+						<p>Schauen Sie bitte nach der SMS auf Ihrem Handy mit der Telefonnummer "<span style="font-weight: bold; white-space: nowrap" class="doiphonenumber"></span>" und geben Sie den Code in das unten stehende Feld ein.  Klicken Sie anschließend auf "Code bestätigen".</p>
+						<p><f:form.textfield type="text" maxlength="6" id="smsdoicode" class="form-control form-control-lg" name="smsdoikey" additionalAttributes="{autocomplete:'one-time-code'}" /></p>
+						<div id="smsdoi-code-error" style="display: none;"><p>Der eingegebene Code konnte nicht bestätigt werden.</p></div>
+						<button class="smsdoiverifycode btn btn-lg">Code bestätigen</button>
+					</div>
+				</div>
+				<f:form.hidden name="smsdoinumber" value="" id="smsdoinumber" />
+				<f:form.hidden name="mail[form]" value="{form.uid}" class="powermail_form_uid" />
+				<f:render partial="Misc/HoneyPod" arguments="{form:form}" />
+			</f:form>
+		</f:then>
+		<f:else>
+			<f:translate key="error_no_form" />
+		</f:else>
+	</f:if>
+</f:section>

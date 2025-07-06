@@ -1,0 +1,43 @@
+div.achpodcast{
+    width:100%;
+    min-height:166px;
+    background-image: url(/typo3conf/ext/wdv_customer/Resources/Public/Images/Layout/gib8-podcast.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: #fdfdfd;
+    color: #fff;
+    padding: 40px 100px;
+    font-weight:bold;
+}
+
+@media (max-width: 979px) {
+    div.achpodcast{
+        padding:20px;
+    }
+}
+
+div.mipodcast{
+    width:100%;
+    min-height:166px;
+    background-image:url("/fileadmin/mediathek/kampagnen/Morphium_und_Ingwer/soundcloud-desktop.jpg");
+    background-repeat:no-repeat;
+    background-color:#fdfdfd;
+    color:#333333;
+    padding:20px 20px 20px 200px;
+    font-weight:bold;
+}
+
+@media (max-width: 979px) {
+    div.mipodcast {
+        padding: 20px;
+        background-image: url("/fileadmin/mediathek/kampagnen/Morphium_und_Ingwer/soundcloud-phone.jpg");
+    }
+
+    div.mipodcast a {
+        display: block;
+        background-color: #90b728;
+        color: #ffffff;
+        text-align: center;
+    }
+} 

@@ -1,0 +1,108 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:w="WDV\WdvCustomer\ViewHelpers"
+      data-namespace-typo3-fluid="true" lang="en">
+
+<div class="collapse navbar-collapse">
+    <ul class="nav first-level mr-auto ml-auto d-print-none" id="main-navigation">
+        <f:for each="{navigation}" as="item" iteration="iterator">
+            <f:if condition="{item.spacer}">
+                <f:then><f:format.html>{spacer}</f:format.html></f:then>
+                <f:else>
+                    <li class="uid-{page-uid} nav-item dropdown position-static {f:if(condition: iterator.isFirst, then: 'first')} {f:if(condition: iterator.isLast, then: 'last')}">
+                        <f:if condition="{item.children}">
+                            <f:then>
+                                <a class="dropdown-toggle" href="{item.link}" target="{f:if(condition: '{item.target} != \'\'', then: '{item.target}', else: '_top')}" title="{item.title}" aria-haspopup="true" aria-expanded="false"><span class="navbar-item-text">{item.title}</span></a>
+                                <div class="dropdown-menu w-100">
+                                    <button type="button" class="close" data-dismiss="dropdown-menu" aria-label="Schließen"><span aria-hidden="true">×</span></button>
+                                    <div class="row columns two-columns mt-0 mb-0 pt-0 pb-0">
+                                        <div class="col-7 col-md-12 border-right">
+                                        
+                                        </div>
+                                        <div class="col-5 pl-4 d-md-none d-lg-block">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </f:then>
+                            <f:else>
+                                <a class="nav-link" href="{item.link}" target="{f:if(condition: '{item.target}', then: '{item.target}', else: '_top')}" title="{item.title}">{item.title}</a>
+                            </f:else>
+                        </f:if>
+                    </li>
+                </f:else>
+            </f:if>
+        </f:for>
+    </ul>
+    <ul class="nav first-level ml-auto d-print-none" id="tool-navigation">
+        <li class="nav-item dropdown position-static">
+            <a class="dropdown-toggle" href="#" target="_self" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" title="Suche" aria-label="Suche">
+                <span class="icon search"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <!-- Hier muss die Suche etc eingesetzt werden -->
+                <div class="row mb-4 mb-md-5">
+                    <div class="col-12 pl-4 pr-4 pl-md-0 pr-md-0">
+                        <div class="tx-kesearch-pi1">
+                            <form method="get" id="form_kesearch_pi1_top" class="underline pb-3 pb-md-4" name="form_kesearch_pi1_top" action="/suche-1">
+                                
+                                
+            
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">
+            <span class="icon search float-left"></span>
+        </span>
+    </div>
+    <input type="text" id="ke_search_sword" name="tx_kesearch_pi1[sword]" class="form-control form-control-lg" placeholder="Suchbegriff eingeben" aria-label="Suchbegriff eingeben">
+    <div class="input-group-append">
+        <button class="btn pl-md-5 pr-md-5" type="submit">Suchen</button>
+    </div>
+</div>            
+                                
+<f:comment>
+                                <span class="icon search-light float-left"></span>
+                                <input type="text" id="ke_search_sword_top" name="tx_kesearch_pi1[sword]" value="" placeholder="Suchbegriff eingeben" class="ml-auto mr-auto" />
+                                <span class="kesearch-box-hint d-none d-lg-block float-right">Enter drücken zum Suchen</span>
+                                <span class="kesearch-box-hint d-block d-lg-none float-right"><span class="icon icon-enter-90b728"></span></span>
+</f:comment>    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row columns two-columns mt-0 mb-0 pt-0 pb-0">
+                    <f:for each="{search}" as="item">
+                        <f:if condition="{item.children}">
+                            <f:for each="{item.children}" as="children">
+                                <f:for each="{children}" as="subchildren">
+                                    <div class="col-12 col-md-5 pl-4 pr-4 pl-md-0 pr-md-0">
+                                        <f:for each="{subchildren}" as="subsubchildren">
+                                            <div id="c{subsubchildren.data.uid}" class="mt-0 mb-0 pt-0 pb-0">
+                                                <f:if condition="{subsubchildren.data.header}">
+                                                    <h4>{subsubchildren.data.header}</h4>
+                                                </f:if>
+                                                <f:if condition="{subsubchildren.data.bodytext}">
+                                                    <f:format.raw>{subsubchildren.data.bodytext}</f:format.raw>
+                                                </f:if>
+                                                <f:if condition="{subsubchildren.data.CType} === 'list'">
+                                                    <f:comment>
+                                                        <f:render partial="Extensions/News/Layouts/General" />
+                                                        --> Template wird nicht gefunden, da hier nicht die Extension beachtet wird
+                                                    
+                                                        <v:render.template file="EXT:wdv_customer/Resources/Private/Extensions/News/Templates/News/List.html" />
+                                                        --> The Fluid template files "" could not be loaded.
+                                                    </f:comment>
+                                                    <!-- Hier müssen nun die News ausgelesen werden -->
+                                            
+                                                </f:if>
+                                            </div>
+                                        </f:for>
+                                    </div>
+                                </f:for>
+                            </f:for>
+                        </f:if>
+                    </f:for>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

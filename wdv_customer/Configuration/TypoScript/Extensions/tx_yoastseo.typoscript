@@ -1,0 +1,4 @@
+plugin.tx_yoastseo {
+    titlePrepend =
+    titleAppend = | AOK vigo
+}

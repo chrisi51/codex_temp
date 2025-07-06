@@ -1,0 +1,176 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:kesearch="http://typo3.org/ns/TeaminmediasPluswerk\KeSearch\ViewHelpers"
+      xmlns:w="WDV\WdvCustomer\ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:comment>
+	<!-- {namespace v=FluidTYPO3\Vhs\ViewHelpers} -->
+	<!-- {namespace w=WDV\WdvCustomer\ViewHelpers} -->
+	<!--
+		=====================
+		Partials/ResultRow.html
+	-->
+</f:comment>
+
+<div class="row result-item">
+    <div class="col-12 pl-0 pr-0 pl-md-0 pr-md-0">
+
+        <div class="result-item__teaser">
+            <f:switch expression="{resultrow.type}">
+
+                <!-- Normaler Content -->
+                <f:case value="content">
+                </f:case>
+
+                <!-- News -->
+                <f:case value="news">
+
+                    <div class="row news-item__teaser-desc mb-3">
+
+                        <div class="col-12">
+                            <f:switch expression="{resultrow.orig_row.type}">
+    
+                                <f:case value="1">
+                                    <span class="news-item__teaser-desc_symbol article"></span>
+                                    <span class="news-item__teaser-desc_type">Interner Link</span>
+                                </f:case>
+    
+                                <f:case value="2">
+                                    <span class="news-item__teaser-desc_symbol article"></span>
+                                    <span class="news-item__teaser-desc_type">Externer Link</span>
+                                </f:case>
+    
+                                <f:case value="3">
+                                    <span class="news-item__teaser-desc_symbol article"></span>
+                                    <span class="news-item__teaser-desc_type">Themenspecial</span>
+                                </f:case>
+    
+                                <f:case value="4">
+                                    <span class="news-item__teaser-desc_symbol interview"></span>
+                                    <span class="news-item__teaser-desc_type">Interview</span>
+                                    <span class="news-item__teaser-desc_duration">Lesezeit: {resultrow.orig_row.tx_wdvcustomer_news_time} min.</span>
+                                </f:case>
+    
+                                <f:case value="5">
+                                    <span class="news-item__teaser-desc_symbol question"></span>
+                                    <span class="news-item__teaser-desc_type">Frage der Woche</span>
+                                    <span class="news-item__teaser-desc_duration">Lesezeit: {resultrow.orig_row.tx_wdvcustomer_news_time} min.</span>
+                                </f:case>
+    
+                                <f:case value="6">
+                                    <span class="news-item__teaser-desc_symbol video"></span>
+                                    <span class="news-item__teaser-desc_type">Video</span>
+                                    <span class="news-item__teaser-desc_duration">Länge: {resultrow.orig_row.tx_wdvcustomer_news_time} min.</span>
+                                </f:case>
+    
+                                <f:case value="7">
+                                    <span class="news-item__teaser-desc_symbol recipe"></span>
+                                    <span class="news-item__teaser-desc_type">Rezept</span>
+                                    <span class="news-item__teaser-desc_duration">Lesezeit: {resultrow.orig_row.tx_wdvcustomer_news_time} min.</span>
+                                </f:case>
+    
+                                <f:case value="8">
+                                    <span class="news-item__teaser-desc_symbol article"></span>
+                                    <span class="news-item__teaser-desc_type">Rezeptsammlung</span>
+                                </f:case>
+    
+                                <f:case value="10">
+                                    <span class="news-item__teaser-desc_symbol gewinnspiel"></span>
+                                    <span class="news-item__teaser-desc_type">Gewinnspiel</span>
+                                </f:case>
+    
+                                <f:case value="12">
+                                    <span class="news-item__teaser-desc_symbol article"></span>
+                                    <span class="news-item__teaser-desc_type">Landingpage</span>
+                                </f:case>
+    
+                                <f:case value="13">
+                                    <span class="news-item__teaser-desc_symbol podcast"></span>
+                                    <span class="news-item__teaser-desc_type">Podcast</span>
+                                </f:case>
+    
+                                <f:case value="14">
+                                    <span class="news-item__teaser-desc_symbol article"></span>
+                                    <span class="news-item__teaser-desc_type">Bestellung</span>
+                                </f:case>
+    
+                                <f:defaultCase>
+                                    <span class="news-item__teaser-desc_symbol article"></span>
+                                    <span class="news-item__teaser-desc_type">Artikel</span>
+                                    <span class="news-item__teaser-desc_duration">Lesezeit: {resultrow.orig_row.tx_wdvcustomer_news_time} min.</span>
+                                </f:defaultCase>
+
+                            </f:switch>
+                        </div>
+                    </div>
+
+                </f:case>
+
+                <!-- Normaler Content -->
+                <f:case value="pages">
+                </f:case>
+
+                <!-- Default -->
+                <f:defaultCase>
+                    <!-- [Resulttype is not supported] -->
+                </f:defaultCase>
+
+            </f:switch>
+            <div class="row">
+
+                <div class="col-12">
+
+                    <f:if condition="{conf.resultsNumeration}">
+                        <span class="result-number">{resultrow.number}.</span>
+                    </f:if>
+
+                    <h2><f:format.raw>{resultrow.title}</f:format.raw></h2>
+
+                    <f:if condition="{conf.showScoreScale}">
+                        <f:if condition="{resultrow.percent} > 0">
+                            <span class="scoreBar"><span class="score" style="width: {resultrow.percent}%;"></span></span>
+                        </f:if>
+                    </f:if>
+
+                    <span class="clearer">&nbsp;</span>
+
+                    <div class="add-info">
+                        <f:if condition="{conf.showResultUrl}">
+                            <i>{f:translate(key: 'LLL:EXT:ke_search/pi1/locallang.xml:label_resulturl')}:</i> <f:format.raw>{resultrow.url}</f:format.raw><br />
+                        </f:if>
+
+                        <f:if condition="{resultrow.type} == 'cal'">
+                            <f:then>
+                                <f:comment><!-- Special cal date rendering --></f:comment>
+                                <f:render partial="CalDate" arguments="{resultrow: resultrow}" />
+                                <br />
+                            </f:then>
+                            <f:else>
+                                <f:comment><!-- Default date rendering --></f:comment>
+                                <f:if condition="{conf.showDate}">
+                                    <i>{f:translate(key: 'LLL:EXT:ke_search/pi1/locallang.xml:label_date')}:</i> {resultrow.date}<br />
+                                </f:if>
+                            </f:else>
+                        </f:if>
+
+                        <f:if condition="{resultrow.percent} > 0">
+                            <f:if condition="{conf.showScore}">
+                                <i>{f:translate(key: 'LLL:EXT:ke_search/pi1/locallang.xml:label_score')}:</i> {resultrow.score}<br />
+                            </f:if>
+                            <f:if condition="{conf.showPercentalScore}">
+                                <i>{f:translate(key: 'LLL:EXT:ke_search/pi1/locallang.xml:label_score_percent')}:</i> {resultrow.percent}<br />
+                            </f:if>
+                        </f:if>
+                        <f:if condition="{conf.showTags}">
+                            <i>{f:translate(key: 'LLL:EXT:ke_search/pi1/locallang.xml:label_tags')}:</i> {resultrow.tags}<br />
+                        </f:if>
+                    </div>
+                    <span class="teaser_icon"><f:format.raw>{resultrow.imageHtml}</f:format.raw></span>
+                    <span class="result-teaser"><f:format.raw>{v:format.replace(substring:"###AMOUNT###", content:resultrow.teaser, replacement:'')}</f:format.raw></span>
+                    <span class="clearer">&nbsp;</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

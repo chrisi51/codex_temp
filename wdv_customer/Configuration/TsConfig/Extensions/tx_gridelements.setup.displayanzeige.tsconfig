@@ -1,0 +1,27 @@
+tx_gridelements.setup.displayanzeige {
+
+	title = Displayanzeigen-Rotator
+	description = Wrapper für Displayanzeigenrotation
+	icon = EXT:wdv_elements/Resources/Public/Icons/Gridelements/dummy.png
+	flexformDS = FILE:EXT:wdv_customer/Configuration/FlexForms/Extensions/tx_gridelements.displayanzeige.xml
+
+	topLevelLayout = 0
+	frame = 1
+
+	config {
+
+		colCount = 1
+		rowCount = 1
+
+		rows {
+			1 {
+				columns {
+					1 {
+						name = Displayanzeige
+						colPos = 600
+					}
+				}
+			}
+		}
+	}
+}

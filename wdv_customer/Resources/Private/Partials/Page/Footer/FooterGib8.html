@@ -1,0 +1,44 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      data-namespace-typo3-fluid="true" lang="en">
+
+<v:condition.iterator.contains needle="481" haystack="{v:page.rootline() -> v:iterator.extract(key: 'pid')}">
+    <f:then>
+		<div id="kapiteluebersicht-wrapper">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-8 pl-0 pr-0 pl-md-0 pr-md-0">
+						<div id="kapiteluebersicht">
+							<svg class="book" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 50.01"><path fill="#176527" fill-rule="evenodd" d="M67 46.01H47.25a84.55 84.55 0 0 1 16.11-1.48 2 2 0 0 0 2-2V11.88H67ZM4 11.88h1.64v30.65a2 2 0 0 0 2 2 84.55 84.55 0 0 1 16.11 1.48H4Zm5.64-7.86c9.86.21 18.9 2 23.86 4.61v36.11c-5.72-2.46-14.38-4-23.86-4.19Zm51.72 36.53c-9.48.19-18.14 1.73-23.86 4.19V8.63c5-2.65 14-4.4 23.86-4.61ZM69 7.88h-3.64V2a2 2 0 0 0-2-2C51.9 0 41.42 2 35.5 5.17 29.58 1.96 19.1 0 7.64 0a2 2 0 0 0-2 2v5.88H2a2 2 0 0 0-2 2v38.13a2 2 0 0 0 2 2h67a2 2 0 0 0 2-2V9.88a2 2 0 0 0-2-2Z"/></svg>
+							<f:cObject typoscriptObjectPath="lib.kapitel-navigation"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </f:then>
+</v:condition.iterator.contains>
+
+<footer class="d-print-none">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 pl-3 pr-3 pl-md-0 pr-md-0">
+				<div class="row mb-md-3">
+					<div class="col-12 col-md-4">
+						<f:render partial="Structure/Feature/CopyWriteGib8" arguments="{data:data}" optional="true" />
+					</div>
+					<div class="col-12 col-md-8 mb-3">
+						<f:cObject typoscriptObjectPath="lib.foot-navigation"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row cookie-opener">
+			<f:cObject typoscriptObjectPath="lib.wx_consentbanner_opener" />
+		</div>
+	</div>
+</footer>
+
+<f:render partial="Structure/Feature/ScrollTop" arguments="{data:data}" optional="true" />
+
+</html>

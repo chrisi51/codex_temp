@@ -1,0 +1,19 @@
+<f:if condition="{data.tx_mask_soundcloudid}">
+    
+    <script>
+        if(!soundcloud_podcasts) var soundcloud_podcasts = [];
+        
+        soundcloud_podcasts[{data.uid}] = {data.tx_mask_soundcloudid};
+    </script>
+    
+    <div id="soundcloud_podcasts_{data.uid}" class="soundcloud_podcast" data-link="{data.tx_mask_soundcloudid}">
+        <div class="d-none d-lg-block">
+            <a href="javascript:loadSoundCloudPodcasts();">Zum Aktivieren der Podcasts klicken Sie bitte hier</a>. Bitte beachten Sie, dass mit der Aktivierung Daten an Soundcloud übermittelt werden. Weitere Informationen finden Sie in unserer <a href="/datenschutzerklaerung.html" target="_blank" style="display:inline;">Datenschutzerklärung</a>.
+        </div>
+        <div class="d-block d-lg-none">
+            <a href="javascript:loadSoundCloudPodcasts();">Zum Aktivieren der Podcasts klicken Sie bitte hier</a>. Bitte beachten Sie, dass mit der Aktivierung Daten an Soundcloud übermittelt werden. Weitere Informationen finden Sie in unserer <a href="/datenschutzerklaerung.html" target="_blank" style="display:inline;">Datenschutzerklärung</a>.
+        </div>
+    </div>
+    
+    
+</f:if>

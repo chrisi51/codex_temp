@@ -1,0 +1,34 @@
+<div class="adhs-2-col-overlay">
+    <div class="container">
+        <div class="row">
+            <div class="content">
+                <f:if condition="{data.tx_mask_title}">
+                    <h3 class="family-teaser-subheadline">{data.tx_mask_title}</h3>
+                </f:if>
+                <f:if condition="{data.bodytext}">
+                    <f:format.html>
+                        {data.bodytext}
+                    </f:format.html>
+                </f:if>
+            </div>
+            <div class="downloads-wrap">
+                <ul class="downloads">
+                    <f:for each="{data.media}" as="file">
+                        <li class="downloads-item">
+                            <a href="/fileadmin{file.identifier}" class="download-link" target="_blank">
+                                <f:if condition="{file.title}">
+                                    <f:then>
+                                        {file.title}
+                                    </f:then>
+                                    <f:else>
+                                        {file.name}
+                                    </f:else>
+                                </f:if>
+                            </a>
+                        </li>
+                    </f:for>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

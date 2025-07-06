@@ -1,0 +1,94 @@
+#[request && (traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0] || [traverse(request.getParsedBody(), 'tx_news_pi1/news') > 0)]
+#
+#    temp.Canonical = TEXT
+#    temp.Canonical {
+#        dataWrap = DB:tx_news_domain_model_news:{GP:tx_news_pi1|news}:tx_wdvcustomer_news_canonical_cat
+#        wrap3 = {|}
+#        insertData = 1
+#    }
+#
+#    lib.news-canonical = COA
+#    lib.news-canonical {
+#
+#        10 = CONTENT
+#        10 {
+#
+#            table = sys_category
+#            select {
+#                pidInList = 107
+#                selectFields = sys_category.single_pid as detailPidRed
+#                where = sys_category.single_pid != 0 AND sys_category.uid != 0 AND sys_category.uid != -1 AND sys_category.uid =
+#                where.postCObject < temp.Canonical
+#                max = 1
+#            }
+#
+#            renderObj = COA
+#            renderObj {
+#                stdWrap.wrap =|
+#                10 = TEXT
+#                10 {
+#                    typolink {
+#                        parameter = {field:detailPidRed}
+#                        parameter.insertData = 1
+#                        useCacheHash = 1
+#                        forceAbsoluteUrl = 1
+#
+#                        additionalParams.cObject = COA
+#                        additionalParams.cObject {
+#                            10 = TEXT
+#                            10.value = &tx_news_pi1[news]={GP:tx_news_pi1|news}
+#                            10.insertData = 1
+#                        }
+#
+#                        addQueryString = 1
+#                        addQueryString.exclude = type,no_cache
+#                        returnLast = url
+#                    }
+#                }
+#            }
+#        }
+#
+#        10.stdWrap.ifEmpty.cObject = CONTENT
+#        10.stdWrap.ifEmpty.cObject {
+#            table = sys_category
+#            select {
+#                orderBy = sys_category.single_pid ASC
+#                pidInList = 107
+#                selectFields = sys_category.single_pid as detailPidCat
+#                join = sys_category_record_mm ON sys_category_record_mm.uid_local = sys_category.uid
+#                where = sys_category_record_mm.uid_foreign={GP:tx_news_pi1|news} AND sys_category.single_pid != 0
+#                where.insertData = 1
+#                max = 1
+#            }
+#
+#            renderObj = COA
+#            renderObj {
+#                stdWrap.wrap =|
+#
+#                10 = TEXT
+#                10 {
+#                    typolink {
+#                        parameter = {field:detailPidCat}
+#                        parameter.insertData = 1
+#                        useCacheHash = 1
+#                        forceAbsoluteUrl = 1
+#
+#                        additionalParams.cObject = COA
+#                        additionalParams.cObject {
+#                            10 = TEXT
+#                            10.value = &tx_news_pi1[news]={GP:tx_news_pi1|news}
+#                            10.insertData = 1
+#                        }
+#
+#                        addQueryString = 1
+#                        addQueryString.exclude = type,no_cache
+#                        returnLast = url
+#                    }
+#                }
+#            }
+#        }
+#    }
+#    # reuse the original yoast seo functionality for canonical tag with own faked logic,
+#    # based on field "tx_wdvcustomer_news_canonical_cat"
+#    lib.yoastSEO.canonicalURL < lib.news-canonical
+#[END]

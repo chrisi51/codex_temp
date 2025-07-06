@@ -1,0 +1,23 @@
+
+# Menu of subpages of selected pages with amount of news items within same category:
+tt_content.wdvcustomer_menuSubpagesAmountNewsItemsDropdown =< lib.contentElement
+tt_content.wdvcustomer_menuSubpagesAmountNewsItemsDropdown {
+
+    templateName = MenuSubpagesAmountNewsItemsDropdown
+
+    dataProcessing {
+
+        #10 = WDV\WdvCustomer\DataProcessing\MenuSubpagesAmountNewsItemsDropdownProcessor
+        10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+        10 {
+            special = directory
+            special.value.field = pages
+        }
+    }
+    stdWrap {
+        editIcons = tt_content: header [header_layout], pages
+        editIcons {
+            iconTitle.data = LLL:EXT:fluid_styled_content/Resources/Private/Language/FrontendEditing.xlf:editIcon.menu
+        }
+    }
+}

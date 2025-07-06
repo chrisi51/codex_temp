@@ -1,0 +1,66 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:vhs="FluidTYPO3\Vhs\ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+    
+<vhs:variable.set name="link" value="{data.header_link}" />
+<vhs:variable.set name="text" value="{data.bodytext}" />
+<vhs:variable.set name="icon" value="{icons.0}" />
+    
+<f:if condition="{link}">
+    <f:then>
+        <f:link.typolink parameter="{link}" additionalAttributes='{id:"fixed-right-stoerer"}'>
+            <f:render section="stoerer" arguments="{_all}"></f:render>
+        </f:link.typolink>
+    </f:then>
+    <f:else>
+        <div id="fixed-right-stoerer">
+            <f:render section="stoerer" arguments="{_all}"></f:render>
+        </div>
+    </f:else>
+</f:if>
+
+                            
+
+
+
+<f:section name="stoerer">
+
+    <f:if condition="{icon}">
+        <div class="bubble">
+            <f:image image="{icon}" width="50" alt="Störer Icon" />
+        </div>
+    </f:if>
+    <div class="text">
+        {text -> f:format.html()}
+    </div>
+    
+</f:section>
+
+
+
+
+
+<f:comment>
+        <f:link.page pageUid="666" id="fixed-right-stoerer">
+            <div class="bubble">
+                
+                <svg id="svg_newsletter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.83 11.87" width="50" height="40">
+                    <path d="M.46 0h14.88c.79 0 .38 1.01-.05 1.27l-6.6 3.99c-.22.14-.51.2-.8.2s-.58-.06-.8-.2L.49 1.27C.06 1.01-.35 0 .44 0Zm15.38 10.89c0 .42-.5.99-.88.99H.88C.5 11.87 0 11.3 0 10.89V3.67c0-.18 0-.42.34-.22L7.1 7.44c.3.18.51.2.8.2s.5-.02.8-.2l6.8-3.98c.34-.2.34.03.34.22v7.22Z"/>
+                </svg>     
+<f:comment>
+    
+                <svg id="svg_anmeldebogen" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208.43 243.11">
+                  <path d="M142.71 73.99H68.72V63.42h73.99v10.57zm-89.85 0H37.01V63.42h15.85v10.57zm89.85 42.28H68.72V105.7h73.99v10.57zm-89.85 0H37.01V105.7h15.85v10.57zm89.85 42.28H68.72v-10.57h73.99v10.57zm-89.85 0H37.01v-10.57h15.85v10.57z"/>
+                  <path d="M169.13 166.32h10.58V26.44C179.71 10.38 169.32 0 153.27 0H26.44C10.35 0 0 10.39 0 26.44v190.23c0 16.06 10.39 26.44 26.44 26.44h91.03v-10.59H26.44c-8.76 0-15.86-7.1-15.86-15.86V26.43c0-8.75 7.1-15.85 15.85-15.85h126.84c8.76 0 15.86 7.1 15.86 15.86v139.88Z"/>
+                  <path d="M184.7 233.55h-47.14v-47.14h39.85l9.45-9.43h-58.73v66h66v-33.63l-9.43 9.41v14.79z"/>
+                  <path d="m164.1 226.13-19.33-20.02 6.79-6.55 12.67 13.13 37.55-37.4 6.65 6.68-44.33 44.16z"/>
+                </svg>
+</f:comment>   
+                
+            </div>
+            <div class="text">
+                Jetzt für den Newsletter anmelden!
+            </div>
+        </f:link.page>    
+</f:comment>

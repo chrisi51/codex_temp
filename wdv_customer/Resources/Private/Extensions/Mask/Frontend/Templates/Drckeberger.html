@@ -1,0 +1,36 @@
+
+<f:if condition="{data.tx_mask_drueckeberger}">
+	<div class="row">
+        <f:for each="{data.tx_mask_drueckeberger}" as="data_item" iteration="Iterator">
+            <div class="col-md-4 mb-4 mb-md-12">
+                <a class="wx_overlay_opener" href="#create-motiv-{Iterator.index}">
+                    <f:for each="{data_item.tx_mask_motiv}" as="file">
+                        <f:media file="{file}" width="200" />
+                        {file.description}
+                    </f:for>
+                    <f:if condition="{data_item.tx_mask_text}">
+                        {data_item.tx_mask_text -> f:format.html()}
+                    </f:if>
+                </a>
+                <div class="wx_overlay" id="create-motiv-{Iterator.index}">
+                    <f:for each="{data_item.tx_mask_motiv}" as="file">
+                        <f:media file="{file}" width="800" />
+                    </f:for>
+                    <f:if condition="{data_item.tx_mask_text}">
+                        {data_item.tx_mask_text -> f:format.html()}
+                    </f:if>
+                    <a class="btn btn-lg" href="mailto:?subject=Schau%20mal&body={data_item.tx_mask_text -> f:format.stripTags() -> f:format.urlencode()}%0A%0ALink: <f:uri.page absolute="true" section="motiv-{Iterator.index}" />">Teilen</a>
+                </div>                
+                <div class="wx_overlay" id="motiv-{Iterator.index}">
+                    <f:if condition="{data_item.tx_mask_text}">
+                        {data_item.tx_mask_text -> f:format.html()}
+                    </f:if>
+                    <f:for each="{data_item.tx_mask_motiv}" as="file">
+                        <f:media file="{file}" width="800" />
+                    </f:for>
+                </div>                
+                
+            </div>
+        </f:for>
+    </div>
+</f:if>

@@ -1,0 +1,22 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+	xmlns:ce="http://typo3.org/ns/TYPO3/CMS/FluidStyledContent/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<main class="{f:if(condition: '{data.tx_wdvcustomer_page_paddingtop} == 1', then: 'pt-main', else: 'pt-0')}" data-amount="{w:getAmoutOfNewsItemsWithinSameCategory(pageuid: data.uid, recursive: true)}">
+	<f:comment><!--
+		<div class="container">
+			<div class="row">
+				<div class="col-12 pl-3 pr-3 col-md-10 col-print-12 offset-md-1 offset-print-0 ">
+	--></f:comment>
+				<!--TYPO3SEARCH_begin-->
+				{main-content -> f:format.raw()}
+				<!--TYPO3SEARCH_end-->
+	<f:comment><!--
+				</div>
+			</div>
+		</div>
+	--></f:comment>
+</main>
+
+</html>

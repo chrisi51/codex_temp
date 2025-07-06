@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="224px" height="224px" viewBox="0 0 224 224" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_warning</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="vigo-article-w-impfkalender-desktop" transform="translate(-896.000000, -129.000000)">
+            <rect fill="#FAFAF9" x="0" y="0" width="1440" height="900"></rect>
+            <g id="Impfkalender" transform="translate(345.000000, 166.000000)">
+                <g id="ic_warning" transform="translate(651.000000, 63.000000)">
+                    <g>
+                        <circle id="Oval" fill="#90B728" cx="12" cy="12" r="10"></circle>
+                        <g id="Group" transform="translate(11.000000, 7.000000)" fill="#FFFFFF">
+                            <rect id="Rectangle" x="0" y="3" width="2" height="7" rx="1"></rect>
+                            <rect id="Rectangle-3" x="0" y="0" width="2" height="2" rx="1"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

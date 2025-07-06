@@ -1,0 +1,4 @@
+
+You can import *config.json* back to the IcoMoon app using the *Import Icons* button (or via Main Menu → Manage Projects) to retrieve your icon selection.
+
+https://icomoon.io/app/#/select/font

@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+<f:section name="Main">
+
+	<f:if condition="{menu}">
+		<ul class="nav flex-column ce-bullets">
+			<f:for each="{menu}" as="page">
+				<li>
+					<a class="nav-link{f:if(condition: '{page.data.tx_wdvcustomer_page_icon}', then: ' icon {page.data.tx_wdvcustomer_page_icon}')}" href="{page.link}"{f:if(condition: page.target, then: ' target="{page.target}"')} title="{page.title}">
+
+						<f:if condition="{page.data.tx_wdvcustomer_page_amountnews} == 1">
+							<f:then>
+
+								{page.title} <span class="text-unbold">({w:getAmoutOfNewsItemsWithinSameCategory(pageuid: page.data.uid, recursive: true)})</span>
+
+							</f:then>
+							<f:else>
+
+								{page.title}
+
+							</f:else>
+						</f:if>
+
+						{f:if(condition: '{page.data.doktype} == 3', then: '<span class="icon external-link"></span>')}
+
+					</a>
+				</li>
+			</f:for>
+		</ul>
+	</f:if>
+
+</f:section>
+</html>

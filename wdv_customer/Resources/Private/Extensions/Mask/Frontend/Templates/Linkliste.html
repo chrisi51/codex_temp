@@ -1,0 +1,20 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+    <f:if condition="{data.tx_mask_linklist}">
+        <div class="linklist {classes_wrapper->f:format.trim()}">
+            <f:for each="{data.tx_mask_linklist}" as="data_item">
+                <f:link.typolink parameter="{data_item.tx_mask_link}">
+                    <span>{data_item.tx_mask_text}</span>
+                    <span class="icon right-arrow-005e3f"></span>
+                </f:link.typolink>
+            </f:for>
+        </div>
+    </f:if>
+</f:section>

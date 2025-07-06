@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="38px" viewBox="0 0 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="vigo-video-lightbox-desktop" transform="translate(-248.000000, -807.000000)" fill-rule="nonzero">
+            <g id="Share" transform="translate(248.000000, 807.000000)">
+                <g id="Group">
+                    <path d="M19,0 C8.50645833,0 0,8.50645833 0,19 C0,29.4935417 8.50645833,38 19,38 C29.4935417,38 38,29.4935417 38,19 C38,8.50645833 29.4935417,0 19,0 Z" id="Path" fill="#90B728"></path>
+                    <path d="M23.500625,13.1297917 L20.6446875,13.1297917 C20.30625,13.1297917 19.9302083,13.5751042 19.9302083,14.166875 L19.9302083,16.2291667 L23.5026042,16.2291667 L22.9622917,19.1702083 L19.9302083,19.1702083 L19.9302083,27.9992708 L16.5596875,27.9992708 L16.5596875,19.1702083 L13.501875,19.1702083 L13.501875,16.2291667 L16.5596875,16.2291667 L16.5596875,14.499375 C16.5596875,12.0175 18.2815625,10.0007292 20.6446875,10.0007292 L23.500625,10.0007292 L23.500625,13.1297917 Z" id="Path" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

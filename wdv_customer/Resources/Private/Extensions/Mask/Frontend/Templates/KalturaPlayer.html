@@ -1,0 +1,64 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:vhs="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:if condition="{data.bodytext}">
+
+    <f:variable name="wid">_102</f:variable>
+    <f:variable name="uiconf_id">23449368</f:variable>
+
+
+    <f:variable name="entry_id"><vhs:variable.pregMatch pattern='~"entry_id":\s+"([_a-zA-Z0-9]+)"~' subject="{data.bodytext}"/></f:variable>
+    <f:variable name="entry_id">{entry_id.1}</f:variable>
+    <f:variable name="cache_st"><vhs:variable.pregMatch pattern='~"cache_st":\s+([0-9]+)~' subject="{data.bodytext}"/></f:variable>
+    <f:variable name="cache_st">{cache_st.1}</f:variable>
+
+    <f:comment>
+        <f:debug>{_all}</f:debug>
+        <f:variable name="uiconf_id">23449069</f:variable>
+        <f:variable name="uiconf_id">23449368</f:variable>
+
+        {data.bodytext -> f:format.nl2br()}
+
+    </f:comment>
+
+
+<div class="kaltura_player_wrapper">
+    <script src="https://mediathek.aok.de/p/102/sp/10200/embedIframeJs/uiconf_id/<f:format.raw>{uiconf_id}</f:format.raw>/partner_id/102"></script>
+    <div class="kaltura_player" id="kaltura_player_<f:format.raw>{data.uid}</f:format.raw>"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Container-Element (Player) per ID ermitteln
+            var playerContainer = document.getElementById('kaltura_player_<f:format.raw>{data.uid}</f:format.raw>');
+            console.log('Container', playerContainer);
+
+            // Mit getComputedStyle die aktuellen, von CSS berechneten Dimensionen abrufen
+            var computedStyles = window.getComputedStyle(playerContainer);
+            var width  = computedStyles.getPropertyValue('width');   // z.B. "800px" oder "100%"
+            var height = computedStyles.getPropertyValue('height');  // kann per CSS auch mit auto oder calc() gesetzt sein
+
+            // Umwandeln der Höhe (z.B. "450px") in eine Zahl und 36 px addieren
+            var numericHeight = parseFloat(height); // Entfernt "px" und gibt 450 als Zahl zurück
+            var height = numericHeight + 36;     // Addiert 36 px
+            var height = height + "px"; // Wandelt wieder in einen String um
+
+            // Debug: Ausgabe der ausgelesenen Werte in der Konsole
+            console.log('Computed player dimensions kaltura_player_<f:format.raw>{cache_st}</f:format.raw>:', width, height);
+
+            // kWidget.embed-Aufruf mit den ermittelten Werten
+            kWidget.embed({
+                targetId: 'kaltura_player_<f:format.raw>{data.uid}</f:format.raw>',
+                wid: '<f:format.raw>{wid}</f:format.raw>',
+                uiconf_id: <f:format.raw>{uiconf_id}</f:format.raw>,
+                flashvars: {},
+                cache_st: <f:format.raw>{cache_st}</f:format.raw>,
+                entry_id: '<f:format.raw>{entry_id}</f:format.raw>',
+                width: width,   // hier werden die vom CSS berechneten Werte übergeben
+                height: height
+            });
+        });
+    </script>
+</div>
+</f:if>
+
+

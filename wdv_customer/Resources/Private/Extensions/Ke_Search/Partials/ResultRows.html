@@ -1,0 +1,35 @@
+<!--
+	=====================
+	Partials/ResultRows.html
+-->
+
+<div id="kesearch_num_results">{numberofresults} Suchergebnisse:</div>
+<f:render partial="Sorting" arguments="{conf: conf, numberofresults: numberofresults, sortingLinks: sortingLinks}" />
+
+<div id="kesearch_results">
+	<f:for each="{resultrows}" as="resultrow" iteration="iterator">
+
+		<f:render partial="ResultRow" arguments="{conf: conf, resultrow: resultrow}" />
+
+		<f:if condition="{iterator.isLast}">
+			<f:then>
+			</f:then>
+
+			<f:else>
+
+				<div class="row mt-3 mb-3">
+					<div class="col-12 pl-0 pr-0 pl-md-0 pr-md-0">
+						<hr>
+					</div>
+				</div>
+
+			</f:else>
+
+		</f:if>
+
+	</f:for>
+</div>
+
+<div class="mt-7 mb-7">
+	<f:render partial="PageBrowser" arguments="{conf: conf, numberofresults:numberofresults, pagination:pagination}" />
+</div>

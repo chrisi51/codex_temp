@@ -1,0 +1,75 @@
+
+tt_content.gridelements_pi1.20.10.setup {
+
+	box_container < lib.gridelements.defaultGridSetup
+	box_container {
+
+		cObject = FLUIDTEMPLATE
+		cObject {
+			templateName = BoxContainer
+
+			templateRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Gridelements/Templates/
+			partialRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Gridelements/Partials/
+			layoutRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Gridelements/Layouts/
+
+			partialRootPaths.101 = EXT:wdv_elements/Resources/Private/Extensions/Fluid_Styled_Content/Partials/
+
+			dataProcessing {
+
+				10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+				10 {
+					references {
+						table = tt_content
+						fieldName = flexform_bgimage
+					}
+					as = bgimages
+				}
+				20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+				20 {
+					references {
+						table = tt_content
+						fieldName = flexform_bgvideo
+					}
+					as = bgvideo
+				}
+			}
+			variables {
+			}
+		}
+	}
+}
+
+tt_content.b13-box_container < lib.contentElement
+tt_content.b13-box_container {
+    templateName = BoxContainer
+    templateRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Container/Templates/
+    partialRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Container/Partials/
+    layoutRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Container/Layouts/
+
+    partialRootPaths.101 = EXT:wdv_elements/Resources/Private/Extensions/Fluid_Styled_Content/Partials/
+
+    dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        10 {
+            references {
+                table = tt_content
+                fieldName = flexform_bgimage
+            }
+            as = bgimages
+        }
+        20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        20 {
+            references {
+                table = tt_content
+                fieldName = flexform_bgvideo
+            }
+            as = bgvideo
+        }
+
+        3100 = B13\Container\DataProcessing\ContainerProcessor
+        3100 {
+            colPos = 3100
+            as = children_3100
+        }
+    }
+}

@@ -1,0 +1,114 @@
+5 = LOAD_REGISTER
+5 {
+     countElement.cObject = TEXT
+     countElement.cObject.data = register:countElement
+     countElement.cObject.wrap = |+1
+     countElement.prioriCalc = intval
+}
+
+
+lib.kapitel-navigation = COA
+lib.kapitel-navigation {
+
+     10 = COA
+     10 {
+          wrap = <div id="kapitelsubnavigation">|</div>
+          20 = HMENU
+          20 {
+               entryLevel = 1
+
+
+               1 = TMENU
+               1.wrap = <ul>|</ul>
+               1.expAll = 1
+               1.NO = 1
+               1.NO.allWrap = <li>|</li>
+               1.NO.stdWrap.cObject = COA
+               1.NO.stdWrap.cObject {
+                    10 = LOAD_REGISTER
+                    10.temp.data = register:countElement
+                    10.temp.wrap = |+1
+                    10.countElement.data = register:temp
+                    10.countElement.prioriCalc = 1
+
+                    20 = TEXT
+                    20.data = register:countElement
+               }
+               1.ACT < .1.NO
+               1.ACT.allWrap = <li class="active">|</li>
+          }
+     }
+
+     50 = CONTENT
+     50 {
+          table = tt_content
+          select {
+               orderBy = sorting
+               where = colPos=10
+               # andWhere = hidden=0 AND deleted=0
+          }
+     }
+
+     100 = COA
+     100 {
+
+          wrap = <div id="kapitelnavigation">|</div>
+          100 = HMENU
+          100 {
+               entryLevel = 1
+               stdWrap.wrap = |
+               stdWrap.required = 1
+               special = browse
+               special {
+                    value.data = leveluid:2
+                    items = prev
+                    items.prevnextToSection = 1  #mit Section ist die nächsten Seite auf der nächst höheren Ebene gemeint
+                    #prev.fields.title = < prev Projekt #Benutzerdefinierte Beschriftung statt Seitentitel der Zielseite
+               }
+               1 = TMENU
+               1 {
+                    NO = 1
+                    NO.ATagParams = class="prevkapitel"
+               }
+               stdWrap.ifEmpty.cObject = TEXT
+               stdWrap.ifEmpty.cObject.value = <div></div>
+          }
+
+          120 = HMENU
+          120 {
+               stdWrap.wrap = |
+               stdWrap.required = 1
+               special = browse
+               special {
+                    value.data = leveluid:2
+                    items = next
+                    items.prevnextToSection = 1  #mit Section ist die nächsten Seite auf der nächst höheren Ebene gemeint
+                    #prev.fields.title = < prev Projekt #Benutzerdefinierte Beschriftung statt Seitentitel der Zielseite
+               }
+               1 = TMENU
+               1 {
+                    NO = 1
+                    NO.ATagParams = class="nextkapitel"
+               }
+               stdWrap.ifEmpty.cObject = TEXT
+               stdWrap.ifEmpty.cObject.value = <div></div>
+          }
+     }
+}
+
+
+
+
+
+lib.foot-content = CONTENT
+lib.foot-content {
+
+     table = tt_content
+     select {
+
+          pidInList = 125
+          orderBy = sorting
+          where = colPos=0
+          # andWhere = hidden=0 AND deleted=0
+     }
+}

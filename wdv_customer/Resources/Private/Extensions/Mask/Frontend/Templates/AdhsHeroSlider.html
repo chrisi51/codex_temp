@@ -1,0 +1,176 @@
+<div class="adhs-slider">
+    <div class="container">
+        <div class="slick-slider">
+            <f:if condition="{data.tx_mask_slides}">
+                <f:for each="{data.tx_mask_slides}" as="slide" iteration="i">
+                    <div class="slide">
+                        <f:if condition="{slide.tx_mask_bgvideo_square} && {slide.tx_mask_bgvideo}">
+                            <f:then>
+                                <f:if condition="{i.isFirst}">
+                                    <f:then>
+                                        <f:render section="slide-video-autoplay" arguments="{slide: slide}"/>
+                                    </f:then>
+                                    <f:else>
+                                        <f:render section="slide-video" arguments="{slide: slide}"/>
+                                    </f:else>
+                                </f:if>
+                            </f:then>
+                            <f:else>
+                                <f:render section="slide-image" arguments="{slide: slide}"/>
+                            </f:else>
+                        </f:if>
+                    </div>
+                </f:for>
+            </f:if>
+        </div>
+
+        <div class="custom-navigation">
+            <button class="slick-prev" aria-label="Previous slide"><span class="icon-left"></span></button>
+            <div class="slick-dots-container"></div>
+            <div class="slick-index-container"></div>
+            <button class="slick-next" aria-label="Next slide"><span class="icon-right"></span></button>
+        </div>
+    </div>
+</div>
+
+<div class="promotion-banner">
+    <div class="promo-wrapper">
+        <f:render section="promo-unit"/>
+        <f:render section="promo-unit"/>
+        <f:render section="promo-unit"/>
+        <f:render section="promo-unit"/>
+    </div>
+</div>
+
+<f:section name="promo-unit">
+    <a href="https://www.aok.de/mw/rh/mitgliedsantrag/" target="_blank" class="promo-unit">
+        <img src="/fileadmin/mediathek/kampagnen/Familienkampagne/Mitglied_werden_rgb.svg" alt="Icon" class="promo-icon">
+        <span class="promo-text">
+                <strong>Jetzt Mitglied werden</strong> und von unseren Leistungen für Familien und Schwangere profitieren.
+            </span>
+    </a>
+</f:section>
+
+
+<f:section name="slide-video-autoplay">
+    <div class="video-wrap">
+        <div class="videos">
+            <video id="landscape-video" class="family-video"  muted loop playsinline autoplay>
+                <f:for each="{slide.tx_mask_bgvideo}" as="video_landscape">
+                    <source src="{video_landscape.originalFile.publicUrl}" type="video/mp4">
+                </f:for>
+                Dein Browser unterstützt dieses Video-Format nicht.
+            </video>
+
+            <video id="square-video" class="family-video"  muted loop playsinline autoplay>
+                <f:for each="{slide.tx_mask_bgvideo_square}" as="video_square">
+                    <source src="{video_square.originalFile.publicUrl}" type="video/mp4">
+                </f:for>
+                Dein Browser unterstützt dieses Video-Format nicht.
+            </video>
+        </div>
+
+        <f:if condition="({slide.tx_mask_hl1} || {slide.tx_mask_hl2})">
+            <div class="headings">
+                <h2>
+                    <f:if condition="{slide.tx_mask_hl1}">
+                        <div class="line1">{slide.tx_mask_hl1}</div>
+                    </f:if>
+                    <f:if condition="{slide.tx_mask_hl2}">
+                        <div class="line2">{slide.tx_mask_hl2}</div>
+                    </f:if>
+                </h2>
+            </div>
+        </f:if>
+    </div>
+    <div class="content">
+        <f:if condition="{slide.tx_mask_teaser}">
+            <div class="teasertext">
+                {slide.tx_mask_teaser -> f:format.html()}
+            </div>
+        </f:if>
+        <f:if condition="{slide.tx_mask_link} && {slide.tx_mask_linktext}">
+            <f:link.typolink parameter="{slide.tx_mask_link}" class="family-button">
+                {slide.tx_mask_linktext}
+            </f:link.typolink>
+        </f:if>
+    </div>
+</f:section>
+
+
+<f:section name="slide-video">
+    <div class="video-wrap">
+        <div class="videos">
+            <video id="landscape-video" class="family-video"  muted loop playsinline>
+                <f:for each="{slide.tx_mask_bgvideo}" as="video_landscape">
+                    <source src="{video_landscape.originalFile.publicUrl}" type="video/mp4">
+                </f:for>
+                Dein Browser unterstützt dieses Video-Format nicht.
+            </video>
+
+            <video id="square-video" class="family-video"  muted loop playsinline>
+                <f:for each="{slide.tx_mask_bgvideo_square}" as="video_square">
+                    <source src="{video_square.originalFile.publicUrl}" type="video/mp4">
+                </f:for>
+                Dein Browser unterstützt dieses Video-Format nicht.
+            </video>
+        </div>
+
+        <f:if condition="({slide.tx_mask_hl1} || {slide.tx_mask_hl2})">
+            <div class="headings">
+                <h2>
+                    <f:if condition="{slide.tx_mask_hl1}">
+                        <div class="line1">{slide.tx_mask_hl1}</div>
+                    </f:if>
+                    <f:if condition="{slide.tx_mask_hl2}">
+                        <div class="line2">{slide.tx_mask_hl2}</div>
+                    </f:if>
+                </h2>
+            </div>
+        </f:if>
+    </div>
+    <div class="content">
+        <f:if condition="{slide.tx_mask_teaser}">
+            <div class="teasertext">
+                {slide.tx_mask_teaser -> f:format.html()}
+            </div>
+        </f:if>
+        <f:if condition="{slide.tx_mask_link} && {slide.tx_mask_linktext}">
+            <f:link.typolink parameter="{slide.tx_mask_link}" class="family-button">
+                {slide.tx_mask_linktext}
+            </f:link.typolink>
+        </f:if>
+    </div>
+</f:section>
+
+<f:section name="slide-image">
+    <figure class="figure">
+        <picture class="picture">
+            <f:image image="{slide.tx_mask_media.0}" alt="{slide.tx_mask_media.alternative}" width="1410c" height="793" class="image"/>
+        </picture>
+        <f:if condition="({slide.tx_mask_hl1} || {slide.tx_mask_hl2})">
+            <figcaption class="headings">
+                <h1>
+                    <f:if condition="{slide.tx_mask_hl1}">
+                        <div class="line1">{slide.tx_mask_hl1}</div>
+                    </f:if>
+                    <f:if condition="{slide.tx_mask_hl2}">
+                        <div class="line2">{slide.tx_mask_hl2}</div>
+                    </f:if>
+                </h1>
+            </figcaption>
+        </f:if>
+    </figure>
+    <div class="content">
+        <f:if condition="{slide.tx_mask_teaser}">
+            <div class="teasertext">
+                {slide.tx_mask_teaser -> f:format.html()}
+            </div>
+        </f:if>
+        <f:if condition="{slide.tx_mask_link} && {slide.tx_mask_linktext}">
+            <f:link.typolink parameter="{slide.tx_mask_link}" class="family-button">
+                {slide.tx_mask_linktext}
+            </f:link.typolink>
+        </f:if>
+    </div>
+</f:section>

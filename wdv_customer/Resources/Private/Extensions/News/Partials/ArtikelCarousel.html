@@ -1,0 +1,33 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="news-item article articletype-{newsItem.type} carousel carousel-fade slide pt-0 mb-1" data-interval="5000" data-ride="false" id="n{newsItem.uid}">
+<f:comment>
+    <h2 class="p-4 p-md-5">Services der AOK Rheinland/Hamburg</h2>
+</f:comment>
+    <div class="carousel-inner">
+        <f:if condition="{newsItem.txWdvcustomerExternalurlsammlungImpliedNews -> f:count()} == 0">
+            <f:then>
+                NO ITEMS!
+            </f:then>
+            <f:else>
+                <f:for each="{newsItem.txWdvcustomerExternalurlsammlungImpliedNews}" as="impliedNews" iteration="iterator">
+                    <div class="carousel-item{f:if(condition: '{iterator.isFirst}', then: ' active')}">
+                        <f:render partial="Carousel/Item" arguments="{newsItem: impliedNews, settings: settings}" />
+                    </div>
+                </f:for>
+            </f:else>
+        </f:if>
+    </div>
+    <a class="carousel-control-prev" href="#n{newsItem.uid}" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Vorheriges</span>
+    </a>
+    <a class="carousel-control-next" href="#n{newsItem.uid}" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Nächstes</span>
+    </a>
+</div>
+</html>

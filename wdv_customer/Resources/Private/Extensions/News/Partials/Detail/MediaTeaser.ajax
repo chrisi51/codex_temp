@@ -1,0 +1,120 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	  xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:if condition="{chunkedIterator.cycle} % 2">
+	<f:then>
+
+		<f:if condition="{iterator.isLast}">
+			<f:then>
+
+				<f:comment>
+				<div class="col-12 col-md-4">
+				</f:comment>
+
+				<f:if condition="{newsItem.mediaPreviews}">
+					<f:then>
+
+						<fp:image image="{mediaElement}" height="360" realCrop="false" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{newsItem.title}" />
+
+					</f:then>
+					<f:else>
+
+						<f:if condition="{settings.displayDummyIfNoMedia}">
+
+							<fp:image src="{settings.list.media.dummyImage}" height="360" realCrop="false" />
+
+						</f:if>
+
+					</f:else>
+				</f:if>
+
+			</f:then>
+			<f:else>
+
+				<f:comment>
+				<div class="col-12 col-md-8">
+				</f:comment>
+
+				<f:if condition="{newsItem.mediaPreviews}">
+					<f:then>
+
+						<fp:image image="{mediaElement}" width="750" realCrop="false" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{newsItem.title}" />
+
+					</f:then>
+					<f:else>
+
+						<f:if condition="{settings.displayDummyIfNoMedia}">
+
+							<fp:image src="{settings.list.media.dummyImage}" width="750" realCrop="false" />
+
+						</f:if>
+
+					</f:else>
+				</f:if>
+
+			</f:else>
+		</f:if>
+
+	</f:then>
+	<f:else>
+
+		<f:if condition="{iterator.isLast}">
+			<f:then>
+
+				<f:comment>
+				<div class="col-12 col-md-8">
+				</f:comment>
+
+				<f:if condition="{newsItem.mediaPreviews}">
+					<f:then>
+
+						<fp:image image="{mediaElement}" width="750" realCrop="false" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{newsItem.title}" />
+
+					</f:then>
+					<f:else>
+
+						<f:if condition="{settings.displayDummyIfNoMedia}">
+
+							<fp:image src="{settings.list.media.dummyImage}" width="750" realCrop="false" />
+
+						</f:if>
+
+					</f:else>
+				</f:if>
+
+			</f:then>
+			<f:else>
+
+				<f:comment>
+				<div class="col-12 col-md-4">
+				</f:comment>
+
+				<f:if condition="{newsItem.mediaPreviews}">
+					<f:then>
+
+						<fp:image image="{mediaElement}" height="360" realCrop="false" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{newsItem.title}" />
+
+					</f:then>
+					<f:else>
+
+						<f:if condition="{settings.displayDummyIfNoMedia}">
+
+							<fp:image src="{settings.list.media.dummyImage}" height="360" realCrop="false" />
+
+						</f:if>
+
+					</f:else>
+				</f:if>
+
+			</f:else>
+		</f:if>
+
+	</f:else>
+</f:if>
+
+<!-- [AUTOTEXT UNTER DEM BILD] -->
+
+</html>

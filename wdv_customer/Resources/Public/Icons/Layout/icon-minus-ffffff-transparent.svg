@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="224px"
+   height="224px"
+   viewBox="0 0 224 224"
+   version="1.1"
+   id="svg3856"
+   sodipodi:docname="icon-minus-ffffff-transparent.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata3862">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>ic_minus</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3860" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     id="namedview3858"
+     showgrid="false"
+     inkscape:zoom="1.0535714"
+     inkscape:cx="-39.864407"
+     inkscape:cy="-115.79661"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="vigo-article-w-accordion-desktop" />
+  <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+  <title
+     id="title3839">ic_minus</title>
+  <desc
+     id="desc3841">Created with Sketch.</desc>
+  <g
+     id="Components"
+     style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1">
+    <g
+       id="vigo-article-w-accordion-desktop"
+       transform="translate(-953,-151)">
+      <g
+         id="Content"
+         transform="translate(443,-620)"
+         style="stroke:#ffffff;stroke-linecap:round">
+        <g
+           id="Akkordion-open"
+           transform="translate(0,853)">
+          <g
+             id="Tab">
+            <g
+               id="Button"
+               transform="translate(592)">
+              <g
+                 id="ic_minus"
+                 transform="translate(18,18)">
+                <g
+                   id="minus">
+                  <g
+                     transform="translate(3,11)"
+                     id="g3846"
+                     style="stroke-width:2">
+                    <path
+                       d="M 0,1 H 18"
+                       id="Line"
+                       inkscape:connector-curvature="0" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

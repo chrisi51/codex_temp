@@ -1,0 +1,51 @@
+plugin.tx_kesearch_pi1 {
+    view {
+        templateRootPaths.5 = EXT:wdv_customer/Resources/Private/Extensions/Ke_Search/Templates/
+        partialRootPaths.5 = EXT:wdv_customer/Resources/Private/Extensions/Ke_Search/Partials/
+        layoutRootPaths.5 = EXT:wdv_customer/Resources/Private/Extensions/Ke_Search/Layouts/
+    }
+}
+
+plugin.tx_kesearch_pi2 {
+    view {
+        templateRootPaths.5 = EXT:wdv_customer/Resources/Private/Extensions/Ke_Search/Templates/
+        partialRootPaths.5 = EXT:wdv_customer/Resources/Private/Extensions/Ke_Search/Partials/
+        layoutRootPaths.5 = EXT:wdv_customer/Resources/Private/Extensions/Ke_Search/Layouts/
+    }
+}
+
+# --
+
+plugin.tx_kesearch_pi2.highlightedWord_stdWrap.wrap = <span class="kehit">|</span>
+
+# --
+
+page.includeCSS {
+
+    # kesp-jquery-ui = EXT:ke_search_premium/Resources/Public/Media/jquery-ui-1.9.0.custom.min.css
+    kesp-jquery-ui >
+
+    110 = EXT:wdv_customer/Resources/Public/CSS/jquery-ui.css
+}
+
+# remove javascript librariers from beeing included in page.includeJS
+page.includeJS {
+
+    kesp-jquery >
+    kesp-jquery-ui-core >
+    kesp-jquery-ui-widget >
+    kesp-jquery-ui-pos >
+    kesp-jquery-ui-menu >
+    kesp-jquery-ui-auto >
+}
+
+# move kesp object from above from page.includeJS to page.includeJSFooterlibs except jquery!
+# we dont need jquery in this call because it is already present
+page.includeJSFooterlibs {
+
+    100 = EXT:wdv_customer/Resources/Public/JavaScript/jquery-ui.js
+}
+
+# page.jsInline.10.template.file = typo3conf/ext/wdv_customer/Resources/Public/JavaScript/ke_search_premium_customer.js
+# page.jsFooterInline.100 < page.jsInline.10
+page.jsInline.10 >

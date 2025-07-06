@@ -1,0 +1,111 @@
+lib.breadcrumb = COA
+lib.breadcrumb {
+
+    wrap = <nav aria-label="breadcrumb"><ol class="breadcrumb">|</ol></nav>
+
+    20 = HMENU
+    20 {
+        special = rootline
+        special.range = 3|-1
+
+        1 = TMENU
+        1 {
+            NO {
+                allWrap = <li class="breadcrumb-item">|</li>
+                ATagTitle.field = abstract // description // title
+            }
+
+            CUR = 1
+            CUR {
+                allWrap = <li class="breadcrumb-item active" aria-current="page">|</li>
+                doNotLinkIt = 1
+            }
+        }
+    }
+
+    # Add news title if on single view
+    #    30 = RECORDS
+    #    30 {
+    #        if.isTrue.data = GP:tx_news_pi1|news
+    #        tables = tx_news_domain_model_news
+    #
+    #        dontCheckPid = 1
+    #
+    #        source.data = GP:tx_news_pi1|news
+    #        source.intval = 1
+    #
+    #        conf.tx_news_domain_model_news = TEXT
+    #        conf.tx_news_domain_model_news {
+    #            field = title
+    #            htmlSpecialChars = 1
+    #            wrap =  <li class="breadcrumb-item active" aria-current="page">|</li>
+    #        }
+    #
+    #    }
+}
+
+[site("identifier") == "www_gib8-achtsamkeit_de"]
+    lib.breadcrumb.20.special.range = 1|-2
+    lib.breadcrumb.20.1.NO.stdWrap.cObject = COA
+    lib.breadcrumb.20.1.NO.stdWrap.cObject {
+        10 = TEXT
+        10.field = title
+        10.stdWrap.htmlSpecialChars = 1
+    }
+[global]
+
+[site("identifier") == "achtsamkeit_vigo_de"]
+    lib.breadcrumb {
+        wrap = <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" target="_self">Startseite</a></li>|</ol></nav>
+        20 {
+            special.range = 1|-2
+            1.NO {
+                stdWrap.cObject = COA
+                stdWrap.cObject {
+                    10 = TEXT
+                    10 {
+                        field = title
+                        stdWrap.htmlSpecialChars = 1
+                    }
+                }
+            }
+        }
+    }
+[global]
+
+[site("identifier") == "krebs_vigo_de"]
+    lib.breadcrumb {
+        wrap = <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="/" target="_self">Startseite</a></li>|</ol></nav>
+        20 {
+            special.range = 1|-2
+            1.NO {
+                stdWrap.cObject = COA
+                stdWrap.cObject {
+                    10 = TEXT
+                    10 {
+                        field = title
+                        stdWrap.htmlSpecialChars = 1
+                    }
+                }
+            }
+        }
+    }
+[global]
+
+[site("identifier") == "familie_vigo_de"]
+    lib.breadcrumb = FLUIDTEMPLATE
+    lib.breadcrumb {
+        file = EXT:wdv_customer/Resources/Private/Partials/Page/Breadcrumb/Breadcrumb.html
+        extbase.controllerExtensionName = wdv_customer
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+            10 {
+                special = rootline
+                special.range = 0|-1
+                includeNotInMenu = 0
+                titleField = title
+                as = menu
+            }
+        }
+    }
+[global]

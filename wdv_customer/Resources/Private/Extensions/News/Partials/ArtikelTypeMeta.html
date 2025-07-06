@@ -1,0 +1,237 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{newsItem.txWdvcustomerNewsMultipagetype}">
+    <f:then>
+        <f:switch expression="{newsItem.txWdvcustomerNewsMultipagetype}">
+
+            <f:case value="1">
+
+                <span class="news-item__teaser-desc_symbol article"></span>
+                <span class="news-item__teaser-desc_type"><strong>Interner Link</strong></span>
+
+            </f:case>
+
+            <f:case value="2">
+                <f:comment>
+                    Wird nicht mehr aufgerufen da Meta-Zeile bei Artikeltyp "Externe Seite" entfällt!
+                    <span class="news-item__teaser-desc_symbol article"></span>
+                    <span class="news-item__teaser-desc_type"><strong>Externer Link</strong></span>
+                </f:comment>
+            </f:case>
+
+            <f:case value="3">
+
+                <span class="news-item__teaser-desc_symbol article"></span>
+                <span class="news-item__teaser-desc_type"><strong>Themenspecial</strong></span>
+
+            </f:case>
+
+            <f:case value="4">
+
+                <span class="news-item__teaser-desc_symbol interview"></span>
+                <span class="news-item__teaser-desc_type"><strong>Interview</strong></span>
+                <span class="news-item__teaser-desc_duration">Lesezeit: {newsItem.txWdvcustomerNewsTime} min.</span>
+
+            </f:case>
+
+            <f:case value="5">
+
+                <span class="news-item__teaser-desc_symbol question"></span>
+                <span class="news-item__teaser-desc_type"><strong>Frage der Woche</strong></span>
+                <span class="news-item__teaser-desc_duration">Lesezeit: {newsItem.txWdvcustomerNewsTime} min.</span>
+
+            </f:case>
+
+            <f:case value="6">
+
+                <span class="news-item__teaser-desc_symbol video"></span>
+                <span class="news-item__teaser-desc_type"><strong>Video</strong></span>
+                <span class="news-item__teaser-desc_duration">Länge: {newsItem.txWdvcustomerNewsTime} min.</span>
+
+            </f:case>
+
+            <f:case value="7">
+
+                <span class="news-item__teaser-desc_symbol recipe"></span>
+                <span class="news-item__teaser-desc_type"><strong>Rezept</strong></span>
+                <span class="news-item__teaser-desc_duration">Lesezeit: {newsItem.txWdvcustomerNewsTime} min.</span>
+
+            </f:case>
+
+            <f:case value="8">
+
+                <span class="news-item__teaser-desc_symbol recipe"></span>
+                <span class="news-item__teaser-desc_type"><strong>Rezeptsammlung</strong></span>
+
+            </f:case>
+
+            <f:case value="9">
+
+                <span class="news-item__teaser-desc_symbol article"></span>
+                <span class="news-item__teaser-desc_type"><strong>Artikel</strong></span>
+
+            </f:case>
+
+            <f:case value="10">
+
+                <span class="news-item__teaser-desc_symbol gewinnspiel"></span>
+                <span class="news-item__teaser-desc_type"><strong>Gewinnspiel</strong></span>
+
+            </f:case>
+
+            <f:case value="11">
+
+                <f:comment>
+                    Wird nicht aufgerufen. Ist nur zur Vollständigkeit hier hinterlegt
+                    <span class="news-item__teaser-desc_symbol gewinnspiel"></span>
+                    <span class="news-item__teaser-desc_type"><strong>Sammlung externer Seiten</strong></span>
+                </f:comment>
+
+            </f:case>
+
+            <f:case value="12">
+
+                <span class="news-item__teaser-desc_symbol article"></span>
+                <span class="news-item__teaser-desc_type"><strong>Landingpage</strong></span>
+
+            </f:case>
+
+            <f:case value="13">
+
+                <span class="news-item__teaser-desc_symbol podcast"></span>
+                <span class="news-item__teaser-desc_type"><strong>Podcast</strong></span>
+
+            </f:case>
+
+            <f:case value="14">
+
+                <span class="news-item__teaser-desc_symbol article"></span>
+                <span class="news-item__teaser-desc_type"><strong>Bestellung</strong></span>
+
+            </f:case>
+
+            <f:defaultCase>
+
+                <span class="news-item__teaser-desc_symbol article"></span>
+                <span class="news-item__teaser-desc_type"><strong>Artikel</strong></span>
+                <span class="news-item__teaser-desc_duration">Lesezeit: {newsItem.txWdvcustomerNewsTime} min.</span>
+
+            </f:defaultCase>
+
+        </f:switch>
+    </f:then>
+    <f:else>
+
+        <f:switch expression="{newsItem.type}">
+
+            <f:case value="1">
+
+                <span class="news-item__teaser-desc_symbol article"></span>
+                <span class="news-item__teaser-desc_type"><strong>Interner Link</strong></span>
+
+            </f:case>
+
+            <f:case value="2">
+
+                <f:comment>
+                    Wird nicht mehr aufgerufen da Meta-Zeile bei Artikeltyp "Externe Seite" entfällt!
+                    <span class="news-item__teaser-desc_symbol article"></span>
+                    <span class="news-item__teaser-desc_type"><strong>Externer Link</strong></span>
+                </f:comment>
+
+            </f:case>
+
+            <f:case value="3">
+
+                <span class="news-item__teaser-desc_symbol article"></span>
+                <span class="news-item__teaser-desc_type"><strong>Themenspecial</strong></span>
+
+            </f:case>
+
+            <f:case value="4">
+
+                <span class="news-item__teaser-desc_symbol interview"></span>
+                <span class="news-item__teaser-desc_type"><strong>Interview</strong></span>
+                <span class="news-item__teaser-desc_duration">Lesezeit: {newsItem.txWdvcustomerNewsTime} min.</span>
+
+            </f:case>
+
+            <f:case value="5">
+
+                <span class="news-item__teaser-desc_symbol question"></span>
+                <span class="news-item__teaser-desc_type"><strong>Frage der Woche</strong></span>
+                <span class="news-item__teaser-desc_duration">Lesezeit: {newsItem.txWdvcustomerNewsTime} min.</span>
+
+            </f:case>
+
+            <f:case value="6">
+
+                <span class="news-item__teaser-desc_symbol video"></span>
+                <span class="news-item__teaser-desc_type"><strong>Video</strong></span>
+                <span class="news-item__teaser-desc_duration">Länge: {newsItem.txWdvcustomerNewsTime} min.</span>
+
+            </f:case>
+
+            <f:case value="7">
+
+                <span class="news-item__teaser-desc_symbol recipe"></span>
+                <span class="news-item__teaser-desc_type"><strong>Rezept</strong></span>
+                <span class="news-item__teaser-desc_duration">Lesezeit: {newsItem.txWdvcustomerNewsTime} min.</span>
+
+            </f:case>
+
+            <f:case value="8">
+
+                <span class="news-item__teaser-desc_symbol recipe"></span>
+                <span class="news-item__teaser-desc_type"><strong>Rezeptsammlung</strong></span>
+
+            </f:case>
+
+            <f:case value="10">
+
+                <span class="news-item__teaser-desc_symbol gewinnspiel"></span>
+                <span class="news-item__teaser-desc_type"><strong>Gewinnspiel</strong></span>
+
+            </f:case>
+
+            <f:case value="11">
+
+                <f:comment>
+                    Wird nicht aufgerufen. Ist nur zur Vollständigkeit hier hinterlegt
+                    <span class="news-item__teaser-desc_symbol gewinnspiel"></span>
+                    <span class="news-item__teaser-desc_type"><strong>Sammlung externer Seiten</strong></span>
+                </f:comment>
+
+            </f:case>
+
+            <f:case value="12">
+
+                <span class="news-item__teaser-desc_symbol article"></span>
+                <span class="news-item__teaser-desc_type"><strong>Landingpage</strong></span>
+
+            </f:case>
+
+            <f:case value="13">
+
+                <span class="news-item__teaser-desc_symbol podcast"></span>
+                <span class="news-item__teaser-desc_type"><strong>Podcast</strong></span>
+
+            </f:case>
+
+            <f:defaultCase>
+
+                <span class="news-item__teaser-desc_symbol article"></span>
+                <span class="news-item__teaser-desc_type"><strong>Artikel</strong></span>
+                <span class="news-item__teaser-desc_duration">Lesezeit: {newsItem.txWdvcustomerNewsTime} min.</span>
+
+            </f:defaultCase>
+
+        </f:switch>
+
+    </f:else>
+</f:if>
+
+</html>

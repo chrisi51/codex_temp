@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+    <div class="schwangerschaft-trimester {classes_wrapper->f:format.trim()}">
+        <h4>
+            <f:if condition="{data.header}">
+                <span class="aok-grey">{data.header}</span>
+            </f:if>
+            <f:if condition="{data.tx_mask_header}">
+                <span>{data.tx_mask_header}</span>
+            </f:if>
+        </h4>
+        <f:if condition="{data.bodytext}">
+            <div class="text">{data.bodytext -> f:format.html()}</div>
+        </f:if>
+    </div>
+</f:section>
+
+    
+<f:comment>
+<f:if condition="{data.header}">
+    {data.header -> f:format.nl2br()}
+</f:if>
+<f:if condition="{data.tx_mask_header}">
+    {data.tx_mask_header -> f:format.nl2br()}
+</f:if>
+<f:if condition="{data.bodytext}">
+    {data.bodytext -> f:format.html()}
+</f:if>
+</f:comment>

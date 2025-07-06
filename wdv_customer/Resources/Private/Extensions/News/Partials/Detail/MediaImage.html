@@ -1,0 +1,75 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	  xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+	<f:if condition="{mediaElement.link}">
+		<f:then>
+			<f:link.page pageUid="{mediaElement.link}" target="{n:targetLink(link:mediaElement.link)}">
+
+				<fp:image image="{mediaElement}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweeeeis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{mediaElement.alternative}" width="750" realCrop="false" />
+
+			</f:link.page>
+		</f:then>
+		<f:else>
+			<f:if condition="{settings.detail.media.image.lightbox.enabled}">
+				<f:then>
+					<a title="XYZ"
+						href="{f:uri.image(image: mediaElement, width:'{settings.detail.media.image.lightbox.width})}"
+						target="_self"
+						data-toggle="lightbox"
+						data-type="image"
+						data-width="940"
+						data-max-width="940"
+						data-title="{mediaElement.title}">
+						<fp:image image="{mediaElement}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{mediaElement.alternative}" width="750" realCrop="false" />
+					</a>
+				</f:then>
+				<f:else>
+
+					<f:switch expression="{settings.templateLayout}">
+
+						<!-- Detailansicht für Themenspecials -->
+						<f:case value="6">
+
+							<fp:image image="{mediaElement}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{mediaElement.alternative}" width="1440" realCrop="false" />
+
+						</f:case>
+
+						<!-- Detailansicht für Rezeptsammlung -->
+						<f:case value="7">
+
+							<fp:image image="{mediaElement}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{mediaElement.alternative}" width="1440" realCrop="false" />
+
+						</f:case>
+
+						<!-- Detailansicht für Achtsamkeitsnews -->
+						<f:case value="30">
+
+							<fp:image image="{mediaElement}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{mediaElement.alternative}" width="1440" realCrop="false" />
+
+						</f:case>
+                        
+						<!-- Detailansicht für Achtsamkeitsnews ohne Lesezeit -->
+						<f:case value="31">
+
+							<fp:image image="{mediaElement}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{mediaElement.alternative}" width="1440" realCrop="false" />
+
+						</f:case>
+
+						<!-- Alle anderen -->
+						<f:defaultCase>
+
+							<fp:image image="{mediaElement}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{mediaElement.alternative}" width="750" realCrop="false" />
+
+						</f:defaultCase>
+
+					</f:switch>
+
+				</f:else>
+			</f:if>
+
+		</f:else>
+	</f:if>
+</html>

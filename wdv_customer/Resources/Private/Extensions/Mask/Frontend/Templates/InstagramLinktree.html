@@ -1,0 +1,11 @@
+<f:if condition="{data.tx_mask_links}">
+    <ul class="linktree">
+        <f:for each="{data.tx_mask_links}" as="data_item">
+            <li>
+                <f:if condition="{data_item.tx_mask_caption} && {data_item.tx_mask_href}">
+                    <f:link.typolink parameter="{data_item.tx_mask_href}">{data_item.tx_mask_caption}</f:link.typolink>
+                </f:if>
+            </li>
+        </f:for>
+    </ul>
+</f:if>

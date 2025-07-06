@@ -1,0 +1,98 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:w="WDV\WdvCustomer\ViewHelpers"
+	  xmlns:kesearch="http://typo3.org/ns/Tpwd/KeSearch/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+<!--
+	=====================
+	Partials/PageBrowser.html
+-->
+
+<f:if condition="{numberofresults} > {conf.resultsPerPage}">
+	<nav>
+		<f:spaceless>
+			<ul class="pagination pagination">
+
+				<f:if condition="{pagination.previousPageNumber}">
+					<li class="page-item">
+						<kesearch:link
+								piVars="{page: pagination.previousPageNumber}"
+								keepPiVars="1"
+								class="page-link previous">
+							<span class="icon tip-left"></span>
+							<span class="sr-only">zurück</span>
+						</kesearch:link>
+					</li>
+				</f:if>
+
+				<f:if condition="{pagination.displayRangeStart} > 1">
+					<li class="page-item first">
+						<kesearch:link
+								piVars="{page: 1}"
+								keepPiVars="1"
+								class="page-link">
+							1
+						</kesearch:link>
+					</li>
+				</f:if>
+
+				<f:if condition="{pagination.hasLessPages}">
+					<li class="page-item">
+						<a href="javascript:void(0);" class="page-link">...</a>
+					</li>
+				</f:if>
+
+				<f:for each="{pagination.allPageNumbers}" as="page">
+
+					<f:if condition="{page} == {pagination.paginator.currentPageNumber}">
+						<f:then>
+							<li class="page-item active">
+								<kesearch:link
+										piVars="{page: page}"
+										keepPiVars="1"
+										class="page-link">{page}</kesearch:link>
+							</li>
+						</f:then>
+						<f:else>
+							<li class="page-item">
+								<kesearch:link
+										piVars="{page: page}"
+										keepPiVars="1"
+										class="page-link">{page}</kesearch:link>
+							</li>
+						</f:else>
+					</f:if>
+				</f:for>
+
+				<f:if condition="{pagination.hasMorePages}">
+					<li class="page-item">
+						<a href="javascript:void(0);" class="page-link">...</a>
+					</li>
+				</f:if>
+
+				<f:if condition="{pagination.displayRangeEnd} < {pagination.paginator.numberOfPages}">
+					<li class="page-item last">
+						<kesearch:link
+								piVars="{page: pagination.paginator.numberOfPages}"
+								keepPiVars="1"
+								class="page-link">
+							{pagination.paginator.numberOfPages}
+						</kesearch:link>
+
+					</li>
+				</f:if>
+
+				<f:if condition="{pagination.nextPageNumber}">
+					<li class="page-item">
+						<kesearch:link
+								piVars="{page: pagination.nextPageNumber}"
+								keepPiVars="1"
+								class="page-link next">
+							<span class="icon tip-right"></span>
+							<span class="sr-only">vorwärts</span>
+						</kesearch:link>
+					</li>
+				</f:if>
+			</ul>
+		</f:spaceless>
+	</nav>
+</f:if>

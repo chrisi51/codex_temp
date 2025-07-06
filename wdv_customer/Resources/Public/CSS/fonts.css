@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/**
+ * @license
+ * MyFonts Webfont Build ID 3733448, 2019-03-13T13:19:52-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: FuturaBTWXX-Light by Bitstream
+ * URL: https://www.myfonts.com/fonts/bitstream/futura/pro-light/
+ * 
+ * Webfont: FuturaBTWXX-LightItalic by Bitstream
+ * URL: https://www.myfonts.com/fonts/bitstream/futura/pro-light-italic/
+ * 
+ * Webfont: FuturaBTWXX-Book by Bitstream
+ * URL: https://www.myfonts.com/fonts/bitstream/futura/pro-book/
+ * 
+ * Webfont: FuturaBTWXX-BookItalic by Bitstream
+ * URL: https://www.myfonts.com/fonts/bitstream/futura/pro-book-italic/
+ * 
+ * Webfont: FuturaBTWXX-Medium by Bitstream
+ * URL: https://www.myfonts.com/fonts/bitstream/futura/pro-medium/
+ * 
+ * Webfont: FuturaBTWXX-MediumItalic by Bitstream
+ * URL: https://www.myfonts.com/fonts/bitstream/futura/pro-medium-italic/
+ * 
+ * Webfont: FuturaBTWXX-Bold by Bitstream
+ * URL: https://www.myfonts.com/fonts/bitstream/futura/pro-bold/
+ * 
+ * Webfont: FuturaBTWXX-BoldItalic by Bitstream
+ * URL: https://www.myfonts.com/fonts/bitstream/futura/pro-bold-italic/
+ * 
+ * 
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3733448
+ * Licensed pageviews: 10,000
+ * Webfonts copyright: Copyright &#x00A9; 2015 Monotype Imaging Inc. All rights reserved.
+ * 
+ * © 2019 MyFonts Inc
+*/
+/* @import must be at top of file, otherwise CSS will not work */
+/*
+@font-face { font-family: 'FuturaBTWXX-Light'; src: url('../Fonts/38F7C8_0_0.eot'); src: url('../Fonts/38F7C8_0_0.eot?#iefix') format('embedded-opentype'), url('../Fonts/38F7C8_0_0.woff2') format('woff2'), url('../Fonts/38F7C8_0_0.woff') format('woff'), url('../Fonts/38F7C8_0_0.ttf') format('truetype'), url('../Fonts/38F7C8_0_0.svg#wf') format('svg'); font-display: fallback; }
+@font-face { font-family: 'FuturaBTWXX-LightItalic'; src: url('../Fonts/38F7C8_1_0.eot'); src: url('../Fonts/38F7C8_1_0.eot?#iefix') format('embedded-opentype'), url('../Fonts/38F7C8_1_0.woff2') format('woff2'), url('../Fonts/38F7C8_1_0.woff') format('woff'), url('../Fonts/38F7C8_1_0.ttf') format('truetype'), url('../Fonts/38F7C8_1_0.svg#wf') format('svg'); font-display: fallback; }
+@font-face { font-family: 'FuturaBTWXX-Book'; src: url('../Fonts/38F7C8_2_0.eot'); src: url('../Fonts/38F7C8_2_0.eot?#iefix') format('embedded-opentype'), url('../Fonts/38F7C8_2_0.woff2') format('woff2'), url('../Fonts/38F7C8_2_0.woff') format('woff'), url('../Fonts/38F7C8_2_0.ttf') format('truetype'), url('../Fonts/38F7C8_2_0.svg#wf') format('svg'); font-display: fallback; }
+@font-face { font-family: 'FuturaBTWXX-BookItalic'; src: url('../Fonts/38F7C8_3_0.eot'); src: url('../Fonts/38F7C8_3_0.eot?#iefix') format('embedded-opentype'), url('../Fonts/38F7C8_3_0.woff2') format('woff2'), url('../Fonts/38F7C8_3_0.woff') format('woff'), url('../Fonts/38F7C8_3_0.ttf') format('truetype'), url('../Fonts/38F7C8_3_0.svg#wf') format('svg'); font-display: fallback; }
+@font-face { font-family: 'FuturaBTWXX-Medium'; src: url('../Fonts/38F7C8_4_0.eot'); src: url('../Fonts/38F7C8_4_0.eot?#iefix') format('embedded-opentype'), url('../Fonts/38F7C8_4_0.woff2') format('woff2'), url('../Fonts/38F7C8_4_0.woff') format('woff'), url('../Fonts/38F7C8_4_0.ttf') format('truetype'), url('../Fonts/38F7C8_4_0.svg#wf') format('svg'); font-display: fallback; }
+@font-face { font-family: 'FuturaBTWXX-MediumItalic'; src: url('../Fonts/38F7C8_5_0.eot'); src: url('../Fonts/38F7C8_5_0.eot?#iefix') format('embedded-opentype'), url('../Fonts/38F7C8_5_0.woff2') format('woff2'), url('../Fonts/38F7C8_5_0.woff') format('woff'), url('../Fonts/38F7C8_5_0.ttf') format('truetype'), url('../Fonts/38F7C8_5_0.svg#wf') format('svg'); font-display: fallback; }
+@font-face { font-family: 'FuturaBTWXX-Bold'; src: url('../Fonts/38F7C8_6_0.eot'); src: url('../Fonts/38F7C8_6_0.eot?#iefix') format('embedded-opentype'), url('../Fonts/38F7C8_6_0.woff2') format('woff2'), url('../Fonts/38F7C8_6_0.woff') format('woff'), url('../Fonts/38F7C8_6_0.ttf') format('truetype'), url('../Fonts/38F7C8_6_0.svg#wf') format('svg'); font-display: fallback; }
+@font-face { font-family: 'FuturaBTWXX-BoldItalic'; src: url('../Fonts/38F7C8_7_0.eot'); src: url('../Fonts/38F7C8_7_0.eot?#iefix') format('embedded-opentype'), url('../Fonts/38F7C8_7_0.woff2') format('woff2'), url('../Fonts/38F7C8_7_0.woff') format('woff'), url('../Fonts/38F7C8_7_0.ttf') format('truetype'), url('../Fonts/38F7C8_7_0.svg#wf') format('svg'); font-display: fallback; }
+*/
+@font-face {
+  font-family: 'FuturaBTWXX-Light';
+  src: url("../Fonts/38F7C8_0_unhinted_0.woff2") format("woff2"), url("../Fonts/38F7C8_0_unhinted_0.woff") format("woff"), url("../Fonts/38F7C8_0_unhinted_0.ttf") format("truetype");
+  font-display: fallback; }
+
+@font-face {
+  font-family: 'FuturaBTWXX-LightItalic';
+  src: url("../Fonts/38F7C8_1_unhinted_0.woff2") format("woff2"), url("../Fonts/38F7C8_1_unhinted_0.woff") format("woff"), url("../Fonts/38F7C8_1_unhinted_0.ttf") format("truetype");
+  font-display: fallback; }
+
+@font-face {
+  font-family: 'FuturaBTWXX-Book';
+  src: url("../Fonts/38F7C8_2_unhinted_0.woff2") format("woff2"), url("../Fonts/38F7C8_2_unhinted_0.woff") format("woff"), url("../Fonts/38F7C8_2_unhinted_0.ttf") format("truetype");
+  font-display: fallback; }
+
+@font-face {
+  font-family: 'FuturaBTWXX-BookItalic';
+  src: url("../Fonts/38F7C8_3_unhinted_0.woff2") format("woff2"), url("../Fonts/38F7C8_3_unhinted_0.woff") format("woff"), url("../Fonts/38F7C8_3_unhinted_0.ttf") format("truetype");
+  font-display: fallback; }
+
+@font-face {
+  font-family: 'FuturaBTWXX-Medium';
+  src: url("../Fonts/38F7C8_4_unhinted_0.woff2") format("woff2"), url("../Fonts/38F7C8_4_unhinted_0.woff") format("woff"), url("../Fonts/38F7C8_4_unhinted_0.ttf") format("truetype");
+  font-display: fallback; }
+
+@font-face {
+  font-family: 'FuturaBTWXX-MediumItalic';
+  src: url("../Fonts/38F7C8_5_unhinted_0.woff2") format("woff2"), url("../Fonts/38F7C8_5_unhinted_0.woff") format("woff"), url("../Fonts/38F7C8_5_unhinted_0.ttf") format("truetype");
+  font-display: fallback; }
+
+@font-face {
+  font-family: 'FuturaBTWXX-Bold';
+  src: url("../Fonts/38F7C8_6_unhinted_0.woff2") format("woff2"), url("../Fonts/38F7C8_6_unhinted_0.woff") format("woff"), url("../Fonts/38F7C8_6_unhinted_0.ttf") format("truetype");
+  font-display: fallback; }
+
+@font-face {
+  font-family: 'FuturaBTWXX-BoldItalic';
+  src: url("../Fonts/38F7C8_7_unhinted_0.woff2") format("woff2"), url("../Fonts/38F7C8_7_unhinted_0.woff") format("woff"), url("../Fonts/38F7C8_7_unhinted_0.ttf") format("truetype");
+  font-display: fallback; }

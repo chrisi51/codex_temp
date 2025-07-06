@@ -1,0 +1,197 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:vhs="FluidTYPO3\Vhs\ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:comment><!--
+	<f:cObject typoscriptObjectPath="lib.noScript"/>
+--></f:comment>
+
+<f:cObject typoscriptObjectPath="lib.wx_consentbanner_banner"/>
+
+<f:comment><!--
+    100 => Vigo
+    480 => Gib8
+    563 => achtsamkeit.vigo.de
+    703 => krebs.vigo.de
+    830 => nfc.vigo.de #soundtrack_anpassen
+    874 => soundtrack.vigo.de
+    908 => epa.vigo.de
+    1000 => schwangerschaft.vigo.de
+    1192 => durchstarter.vigo.de
+    1193 => fuermich.vigo.de
+    --></f:comment>
+
+<f:switch expression="{be-layout}">
+    <f:case value="pagets__20">
+        <f:switch expression="{pagename}">
+            <f:case value="achtsamkeit_vigo_de">
+                <f:render partial="Header/Header_MainAchtung" arguments="{_all}"/>
+                <f:render partial="Main/Main_Kampagnenseite_1-Spalter_achtung" arguments="{_all}"/>
+                <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+            </f:case>
+
+            <f:case value="krebs_vigo_de">
+                <f:render partial="Header/Header_MainKrebs" arguments="{_all}"/>
+                <f:render partial="Main/Main_Kampagnenseite_1-Spalter_achtung" arguments="{_all}"/>
+                <f:render partial="Footer/FooterKrebs" arguments="{_all}"/>
+            </f:case>
+
+            <f:case value="epa_vigo_de">
+                <f:render partial="Header/Header_Epa" arguments="{_all}"/>
+                <f:render partial="Main/Main_Kampagnenseite_1-Spalter_achtung" arguments="{_all}"/>
+                <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+            </f:case>
+
+            <f:defaultCase>
+                <f:render partial="Header/Header_MainAchtung" arguments="{_all}"/>
+                <f:render partial="Main/Main_Kampagnenseite_1-Spalter_achtung" arguments="{_all}"/>
+                <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+            </f:defaultCase>
+        </f:switch>
+    </f:case>
+
+    <f:case value="pagets__30">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 pl-3 pr-3 col-md-10 col-print-12 offset-md-1 offset-print-0 ">
+                    <f:format.raw>{main-content}</f:format.raw>
+                </div>
+            </div>
+        </div>
+        <f:render partial="Footer/Footer" arguments="{_all}"/>
+    </f:case>
+    <f:case value="pagets__40">
+        <f:render partial="Header/Header_Soundtrack" arguments="{_all}"/>
+        <div id="wrapper">
+            <f:format.raw>{main-content}</f:format.raw>
+        </div>
+    </f:case>
+    <f:case value="pagets__50">
+        <f:render partial="Header/Header_Familie" arguments="{_all}"/>
+        <div id="wrapper">
+            <f:if condition="{data.tx_wdvcustomer_page_breadcrumb_show}">
+                <nav class="adhs-breadcrumb{f:if(condition: '{data.tx_wdvcustomer_page_breadcrumb_color} === 0', then: ' adhs-breadcrumb-bright', else: ' adhs-breadcrumb-dark')}">
+                    <div class="{f:if(condition: '{data.tx_wdvcustomer_page_breadcrumb_spacing} === 0', then: 'container', else: 'achtsamkeit_box_width normwidth')}">
+                        <f:cObject typoscriptObjectPath="lib.breadcrumb"/>
+                    </div>
+                </nav>
+            </f:if>
+            <f:format.raw>{main-content}</f:format.raw>
+        </div>
+        <f:render partial="Footer/FooterFamilie" arguments="{_all}"/>
+
+        <f:if condition="{randomStorer}">
+            {randomStorer -> f:format.raw()}
+        </f:if>
+    </f:case>
+    <f:case value="pagets__60">
+        <f:render partial="Header/Header_Epa" arguments="{_all}"/>
+        <f:render partial="Main/Main_Kampagnenseite_1-Spalter_epa" arguments="{_all}"/>
+        <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+    </f:case>
+    <f:case value="pagets__70">
+        <f:render partial="Header/Header_Schwangerschaft" arguments="{_all}"/>
+        <f:render partial="Main/Main_Kampagnenseite_1-Spalter_achtung" arguments="{_all}"/>
+        <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+    </f:case>
+    <f:case value="pagets__71">
+        <f:render partial="Header/Header_Schwangerschaft" arguments="{_all}"/>
+        <f:render partial="Main/Main_Kampagnenseite_1-Spalter_achtung" arguments="{_all}"/>
+        <f:render partial="Footer/FooterSchwangerschaftNavi" arguments="{_all}"/>
+        <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+    </f:case>
+    <f:defaultCase>
+        <vhs:condition.iterator.contains needle="100" haystack="{vhs:page.rootline() -> vhs:iterator.extract(key: 'uid')}">
+            <f:then>
+                <f:if condition="{be-layout}">
+                    <f:if condition="{be-layout} == 'pagets__1'">
+                        <f:render partial="Header/Header_Main" arguments="{_all}"/>
+                        <f:render partial="Main/Main_Startseite_1-Spalter" arguments="{_all}"/>
+                        <f:render partial="Footer/Footer" arguments="{_all}"/>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__2'">
+                        <f:render partial="Header/Header_Main" arguments="{_all}"/>
+                        <f:render partial="Main/Main_Inhaltsseite_1-Spalter" arguments="{_all}"/>
+                        <f:render partial="Footer/Footer" arguments="{_all}"/>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__3'">
+                        <f:render partial="Header/Header_Main" arguments="{_all}"/>
+                        <f:render partial="Main/Main_Artikelseite_1-Spalter" arguments="{_all}"/>
+                        <f:render partial="Footer/Footer" arguments="{_all}"/>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__4'">
+                        <f:render partial="Header/Header_Main" arguments="{_all}"/>
+                        <f:render partial="Main/Main_Suchenseite_1-Spalter" arguments="{_all}"/>
+                        <f:render partial="Footer/Footer" arguments="{_all}"/>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__5'">
+                        <f:render partial="Header/Header_Alt" arguments="{_all}"/>
+                        <f:render partial="Main/Main_Kampagnenseite_1-Spalter" arguments="{_all}"/>
+                        <f:render partial="Footer/Footer" arguments="{_all}"/>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__6'">
+                        <f:format.raw>{main-content}</f:format.raw>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__7'">
+                        <div id="linktreelogo">
+                            <img src="/typo3conf/ext/wdv_customer/Resources/Public/Images/Logos/aok-logo-short.svg" width="100%">
+                        </div>
+                        <f:format.raw>{main-content}</f:format.raw>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__10'">
+                        <f:format.raw>{main-content}</f:format.raw>
+                    </f:if>
+                </f:if>
+            </f:then>
+        </vhs:condition.iterator.contains>
+
+        <vhs:condition.iterator.contains needle="563" haystack="{vhs:page.rootline() -> vhs:iterator.extract(key: 'uid')}">
+            <f:then>
+                <f:if condition="{be-layout}">
+                    <f:if condition="{be-layout} == 'pagets__1'">
+                        <f:render partial="Header/Header_MainGib8" arguments="{_all}"/>
+                        <f:render partial="Main/Main_Startseite_1-Spalter" arguments="{_all}"/>
+                        <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__2'">
+                        <f:render partial="Header/Header_MainGib8" arguments="{_all}"/>
+                        <f:render partial="Main/Main_Inhaltsseite_1-Spalter" arguments="{_all}"/>
+                        <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__3'">
+                        <f:render partial="Header/Header_MainGib8" arguments="{_all}"/>
+                        <f:render partial="Main/Main_Artikelseite_1-Spalter" arguments="{_all}"/>
+                        <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__4'">
+                        <f:render partial="Header/Header_MainGib8" arguments="{_all}"/>
+                        <f:render partial="Main/Main_Suchenseite_1-Spalter" arguments="{_all}"/>
+                        <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__5'">
+                        <f:render partial="Header/Header_MainGib8" arguments="{_all}"/>
+                        <f:render partial="Main/Main_Kampagnenseite_1-Spalter" arguments="{_all}"/>
+                        <f:render partial="Footer/FooterGib8" arguments="{_all}"/>
+                    </f:if>
+
+                    <f:if condition="{be-layout} == 'pagets__6'">
+                        <f:format.raw>{main-content}</f:format.raw>
+                    </f:if>
+                </f:if>
+            </f:then>
+        </vhs:condition.iterator.contains>
+
+    </f:defaultCase>
+</f:switch>
+</html>

@@ -1,0 +1,35 @@
+
+tt_content.gridelements_pi1.20.10.setup {
+
+	displayanzeige < lib.gridelements.defaultGridSetup
+	displayanzeige {
+
+		cObject = FLUIDTEMPLATE
+		cObject {
+			templateName = displayanzeige
+
+			templateRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Gridelements/Templates/
+			partialRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Gridelements/Partials/
+			layoutRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Gridelements/Layouts/
+
+			variables {
+			}
+		}
+	}
+}
+
+tt_content.b13-displayanzeige < lib.contentElement
+tt_content.b13-displayanzeige {
+    templateName = displayanzeige
+    templateRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Container/Templates/
+    partialRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Container/Partials/
+    layoutRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Container/Layouts/
+
+    dataProcessing {
+        3100 = B13\Container\DataProcessing\ContainerProcessor
+        3100 {
+            colPos = 3100
+            as = children_3100
+        }
+    }
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-01-26T15:50:12Z" product-name="vigo_quiz">
+		<header/>
+		<body>
+			<trans-unit id="tx_vigoquiz_domain_model_vigoquiz">
+				<source>Vigoquiz</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_vigoquiz.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_vigoquiz.quiztype">
+				<source>Quiztype</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_vigoquiz.facebookcard">
+				<source>Show facebook card</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_vigoquiz.facebookcarditem">
+				<source>Facebook card</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_vigoquiz.individualfeedback">
+				<source>Individual feedback</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_vigoquiz.individualfeedbackitem">
+				<source>Show individual feedback</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_vigoquiz.resulttexts">
+				<source>Resulttexts</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_vigoquiz.questions">
+				<source>Questions</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_questions">
+				<source>Questions</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_questions.infotext">
+				<source>Info card</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_questions.infotextitem">
+				<source>Info card</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_questions.question">
+				<source>Question</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_questions.introtext">
+				<source>Introtext</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_questions.answers">
+				<source>Answers</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_answers">
+				<source>Answers</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_answers.answer">
+				<source>Answer</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_answers.feedback">
+				<source>Feedback</source>
+			</trans-unit>
+			<trans-unit id="tx_vigoquiz_domain_model_answers.points">
+				<source>Points</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

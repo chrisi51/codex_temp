@@ -1,0 +1,27 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="tx_mask zitatbox mt-5 mb-4" id="c{data.uid}">
+    <div class="row no-gutters justify-content-center">
+        <div class="col-8">
+		<div class="zitatbox-inner">
+
+            		<f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'image')} > ''">
+                		<f:image image="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'image')}" class="img-fluid rounded-circle" title="Expertenbild" alt="Expertenbild" maxWidth="80" maxHeight="80" />
+            		</f:if>
+
+
+			<div class="spacer"></div>
+				
+
+	    		<f:if condition="{data.bodytext}">
+    				<div class="zitat">{data.bodytext -> f:format.html()}</div>
+	    		</f:if>
+
+		</div>
+        </div>
+    </div>
+</div>
+
+</html>

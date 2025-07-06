@@ -1,0 +1,63 @@
+<f:if condition="!{ratio}">
+    <v:variable.set name="ratio" value='1:1' />
+</f:if>
+<f:if condition="!{realCrop}">
+    <v:variable.set name="realCrop" value='true' />
+</f:if>
+
+<f:if condition="{newsItem.mediaPreviews}">
+    <!-- media preview element -->
+    <f:then>
+        
+        <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+            <f:if condition="{mediaElement.originalResource.type} == 2">
+
+                <div class="news-item__image">
+                    <f:if condition="{height} > 0">
+                        <f:then>
+                            <fp:image image="{mediaElement}" height="{height}" ratio="{ratio}" realCrop="{realCrop}" />
+                        </f:then>
+                        <f:else>
+                            <fp:image image="{mediaElement}" ratio="{ratio}" realCrop="{realCrop}" />
+                        </f:else>
+                    </f:if>
+                </div>
+                        
+            </f:if>
+            <f:if condition="{mediaElement.originalResource.type} == 4">
+
+                <div class="news-item__video">
+                    <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                </div>
+                    
+            </f:if>
+            <f:if condition="{mediaElement.originalResource.type} == 5">
+
+                <div class="news-item__image">
+                    <f:image image="{mediaElement}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                </div>
+                    
+            </f:if>
+        </f:alias>
+
+    </f:then>
+    <f:else>
+
+            <f:if condition="{settings.displayDummyIfNoMedia}">
+                
+                <div class="news-item__image">
+
+                    <f:if condition="{height} > 0">
+                        <f:then>
+                            <fp:image src="{settings.list.media.dummyImage}" height="{height}" ratio="{ratio}" realCrop="{realCrop}" />
+                        </f:then>
+                        <f:else>
+                            <fp:image src="{settings.list.media.dummyImage}" ratio="{ratio}" realCrop="{realCrop}" />
+                        </f:else>
+                    </f:if>
+
+                </div>
+                
+            </f:if>
+    </f:else>
+</f:if>

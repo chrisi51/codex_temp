@@ -1,0 +1,41 @@
+<div id="family-mood">
+    <div class="image">
+        <f:for each="{data.media}" as="bgimage">
+            <fp:image image="{bgimage}" width="1440" realCrop="false" title="{bgimage.originalResource.title}" alt="{bgimage.originalResource.alternative}" />
+        </f:for>
+    </div>
+    <div class="content">
+        <div class="container">
+            <f:if condition="({data.tx_mask_hl1} || {data.tx_mask_hl2})">
+                <h1>
+                    <f:if condition="{data.tx_mask_hl1}">
+                        <div class="line1">{data.tx_mask_hl1}</div>
+                    </f:if>
+                    <f:if condition="{data.tx_mask_hl2}">
+                        <div class="line2">{data.tx_mask_hl2}</div>
+                    </f:if>
+                </h1>
+            </f:if>
+            <f:if condition="{data.bodytext}">
+                {data.bodytext -> f:format.html()}
+            </f:if>
+        </div>
+    </div>
+
+</div>
+
+<f:comment>
+<f:for each="{data.media}" as="file">
+    <f:image image="{file}" width="200" />
+    {file.description}
+</f:for>
+<f:if condition="{data.tx_mask_hl1}">
+    {data.tx_mask_hl1}
+</f:if>
+<f:if condition="{data.tx_mask_hl2}">
+    {data.tx_mask_hl2}
+</f:if>
+<f:if condition="{data.bodytext}">
+    {data.bodytext -> f:format.html()}
+</f:if>
+</f:comment>

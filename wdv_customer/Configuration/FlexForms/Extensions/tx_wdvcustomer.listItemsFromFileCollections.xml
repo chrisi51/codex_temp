@@ -1,0 +1,26 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Allgemein</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.collections>
+                        <label>File collections</label><config>
+                                <type>group</type>
+                                <localizeReferencesAtParentLocalization type="boolean">1</localizeReferencesAtParentLocalization>
+                                <allowed>sys_file_collection</allowed>
+                                <foreign_table>sys_file_collection</foreign_table>
+                                <maxitems type="integer">999</maxitems>
+                                <minitems type="integer">1</minitems>
+                                <size type="integer">5</size>
+                            </config>
+                    </settings.collections>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

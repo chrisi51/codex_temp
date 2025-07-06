@@ -1,0 +1,77 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:md="http://typo3.org/ns/Mediadreams/MdNewsAuthor/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="main">
+	
+	<!--TYPO3SEARCH_end-->
+	<div  class="newsauthor-list" >
+		
+		<f:if condition="{settings.list.alphabeticalNavigation}">
+			<div class="alphabetical-nav">
+				<span class="letter first"><f:link.page><f:translate key="tx_newsauthor_domain_model_newsauthor.all"/></f:link.page></span>
+				<md:showAlphabeticalNavigation letters="{settings.authorList.letters}" activeLetters="{activeLetters}">
+					<f:then>
+						<f:if condition="{selectedLetter}=={letter}">
+							<f:then>
+								<span class="letter active"><f:link.action arguments="{selectedLetter:letter}">{letter}</f:link.action></span>
+							</f:then>
+							<f:else>
+								<span class="letter"><f:link.action arguments="{selectedLetter:letter}">{letter}</f:link.action></span>
+							</f:else>
+						</f:if>
+					</f:then>
+					<f:else>
+						<span class="letter">{letter}</span>
+					</f:else>
+				</md:showAlphabeticalNavigation>
+			</div>
+		</f:if>
+		
+		<f:comment><!--
+			<div class="row columns four-columns mt-0 mb-0 pt-0 pb-0 aok-links">
+				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+					<div id="c17" class="mt-0 mb-0 pt-0 pb-0">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 mt-5 mt-md-0"> <div id="c18" class="mt-0 mb-0 pt-0 pb-0"><h3>vigo</h3><ul class="nav flex-column ce-bullets"><li><a class="nav-link" href="/kontakt.html" title="Kontakt"> Kontakt </a></li><li><a class="nav-link" href="/newsletter.html" title="Newsletter"> Newsletter </a></li><li><a class="nav-link" href="/die-vigo-redaktion.html" title="Die vigo-Redaktion"> Die vigo-Redaktion </a></li></ul></div> </div> <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 mt-5 mt-md-0"> <div id="c21" class="mt-0 mb-0 pt-0 pb-0"><h3>AOK-Clarimedis</h3><div class="ce-text"><div class="ce-bodytext"><p>Medizinische Infos und Antworten auf Versicherungsfragen&nbsp;– 24 Stunden täglich und kostenfrei.</p><p><strong>0800 0 326 326</strong></p></div></div></div> </div> <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 mt-4 mt-md-0"> <div id="c20" class="mt-0 mb-0 pt-0 pb-0"><h3>Folgen Sie uns</h3><ul class="nav flex-column ce-bullets"><li><a class="nav-link" href="https://www.facebook.com/AOKRH" target="_blank" title="AOK auf Facebook"> AOK auf Facebook <span class="icon external-link"></span></a></li><li><a class="nav-link" href="https://www.youtube.com/user/AOKRH" target="_blank" title="AOK auf YouTube"> AOK auf YouTube <span class="icon external-link"></span></a></li><li><a class="nav-link" href="https://www.instagram.com/aok.rheinland.hamburg/" target="_blank" title="AOK auf Instagram"> AOK auf Instagram <span class="icon external-link"></span></a></li><li><a class="nav-link" href="https://www.instagram.com/vigozone/?hl=de" target="_blank" title="vigozone auf Instagram"> vigozone auf Instagram <span class="icon external-link"></span></a></li><li><a class="nav-link" href="https://www.facebook.com/vigozone/" target="_blank" title="vigozone auf Facebook"> vigozone auf Facebook <span class="icon external-link"></span></a></li></ul></div> </div> </div>
+		--></f:comment>
+		
+		
+		
+		<f:widget.paginate objects="{newsAuthors}" as="newsAuthorPaginated" configuration="{settings.authorList.paginate}">
+			<div class="row columns four-columns mt-0 mb-0 pt-0 pb-0 aok-links">
+				
+				<f:for each="{newsAuthorPaginated}" as="newsAuthor">
+					<div class="newsauthor-wrapper col-xs-12 col-sm-6 col-md-3 col-lg-3">
+						<f:link.action
+							pageUid="{settings.detailPid}"
+							action="show"
+							arguments="{newsAuthor : newsAuthor}"
+							class="detail"
+							title="{f:translate(key:'tx_newsauthor_domain_model_newsauthor.detailLinkTitle', arguments:'{0: \'{newsAuthor.firstname} {newsAuthor.lastname}\'}')}"
+						>
+							
+							<f:if condition="{newsAuthor.image}">
+								<f:render partial="Image" arguments="{img:newsAuthor.image, imgWidth:settings.list.image.width, imgHeight:settings.list.image.height, cssClass:'img-responsive'}" />
+							</f:if>
+							
+							<div class="name">
+								{md:ShowAuthorName(author: newsAuthor)}
+							</div>
+							<div class="position">
+								{newsAuthor.position}
+							</div>
+						</f:link.action>
+					</div><!-- /.newsauthor-wrapper -->
+				</f:for>
+			</div>
+		</f:widget.paginate>
+	</div><!-- /.newsauthor-list -->
+	<!--TYPO3SEARCH_begin-->
+
+</f:section>
+
+</html>

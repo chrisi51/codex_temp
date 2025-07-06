@@ -1,0 +1,134 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:w="WDV\WdvCustomer\ViewHelpers"
+      xmlns:n="GeorgRinger\News\ViewHelpers"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      data-namespace-typo3-fluid="true" lang="en">
+
+<div class="collapse navbar-collapse">
+    <ul class="nav first-level ml-auto d-print-none" id="mobile-navigation" >
+        <li class="nav-item dropdown position-static">
+            <a class="dropdown-toggle" href="#" target="_self" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" title="Suche" aria-label="Suche">
+                <span class="icon search"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <f:cObject typoscriptObjectPath="lib.main-navigation.mobile"/>
+
+                <f:comment>
+                    <!-- Hier muss die Suche etc eingesetzt werden -->
+                    <div class="row mb-4 mb-md-5">
+                        <div class="col-12 pl-4 pr-4 pl-md-0 pr-md-0">
+                            <div class="tx-kesearch-pi1">
+                                <form method="get" id="form_kesearch_pi1_mobile" class="underline pb-3 pb-md-4" name="form_kesearch_pi1_mobile" action="/suche-1">
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">
+            <span class="icon search float-left"></span>
+        </span>
+    </div>
+    <input type="text" id="ke_search_sword" name="tx_kesearch_pi1[sword]" class="form-control form-control-lg" placeholder="Suchbegriff eingeben" aria-label="Suchbegriff eingeben">
+    <div class="input-group-append">
+        <button class="btn pl-md-5 pr-md-5" type="submit">Suchen</button>
+    </div>
+</div>
+
+<f:comment>
+                                <span class="icon search-light float-left"></span>
+                                <input type="text" id="ke_search_sword_top" name="tx_kesearch_pi1[sword]" value="" placeholder="Suchbegriff eingeben" class="ml-auto mr-auto" />
+                                <span class="kesearch-box-hint d-none d-lg-block float-right">Enter drücken zum Suchen</span>
+                                <span class="kesearch-box-hint d-block d-lg-none float-right"><span class="icon icon-enter-90b728"></span></span>
+</f:comment>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row columns two-columns mt-0 mb-0 pt-0 pb-0">
+                    <f:for each="{search}" as="item">
+                        <f:if condition="{item.children}">
+                            <f:for each="{item.children}" as="children">
+                                <f:for each="{children}" as="subchildren">
+                                    <div class="col-12 col-md-5 pl-4 pr-4 pl-md-0 pr-md-0">
+                                        <f:for each="{subchildren}" as="subsubchildren">
+                                            <div id="c{subsubchildren.data.uid}_mobile" class="mt-0 mb-0 pt-0 pb-0">
+                                                <f:if condition="{subsubchildren.data.header}">
+                                                    <h4>{subsubchildren.data.header}</h4>
+                                                </f:if>
+                                                <f:if condition="{subsubchildren.data.bodytext}">
+                                                    <f:format.raw>{subsubchildren.data.bodytext}</f:format.raw>
+                                                </f:if>
+                                                <f:if condition="{subsubchildren.data.CType} === 'list'">
+
+                                                    <f:comment>
+                                                        <f:render partial="Extensions/News/Layouts/General" />
+                                                        --> Template wird nicht gefunden, da hier nicht die Extension beachtet wird
+
+                                                        <v:render.template file="EXT:wdv_customer/Resources/Private/Extensions/News/Templates/News/List.html" />
+                                                        --> The Fluid template files "" could not be loaded.
+                                                    </f:comment>
+                                                    <!-- Hier müssen nun die News ausgelesen werden -->
+
+                                                </f:if>
+                                            </div>
+                                        </f:for>
+                                    </div>
+                                </f:for>
+                            </f:for>
+                        </f:if>
+                    </f:for>
+                    </div>
+                    </div>
+                </f:comment>
+        </li>
+        <li class="nav-item dropdown position-static">
+            <a class="dropdown-toggle" href="#" target="_self" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" title="Menü" aria-label="Menu">
+                <span class="icon hamburger"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <ul class="nav first-level">
+                    <f:for each="{navigation}" as="item" iteration="iterator">
+                        <f:if condition="{item.spacer}">
+                            <f:then><f:format.html>{spacer}</f:format.html></f:then>
+                            <f:else>
+                                <f:if condition="{item.children}">
+                                    <f:then>
+                                        <li class="uid-{item.data.uid} nav-item dropdown{f:if(condition: iterator.isFirst, then: ' first')}{f:if(condition: iterator.isLast, then: ' last')}">
+                                            <a class="dropdown-toggle" href="{item.link}" title="{item.title}" role="button" aria-haspopup="true" aria-expanded="false">{item.title}</a>
+                                            <ul class="nav second-level" style="">
+                                                <f:for each="{item.children}" as="child" iteration="iterator">
+                                                    <f:if condition="{child.spacer}">
+                                                        <f:then><li class="dropdown-header">{child.title}</li></f:then>
+                                                        <f:else>
+                                                            <li class="{child.data.uid}{f:if(condition: iterator.isFirst, then: ' first')}{f:if(condition: iterator.isLast, then: ' last')}">
+                                                                <a class="nav-link icon {child.data.tx_wdvcustomer_page_icon}" href="{child.link}" target="{f:if(condition: '{child.target} != \'\'', then: '{child.target}', else: '_top')}" title="{child.title}"> {child.title}
+                                                                    <f:if condition="{child.data.doktype} === 1 && {child.data.tx_wdvcustomer_page_amountnews } === 1">
+                                                                        <f:then><span class="text-unbold">({w:getAmoutOfNewsItemsWithinSameCategory(pageuid: child.data.uid, recursive: true)})</span></f:then>
+                                                                        <f:else>
+                                                                            <f:if condition="{child.data.doktype} === 3">
+                                                                                <span class="icon external-link"></span>
+                                                                            </f:if>
+                                                                        </f:else>
+                                                                    </f:if>
+                                                                </a>
+                                                            </li>
+                                                        </f:else>
+                                                    </f:if>
+                                                </f:for>
+                                            </ul>
+                                        </li>
+                                    </f:then>
+                                    <f:else>
+                                        <li class="uid-{item.data.uid} nav-item{f:if(condition: iterator.isFirst, then: ' first')}{f:if(condition: iterator.isLast, then: ' last')}">
+                                            <a class="nav-link" href="{item.link}" target="{f:if(condition: '{item.target}', then: '{item.target}', else: '_top')}" title="{item.title}">{item.title}</a>
+                                        </li>
+                                    </f:else>
+                                </f:if>
+                            </f:else>
+                        </f:if>
+                    </f:for>
+                    <li><f:link.page pageUid="{headerlinksLeichtesprache}" class="icon leichtesprache" title="Informationen in leichter Sprache">Leichte Sprache</f:link.page></li>
+					<li><f:link.page pageUid="{headerlinksGebaerdensprache}" class="icon gebaerdensprache" title="Informationen in Gebärdensprache">Gebärdensprache</f:link.page></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+</html>

@@ -1,0 +1,729 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	  xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	  xmlns:md="http://typo3.org/ns/Mediadreams/MdNewsAuthor/ViewHelpers"
+	  xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:layout name="Detail" />
+
+<!--
+	=====================
+		News/Detail.html
+-->
+
+<f:comment>
+    Root-IDs
+    100 => Vigo
+    480 => Gib8
+</f:comment>
+
+
+<f:section name="content">
+	<f:if condition="{newsItem}">
+		<f:then>
+
+            <f:variable name="date_german"><f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date></f:variable>
+            <f:comment>
+                altes n:metaTag hat bug und macht immer property statt name
+                <n:metaTag name="date" content="{date_german}" />
+            </f:comment>
+            <v:page.header.meta name="date" content="{date_german}" />  
+            
+            <f:if condition="{newsItem.alternativeTitle}">
+                <f:then>
+                    <n:metaTag name="aok-pagename" content="<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>" />
+                </f:then>
+                <f:else>
+                    <n:metaTag name="aok-pagename" content="<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>" />
+                </f:else>
+            </f:if>
+            
+            <f:switch expression="{settings.templateLayout}">
+				<!-- Detailansicht eines Artikels -->
+				<f:case value="5">
+					<n:format.nothing>
+						<n:excludeDisplayedNews newsItem="{newsItem}" />
+						<f:if condition="{newsItem.alternativeTitle}">
+							<f:then>
+								<n:titleTag>
+									<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
+								</n:titleTag>
+							</f:then>
+							<f:else>
+								<n:titleTag>
+									<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+								</n:titleTag>
+							</f:else>
+						</f:if>
+						<f:if condition="{settings.detail.showMetaTags}">
+							<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+						</f:if>
+					</n:format.nothing>
+					<div class="news-item__breadcrumb">
+						<div class="row mt-0">
+							<div class="col-12 col-md-8 col-print-12 offset-md-2 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0">
+								<f:cObject typoscriptObjectPath="lib.breadcrumb"/>
+							</div>
+						</div>
+					</div>
+					<div class="news-item__teaser">
+						<div class="row mt-4 mb-4">
+							<div class="col-12 col-md-8 col-print-12 offset-md-2 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0">
+								<h1 itemprop="headline">{newsItem.title}</h1>
+							</div>
+						</div>
+						<div class="row news-item__teaser-desc mt-md-4 mb-3">
+							<div class="col-12 col-md-5 col-print-12 offset-md-2 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0 mt-md-2 mb-3">
+								<f:render partial="ArtikelTypeMeta" arguments="{newsItem: newsItem}" />
+							</div>
+							<div class="col-12 col-md-5 pl-0 pr-0 pl-md-0 pr-md-0 text-md-center d-print-none">
+								<f:cObject typoscriptObjectPath="lib.socialplugins" />
+							</div>
+						</div>
+					</div>
+					<f:render partial="Detail/MultiPageMenu" arguments="{newsItem: newsItem, additionalCssClass: ''}" />
+					<n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
+						<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.mediaNonPreviews, settings:settings}" />
+					</n:renderMedia>
+					<f:switch expression="{newsItem.type}">
+						<f:case value="7">
+							<f:if condition="{newsItem.teaser}">
+								<div class="news-item__recipe-teaser">
+									<div class="row mt-3 mb-5">
+										<div class="col-12 col-md-8 col-print-12 offset-md-2 offset-print-0 pl-md-0 pr-md-0" itemprop="description">
+											<f:format.html>{newsItem.teaser}</f:format.html>
+										</div>
+									</div>
+								</div>
+							</f:if>
+							<div class="news-item__recipe-stats">
+								<div class="row mt-5 mt-md-0 mb-3">
+									<div class="col-4 offset-md-2 offset-print-0 col-md-2 text-center">
+										<figure class="figure">
+											<img src="typo3conf/ext/wdv_customer/Resources/Public/Icons/Rezepte/icon-recipe-time.svg" height="48" alt="Symbol für Zubereitungszeit" title="Zubereitungszeit">
+										</figure>
+										<p class="lead text-center">{newsItem.txWdvcustomerNewsRecipeCookingtime} min.</p>
+									</div>
+									<div class="col-4 col-md-2 text-center">
+										<figure class="figure">
+											<img src="typo3conf/ext/wdv_customer/Resources/Public/Icons/Rezepte/icon-recipe-cook.svg" height="48" alt="Symbol für Schwierigkeit" title="Schwierigkeit">
+										</figure>
+										<f:switch expression="{newsItem.txWdvcustomerNewsRecipeDifficulty}">
+											<f:case value="0">
+												<p class="lead">leicht</p>
+											</f:case>
+											<f:case value="1">
+												<p class="lead">mittel</p>
+											</f:case>
+											<f:case value="2">
+												<p class="lead">schwer</p>
+											</f:case>
+										</f:switch>
+									</div>
+									
+									<f:switch expression="{newsItem.txWdvcustomerNewsRecipeType}">
+										<f:case value="1">
+											<div class="col-4 col-md-2 text-center">
+												<figure class="figure">
+													<img src="typo3conf/ext/wdv_customer/Resources/Public/Icons/Rezepte/icon-recipe-veggie.svg" height="48" alt="Symbol für Zubereitungszeit" title="Zubereitungszeit">
+												</figure>
+												<p class="lead">vegetarisch</p>
+											</div>
+										</f:case>
+										<f:case value="2">
+											<div class="col-4 col-md-2 text-center">
+												<figure class="figure">
+													<img src="typo3conf/ext/wdv_customer/Resources/Public/Icons/Rezepte/icon-recipe-veggie.svg" height="48" alt="Symbol für Zubereitungszeit" title="Zubereitungszeit">
+												</figure>
+												<p class="lead">vegan</p>
+											</div>
+										</f:case>
+										<f:defaultCase> </f:defaultCase>
+									</f:switch>
+
+								</div>
+							</div>
+
+							<div class="news-item__content d-print-none">
+								<div class="row mt-0 mb-4 mb-print-0">
+                                  <div class="col-12 col-md-8 col-print-12 offset-md-2 offset-print-0 pl-md-0 pr-md-0">
+                                      <a href="javascript:print();" class="btn btn-lg">» Rezept drucken</a><br />
+                                  </div>
+                              </div>
+                          </div>
+
+							<div class="news-item__content">
+								<div class="row mt-3 mb-3 mb-print-0">
+									<div class="col-12 col-md-3 col-print-12 offset-md-2 offset-print-0 pl-md-0 mb-4 mb-print-0 ingredients">
+										<f:if condition="{newsItem.txWdvcustomerNewsRecipeContentElements}">
+											<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.txWdvcustomerNewsRecipeContentElementIdList}</f:cObject>
+										</f:if>
+									</div>
+									<div class="col-12 col-md-5 col-print-12 pl-print-0 pr-md-0">
+										<f:if condition="{newsItem.contentElements}">
+											<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+											<p class="text-muted mt-5 mb-5 mb-print-0 d-print-none" style="font-size: 1rem;">
+												Letzte Änderung: <f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
+											</p>
+										</f:if>
+									</div>
+								</div>
+							</div>
+						</f:case>
+
+						<f:defaultCase>
+							<div class="news-item__content">
+								<div class="row mt-3 mb-3 mb-print-0">
+
+
+								<v:condition.iterator.contains needle="100" haystack="{v:page.rootline() -> v:iterator.extract(key: 'uid')}">
+								<f:then>
+									<div class="col-12 col-md-8 col-print-12 offset-md-2 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0">
+								</f:then>
+								<f:else>
+									<div class="col-12 col-print-12 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0">
+								</f:else>
+								</v:condition.iterator.contains>
+										<f:if condition="{newsItem.contentElements}">
+											<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+											<p class="text-muted mt-5 mb-5 mb-print-0" style="font-size: 1rem;">
+												Letzte Änderung: <f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
+											</p>
+										</f:if>
+									</div>
+								</div>
+							</div>
+
+						</f:defaultCase>
+					</f:switch>
+					<f:render partial="Detail/MultiPageMenu" arguments="{newsItem: newsItem, additionalCssClass: 'd-print-none'}" />
+				</f:case>
+				<!-- Detailansicht eines Themenspecial -->
+				<f:case value="6">
+											<n:format.nothing>
+												<n:excludeDisplayedNews newsItem="{newsItem}" />
+												<f:if condition="{newsItem.alternativeTitle}">
+													<f:then>
+														<n:titleTag>
+															<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
+														</n:titleTag>
+													</f:then>
+													<f:else>
+														<n:titleTag>
+															<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+														</n:titleTag>
+													</f:else>
+												</f:if>
+												<f:if condition="{settings.detail.showMetaTags}">
+													<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+												</f:if>
+											</n:format.nothing>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container-fluid">
+						<div class="row mt-0 mb-0">
+							<div class="col-12 pl-0 pr-0 pl-md-0 pr-md-0">
+								<div class="row tx_gridelements intro-box themen-special">
+									<div class="col-12">
+										<div class="container">
+											<div class="row pt-0 pb-0">
+												<n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
+													<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.mediaNonPreviews, settings:settings}" />
+												</n:renderMedia>
+												<div class="col-12 content">
+													<div class="container">
+														<div class="row">
+															<div class="col-12 col-md-6 offset-md-1 p-0 pt-0 pb-0 mt-md-7 box">
+																<div class="bg-white-intro pt-4 pr-3 pb-4 pl-3 pl-sm-0 pr-sm-0 p-md-5">
+																	<f:for each="{newsItem.newsAuthor}" as="newsAuthor">
+																		<div class="row news-item__teaser-author mb-5">
+																			<div class="col-3 col-md-2">
+																				<f:if condition="{newsAuthor.image}">
+																					<f:image image="{newsAuthor.image}" class="img-fluid rounded-circle" title="" alt="" maxWidth="48" maxHeight="48"/>
+																				</f:if>
+																			</div>
+																			<div class="col-9 col-md-10">
+																				<strong>
+																					{f:if(condition: '{newsAuthor.title} > ""', then: '{newsAuthor.title} ')}
+																					{f:if(condition: '{newsAuthor.firstname} > ""', then: '{newsAuthor.firstname} ')}
+																					{f:if(condition: '{newsAuthor.lastname} > ""', then: '{newsAuthor.lastname}')}
+																				</strong>
+																				<p>{f:if(condition: '{newsAuthor.position} > ""', then: '{newsAuthor.position}')}</p>
+																			</div>
+																		</div>
+																	</f:for>
+																	<p><strong>Themenspecial</strong></p>
+																	<h1 itemprop="headline" class="mb-print-0">{newsItem.title}</h1>
+																	<f:if condition="{newsItem.bodytext} > ''">
+																		<f:format.htmlentitiesDecode>{newsItem.bodytext}</f:format.htmlentitiesDecode>
+																	</f:if>
+																	<!-- Sharing Buttons -->
+																	<f:cObject typoscriptObjectPath="lib.socialplugins" />
+																	<!-- Sharing Buttons -->
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row tx_gridelements transparent-box">
+									<div class="col-12">
+										<div class="container">
+											<div class="row pt-0 pb-0 pt-md-7 pb-md-3">
+												<div class="col-12">
+													<f:if condition="{newsItem.contentElements}">
+														<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+													</f:if>
+													<f:if condition="{newsItem.txWdvcustomerThemenspecialImpliedNews}">
+														<f:then>
+															<f:cObject typoscriptObjectPath="lib.news-themenspecial"/>
+														</f:then>
+														<f:else>
+															There is no article implied in this special yet!
+														</f:else>
+													</f:if>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="row">
+							<div class="col-12 pl-3 pr-3 col-md-10 col-print-12 offset-md-1 offset-print-0 ">
+								<div class="mt-0 mb-0 pt-0 pb-0">
+									<div class="tx_news news-single">
+										<div class="news-item article" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+				</f:case>
+
+				<!-- Detailansicht einer Rezeptsammlung -->
+				<f:case value="7">
+
+											<n:format.nothing>
+												<n:excludeDisplayedNews newsItem="{newsItem}" />
+												<f:if condition="{newsItem.alternativeTitle}">
+													<f:then>
+														<n:titleTag>
+															<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
+														</n:titleTag>
+													</f:then>
+													<f:else>
+														<n:titleTag>
+															<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+														</n:titleTag>
+													</f:else>
+												</f:if>
+												<f:if condition="{settings.detail.showMetaTags}">
+													<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+												</f:if>
+											</n:format.nothing>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container-fluid">
+						<div class="row mt-0 mb-0">
+							<div class="col-12 pl-0 pr-0 pl-md-0 pr-md-0">
+								<div class="row tx_gridelements intro-box rezept-sammlung">
+									<div class="col-12">
+										<div class="container">
+											<div class="row pt-0 pb-0">
+												<n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
+													<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.mediaNonPreviews, settings:settings}" />
+												</n:renderMedia>
+												<div class="col-12 content">
+													<div class="container">
+														<div class="row">
+															<div class="col-12 col-md-6 offset-md-1 p-0 pt-0 pb-0 mt-md-7 box">
+																<div class="bg-white-intro pt-4 pr-3 pb-4 pl-3 pl-sm-0 pr-sm-0 p-md-5">
+																	<f:for each="{newsItem.newsAuthor}" as="newsAuthor">
+																		<div class="row news-item__teaser-author mb-5">
+																			<div class="col-3 col-md-2">
+																				<f:if condition="{newsAuthor.image}">
+																					<f:image image="{newsAuthor.image}" class="img-fluid rounded-circle" title="" alt="" maxWidth="48" maxHeight="48"/>
+																				</f:if>
+																			</div>
+																			<div class="col-9 col-md-10">
+																				<h5>
+																					{f:if(condition: '{newsAuthor.title} > ""', then: '{newsAuthor.title} ')}
+																					{f:if(condition: '{newsAuthor.firstname} > ""', then: '{newsAuthor.firstname} ')}
+																					{f:if(condition: '{newsAuthor.lastname} > ""', then: '{newsAuthor.lastname}')}
+																				</h5>
+																				<p>{f:if(condition: '{newsAuthor.position} > ""', then: '{newsAuthor.position}')}</p>
+																			</div>
+																		</div>
+																	</f:for>
+																	<h4>Rezeptsammlung</h4>
+																	<h1 itemprop="headline">{newsItem.title}</h1>
+																	<!-- Sharing Buttons -->
+																	<f:cObject typoscriptObjectPath="lib.socialplugins" />
+																	<!-- Sharing Buttons -->
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row tx_gridelements transparent-box">
+									<div class="col-12">
+										<div class="container">
+											<div class="row pt-0 pb-0 pt-md-7 pb-md-3">
+												<div class="col-12">
+													<f:if condition="{newsItem.contentElements}">
+														<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+													</f:if>
+													<f:if condition="{newsItem.txWdvcustomerRezeptsammlungImpliedNews}">
+														<f:then>
+															<f:cObject typoscriptObjectPath="lib.news-rezeptsammlung"/>
+														</f:then>
+														<f:else>
+															There is no recipe implied in this recipe collection yet!
+														</f:else>
+													</f:if>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="row">
+							<div class="col-12 pl-3 pr-3 col-md-10 col-print-12 offset-md-1 offset-print-0 ">
+								<div class="mt-0 mb-0 pt-0 pb-0">
+									<div class="tx_news news-single">
+										<div class="news-item article" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+				</f:case>
+
+				<!-- Detailansicht einer Landingpage -->
+				<f:case value="11">
+
+					<n:format.nothing>
+
+						<n:excludeDisplayedNews newsItem="{newsItem}" />
+
+						<f:if condition="{newsItem.alternativeTitle}">
+							<f:then>
+								<n:titleTag>
+									<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
+								</n:titleTag>
+							</f:then>
+							<f:else>
+								<n:titleTag>
+									<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+								</n:titleTag>
+							</f:else>
+						</f:if>
+						<f:if condition="{settings.detail.showMetaTags}">
+							<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+						</f:if>
+					</n:format.nothing>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container-fluid">
+						<div class="row mt-0 mb-0">
+							<div class="col-12 pl-0 pr-0 pl-md-0 pr-md-0">
+								<div class="row tx_gridelements intro-box themen-special">
+									<div class="col-12">
+										<div class="container">
+											<div class="row pt-0 pb-0">
+												<n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
+													<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.mediaNonPreviews, settings:settings}" />
+												</n:renderMedia>
+												<div class="col-12 content">
+													<div class="container">
+														<div class="row">
+															<div class="col-12 col-md-6 offset-md-1 p-0 pt-0 pb-0 mt-md-7 box">
+																<div class="bg-white-intro pt-4 pr-3 pb-4 pl-3 pl-sm-0 pr-sm-0 p-md-5">
+																	<h4>Landingpage</h4>
+																	<h1 itemprop="headline" class="mb-print-0">{newsItem.title}</h1>
+																	<f:if condition="{newsItem.bodytext} > ''">
+																		<f:format.htmlentitiesDecode>{newsItem.bodytext}</f:format.htmlentitiesDecode>
+																	</f:if>
+																	<!-- Sharing Buttons -->
+																	<f:cObject typoscriptObjectPath="lib.socialplugins" />
+																	<!-- Sharing Buttons -->
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row tx_gridelements transparent-box">
+									<div class="col-12">
+										<div class="container">
+											<div class="row pt-0 pb-0 pt-md-7 pb-md-3">
+												<div class="col-12">
+													<f:if condition="{newsItem.contentElements}">
+														<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+													</f:if>
+													<f:if condition="{newsItem.txWdvcustomerLandingpageImpliedNews}">
+														<f:then>
+															<f:cObject typoscriptObjectPath="lib.news-landingpage"/>
+														</f:then>
+														<f:else>
+															There is no article implied in this landingpage yet!
+														</f:else>
+													</f:if>
+
+												</div>
+
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="row">
+							<div class="col-12 pl-3 pr-3 col-md-10 col-print-12 offset-md-1 offset-print-0 ">
+
+								<div class="mt-0 mb-0 pt-0 pb-0">
+									<div class="tx_news news-single">
+										<div class="news-item article" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+				</f:case>
+
+
+
+				<!-- Detailansicht einer Achtsamkeitsnews -->
+				<f:case value="30">
+                     
+					<n:format.nothing>
+
+						<n:excludeDisplayedNews newsItem="{newsItem}" />
+
+						<f:if condition="{newsItem.alternativeTitle}">
+							<f:then>
+								<n:titleTag>
+									<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
+								</n:titleTag>
+							</f:then>
+							<f:else>
+								<n:titleTag>
+									<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+								</n:titleTag>
+							</f:else>
+						</f:if>
+						<f:if condition="{settings.detail.showMetaTags}">
+							<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+						</f:if>
+					</n:format.nothing>
+                    
+                     <div class="achtsamkeit_mood">
+
+                        <n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
+                            <f:render partial="Detail/MediaContainer" arguments="{media: newsItem.mediaNonPreviews, settings:settings}" />
+                        </n:renderMedia>
+
+                    </div>
+                    <div class="achtsamkeit_container default widthscrollbutton">	
+                        <div class="content">										
+                            <div class="achtsamkeit_box_width newswidth">
+
+                                <v:condition.iterator.contains needle="563" haystack="{v:page.rootline() -> v:iterator.extract(key: 'uid')}">
+
+                                    <div class="news-item__breadcrumb">
+                                                <f:cObject typoscriptObjectPath="lib.breadcrumb"/>
+                                    </div>
+                                    
+                                </v:condition.iterator.contains>
+
+                                <div class="news-item__teaser">
+                                    <h1 class="ce-headline-center">{newsItem.title}</h1>
+                                    <div class="row news-item__teaser-desc mt-md-4 mb-3">
+                                        <div class="col-12 col-md-5 col-print-12 offset-md-2 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0 mt-md-2 mb-3">
+                                            <f:render partial="ArtikelTypeMeta" arguments="{newsItem: newsItem}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <f:render partial="Detail/MultiPageMenu" arguments="{newsItem: newsItem, additionalCssClass: ''}" />
+                                <f:if condition="{newsItem.bodytext} > ''">
+                                    <f:format.htmlentitiesDecode>{newsItem.bodytext}</f:format.htmlentitiesDecode>
+                                </f:if>
+
+                                <f:if condition="{newsItem.contentElements}">
+                                    <f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+                                </f:if>
+                            </div>
+                        </div>
+                    </div>
+
+				</f:case>
+
+				<!-- Detailansicht einer Achtsamkeitsnews ohne Lesezeit-->
+				<f:case value="31">
+                     
+					<n:format.nothing>
+
+						<n:excludeDisplayedNews newsItem="{newsItem}" />
+
+						<f:if condition="{newsItem.alternativeTitle}">
+							<f:then>
+								<n:titleTag>
+									<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
+								</n:titleTag>
+							</f:then>
+							<f:else>
+								<n:titleTag>
+									<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+								</n:titleTag>
+							</f:else>
+						</f:if>
+						<f:if condition="{settings.detail.showMetaTags}">
+							<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+						</f:if>
+					</n:format.nothing>
+                    
+                     <div class="achtsamkeit_mood">
+
+                        <n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
+                            <f:render partial="Detail/MediaContainer" arguments="{media: newsItem.mediaNonPreviews, settings:settings}" />
+                        </n:renderMedia>
+
+                    </div>
+                    <div class="achtsamkeit_container default widthscrollbutton">	
+                        <div class="content">										
+                            <div class="achtsamkeit_box_width newswidth">
+
+                                <v:condition.iterator.contains needle="563" haystack="{v:page.rootline() -> v:iterator.extract(key: 'uid')}">
+
+                                    <div class="news-item__breadcrumb">
+                                                <f:cObject typoscriptObjectPath="lib.breadcrumb"/>
+                                    </div>
+                                    
+                                </v:condition.iterator.contains>
+
+                                <div class="news-item__teaser">
+                                    <h1 class="ce-headline-center">{newsItem.title}</h1>
+                                </div>
+                                <br>
+                                <f:render partial="Detail/MultiPageMenu" arguments="{newsItem: newsItem, additionalCssClass: ''}" />
+                                <f:if condition="{newsItem.bodytext} > ''">
+                                    <f:format.htmlentitiesDecode>{newsItem.bodytext}</f:format.htmlentitiesDecode>
+                                </f:if>
+
+                                <f:if condition="{newsItem.contentElements}">
+                                    <f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+                                </f:if>
+                            </div>
+                        </div>
+                    </div>
+
+				</f:case>
+                                        
+                                        
+				<!-- Soundtrack - Playlist-Mood -->
+				<f:case value="141">
+                     
+                     <div class="playlist-mood">
+                        <f:link.page pageUid="874" class="backlink">
+                            <svg xmlns="http://www.w3.org/2000/svg" data-name="Ebene 1" viewBox="0 0 25.9 45">
+                              <path fill="currentColor" d="m7.05 22.46 18.13-18.2c.97-.98.97-2.56 0-3.54a2.52 2.52 0 0 0-3.54 0L0 22.46l21.63 21.8a2.5 2.5 0 1 0 3.54-3.53L7.05 22.46Z"/>
+                            </svg>
+                        </f:link.page>
+                        
+                        <div class="moodimage">
+                            <f:render partial="NewsImage" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator, height:720}" />
+                        </div>
+                        <div class="text">
+                            <h1><f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode></h1>
+                                
+                            <f:if condition="{newsItem.bodytext} > ''">
+                                <f:format.htmlentitiesDecode>{newsItem.bodytext}</f:format.htmlentitiesDecode>
+                            </f:if>
+                        </div>
+                    </div>
+
+				</f:case>
+                                        
+				<!-- Soundtrack - Track -->
+				<f:case value="142">
+                     
+                     <div class="track-mood">
+
+                        <div class="moodimage">
+                            <f:render partial="NewsImage" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator, height:720}" />
+                        </div>
+
+                         <div class="text">
+                                <f:if condition="{newsItem.teaser} > ''">
+                                    <div class="subline"><f:format.htmlentitiesDecode>{newsItem.teaser}</f:format.htmlentitiesDecode></div>
+                                </f:if>
+                             
+                                <h1><f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode></h1>
+                                
+                                <f:if condition="{newsItem.bodytext} > ''">
+                                    <f:format.htmlentitiesDecode>{newsItem.bodytext}</f:format.htmlentitiesDecode>
+                                </f:if>
+                             
+                                <f:if condition="{newsItem.internalurl} > ''">
+                                    <f:link.typolink 
+                                        parameter="{newsItem.internalurl}" 
+                                        class="link-artikel-btn green"
+                                    >Zum Angebot</f:link.typolink>
+                                </f:if>
+                             
+                                <f:link.typolink 
+                                    parameter="{settings.backPid}" 
+                                    class="link-artikel-btn"
+                                >Zurück zur Playlist</f:link.typolink>
+
+                                <f:link.typolink 
+                                    parameter="{settings.backPid}" 
+                                    class="flying_closer"
+                                >Schließen</f:link.typolink>                             
+                         </div>
+                    </div>
+
+				</f:case>
+
+				<!-- Default (Original-Zustand von tx_news) -->
+				<f:defaultCase>
+					No Detail-Layout selected!
+				</f:defaultCase>
+			</f:switch>
+		</f:then>
+		<f:else>
+			No news id given
+		</f:else>
+	</f:if>
+</f:section>
+</html>

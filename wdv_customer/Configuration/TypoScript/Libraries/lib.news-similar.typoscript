@@ -1,0 +1,114 @@
+lib.news-similar = COA
+
+lib.news-similar {
+
+    10 = TEXT
+    10.value = No News ID was given (For similar news)
+
+    10 >
+}
+
+lib.news-similar-categories < lib.news-similar
+
+#[request && (traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0 || traverse(request.getParsedBody(), 'tx_news_pi1/news') > 0 || traverse(request.getQueryParams(), 'tx_news_pi1/news_preview') > 0 || traverse(request.getParsedBody(), 'tx_news_pi1/news_preview') > 0] && [page["uid"] != [295,334,375])]
+[request && ((traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0 && page["uid"] != [295,334,375]) || (traverse(request.getQueryParams(), 'tx_news_pi1/news_preview') > 0 && page["uid"] != [295,334,375]))]
+lib.news-similar {
+    10 = USER
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        vendorName = GeorgRinger
+        pluginName = NewsSelectedList
+        extensionName = News
+
+        view < plugin.tx_news.view
+        persistence < plugin.tx_news.persistence
+        settings < plugin.tx_news.settings
+
+        settings {
+            # Decide to show news in this view, even if they are implied in an Article with type of "Multi-Page"
+            showImpliedInMultiPage = 1
+
+            # detailPid = 28
+            overrideFlexformSettingsIfEmpty := addToList(detailPid)
+
+            # the value for "selectedList" is inserted via
+            # an hook which reads the field "related"
+            # so we dont need to fill it here manually!
+            # selectedList = 346, 605, 581, 407, 406, 386
+
+            startingpoint = 189, 324
+            recursive = 250
+
+            hidePagination = 1
+            list.paginate >
+            # list.paginate.itemsPerPage
+
+            limit >
+
+            orderBy = datetime
+            orderDirection = desc
+            topNewsFirst = 0
+            overrideFlexformSettingsIfEmpty = cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
+
+            # da categories via hook aus Classes/Hooks/NewsControllerSettings.php kommen, müssen sie hier geleert werden
+            categories >
+
+            excludeAlreadyDisplayedNews = 0
+            disableOverrideDemand = 1
+
+            templateLayout = 1
+        }
+    }
+}
+
+lib.news-similar-categories {
+    10 = USER
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        vendorName = GeorgRinger
+        pluginName = NewsListSticky
+        extensionName = News
+
+        view < plugin.tx_news.view
+        persistence < plugin.tx_news.persistence
+        settings < plugin.tx_news.settings
+
+        settings {
+            # Decide to show news in this view, even if they are implied in an Article with type of "Multi-Page"
+            showImpliedInMultiPage = 1
+
+            # detailPid = 28
+            overrideFlexformSettingsIfEmpty := addToList(detailPid)
+
+            # the value for "selectedList" is inserted via
+            # an hook which reads the field "related"
+            # so we dont need to fill it here manually!
+            # selectedList = 346, 605, 581, 407, 406, 386
+
+            startingpoint = 189, 324
+            recursive = 250
+
+            hidePagination = 1
+            list.paginate >
+            # list.paginate.itemsPerPage
+
+            limit = 4
+
+            orderBy = datetime
+            orderDirection = desc
+            topNewsFirst = 0
+            overrideFlexformSettingsIfEmpty = cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
+
+            excludeAlreadyDisplayedNews = 1
+            disableOverrideDemand = 1
+
+            relatedView = 1
+            #categories kommen via hook aus Classes/Hooks/NewsControllerSettings.php
+            #categories = 0
+            categoryConjunction = or
+
+            templateLayout = 1
+        }
+    }
+}
+[global]

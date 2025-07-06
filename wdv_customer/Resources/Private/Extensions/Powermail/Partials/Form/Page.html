@@ -1,0 +1,104 @@
+{namespace vh=In2code\Powermail\ViewHelpers}
+{namespace w=WDV\WdvCustomer\ViewHelpers}
+
+<fieldset class="powermail_fieldset powermail_fieldset_{page.uid} {page.css}">
+    <f:if condition="{page.css} != 'nolabel'">
+        <h2 class="powermail_legend">{page.title}</h2>
+    </f:if>
+    <f:if condition="{settings.main.ewecheck}">
+        <input id="checkcontactdata-{form.uid}" name="checkcontactdata" type="hidden" value="1" />
+        <input id="status-{form.uid}" name="status" type="hidden" value="" />
+        <script type="text/javascript" data-ignore="1">
+	        var formuid = "{form.uid}";
+            var thisform = ".powermail_form_" + formuid;
+        </script>
+    </f:if>
+    <w:powermail.prepareFormFieldArrays fields="{page.fields}">
+        <f:for each="{returnArray}" as="pageField" iteration="iterationa">
+            <f:for each="{pageField.fields}" as="field" iteration="iteration">
+                <vh:misc.createRowTags columns="{pageField.rowItems}" class="{settings.styles.framework.rowClasses}" iteration="{iteration}">
+                    <f:render partial="Form/Field/{vh:String.Upper(string:field.type)}" arguments="{field:field}" />
+                </vh:misc.createRowTags>
+            </f:for>
+        </f:for>
+    </w:powermail.prepareFormFieldArrays>
+    <f:if condition="{settings.main.ewecheck}">
+        <script type="text/javascript" data-ignore="1">
+            window.onload = function() {
+                $(function () {
+                    // Move phone number from modal to form if user give it to us
+                    $('#save-tel').on('click', function (e) {
+                        var telFromModal = $('#tel-modal').val();
+                        if (telFromModal != '') {
+                            $(thisform).find('[name="tx_powermail_pi1[field][telefon]"]').val(telFromModal);
+                            $("#telRequest").modal('hide');
+                            $(thisform).submit();
+                        } else {
+                            $('#tel-modal-error').removeClass('d-none');
+                        }
+                    });
+
+                    // If parsley validation is successful we trigger the telefon notice
+                    $(thisform).parsley().on('form:success', function (formInstance) {
+
+                        var eweCheck = formInstance.$element.find('[name="tx_powermail_pi1[field][ewe][]"]:checked').length;
+                        var telCheck = formInstance.$element.find('[name="tx_powermail_pi1[field][telefon]"]').val();
+                        var checkcontactdataCheck = formInstance.$element.find('[name="checkcontactdata"]').val();
+
+                        if (eweCheck && telCheck == '' && checkcontactdataCheck != 0) {
+                            // Popup notice 'we would like to have your number'
+                            formInstance.validationResult = false;
+                            formInstance.$element.find('[name="checkcontactdata"]').val(0);
+                            $("#telRequest").modal('show');
+                        } else {
+                            // If telefon number exists or notice was already displayed, don't check anymore
+                            formInstance.validationResult = true;
+                        }
+                    });
+                });
+            };
+        </script>
+        <div class="modal fade" id="telRequest" tabindex="-1" role="dialog" aria-labelledby="telRequestLabel" aria-hidden="true">
+            <div class="modal-dialog h-100 d-flex flex-column justify-content-center my-0" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-center mt-4">
+                            <span class="icon info"></span>
+                        </div>
+                        <!--<div class="d-flex justify-content-center mt-4 mb-4">-->
+                            <!--<h3 style="width:auto;" id="telRequestLabel">Maximale Broschürenanzahl erreicht!</h3>-->
+                        <!--</div>-->
+                        <div class="d-flex justify-content-center mt-4">
+                            <p style="width:auto;">Um Sie optimal kontaktieren zu können, wäre
+                                die Angabe Ihrer Telefonnummer hilfreich.</p>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div class="form-group">
+                                <!--<label for="tel" class="float-left">Telefon</label>-->
+                                <input type="text" class="form-control" id="tel-modal" placeholder="Telefonnummer">
+                                <ul id="tel-modal-error" class="parsley-errors-list filled d-none">
+                                    <li class="parsley-required">Bitte ergänzen Sie die Telefonnummer, wenn Sie Ja wählen.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4 mb-4">
+                            <button type="button" class="btn btn-lg mr-3" aria-labelledby="Ja, gerne" id="save-tel">Ja, gerne</button>
+                            <button type="button" class="btn btn-lg" data-dismiss="modal" aria-labelledby="Nein, danke">Nein, danke</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </f:if>
+</fieldset>
+
+<f:comment><!--
+    <script type="text/javascript">
+        window.onload = function() {
+            window.Parsley.on('field:error', function() {
+                // This global callback will be called for any field that fails validation.
+                this.$element.attr("aria-describedby", 'parsley-id-'+this.$element.data('parsley-id'))
+            });
+        };
+    </script>
+--></f:comment>

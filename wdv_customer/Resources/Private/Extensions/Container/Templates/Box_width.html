@@ -1,0 +1,22 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+	<f:render section="Content" arguments="{_all}" />
+
+</f:section>
+
+<f:section name="Content">
+    <div class="achtsamkeit_box_width {data.flexform_width}">
+		<f:for each="{children_3100}" as="record">
+			<f:format.raw>
+				{record.renderedContent}
+			</f:format.raw>
+		</f:for>
+	</div>
+</f:section>

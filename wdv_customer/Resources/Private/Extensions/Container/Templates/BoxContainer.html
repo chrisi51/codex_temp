@@ -1,0 +1,214 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+	<f:if condition="{data.header} || {data.subheader} || {data.date}">
+			<f:render partial="Header/Header" arguments="{
+				header: data.header,
+				layout: data.header_layout,
+				positionClass: '{f:if(condition: data.header_position, then: \'ce-headline-{data.header_position}\')}',
+				link: data.header_link,
+				default: settings.defaultHeaderType}" />
+			<f:render partial="Header/SubHeader" arguments="{
+				subheader: data.subheader,
+				layout: data.header_layout,
+				positionClass: '{f:if(condition: data.header_position, then: \'ce-headline-{data.header_position}\')}',
+				default: settings.defaultHeaderType}" />
+			<f:render partial="Header/Date" arguments="{
+				date: data.date,
+				positionClass: '{f:if(condition: data.header_position, then: \'ce-headline-{data.header_position}\')}'}" />
+
+	</f:if>
+
+	<f:if condition="{data.flexform_fullwidth} == '1'">
+
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid"{f:if(condition: '{data.flexform_cssid} > \'\'', then: ' id="{data.flexform_cssid}"', else: '')}>
+	<div class="row mt-{f:if(condition: '{data.space_before_class}', then: '{data.space_before_class}', else: '0')} mb-{f:if(condition: '{data.space_after_class}', then: '{data.space_after_class}', else: '0')}">
+		<div id="c{data.uid}" class="col-12 pl-0 pr-0 pl-md-0 pr-md-0">
+
+	</f:if>
+
+		<f:if condition="{f:count(subject: bgimages)} == 1">
+	            <f:if condition="{bgimages.0.originalFile.properties.publisher}">
+	               <v:variable.set name="imagetitle" value="Bildnachweis: © {bgimages.0.originalFile.properties.publisher}" />
+	            </f:if>
+	            <f:if condition="{bgimages.0.originalFile.properties.creator}">
+	               <v:variable.set name="imagetitle" value="{imagetitle} / {bgimages.0.originalFile.properties.creator}" />
+	            </f:if>
+
+	            <f:if condition="{imagetitle} != ''">
+	               <v:variable.set name="imagetitle" value=" title=\"{imagetitle}\"" />
+	            </f:if>
+	        </f:if>
+
+
+
+			<div class="row tx_gridelements{f:if(condition: '{data.flexform_boxtype} > \'\'', then: ' {data.flexform_boxtype}-box', else: ' transparent-box')}{f:if(condition: '{data.flexform_css_classes} > \'\'', then: ' {data.flexform_css_classes}', else: '')}"{imagetitle->f:format.raw()}>
+				<div class="col-12">
+
+					<f:if condition="{children_3100}">
+					<div class="container">
+
+						<div class="row pt-{data.tx_wdvcustomer_content_paddingtop} pb-{data.tx_wdvcustomer_content_paddingbottom}">
+					</f:if>
+							<f:if condition="{bgvideo}">
+
+								<f:then>
+
+									<!-- render video as background -->
+
+									<f:media file="{bgvideo.0.originalFile}" additionalConfig="{loop: 'true', autoplay: 'true', controls: 'false', preload: 'auto', muted: 'true'}" />
+
+									<!-- render video as background -->
+
+								</f:then>
+
+								<f:else>
+
+									<!-- render only a single image -->
+									<f:if condition="{f:count(subject: bgimages)} == 1">
+
+										<f:for each="{bgimages}" as="bgimage">
+
+												<f:if condition="{children_3100}">
+														<f:then>
+																<fp:image image="{bgimage}" width="1440" realCrop="false" title="{f:if(condition: '{bgimage.originalFile.properties.publisher}', then: 'Bildnachweis: © {bgimage.originalFile.properties.publisher}')}{f:if(condition: '{bgimage.originalFile.properties.creator}', then: ' / {bgimage.originalFile.properties.creator}')}" alt="{bgimage.originalResource.alternative}" />
+														</f:then>
+														<f:else>
+																<f:image image="{bgimage}" width="1440" title="{f:if(condition: '{bgimage.originalFile.properties.publisher}', then: 'Bildnachweis: © {bgimage.originalFile.properties.publisher}')}{f:if(condition: '{bgimage.originalFile.properties.creator}', then: ' / {bgimage.originalFile.properties.creator}')}" alt="{bgimage.originalResource.alternative}" />
+														</f:else>
+												</f:if>
+										</f:for>
+
+									</f:if>
+									<!-- render only a single image -->
+
+									<!-- render multiple images as slideshow -->
+									<f:if condition="{f:count(subject: bgimages)} > 1">
+
+										<div class="col-12 slider"
+											 data-slick='{
+										"dots": true,
+										"arrows": true,
+										"slidesToShow": 1,
+										"slidesToScroll": 1,
+										"autoplay": false,
+										"autoplaySpeed": 5000,
+										"fade": true,
+										"cssEase": "linear",
+										"adaptiveHeight": true
+									}'>
+
+											<f:for each="{bgimages}" as="bgimage">
+												<fp:image image="{bgimage}" width="1440" realCrop="false" title="{f:if(condition: '{bgimage.originalFile.properties.publisher}', then: 'Bildnachweis: © {bgimage.originalFile.properties.publisher}')}{f:if(condition: '{bgimage.originalFile.properties.creator}', then: ' / {bgimage.originalFile.properties.creator}')}" alt="{bgimage.originalResource.alternative}" />
+											</f:for>
+
+										</div>
+
+									</f:if>
+									<!-- render multiple images as slideshow -->
+
+								</f:else>
+							</f:if>
+
+							<f:if condition="{data.flexform_contentwidth} == '1'">
+								<f:then>
+									<div class="col-12 pl-3 pr-3 col-md-10 offset-md-1 pl-md-0 pr-md-0">
+										<f:render section="Content" arguments="{_all}" />
+									</div>
+								</f:then>
+								<f:else>
+									<div class="col-12{f:if(condition: '{data.flexform_boxtype} == \'intro\' || {data.flexform_boxtype} == \'absprung\'', then: ' content')}">
+										<f:render section="Content" arguments="{_all}" />
+									</div>
+								</f:else>
+							</f:if>
+					<f:if condition="{children_3100}">
+						</div>
+					</div>
+					</f:if>
+				</div>
+			</div>
+	<f:if condition="{data.flexform_fullwidth} == '1'">
+		
+				</div>
+			</div>
+		</div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-12 pl-3 pr-3 col-md-10 col-print-12 offset-md-1 offset-print-0 ">
+	
+	</f:if>
+</f:section>
+
+<f:section name="Content">
+
+
+	<v:variable.set name="cssClass" value="" />
+	<v:variable.set name="arrowBox" value="" />
+	<v:variable.set name="grid" value="col-12 col-lg-6 p-0 pt-0 pb-0 mt-md-7 mb-md-7 box" />
+	
+
+	<f:if condition="{data.flexform_layout_gib8} == 1">
+		<v:variable.set name="cssClass" value=" gib8" />
+		<v:variable.set name="arrowBox" value='<a href="" class="arrowbox"></a>' />
+		<v:variable.set name="grid" value="col-12 col-lg-8 p-0 pt-0 pb-0 mt-md-7 mb-md-7 box" />
+	</f:if>
+
+	<f:switch expression="{data.flexform_boxalign}">
+		<f:case value="left">
+			<v:variable.set name="alignment" value=" justify-content-start" />
+		</f:case>
+		<f:case value="center">
+			<v:variable.set name="alignment" value=" justify-content-center" />
+		</f:case>
+		<f:case value="right">
+			<v:variable.set name="alignment" value=" justify-content-end" />
+		</f:case>
+		<f:defaultCase>
+			<v:variable.set name="alignment" value="" />
+		</f:defaultCase>
+	</f:switch>
+
+
+	<f:if condition="{children_3100}">
+		<f:if condition="{data.flexform_boxtype} == 'intro' || {data.flexform_boxtype} == 'absprung'">
+			<f:then>
+				<div class="container{cssClass} {data.flexform_boxvalign}">
+					<div class="row{alignment}">
+						
+						<div class="{grid}">
+							<div class="bg-white-intro pt-4 pr-3 pb-4 pl-3 pl-md-0 pr-md-0 p-lg-5">
+
+								<f:for each="{children_3100}" as="record">
+									<f:format.raw>
+										{record.renderedContent}
+									</f:format.raw>
+								</f:for>
+
+								<f:format.raw>{arrowBox}</f:format.raw>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+			</f:then>
+			<f:else>
+				<f:for each="{children_3100}" as="record">
+					<f:format.raw>
+						{record.renderedContent}
+					</f:format.raw>
+				</f:for>
+			</f:else>
+		</f:if>
+	</f:if>
+</f:section>

@@ -1,0 +1,26 @@
+<ul class="adhs-breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <f:for each="{menu}" as="menuItem" iteration="metaIterator">
+        <li class="adhs-breadcrumb-item" itemprop="itemListElement" itemscope
+            itemtype="https://schema.org/ListItem">
+            <f:if condition="{menuItem.link} === /">
+                <f:then>
+                    <a href="{menuItem.link}" class="adhs-breadcrumb-link" itemprop="item"
+                       title="{menuItem.title}"><span itemprop="name"><svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                           <title>Start</title>
+                           <g id="Icons/Funktional/-home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                               <path d="M35,16.0542145 L35,37.5046387 C35,38.3082428 34.438193,39.0046387 33.5,39.0046387 C33.5,39.0046387 14.5,39.0046387 14.5,39.0046387 C13.720843,39.0046387 13,38.3425425 13,37.5046387 C13,37.5046387 13,30.3389468 13,16.007563 L24,9.13767292 L35,16.0542145 Z M5,15.1006459 L1,17.6095266 L3.63732825,21.849767 L8,19.1354456 L8,37.5046387 C8,41.0886387 10.916,44.0046387 14.5,44.0046387 L33.5,44.0046387 C37.084,44.0046387 40,41.0886387 40,37.5046387 L40,19.1354456 L44.3655455,21.8629578 L46.9979858,17.6352376 L26.1136074,4.60627185 C24.8197429,3.79907918 23.1794745,3.79782265 21.8843748,4.60303204 L5,15.1006459 L5,15.1006459 Z"
+                                     id="Combined-Shape" class="icon-home"></path>
+                           </g>
+                       </svg></span>
+                    </a>
+                </f:then>
+                <f:else>
+                    <a href="{menuItem.link}" class="adhs-breadcrumb-link" itemprop="item"
+                       title="{menuItem.title}"><span itemprop="name">{menuItem.title}</span>
+                    </a>
+                </f:else>
+            </f:if>
+            <meta itemprop="position" content="{metaIterator.cycle}"/>
+        </li>
+    </f:for>
+</ul>

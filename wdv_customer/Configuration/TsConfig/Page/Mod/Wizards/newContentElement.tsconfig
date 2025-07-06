@@ -1,0 +1,28 @@
+mod.wizards.newContentElement.wizardItems {
+
+    common {
+
+    }
+    # Neue Inhaltselemente zu Wizard "Menu" ergänzen
+    menu {
+        elements {
+            wdvcustomer_menuSubpagesAmountNewsItemsFilter {
+                iconIdentifier = content-menu-pages
+                title = Unterseiten mit Anzahl von News (Filter)
+                description = Menü der Unterseiten der ausgewählten Seiten mit Anzahl von Artikeln der gleichen der jeweiligen Seite zugewiesenen Kategorie
+                tt_content_defValues {
+                    CType = wdvcustomer_menuSubpagesAmountNewsItemsFilter
+                }
+            }
+            wdvcustomer_menuSubpagesAmountNewsItemsDropdown {
+                iconIdentifier = content-menu-pages
+                title = Unterseiten mit Anzahl von News (Dropdown)
+                description = Menü der Unterseiten der ausgewählten Seiten mit Anzahl von Artikeln der gleichen der jeweiligen Seite zugewiesenen Kategorie
+                tt_content_defValues {
+                    CType = wdvcustomer_menuSubpagesAmountNewsItemsDropdown
+                }
+            }
+        }
+        show := addToList(wdvcustomer_menuSubpagesAmountNewsItemsFilter, wdvcustomer_menuSubpagesAmountNewsItemsDropdown)
+    }
+}

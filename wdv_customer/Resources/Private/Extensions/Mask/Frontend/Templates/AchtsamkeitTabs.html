@@ -1,0 +1,83 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="achtsamkeittabs tx_mask tabs mt-3 mb-3 {f:if(condition: data.tx_wdvcustomer_content_breakoutleft, then: 'breakout-md-left')}{f:if(condition: data.tx_wdvcustomer_content_breakoutright, then: ' breakout-md-right')}" id="c{data.uid}">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+	    <f:if condition="{data.tx_mask_item -> f:count()} < {data.imagewidth +1}">
+	    	<f:then>
+			<f:variable name="active_tab">{data.tx_mask_item -> f:count()}</f:variable>
+                        <f:variable name="active_tab">{active_tab -1}</f:variable>
+		</f:then>
+		<f:else>
+                        <f:variable name="active_tab">{data.imagewidth}</f:variable>
+		</f:else>
+	    </f:if>
+        <f:for each="{data.tx_mask_item}" as="data_item" iteration="iterator">
+		<f:variable name="active">false</f:variable>
+                <f:variable name="active_class"></f:variable>
+		<f:if condition="{active_tab}<1">
+			<f:then>
+				<f:if condition="{iterator.isFirst}"><f:variable name="active">true</f:variable></f:if>
+			</f:then>
+			<f:else>
+				<f:if condition="{iterator.index}=={active_tab}"><f:variable name="active">true</f:variable></f:if>
+			</f:else>
+		</f:if>
+		<f:if condition="{active}='true'"><f:variable name="active_class"> active</f:variable></f:if>
+
+	    <li class="nav-item{active_class}">
+		<a class="nav-link{active_class}" id="tab{data.uid}{iterator.cycle}" data-toggle="tab" href="#tab{data.uid}{iterator.cycle}content" role="tab" aria-controls="tab{data.uid}{iterator.cycle}content" aria-selected="{active}">
+                    {data_item.tx_mask_header}
+                </a>
+                
+                <div class="mobile-content">
+                   <f:if condition="{data_item.tx_mask_bodytext}">
+                        <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data_item.tx_mask_bodytext}</f:format.html>
+                    </f:if>
+                    <f:if condition="{data_item.tx_mask_content}">
+                        <f:for each="{data_item.tx_mask_content}" as="data_item_item">
+                            <f:cObject typoscriptObjectPath="lib.tx_mask.content">{data_item_item.uid}</f:cObject>
+                        </f:for>
+                    </f:if>
+                </div>
+                
+            </li>
+        </f:for>
+
+    </ul>
+    <div class="tab-content">
+
+        <f:for each="{data.tx_mask_item}" as="data_item" iteration="iterator">
+
+                <f:variable name="active_class"></f:variable>
+                <f:if condition="{active_tab}<1">
+                        <f:then>
+                                <f:if condition="{iterator.isFirst}"><f:variable name="active_class"> show active</f:variable></f:if>
+                        </f:then>
+                        <f:else>
+                                <f:if condition="{iterator.index}=={active_tab}"><f:variable name="active_class"> show active</f:variable></f:if>
+                        </f:else>
+                </f:if>
+
+            <div class="tab-pane fade{active_class}" id="tab{data.uid}{iterator.cycle}content" role="tabpanel" aria-labelledby="tab{data.uid}{iterator.cycle}">
+               
+                <f:if condition="{data_item.tx_mask_bodytext}">
+                    <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data_item.tx_mask_bodytext}</f:format.html>
+                </f:if>
+                <f:if condition="{data_item.tx_mask_content}">
+                    <f:for each="{data_item.tx_mask_content}" as="data_item_item">
+                        <f:cObject typoscriptObjectPath="lib.tx_mask.content">{data_item_item.uid}</f:cObject>
+                    </f:for>
+                </f:if>
+                
+            </div>
+
+        </f:for>
+
+    </div>
+</div>
+
+</html>
+

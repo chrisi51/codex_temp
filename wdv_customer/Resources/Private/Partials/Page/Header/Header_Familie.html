@@ -1,0 +1,132 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:w="WDV\WdvCustomer\ViewHelpers"
+      xmlns:vhs="FluidTYPO3\Vhs\ViewHelpers"
+		data-namespace-typo3-fluid="true">
+
+{namespace n=GeorgRinger\News\ViewHelpers}
+
+<header class="sticky-top">
+	<div class="container">
+        <!-- CONTENTBEREICH HEADER START -->
+
+        <a id="header-logo" href="/" title="Link zur Startseite">
+            <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 452 139.83">
+              <path fill="#005e3f" d="M150.9 17.79a52.13 52.13 0 1 0 .01 104.25 52.13 52.13 0 0 0-.01-104.25Zm0 87.15c-19.15 0-34.68-15.69-34.68-35.03s15.52-35.02 34.68-35.02 34.68 15.68 34.68 35.02-15.53 35.03-34.68 35.03Zm259.28-50.2c-2.63 0-4.98.59-7.44 2.01a15.92 15.92 0 0 0-7.33 18.19l-9.51 5.49v-22.9a15.95 15.95 0 0 0 12.17-15.5c0-8.13-5.42-12.04-15.99-22.61-10.61 10.61-15.99 14.46-15.99 22.61 0 7.3 5.02 13.76 12.14 15.51v22.89l-9.5-5.49a15.92 15.92 0 0 0-7.33-18.19 14.25 14.25 0 0 0-7.44-2.01c-4.89 0-10.74 2.04-20.13 4.55 3.88 14.5 4.53 21.07 11.59 25.15a16 16 0 0 0 19.37-2.63l13.44 7.76v11.16h-32.88v7.71h73.42v-7.71h-32.88V89.57l13.45-7.76a15.98 15.98 0 0 0 19.37 2.63c7.06-4.08 7.7-10.65 11.59-25.15-9.39-2.52-15.25-4.55-20.13-4.55Zm-49.56 20.02a8.25 8.25 0 0 1-7.21 4.16 8.25 8.25 0 0 1-4.16-1.11c-2.82-1.63-3.72-3.88-6.11-13.14 4.79-1.34 8.33-2.27 10.83-2.27a6.6 6.6 0 0 1 3.61.99 8.35 8.35 0 0 1 3.05 11.38Zm21.45-24.41a8.34 8.34 0 0 1-8.33-8.33c0-3.25 1.5-5.16 8.33-11.86 6.82 6.71 8.33 8.62 8.33 11.86a8.34 8.34 0 0 1-8.33 8.33Zm32.81 27.46a8.3 8.3 0 0 1-4.16 1.11 8.23 8.23 0 0 1-7.21-4.16 8.4 8.4 0 0 1-.84-6.27 8.24 8.24 0 0 1 3.89-5.11 6.6 6.6 0 0 1 3.61-.99c2.5 0 6.03.93 10.83 2.27-2.39 9.26-3.29 11.52-6.11 13.14ZM382.08 0a69.93 69.93 0 1 0 .01 139.85A69.93 69.93 0 0 0 382.08 0Zm0 132.13c-34.3 0-62.21-27.91-62.21-62.21s27.91-62.21 62.21-62.21 62.21 27.91 62.21 62.21-27.91 62.21-62.21 62.21ZM253.95 63.74l42.44 54.94H273.3l-31.41-41.47-13.79 15.34v26.14h-16.81V21.16h16.81v46.26l41.5-46.26h22.47l-38.12 42.58ZM0 118.67h20.37L34.1 97.65h40.3v21.02h16.81V21.16H64L0 118.67Zm74.4-36.29H44.08L74.4 35.97v46.41Z"/>
+            </svg>
+        </a>
+
+        <f:if condition="{headerNav}">
+            <ul class="headerNav">
+                <f:for each="{headerNav}" as="menuItem">
+                    <f:comment>LVL1</f:comment>
+                    <li>
+                        <f:link.page pageUid="{menuItem.data.uid}" class="{f:if(condition:'{menuItem.current}',then:'active')}" >{menuItem.title} </f:link.page>
+                        <f:if condition="{menuItem.children}">
+                            <div><ul>
+                            <f:for each="{menuItem.children}" as="childMenuItem">
+                                <f:comment>LVL2</f:comment>
+                                <li><f:link.page pageUid="{childMenuItem.data.uid}" class="{f:if(condition:'{childMenuItem.active}',then:'active')}">{childMenuItem.title}</f:link.page></li>
+                            </f:for>
+                            </ul></div>
+                        </f:if>
+
+                    </li>
+                </f:for>
+            </ul>
+        </f:if>
+
+        <div class="container_header_right">
+            <!-- Hotline Info -->
+            <!--div class="hotline-info">
+                <div class="phone-icon"></div>
+                <div class="familie-header-hotline">
+                    AOK-Wechsel-Hotline <br>
+                    <a href="tel:021181951370">0211 819-51370</a>
+                </div>
+            </div-->
+
+            <!-- button -->
+            <a href="https://www.aok.de/mw/rh/mitgliedsantrag/" target="_blank" class="family-button" tabindex="0">
+                <span>Mitglied werden</span>
+            </a>
+
+        </div>
+
+        <label for="navigation-opener" class="label-navigation-opener">Navigation ein- oder ausblenden</label>
+        <input id="navigation-opener" type="checkbox" autocomplete="off">
+        <div id="mainnav-control">
+            <span class="mainnav-control"></span>
+            <span class="mainnav-control"></span>
+            <span class="mainnav-control"></span>
+        </div>
+
+        <nav id="mainnav">
+            <div id="mainnav-content">
+                <a id="menu-logo" href="/" title="Link zur Startseite">
+                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 452 139.83">
+                        <path fill="#005e3f" d="M150.9 17.79a52.13 52.13 0 1 0 .01 104.25 52.13 52.13 0 0 0-.01-104.25Zm0 87.15c-19.15 0-34.68-15.69-34.68-35.03s15.52-35.02 34.68-35.02 34.68 15.68 34.68 35.02-15.53 35.03-34.68 35.03Zm259.28-50.2c-2.63 0-4.98.59-7.44 2.01a15.92 15.92 0 0 0-7.33 18.19l-9.51 5.49v-22.9a15.95 15.95 0 0 0 12.17-15.5c0-8.13-5.42-12.04-15.99-22.61-10.61 10.61-15.99 14.46-15.99 22.61 0 7.3 5.02 13.76 12.14 15.51v22.89l-9.5-5.49a15.92 15.92 0 0 0-7.33-18.19 14.25 14.25 0 0 0-7.44-2.01c-4.89 0-10.74 2.04-20.13 4.55 3.88 14.5 4.53 21.07 11.59 25.15a16 16 0 0 0 19.37-2.63l13.44 7.76v11.16h-32.88v7.71h73.42v-7.71h-32.88V89.57l13.45-7.76a15.98 15.98 0 0 0 19.37 2.63c7.06-4.08 7.7-10.65 11.59-25.15-9.39-2.52-15.25-4.55-20.13-4.55Zm-49.56 20.02a8.25 8.25 0 0 1-7.21 4.16 8.25 8.25 0 0 1-4.16-1.11c-2.82-1.63-3.72-3.88-6.11-13.14 4.79-1.34 8.33-2.27 10.83-2.27a6.6 6.6 0 0 1 3.61.99 8.35 8.35 0 0 1 3.05 11.38Zm21.45-24.41a8.34 8.34 0 0 1-8.33-8.33c0-3.25 1.5-5.16 8.33-11.86 6.82 6.71 8.33 8.62 8.33 11.86a8.34 8.34 0 0 1-8.33 8.33Zm32.81 27.46a8.3 8.3 0 0 1-4.16 1.11 8.23 8.23 0 0 1-7.21-4.16 8.4 8.4 0 0 1-.84-6.27 8.24 8.24 0 0 1 3.89-5.11 6.6 6.6 0 0 1 3.61-.99c2.5 0 6.03.93 10.83 2.27-2.39 9.26-3.29 11.52-6.11 13.14ZM382.08 0a69.93 69.93 0 1 0 .01 139.85A69.93 69.93 0 0 0 382.08 0Zm0 132.13c-34.3 0-62.21-27.91-62.21-62.21s27.91-62.21 62.21-62.21 62.21 27.91 62.21 62.21-27.91 62.21-62.21 62.21ZM253.95 63.74l42.44 54.94H273.3l-31.41-41.47-13.79 15.34v26.14h-16.81V21.16h16.81v46.26l41.5-46.26h22.47l-38.12 42.58ZM0 118.67h20.37L34.1 97.65h40.3v21.02h16.81V21.16H64L0 118.67Zm74.4-36.29H44.08L74.4 35.97v46.41Z"/>
+                    </svg>
+                </a>
+
+                <div class="menu">
+                    <f:if condition="{headerNav}">
+                        <f:for each="{headerNav}" as="menuItem">
+                            <f:comment>LVL1</f:comment>
+                            <div id="mainnav_{menuItem.data.uid}" class="menu_item {f:if(condition:'{menuItem.children}',then:'subs')}">
+                                <f:link.page pageUid="{menuItem.data.uid}" class="{f:if(condition:'{menuItem.active}',then:'active')}" >{menuItem.title}
+                                    <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" data-icon="arrow-right" class="fill-current w-16 h-16 1000:hidden"><path d="M37 24c0-.646-.246-1.292-.739-1.785L15.068 1 11.5 4.571 30.909 24 11.5 43.429 15.068 47l21.193-21.215A2.516 2.516 0 0037 24" fill-rule="evenodd"></path></svg>
+                                </f:link.page>
+
+                                <f:if condition="{menuItem.children}">
+                                    <div class="lvl2">
+                                        <a href="#" class="menu_backlink">
+                                            <svg width="16" height="16" class="left">
+                                                <use xlink:href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/Layout/sprite.svg#icon_arrow_left"></use>
+                                            </svg>
+                                            Zurück
+                                        </a>
+                                        <div class="lvl1_title">{menuItem.title}</div>
+                                    <f:for each="{menuItem.children}" as="childMenuItem">
+                                        <f:comment>LVL2</f:comment>
+                                        <div class="menu_item">
+                                            <f:link.page pageUid="{childMenuItem.data.uid}" class="{f:if(condition:'{childMenuItem.active}',then:'active')}">
+                                                {childMenuItem.title}
+                                                <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" data-icon="arrow-right" class="fill-current w-16 h-16 1000:hidden"><path d="M37 24c0-.646-.246-1.292-.739-1.785L15.068 1 11.5 4.571 30.909 24 11.5 43.429 15.068 47l21.193-21.215A2.516 2.516 0 0037 24" fill-rule="evenodd"></path></svg>
+                                            </f:link.page>
+                                        </div>
+                                    </f:for>
+                                    <!-- button -->
+                                    <a href="https://www.aok.de/mw/rh/mitgliedsantrag/" target="_blank" class="family-button" tabindex="0">
+                                        <span>Mitglied werden</span>
+                                    </a>
+                                                    
+                                    </div>
+                                </f:if>
+
+
+                            </div>
+                        </f:for>
+                    </f:if>
+
+                    <!-- Hotline Info -->
+                    <div class="hotline-info">
+                        <div class="phone-icon"></div>
+                        <div class="familie-header-hotline">
+                            AOK-Wechsel-Hotline <br>
+                            <a href="tel:021181951370">0211 819-51370</a>
+                        </div>
+                    </div>
+
+                    <!-- button -->
+                    <a href="https://www.aok.de/mw/rh/mitgliedsantrag/" target="_blank" class="family-button" tabindex="0">
+                        <span>Mitglied werden</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- CONTENTBEREICH HEADER ENDE -->
+	</div>
+</header>
+
+</html>

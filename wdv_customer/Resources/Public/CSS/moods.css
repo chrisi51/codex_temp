@@ -1,0 +1,471 @@
+/**
+ * FAMILY MOOD
+**/
+#family-mood{position:relative;}
+#family-mood .image{height:600px}
+#family-mood .content{
+    position:absolute;
+    bottom:40px;
+    left:40px;
+    right:40px;
+}
+#family-mood .content .container{
+    margin:0 auto;
+}
+#family-mood h1{margin:0 !important; color:#fff}
+#family-mood .line2{color:var(--aok-grass-green)}
+#family-mood p{
+    margin:0;
+    font-size: 1.2rem;
+    color:#fff
+}
+@media (min-width: 768px) {
+    #family-mood p{
+        font-size: 1.8rem;
+    }
+}
+
+/**
+ * FAMILY MOOD 2
+**/
+#family-mood2{position:relative;}
+#family-mood2 .image{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    top: 0;
+    overflow: hidden;
+    width: 100vw;
+    transform: translateX(-50%);
+}
+#family-mood2 .container{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 1600px;
+    padding: 3rem;
+    min-height: 34vw;
+}
+#family-mood2 .content {
+    position: relative;
+    padding: 3rem;
+    background-color: var(--aok-dark-green);
+    box-sizing: border-box;
+    width: 50%;
+}
+
+#family-mood2 h1{margin:0 0 1rem !important; color:#fff}
+#family-mood2 .line2{color:var(--aok-grass-green)}
+#family-mood2 p{
+    font-size: 1.1rem;
+    color:#fff
+}
+#family-mood2 p:last-child{
+    margin:0;
+}
+
+@media (min-width: 768px) {
+    #family-mood2 p{
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #family-mood2 .image{
+        position:relative;
+        max-height:400px;
+        height: 80vw;
+        left: unset;
+        transform: unset;
+        min-width: 100vw;
+        width: 100%;
+    }
+    #family-mood2 .content {
+        width:100%;
+        min-height: unset;
+        border-radius: 1rem 1rem 0 0;
+        padding: 1.5rem;
+    }
+    #family-mood2 .container{
+    margin-top: -6rem;
+    padding: 1.5rem;
+    }
+}
+
+
+/**
+ * FAMILY MOOD 3
+**/
+#family-mood3-container{
+    width: 100%;
+    background-color: var(--aok-dark-green);
+}
+#family-mood3 {
+    position: relative;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+#family-mood3 .content{
+    position: relative;
+}
+#family-mood3 .content-text{
+    padding: 50px 0;
+}
+
+
+#family-mood3 .image {
+    max-height: 80vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+/* bg-video*/
+.family-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+#square-video {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #landscape-video {
+        display: none;
+    }
+    #square-video {
+        display: block;
+    }
+}
+
+
+#family-mood3 p{
+    padding: 5px 0;
+    max-width: 66%;
+}
+
+#family-mood3 .content h1 {
+    margin: 0 0 1rem !important;
+    color: #fff;
+    position: absolute;
+    bottom: -50px;
+    z-index: 2;
+    font-size: 3.25rem;
+    width: 90%
+}
+
+
+#family-mood3 h1{margin:0 0 1rem !important; color:#fff}
+#family-mood3 .line2{color:var(--aok-light-green)}
+#family-mood3 p{
+    font-size: 1.1rem;
+    color:#fff
+}
+#family-mood3 p:last-child{
+    margin:0;
+}
+
+@media (min-width: 768px) {
+    #family-mood3 p{
+        font-size: 1.2rem;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #family-mood3 .image{
+        position:relative;
+        max-height:400px;
+        height: 80vw;
+        left: unset;
+        transform: unset;
+        min-width: 100vw;
+        width: 100%;
+    }
+    #family-mood3 .content {
+        width:100%;
+        min-height: unset;
+        border-radius: 1rem 1rem 0 0;
+        padding: 1.5rem;
+    }
+    #family-mood3 .content-text {
+        padding: 50px 1.5rem;
+    }
+    #family-mood3 .container{
+        margin-top: -6rem;
+        padding: 1.5rem;
+    }
+}
+
+
+.promotion-banner {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    background-color: var(--aok-light-green);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.promo-wrapper {
+    display: flex;
+    animation: scroll 40s linear infinite;
+    width: max-content;
+}
+
+.promo-unit {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding-right: 50px;
+}
+
+.promo-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.promo-text {
+    font-size: 1.2em;
+    color: var(--aok-dark-green);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0); /* Startet auf der normalen Position */
+    }
+    100% {
+        transform: translateX(-50%); /* Bewegt sich nach links bis zur Hälfte des Containers */
+    }
+}
+
+/* Dupliziere den Inhalt für eine nahtlose Endlosanimation */
+.promo-wrapper::before {
+    content: '';
+    display: block;
+    width: 100%;
+}
+
+
+/**
+ * Video-Button
+ */
+/* Lightbox-Overlay */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Schwarzer Hintergrund mit 60% Deckkraft */
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Lightbox-Content */
+.lightbox-content {
+    max-width: 80%;
+    max-height: 80%;
+    position: relative;
+}
+
+.lightbox-content video {
+    width: 100%;
+    height: auto;
+}
+
+/* Schließen-Button */
+.close-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.close-btn:hover {
+    color: var(--aok-light-green);
+}
+
+
+/**
+ * FAMILY MOOD 4
+**/
+#family-mood4 {
+    background: var(--aok-green);
+    width: 100%;
+    padding: 100px 20px;
+    margin: 0 0 100px;
+
+    & .content {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+
+        & .left,
+        & .right {
+    width: 50%;
+        }
+
+        & .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:20px;
+
+            &
+    h1 {
+                font-size: 4rem;
+            }
+            & .line1 {
+                color: #fff;
+            }
+            & .line2 {
+    color: var(--aok-light-green);
+            }
+
+            & .family-button:not(.family-button-primary):not(.family-button-outlined) {
+                border-color: #fff;
+                color:#fff;
+                background-image:linear-gradient(90deg, #fff 50%, transparent 0);
+                width:auto !important;
+                &:hover{
+                    color:var(--aok-green);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #family-mood4 {
+        padding: 64px 20px;
+
+        & .content{
+        flex-direction: column;
+
+            & .left,
+            & .right {
+                width: 100%;
+            }
+
+            & .left {
+
+                & h1 {
+                    font-size: 2.5rem;
+                }
+
+                & .link-back-btn {
+                    margin-bottom:64px;
+                }
+
+            }
+        }
+    }
+
+}
+
+
+
+/**
+ * CHECKDASAB MOOD
+**/
+
+#checkdasab-mood{position:relative;}
+#checkdasab-mood .image{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    top: 0;
+    max-width: 1440px;
+    overflow: hidden;
+    width: 100vw;
+    transform: translateX(-50%);
+}
+#checkdasab-mood .container{
+    margin:0 auto;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#checkdasab-mood .content {
+    position: relative;
+    margin:7rem -15px;
+    padding:3rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    box-sizing:border-box;
+}
+#checkdasab-mood h1{
+    font-size: 1.75rem;
+    margin: 1rem 0 2.25rem 0;
+    text-align: center
+}
+@media (min-width: 992px) {
+    #checkdasab-mood .container{
+        justify-content: flex-end;
+    }
+    #checkdasab-mood .content {
+        width:50%;
+    }
+    #checkdasab-mood h1{
+        font-size: 2.25rem;
+        margin: 1rem 0 3rem 0;
+    }
+}
+
+
+/**
+ * SCHWANGERSCHAFT MOOD
+**/
+
+#schwangerschaft-mood {
+    position: relative;
+}
+#schwangerschaft-mood .image {
+    position: relative;
+    width: 100vw;
+    height: 600px;
+}
+#schwangerschaft-mood .container {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#schwangerschaft-mood h1 {
+    margin: 0 0 1rem !important;
+    color: #fff;
+    filter: drop-shadow(0 0 4px rgb(0 0 0 / 1));
+}
+#schwangerschaft-mood .line2 {
+    color: var(--aok-light-green);
+}
+
+@media (max-width: 768px) {
+    #schwangerschaft-mood .image {
+        position: relative;
+        max-height: 400px;
+        height: 80vw;
+        left: unset;
+        transform: unset;
+        min-width: 100vw;
+        width: 100%;
+    }
+}

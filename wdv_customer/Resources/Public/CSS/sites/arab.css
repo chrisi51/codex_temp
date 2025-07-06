@@ -1,0 +1,31 @@
+body, html {
+	text-align: right;
+	direction: rtl;
+}
+
+@media (min-width: 768px) {
+	header nav ul > li > a {
+		margin-left: 2.3rem;
+		margin-right: 0px;
+	}
+}
+header nav ul > li.last > a {
+		  margin-left: 0px;
+}
+
+#overlay_languagemenu {
+
+	& .wx_overlay_closer {
+		top: 43px;
+		left: 40px;
+		right: unset;
+	}
+}
+
+footer div#foot-navigation ul.nav li a {
+	padding-right:0;
+	padding-left:36px;
+}
+footer div#foot-navigation ul.nav li:last-of-type a {
+	  padding-left: 0;
+}

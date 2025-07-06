@@ -1,0 +1,73 @@
+/**
+CSS FIXES for Typo3 Update to v 9.5
+ */
+.page-filter ul li {
+    display: inline;
+    list-style-type: none;
+}
+/*disable Fluid_Styled_Content Header*/
+main header,
+footer header {
+    display: none;
+}
+
+/*****************************************************
+ * MASK: POSTCARDS - START
+ ****************************************************/
+.modal.has-footer button.close {
+    margin-bottom: 1rem;
+}
+
+.modal-footer .mask-postcards-share {
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.mask-postcards {
+    --wdv-postcards-layout-2-max-height: 400px;
+}
+
+.mask-postcards a {
+    display: block;
+}
+
+.mask-postcards .link-postcard + .btn {
+    margin-top: 1rem;
+}
+
+/* One Column V1 Layout - START */
+.mask-postcards.layout-1 > .row {
+    flex-direction: column;
+    align-items: center;
+}
+
+.mask-postcards .row > div {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .mask-postcards.layout-1 .row > .col-md {
+        width: 33.33%;
+    }
+}
+
+.mask-postcards.layout-1 .row > div + div {
+    margin-top: 1rem;
+}
+/* One Column V1 Layout - END */
+/* One Column V3 Layout - START */
+.mask-postcards.layout-3 img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (min-width: 768px) {
+    .mask-postcards.layout-3 .col-md img {
+        width: auto;
+        height: var(--wdv-postcards-layout-2-max-height);
+    }
+}
+/* One Column V3 Layout - END */
+/*****************************************************
+ * MASK: POSTCARDS - END
+ ****************************************************/ 

@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      data-namespace-typo3-fluid="true" lang="en">
+
+<div class="prevnextpage">
+    <div>
+    <f:if condition="{prevpage}">
+        <a href="{prevpage.0.link}" class="prevpage"><div class="roundedicon"><span class="icon left-arrow-005e3f"></span></div>Vorherige</a>
+    </f:if>
+    </div>
+    <div>
+    <f:if condition="{nextpage}">
+        <a href="{nextpage.0.link}" class="nextpage">Nächste<div class="roundedicon"><span class="icon right-arrow-005e3f"></span></div></a>
+    </f:if>
+    </div>
+</div>
+
+<a href="{uppage.0.link}" class="uppage">Zurück zur Übersicht</a>
+
+</html>
+

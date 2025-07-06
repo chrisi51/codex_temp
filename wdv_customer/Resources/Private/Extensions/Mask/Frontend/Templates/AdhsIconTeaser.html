@@ -1,0 +1,52 @@
+<div class="adhs-icons">
+    <div class="{f:if(condition: '{data.tx_mask_family_bgcolor}', then: '{data.tx_mask_family_bgcolor}', else: 'bg-blue')}">
+        <div class="container">
+            <f:if condition="{data.tx_mask_hl1}">
+                <h2 class="headline">{data.tx_mask_hl1}</h2>
+            </f:if>
+            <f:if condition="{data.bodytext}">
+                <div class="teasertext{f:if(condition: '{data.tx_mask_adhs_icon_teaser}', then: ' teasertext-spaced')}">{data.bodytext->f:format.html()}</div>
+            </f:if>
+            <f:if condition="{data.tx_mask_adhs_icon_teaser}">
+                <ul class="symbol-list">
+                    <f:for each="{data.tx_mask_adhs_icon_teaser}" as="data_item">
+                        <li class="symbol-teaser">
+                            <f:for each="{data_item.tx_mask_adhs_icon_teaser_icon}" as="file">
+                                <div class="symbol-teaser-icon">
+                                    <f:image image="{file}" class="symbol-teaser-image"/>
+                                </div>
+                            </f:for>
+                            <div class="symbol-teaser-content">
+                                <f:if condition="{data_item.tx_mask_adhs_icon_teaser_title}">
+                                    <h3 class="symbol-teaser-title">{data_item.tx_mask_adhs_icon_teaser_title}</h3>
+                                </f:if>
+                                <f:if condition="{data_item.tx_mask_adhs_icon_teaser_text}">
+                                    <p class="symbol-teaser-text">{data_item.tx_mask_adhs_icon_teaser_text -> f:format.nl2br()}</p>
+                                </f:if>
+                                <f:if condition="{data_item.tx_mask_adhs_icon_teaser_link}">
+                                    <f:link.typolink parameter="{data_item.tx_mask_adhs_icon_teaser_link}" class="link" target="_blank">Mehr erfahren</f:link.typolink>
+                                </f:if>
+                            </div>
+                        </li>
+                    </f:for>
+                </ul>
+            </f:if>
+        </div>
+    </div>
+
+    <div class="container overlapped">
+        <div class="bg-dark-green cta">
+            <f:if condition="{data.tx_mask_cta_title}">
+                <h3>{data.tx_mask_cta_title}</h3>
+            </f:if>
+            <f:if condition="{data.tx_mask_cta_text}">
+                <p class="cta-text">{data.tx_mask_cta_text -> f:format.nl2br()}</p>
+            </f:if>
+            <f:if condition="{data.tx_mask_cta_link}">
+                <p>
+                    <f:link.typolink parameter="{data.tx_mask_cta_link}" target="_blank" class="family-button">{f:if(condition: '{data.tx_mask_link}', then: '{data.tx_mask_link}', else: 'Mehr erfahren')}</f:link.typolink>
+                </p>
+            </f:if>
+        </div>
+    </div>
+</div>

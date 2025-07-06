@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="tx_mask servicebox-landingpage pt-3 mt-4 mb-5 {f:if(condition: data.tx_wdvcustomer_content_breakoutleft, then: 'breakout-md-left')}{f:if(condition: data.tx_wdvcustomer_content_breakoutright, then: ' breakout-md-right')}" id="c{data.uid}">
+  <div class="row no-gutters">
+
+    <div class="col-12 col-md-6 p-0">
+
+      <f:for each="{data.media}" as="file">
+        <fp:image image="{file}" title="{f:if(condition: '{file.originalFile.properties.publisher}', then: 'Bildnachweis: © {file.originalFile.properties.publisher}')}{f:if(condition: '{file.originalFile.properties.creator}', then: ' / {file.originalFile.properties.creator}')}" alt="{file.alternative}" width="750" realCrop="false" />
+      </f:for>
+      
+    </div>
+
+    <div class="col-12 col-md-6 text">
+
+      <f:for each="{data.tx_mask_content}" as="data_item">
+        <f:cObject typoscriptObjectPath="lib.tx_mask.content">{data_item.uid}</f:cObject>
+      </f:for>
+
+    </div>
+
+  </div>
+</div>
+
+</html>

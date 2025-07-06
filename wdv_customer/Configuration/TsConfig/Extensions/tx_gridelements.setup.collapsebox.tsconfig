@@ -1,0 +1,35 @@
+tx_gridelements.setup.collapsebox {
+
+	title = Collapse-Box
+	description = Box zum einfügen von viel Content, welcher erst nach klick vollständig sichtbar wird
+	icon = EXT:wdv_elements/Resources/Public/Icons/Gridelements/dummy.png
+	flexformDS = FILE:EXT:wdv_customer/Configuration/FlexForms/Extensions/tx_gridelements.collapsebox.xml
+
+	topLevelLayout = 0
+	frame = 1
+
+	config {
+
+		colCount = 1
+		rowCount = 2
+
+		rows {
+			1 {
+				columns {
+					1 {
+						name = direkt sichtbar
+						colPos = 600
+					}
+				}
+			}
+			2 {
+                columns {
+                        1 {
+                                name = aufklappbar
+                                colPos = 601
+                        }
+                }
+            }
+		}
+	}
+}

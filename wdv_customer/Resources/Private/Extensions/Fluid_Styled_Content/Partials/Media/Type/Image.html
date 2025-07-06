@@ -1,0 +1,45 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:ce="http://typo3.org/ns/TYPO3/CMS/FluidStyledContent/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<figure class="figure">
+	<f:if condition="{file.link}">
+		<f:then>
+
+			<f:link.typolink parameter="{file.link}" title="{file.title}">
+				<f:render partial="Media/Rendering/Image" arguments="{file: file, dimensions: dimensions, settings: settings}" />
+			</f:link.typolink>
+
+		</f:then>
+		<f:else>
+			<f:if condition="{data.image_zoom}">
+				<f:then>
+					<a title="{file.title}"
+						href="{f:uri.image(image: file, width: dimensions.width)}"
+						target="_self"
+						data-toggle="lightbox"
+						data-type="image"
+						data-width="940"
+						data-max-width="940"
+						data-title="{file.title}">
+
+						<f:render partial="Media/Rendering/Image" arguments="{file: file, dimensions: dimensions, settings: settings}" />
+					</a>
+
+				</f:then>
+				<f:else>
+
+					<f:render partial="Media/Rendering/Image" arguments="{file: file, dimensions: dimensions, settings: settings}" />
+
+				</f:else>
+			</f:if>
+		</f:else>
+	</f:if>
+	<f:if condition="{file.description}">
+		<figcaption class="figure-caption image-caption">
+			{file.description}
+		</figcaption>
+	</f:if>
+</figure>
+</html>

@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+    <div id="postcard{data.uid}" class="tx_mask mask-postcards layout-{data.layout}{f:if(condition: data.space_before_class, then: ' mt-{data.space_before_class}')}{f:if(condition: data.space_after_class, then: ' mb-{data.space_before_class}')}">
+        <f:if condition="{data.header}">
+            <h3>{data.header -> f:format.nl2br()}</h3>
+        </f:if>
+        <div class="row">
+            <f:for each="{data.assets}" as="file">
+                <div id="postcard{data.uid}{file.uid}" class="col-md mask-postcard mb-3 mb-md-0">
+                    <a class="link-postcard" href="{f:uri.image(image: file)}" data-toggle="lightbox" data-footer="#postcard{data.uid}{file.uid} > .mask-postcards-share">
+                        <f:image class="img-fluid" image="{file}" width="508" loading="lazy"/>                        
+                    </a>
+                    <button type="button" class="btn btn-primary"><f:translate key="LLL:EXT:wdv_customer/Resources/Private/Language/de.locallang.xlf:mask_postcards_cta" /></button>
+                    <div class="d-none mask-postcards-share"><a class="link-share btn btn-sm" href="mailto:?subject={data.tx_mask_subject -> w:format.urlencode()}&body={data.bodytext -> w:format.urlencode()}">{data.subheader}</a></div>
+                </div>
+            </f:for>
+        </div>
+    </div>
+    <f:asset.script identifier="wdv_postcards" src="EXT:wdv_customer/Resources/Public/JavaScript/jquery.postcards.js" />
+</html>

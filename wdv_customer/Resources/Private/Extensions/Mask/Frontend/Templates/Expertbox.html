@@ -1,0 +1,42 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<div class="tx_mask expertbox mt-4 mb-5 {f:if(condition: data.tx_wdvcustomer_content_breakoutleft, then: 'breakout-md-left')}{f:if(condition: data.tx_wdvcustomer_content_breakoutright, then: ' breakout-md-right')}" id="c{data.uid}">
+    <div class="row">
+
+        <div class="col-xs-12 col-md-2 center">
+            <f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'image')} > ''">
+                <f:image image="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'image')}" class="img-fluid rounded-circle" title="Expertenbild" alt="Expertenbild" maxWidth="96" maxHeight="96" />
+            </f:if>
+        </div>
+        
+        <div class="col-xs-12 col-md-10">
+            <div class="expert-infos">
+                <f:spaceless>
+
+                    <f:switch expression="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'gender')}">
+                        <f:case value="m">
+                            <h3>Der Experte zum Thema</h3>
+                        </f:case>
+                        <f:case value="f">
+                            <h3>Die Expertin zum Thema</h3>
+                        </f:case>
+                        <f:defaultCase>
+                            <h3>Die Experten zum Thema</h3>
+                        </f:defaultCase>
+                    </f:switch>
+
+                    <h4 class="mb-1"><f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'title')} > ''">{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'title')}&nbsp;</f:if><f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'firstname')} > ''">{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'firstname')}&nbsp;</f:if><f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'lastname')} > ''">{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'lastname')}</f:if></h4>
+                    <f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'position')} > '' || {w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'company')} > ''">
+                        <p><f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'position')} > ''">{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'position')}</f:if><f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'company')} > ''"><br />{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'company')}</f:if></p>
+                    </f:if>
+
+                </f:spaceless>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+</html>

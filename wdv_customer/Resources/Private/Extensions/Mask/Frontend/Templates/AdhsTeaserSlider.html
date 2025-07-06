@@ -1,0 +1,68 @@
+<div class="adhs-news-slider bg-dark-green">
+    <div class="container">
+        <h2 class="title">
+            <f:if condition="{data.tx_mask_hl1}">
+                <span class="line1">{data.tx_mask_hl1}</span>
+            </f:if>
+
+            <f:if condition="{data.tx_mask_hl2}">
+                <span class="line2">{data.tx_mask_hl2}</span>
+            </f:if>
+        </h2>
+        <f:if condition="{data.tx_mask_adhs_teaser_slides}">
+            <div class="news-list slide-them no-stairs">
+                <div class="row slider" data-slick="{
+                                                        &quot;dots&quot;: false,
+                                                        &quot;arrows&quot;: true,
+                                                        &quot;slidesToShow&quot;: 3,
+                                                        &quot;infinite&quot;: true,
+                                                        &quot;slidesToScroll&quot;: 1,
+                                                        &quot;autoplay&quot;: true,
+                                                        &quot;autoplaySpeed&quot;: 5000,
+                                                        &quot;responsive&quot;: [{
+                                                            &quot;breakpoint&quot;: 768,
+                                                            &quot;settings&quot;: {
+                                                                &quot;fade&quot;: true,
+                                                                &quot;cssEase&quot;: &quot;linear&quot;,
+                                                                &quot;adaptiveHeight&quot;: true,
+                                                                &quot;arrows&quot;: true,
+                                                                &quot;dots&quot;: false,
+                                                                &quot;slidesToShow&quot;: 1,
+                                                                &quot;slidesToScroll&quot;: 1}
+                                                            }
+                                                        ]}">
+                    <f:for each="{data.tx_mask_adhs_teaser_slides}" as="data_item">
+                        <div class="news-item">
+                            <f:for each="{data_item.tx_mask_adhs_teaser_image}" as="mediaElement">
+                                <fp:image image="{mediaElement}" height="480" width="380c" realCrop="true"
+                                          title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                          class="news-item-image"
+                                          alt="{newsItem.title}"/>
+                            </f:for>
+                            <f:link.typolink parameter="{data_item.tx_mask_adhs_teaser_link}" class="news-item-link">
+                                <h3 class="adhs-news-caption">
+                                    <span class="adhs-news-headline-first">
+                                        {data_item.tx_mask_adhs_teaser_title}
+                                        <f:if condition="{data_item.tx_mask_adhs_teaser_title_second} === '' || !{data_item.tx_mask_adhs_teaser_title_second}">
+                                            <svg width="16" height="16">
+                                                <use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/Layout/sprite.svg')}#icon_arrow_right"></use>
+                                            </svg>
+                                        </f:if>
+                                    </span>
+                                    <f:if condition="{data_item.tx_mask_adhs_teaser_title_second}">
+                                        <span class="adhs-news-headline-second">
+                                            {data_item.tx_mask_adhs_teaser_title_second}
+                                            <svg width="16" height="16">
+                                                <use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/Layout/sprite.svg')}#icon_arrow_right"></use>
+                                            </svg>
+                                        </span>
+                                    </f:if>
+                                </h3>
+                            </f:link.typolink>
+                        </div>
+                    </f:for>
+                </div>
+            </div>
+        </f:if>
+    </div>
+</div>

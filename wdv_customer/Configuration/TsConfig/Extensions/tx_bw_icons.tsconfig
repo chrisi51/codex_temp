@@ -1,0 +1,20 @@
+mod.tx_bwicons {
+
+    # Get icons from directory and subdirectory. Subdirectories become sidebar links.
+    typo3icons = Blueways\BwIcons\Provider\FileIconProvider
+    typo3icons {
+        title = TYPO3 Icons
+        folder = EXT:core/Resources/Public/Icons/T3Icons/svgs
+    }
+
+
+
+    # Get icons from remote stylesheet. Styles and font files are cached in /typo3temp
+    icomoon = Blueways\BwIcons\Provider\CssIconProvider
+    icomoon {
+        title = Icomoon
+#        file = EXT:wdv_customer/Resources/Public/CSS/iconfont.css
+#	file = https://i.icomoon.io/public/temp/6e7d7e1d75/vigo/style.css
+	file = https://www.vigo.de/typo3conf/ext/wdv_customer/Resources/Public/CSS/iconfont.css
+    }
+

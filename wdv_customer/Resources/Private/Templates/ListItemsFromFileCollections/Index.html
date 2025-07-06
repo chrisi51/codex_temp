@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+    <div class="row">
+        <div class="col-12">
+
+            <div class="table-responsive">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="no-break">ID</th>
+                        <th scope="col" class="no-break">Bild (Ausschnitt)</th>
+                        <th scope="col" class="no-break">Autor</th>
+                        <th scope="col" class="no-break">Copyright</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <f:for each="{items}" as="item" iteration="iterator">
+
+                        <tr>
+                            <td class="no-break">{item.properties.uid}</td>
+                            <td class="image">
+
+                                <div style="">
+                                <f:image src="{item.properties.uid}" treatIdAsReference="0" width="80c" height="80c" crop="true" title="{item.properties.title}" />
+                                </div>
+
+                            </td>
+                            <td>{f:if(condition: '{item.properties.creator}', then: '{item.properties.creator}', else: 'Keine Informationen verfügbar')}</td>
+                            <td>{f:if(condition: '{item.properties.copyright}', then: '{item.properties.copyright}', else: 'Keine Informationen verfügbar')}</td>
+                        </tr>
+
+                    </f:for>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</f:section>
+
+</html>

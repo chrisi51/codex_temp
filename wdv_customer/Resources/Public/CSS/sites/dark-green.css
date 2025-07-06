@@ -1,0 +1,148 @@
+ /* 
+  * DARK GREEN LAYOUT
+  */
+body.bg_dark-green{
+	background:var(--aok-dark-green) !important;
+	color:#fff;
+}
+body.bg_dark-green a,
+body.bg_dark-green label, 
+body.bg_dark-green .powermail_fieldwrap_legend,
+body.bg_dark-green p, 
+body.bg_dark-green .ce-text ul li, 
+body.bg_dark-green .ce-text ol li,
+body.bg_dark-green h1{
+	color:#fff;
+}
+
+body.bg_dark-green .achtsamkeit_container a,
+body.bg_dark-green .achtsamkeit_container label, 
+body.bg_dark-green .achtsamkeit_container .powermail_fieldwrap_legend,
+body.bg_dark-green .achtsamkeit_container p, 
+body.bg_dark-green .achtsamkeit_container .ce-text ul li, 
+body.bg_dark-green .achtsamkeit_container .ce-text ol li,
+body.bg_dark-green .achtsamkeit_container h1{
+	color:#000;
+}
+
+
+body.bg_dark-green .row.cookie-opener span.cookie-set,
+body.bg_dark-green .btn,
+body.bg_dark-green .link-internal-btn,
+body.bg_dark-green .link-back-btn,
+body.bg_dark-green .link-download-btn,
+body.bg_dark-green .link-download-btn-ico,
+body.bg_dark-green .link-folder-btn,
+body.bg_dark-green .link-external-btn,
+body.bg_dark-green .link-external-btn-facebook,
+body.bg_dark-green .link-mail-btn,
+body.bg_dark-green .link-artikel-btn,
+body.bg_dark-green .link-popup-btn
+{
+	background-color: var(--aok-light-green);
+	color:var(--aok-dark-green) !important;
+	border: 0;
+	padding: 0.7rem 60px 0.7rem 40px;
+}
+body.bg_dark-green .link-back-btn{
+	padding: 0.7rem 40px 0.7rem 60px;
+}
+
+body.bg_dark-green .btn[type="button"],
+body.bg_dark-green .btn[type="reset"],
+body.bg_dark-green .btn[type="submit"],
+body.bg_dark-green .link-internal-btn[type="button"],
+body.bg_dark-green .link-internal-btn[type="reset"],
+body.bg_dark-green .link-internal-btn[type="submit"],
+body.bg_dark-green .link-back-btn[type="button"],
+body.bg_dark-green .link-back-btn[type="reset"],
+body.bg_dark-green .link-back-btn[type="submit"],
+body.bg_dark-green .link-download-btn[type="button"],
+body.bg_dark-green .link-download-btn[type="reset"],
+body.bg_dark-green .link-download-btn[type="submit"],
+body.bg_dark-green .link-download-btn-ico[type="button"],
+body.bg_dark-green .link-download-btn-ico[type="reset"],
+body.bg_dark-green .link-download-btn-ico[type="submit"],
+body.bg_dark-green .link-folder-btn[type="button"],
+body.bg_dark-green .link-folder-btn[type="reset"],
+body.bg_dark-green .link-folder-btn[type="submit"],
+body.bg_dark-green .link-external-btn[type="button"],
+body.bg_dark-green .link-external-btn[type="reset"],
+body.bg_dark-green .link-external-btn[type="submit"],
+body.bg_dark-green .link-external-btn-facebook[type="button"],
+body.bg_dark-green .link-external-btn-facebook[type="reset"],
+body.bg_dark-green .link-external-btn-facebook[type="submit"],
+body.bg_dark-green .link-mail-btn[type="button"],
+body.bg_dark-green .link-mail-btn[type="reset"],
+body.bg_dark-green .link-mail-btn[type="submit"],
+body.bg_dark-green .link-artikel-btn[type="button"],
+body.bg_dark-green .link-artikel-btn[type="reset"],
+body.bg_dark-green .link-artikel-btn[type="submit"],
+body.bg_dark-green .link-popup-btn[type="button"],
+body.bg_dark-green .link-popup-btn[type="reset"],
+body.bg_dark-green .link-popup-btn[type="submit"]
+{
+	color:var(--aok-dark-green) !important;
+}
+body.bg_dark-green span.icon.right-arrow {background-image: url("../../Icons/Layout/icon-link-right-004730-transparent.svg");}
+body.bg_dark-green span.icon.external-link{background-image: url("../../Icons/Layout/icon-link-extern-004730.svg")}
+
+body.bg_dark-green .link-external-btn, 
+body.bg_dark-green .link-popup-btn{
+    background-image: url("../../Icons/Layout/icon-link-extern-004730.svg")
+}
+
+body.bg_dark-green .link-artikel-btn,
+body.bg_dark-green .link-internal-btn{
+    background-image: url("../../Icons/Layout/icon-link-right-004730-transparent.svg")
+}
+body.bg_dark-green .link-back-btn{
+    background-image: url("../../Icons/Layout/icon-link-left-004730-transparent.svg")
+}
+
+body.bg_dark-green .akkordeon .card{background:none; border-bottom:1px solid #fff;}
+body.bg_dark-green .akkordeon .card:first-child{border-top:0;}
+body.bg_dark-green #smsdoi-container * {color:#444}
+
+body.bg_dark-green footer{background:none !important;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;}
+body.bg_dark-green footer div#foot-navigation ul.nav li a,
+body.bg_dark-green footer p.copyright-string{color:#fff;}
+
+
+body.bg_dark-green .gib8whiteslot,
+body.bg_dark-green .gib8whiteslot a,
+body.bg_dark-green .gib8whiteslot p,
+body.bg_dark-green .gib8whiteslot ul{
+    color:var(--aok-dark-green)
+}
+
+
+body.bg_dark-green .slick-slider ul.slick-dots li button:before{
+    color: #fff;
+}
+body.bg_dark-green .slick-slider ul.slick-dots li.slick-active button:before{
+    color: var(--aok-light-green);
+}
+
+body.bg_dark-green .achtsamkeit_container .slick-slider ul.slick-dots li button:before{
+    color: var(--aok-green);
+}
+body.bg_dark-green .achtsamkeit_container .slick-slider ul.slick-dots li.slick-active button:before{
+    color: #555555;
+}
+
+
+body.bg_dark-green h1, 
+body.bg_dark-green h2, 
+body.bg_dark-green h3, 
+body.bg_dark-green h4{ 
+    color:#fff;
+}
+body.bg_dark-green .achtsamkeit_container h1, 
+body.bg_dark-green .achtsamkeit_container h2, 
+body.bg_dark-green .achtsamkeit_container h3, 
+body.bg_dark-green .achtsamkeit_container h4{ 
+    color:#000;
+}
+body.bg_dark-green #fixed-right-stoerer {filter: drop-shadow(0 0 1px #000);}
+body.bg_dark-green #fixed-right-stoerer .text {filter: drop-shadow(0 0 1px #000);}

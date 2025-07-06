@@ -1,0 +1,117 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	xmlns:md="http://typo3.org/ns/Mediadreams/MdNewsAuthor/ViewHelpers"
+	xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+	<div class="news-item article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}{f:if(condition: iterator.isOdd, then: ' mb-5')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+		<f:if condition="{newsItem.mediaPreviews}">
+			<!-- media preview element -->
+			<f:then>
+
+				<f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+					<f:if condition="{mediaElement.originalResource.type} == 2">
+
+						<div class="news-item__image">
+							<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+								<f:render partial="Detail/MediaTeaser" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}" />
+							</n:link>
+
+					</f:if>
+					<f:if condition="{mediaElement.originalResource.type} == 4">
+
+						<div class="news-item__video">
+							<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+
+					</f:if>
+					<f:if condition="{mediaElement.originalResource.type} == 5">
+
+						<div class="news-item__image">
+							<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+								<f:image image="{mediaElement}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" alt="{mediaElement.originalResource.alternative}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+							</n:link>
+
+					</f:if>
+				</f:alias>
+
+			</f:then>
+			<f:else>
+
+				<div class="news-item__image">
+
+					<f:if condition="{settings.displayDummyIfNoMedia}">
+
+						<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+
+							<f:render partial="Detail/MediaTeaser" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}" />
+
+						</n:link>
+
+					</f:if>
+			</f:else>
+		</f:if>
+
+		</div>
+
+		<div class="news-item__teaser{f:if(condition: '{newsItem.type} == 2', then: ' p-4 p-md-5')}">
+
+			<f:if condition="{newsItem.type} != 2">
+
+				<div class="row news-item__teaser-desc mt-3 mb-3">
+					<div class="col-12">
+
+						<f:render partial="ArtikelTypeMeta" arguments="{newsItem: newsItem}" />
+
+					</div>
+				</div>
+
+			</f:if>
+
+			<div class="row">
+				<div class="col-12">
+
+					<h2 itemprop="headline"{f:if(condition: '{newsItem.type} == 2', then: ' class="mb-1"')}>
+						<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+					</h2>
+
+					<n:removeMediaTags>
+						<f:if condition="{newsItem.teaser}">
+							<f:then>
+
+								<f:if condition="{newsItem.type} == 2">
+									<f:then>
+
+										<p class="lead">{newsItem.teaser}</p>
+
+									</f:then>
+									<f:else>
+
+										{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+
+									</f:else>
+								</f:if>
+
+							</f:then>
+							<f:else>
+								{newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+							</f:else>
+						</f:if>
+					</n:removeMediaTags>
+
+					<f:if condition="{newsItem.type} == 2">
+
+						<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="btn btn-lg">
+							Mehr erfahren <span class="icon right-arrow"></span>
+						</n:link>
+
+					</f:if>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</html>

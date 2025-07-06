@@ -1,0 +1,6 @@
+lib.contentElement {
+
+    layoutRootPaths.30 = EXT:wdv_customer/Resources/Private/Extensions/Fluid_Styled_Content/Layouts/
+    partialRootPaths.30 = EXT:wdv_customer/Resources/Private/Extensions/Fluid_Styled_Content/Partials/
+    templateRootPaths.30 = EXT:wdv_customer/Resources/Private/Extensions/Fluid_Styled_Content/Templates/
+}

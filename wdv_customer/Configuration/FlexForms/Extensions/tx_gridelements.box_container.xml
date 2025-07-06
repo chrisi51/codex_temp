@@ -1,0 +1,234 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Allgemein</sheetTitle>
+                <type>array</type>
+                <el>
+                    <cssclasses>
+                        <label>Weitere CSS Klassen</label><config>
+                                <type>input</type>
+                                <size>48</size>
+                                <eval>trim</eval>
+                            </config>
+                    </cssclasses>
+                    <cssid>
+                        <label>eigene CSS ID</label><config>
+                                <type>input</type>
+                                <size>48</size>
+                                <eval>trim</eval>
+                            </config>
+                    </cssid>
+                    <boxtype>
+                        <label>Typ der Box?</label><config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <label>Transparenter Hintergrund (Standard)</label>
+                                        <value>transparent</value>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <label>Grauer Hintergrund</label>
+                                        <value>grey</value>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <label>Weißer Hintergrund</label>
+                                        <value>white</value>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <label>Intro-Box</label>
+                                        <value>intro</value>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <label>Absprung-Box</label>
+                                        <value>absprung</value>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <label>Grüner Hintergrund</label>
+                                        <value>green</value>
+                                    </numIndex>
+                                </items>
+                            </config>
+                    </boxtype>
+                    <fullwidth>
+                        <label>Elementbreite über Seitenbreite ausbrechen?</label><config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                    </fullwidth>
+                    <contentwidth>
+                        <label>Inhaltsbreite wie "normaler" Contentbereich?</label><config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                    </contentwidth>
+                </el>
+            </ROOT>
+        </sDEF>
+        <BACKGROUND>
+            <ROOT>
+                <sheetTitle>Hintergrund-Optionen</sheetTitle>
+                <type>array</type>
+                <el>
+                    <bgimage>
+                        <label>Hintergrundbild(er)</label><config>
+                                <type>inline</type>
+                                <appearance>
+                                    <collapseAll>1</collapseAll>
+                                    <createNewRelationLinkTitle>Neue Relation anlegen</createNewRelationLinkTitle>
+                                    <enabledControls>
+                                        <delete>1</delete>
+                                        <dragdrop>1</dragdrop>
+                                        <hide>1</hide>
+                                        <info>1</info>
+                                        <localize>1</localize>
+                                    </enabledControls>
+                                    <headerThumbnail>
+                                        <field>uid_local</field>
+                                        <height>45c</height>
+                                        <width>45</width>
+                                    </headerThumbnail>
+                                    <useSortable>1</useSortable>
+                                </appearance>
+                                <foreign_field>uid_foreign</foreign_field>
+                                <foreign_label>uid_local</foreign_label>
+                                <foreign_match_fields>
+                                    <fieldname>flexform_bgimage</fieldname>
+                                </foreign_match_fields>
+                                <foreign_selector>uid_local</foreign_selector>
+                                <overrideChildTca>
+                                    <columns>
+                                        <uid_local>
+                                            <config>
+                                                <appearance>
+                                                    <elementBrowserType>file</elementBrowserType>
+                                                    <elementBrowserAllowed>jpg, jpeg, png</elementBrowserAllowed>
+                                                </appearance>
+                                            </config>
+                                        </uid_local>
+                                    </columns>
+                                </overrideChildTca>
+                                <foreign_types type="array">
+                                    <numIndex index="2">
+                                        <showitem>--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,--palette--;;filePalette</showitem>
+                                    </numIndex>
+                                </foreign_types>
+                                <foreign_sortby>sorting_foreign</foreign_sortby>
+                                <foreign_table>sys_file_reference</foreign_table>
+                                <foreign_table_field>tablenames</foreign_table_field>
+                                <maxitems>99</maxitems>
+                            </config>
+                    </bgimage>
+                    <bgvideo>
+                        <label>Hintergrundvideo</label><config>
+                                <type>inline</type>
+                                <appearance type="array">
+                                    <collapseAll>1</collapseAll>
+                                    <createNewRelationLinkTitle>Neue Relation anlegen</createNewRelationLinkTitle>
+                                    <enabledControls type="array">
+                                        <delete>1</delete>
+                                        <dragdrop>1</dragdrop>
+                                        <hide>1</hide>
+                                        <info>1</info>
+                                        <localize>1</localize>
+                                    </enabledControls>
+                                    <headerThumbnail type="array">
+                                        <field>uid_local</field>
+                                        <height>45c</height>
+                                        <width>45</width>
+                                    </headerThumbnail>
+                                    <useSortable>1</useSortable>
+                                </appearance>
+                                <foreign_field>uid_foreign</foreign_field>
+                                <foreign_label>uid_local</foreign_label>
+                                <foreign_match_fields type="array">
+                                    <fieldname>flexform_bgvideo</fieldname>
+                                </foreign_match_fields>
+                                <foreign_selector>uid_local</foreign_selector>
+                                <overrideChildTca>
+                                    <columns>
+                                        <uid_local>
+                                            <config>
+                                                <appearance>
+                                                    <elementBrowserType>file</elementBrowserType>
+                                                    <elementBrowserAllowed>mp4, ogg, webm</elementBrowserAllowed>
+                                                </appearance>
+                                            </config>
+                                        </uid_local>
+                                    </columns>
+                                </overrideChildTca>
+                                <foreign_types type="array">
+                                    <numIndex index="2">
+                                        <showitem>--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,--palette--;;filePalette</showitem>
+                                    </numIndex>
+                                </foreign_types>
+                                <foreign_sortby>sorting_foreign</foreign_sortby>
+                                <foreign_table>sys_file_reference</foreign_table>
+                                <foreign_table_field>tablenames</foreign_table_field>
+                                <maxitems>1</maxitems>
+                            </config>
+                    </bgvideo>
+                </el>
+            </ROOT>
+        </BACKGROUND>
+        <INTROBOX>
+            <ROOT>
+                <sheetTitle>Optionen für Intro-Box</sheetTitle>
+                <type>array</type>
+                <el>
+                    <layout_gib8>
+                        <label>Layout für Gib8</label><config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                    </layout_gib8>
+                    <boxalign>
+                        <label>horizontale Ausrichtung der Box?</label><config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <label>Links (Standard)</label>
+                                        <value>left</value>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <label>Mittig</label>
+                                        <value>center</value>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <label>Rechts</label>
+                                        <value>right</value>
+                                    </numIndex>
+                                </items>
+                            </config>
+                    </boxalign>
+                    <boxvalign>
+                        <label>vertikale Ausrichtung der Box?</label><config>
+                                <default>normal</default>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <label>Oben (Standard)</label>
+                                        <value>top</value>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <label>Normal (Standard)</label>
+                                        <value>normal</value>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <label>Unten</label>
+                                        <value>bottom</value>
+                                    </numIndex>
+                                </items>
+                            </config>
+                    </boxvalign>
+                </el>
+            </ROOT>
+        </INTROBOX>
+    </sheets>
+</T3DataStructure>

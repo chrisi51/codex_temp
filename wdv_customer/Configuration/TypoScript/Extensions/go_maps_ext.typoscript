@@ -1,0 +1,21 @@
+plugin.tx_gomapsext {
+    view {
+        templateRootPaths {
+
+        }
+
+        partialRootPaths {
+            20 = EXT:wdv_customer/Resources/Private/Extensions/Go_Maps_Ext/Partials/
+        }
+
+        layoutRootPaths {
+
+        }
+    }
+
+    settings.preview.image = EXT:wdv_customer/Resources/Public/Images/bg_map_standard.jpg
+}
+
+[request && (request.getNormalizedParams() && like(request.getNormalizedParams().getHttpHost(), "*.vigo.de"))]
+    plugin.tx_gomapsext.settings.apiKey = AIzaSyDuO1aqJyHc1PaU0W_Vn0lA6GTfFL_-cis
+[global]

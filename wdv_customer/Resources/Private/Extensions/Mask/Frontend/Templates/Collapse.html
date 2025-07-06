@@ -1,0 +1,42 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+        xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+        xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+        data-namespace-typo3-fluid="true">
+
+<div class="tx_mask akkordeon {f:if(condition: '{data.tx_mask_collapse_layout}', then: ' layout-{data.tx_mask_collapse_layout}', else: '')} mt-4 mb-5 {f:if(condition: data.tx_wdvcustomer_content_breakoutleft, then: 'breakout-md-left')}{f:if(condition: data.tx_wdvcustomer_content_breakoutright, then: ' breakout-md-right')}{f:if(condition:data.tx_mask_collapse_mode, then:' {data.tx_mask_collapse_mode}')}" id="c{data.uid}">
+    <f:for each="{data.tx_mask_item}" as="data_item" iteration="iterator">
+        <f:switch expression="{data.tx_mask_collapsed}">
+            <f:case value="1">
+                <f:variable name="collapse" value=" show" />
+                <f:variable name="btn_label" value=" btn-minus" />
+            </f:case>
+            <f:case value="2">
+                <f:variable name="collapse" value="" />
+                <f:variable name="btn_label" value=" btn-plus collapsed" />
+            </f:case>
+            <f:defaultCase>
+                <f:variable name="collapse" value="{f:if(condition: '{iterator.isFirst}', then: ' show', else: '')}" />
+                <f:variable name="btn_label" value="{f:if(condition: '{iterator.isFirst}', then: ' btn-minus', else: ' btn-plus collapsed')}" />
+            </f:defaultCase>
+        </f:switch>
+
+        <div class="card">
+            <div class="card-header d-flex" id="heading{data.uid}{iterator.cycle}">
+                <h3 class="mb-0">{data_item.tx_mask_header}</h3>
+                <button class="btn btn-lg btn-collapse{btn_label} ml-auto" data-toggle="collapse" data-target="#collapse{data.uid}{iterator.cycle}" aria-expanded="{f:if(condition: '{iterator.isFirst}', then: 'true', else: 'false')}" aria-controls="collapse{data.uid}{iterator.cycle}"></button>
+            </div>
+
+            <div id="collapse{data.uid}{iterator.cycle}" class="akkordeon-content collapse{collapse}" aria-labelledby="heading{data.uid}{iterator.cycle}" {f:if(condition: '{data.tx_mask_collapse_mode} != "independent"', then: 'data-parent="#c{data.uid}"')}>
+                <div class="card-body">
+                    <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data_item.tx_mask_bodytext}</f:format.html>
+
+
+                    <f:for each="{data_item.tx_mask_content}" as="content_item" iteration="iterator">
+                        <f:cObject typoscriptObjectPath="lib.tx_mask.content">{content_item.uid}</f:cObject>
+                    </f:for>
+                </div>
+            </div>
+        </div>
+    </f:for>
+</div>
+</html>

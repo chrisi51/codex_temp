@@ -1,0 +1,29 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:vhs="FluidTYPO3\Vhs\ViewHelpers\"
+      data-namespace-typo3-fluid="true">
+<figure class="figure video">
+
+<vhs:variable.set name="settings.uid" value="{data.uid}" />
+
+<f:comment>
+    100 => Vigo
+    480 => Gib8
+    563 => achtsamkeit.vigo.de
+    703 => krebs.vigo.de
+</f:comment>
+
+<vhs:condition.iterator.contains needle="100" haystack="{vhs:page.rootline() -> vhs:iterator.extract(key: 'uid')}">
+        <vhs:variable.set name="settings.domain" value="vigo.de" />
+</vhs:condition.iterator.contains>
+<vhs:condition.iterator.contains needle="563" haystack="{vhs:page.rootline() -> vhs:iterator.extract(key: 'uid')}">
+        <vhs:variable.set name="settings.domain" value="achtsamkeit.vigo.de" />
+</vhs:condition.iterator.contains>
+<vhs:condition.iterator.contains needle="703" haystack="{vhs:page.rootline() -> vhs:iterator.extract(key: 'uid')}">
+        <vhs:variable.set name="settings.domain" value="krebs.vigo.de" />
+</vhs:condition.iterator.contains>
+
+
+        <f:render partial="Media/Rendering/Video" arguments="{file: file, dimensions: dimensions, settings: settings}" />
+</figure>
+
+</html>

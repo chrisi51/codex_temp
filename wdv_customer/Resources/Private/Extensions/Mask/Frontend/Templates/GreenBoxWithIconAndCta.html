@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:variable name="svgIcon" value="{data.tx_mask_svg_icon}"/>
+<div class="green-box-with-icon-and-cta">
+    <div class="green-box-with-icon-and-cta__icon align-items-start">
+        <div class="icon">
+            <f:switch expression="{svgIcon}">
+                <f:case value="light-bulb"><span class="icon icon-light-bulb"></span></f:case>
+            </f:switch>
+        </div>
+        <div class="header">
+            <f:if condition="{data.subheader}">
+                <h3>{data.subheader}</h3>
+            </f:if>
+            <f:if condition="{data.header}">
+                <h2>{data.header -> f:format.nl2br()}</h2>
+            </f:if>
+        </div>
+    </div>
+    <div class="green-box-with-icon-and-cta__content">
+        <f:if condition="{data.bodytext}">
+            {data.bodytext -> f:format.html()}
+        </f:if>
+        <f:if condition="{data.tx_mask_cta_link} && {data.tx_mask_cta_text}">
+            <f:link.typolink parameter="{data.tx_mask_cta_link}" class="btn btn-lg">{data.tx_mask_cta_text} <span class="icon right-arrow"></span></f:link.typolink>
+        </f:if>
+    </div>
+</div>
+</html>

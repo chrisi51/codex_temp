@@ -1,0 +1,124 @@
+/* 
+ * Font-Weights
+ * https://www.aok.de/design/
+ */
+
+:root { 
+    --aok-regular:     400;
+    --aok-semi-bold:   600;
+    --aok-bold:        700;
+}
+
+
+@font-face {
+  font-family: 'AOKBuenosAires';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-Regular.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-Regular.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+@font-face {
+  font-family: 'AOKBuenosAires';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-RegularItalic.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-RegularItalic.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 400;
+  font-style: italic;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+@font-face {
+  font-family: 'AOKBuenosAires';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-SemiBold.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-SemiBold.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+@font-face {
+  font-family: 'AOKBuenosAires';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-SemiBoldItalic.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-SemiBoldItalic.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 600;
+  font-style: italic;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+@font-face {
+  font-family: 'AOKBuenosAires';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-Bold.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-Bold.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+@font-face {
+  font-family: 'AOKBuenosAires';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-BoldItalic.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Normal/AOKBuenosAires-BoldItalic.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 700;
+  font-style: italic;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+
+
+@font-face {
+  font-family: 'AOKBuenosAiresText';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-Regular.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-Regular.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+@font-face {
+  font-family: 'AOKBuenosAiresText';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-RegularItalic.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-RegularItalic.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 400;
+  font-style: italic;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+@font-face {
+  font-family: 'AOKBuenosAiresText';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-SemiBold.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-SemiBold.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+@font-face {
+  font-family: 'AOKBuenosAiresText';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-SemiBoldItalic.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-SemiBoldItalic.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 600;
+  font-style: italic;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+@font-face {
+  font-family: 'AOKBuenosAiresText';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-Bold.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-Bold.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+@font-face {
+  font-family: 'AOKBuenosAiresText';
+  src: url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-BoldItalic.woff2") format("woff2"), url("../Fonts/AOK-Buenos-Aires_v9/Text/AOKBuenosAiresText-BoldItalic.woff") format("woff");
+  /* Pretty Modern Browsers */
+  font-weight: 700;
+  font-style: italic;
+  font-stretch: normal;
+  unicode-range: U+000D-FB04; }
+
+
+b,strong{font-weight: 700}

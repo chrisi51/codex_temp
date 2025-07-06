@@ -1,0 +1,221 @@
+lib.socialplugins = COA
+lib.socialplugins {
+  10 = COA
+  10 {
+    wrap = <ul class="m-0 d-print-none" id="social_buttons">|</ul>
+
+    # Facebook
+    10 = TEXT
+    10 {
+      value = <span class="icon share-facebook"></span>
+      wrap = <li>|</li>
+      typolink {
+        title = Auf Facebook teilen
+        ATagParams = data-toggle="modal" data-target="#socialPolicy" data-share-platform="facebook"
+        parameter.cObject = COA
+        parameter.cObject {
+          wrap = http://www.facebook.com/sharer.php?u=
+          10 = TEXT
+          10.typolink.parameter.data = getIndpEnv:TYPO3_REQUEST_URL
+          10.typolink.returnLast = url
+
+          # Add news title if on single view
+          20 = RECORDS
+          20 {
+            if.isTrue.data = GP:tx_news_pi1|news
+            tables = tx_news_domain_model_news
+            dontCheckPid = 1
+            source.data = GP:tx_news_pi1|news
+            source.intval = 1
+            conf.tx_news_domain_model_news = TEXT
+            conf.tx_news_domain_model_news {
+              field = title
+              htmlSpecialChars = 1
+              wrap = &t=|
+              rawUrlEncode = 1
+            }
+          }
+        }
+      }
+    }
+
+    # LinkedIn
+    20 = TEXT
+    20 {
+      value = <span class="icon share-linkedin"></span>
+      wrap = <li>|</li>
+      typolink {
+        title = Auf LinkedIn teilen
+        ATagParams = data-toggle="modal" data-target="#socialPolicy" data-share-platform="linkedin"
+        parameter.cObject = COA
+        parameter.cObject {
+          wrap = https://www.linkedin.com/shareArticle?mini=true&url=
+          10 = TEXT
+          10.typolink.parameter.data = getIndpEnv:TYPO3_REQUEST_URL
+          10.typolink.returnLast = url
+
+          # Add news title if on single view
+          20 = RECORDS
+          20 {
+            if.isTrue.data = GP:tx_news_pi1|news
+            tables = tx_news_domain_model_news
+            dontCheckPid = 1
+            source.data = GP:tx_news_pi1|news
+            source.intval = 1
+            conf.tx_news_domain_model_news = TEXT
+            conf.tx_news_domain_model_news {
+              field = title
+              htmlSpecialChars = 1
+              wrap = &title=|
+              rawUrlEncode = 1
+            }
+          }
+        }
+      }
+    }
+
+    # X (ehemals Twitter)
+    30 = TEXT
+    30 {
+      value = <span class="icon share-x"></span>
+      wrap = <li>|</li>
+      typolink {
+        title = Auf X teilen
+        ATagParams = data-toggle="modal" data-target="#socialPolicy" data-share-platform="x"
+        parameter.cObject = COA
+        parameter.cObject {
+          wrap = https://x.com/intent/tweet?url=
+          10 = TEXT
+          10.typolink.parameter.data = getIndpEnv:TYPO3_REQUEST_URL
+          10.typolink.returnLast = url
+
+          # Add news title if on single view
+          20 = RECORDS
+          20 {
+            if.isTrue.data = GP:tx_news_pi1|news
+            tables = tx_news_domain_model_news
+            dontCheckPid = 1
+            source.data = GP:tx_news_pi1|news
+            source.intval = 1
+            conf.tx_news_domain_model_news = TEXT
+            conf.tx_news_domain_model_news {
+              field = title
+              htmlSpecialChars = 1
+              wrap = &text=|
+              rawUrlEncode = 1
+            }
+          }
+        }
+      }
+    }
+
+    # Pinterest
+    40 = TEXT
+    40 {
+      value = <span class="icon share-pinterest"></span>
+      wrap = <li>|</li>
+      typolink {
+        title = Auf Pinterest teilen
+        ATagParams = data-toggle="modal" data-target="#socialPolicy" data-share-platform="pinterest"
+        parameter.cObject = COA
+        parameter.cObject {
+          wrap = https://www.pinterest.com/pin/create/link/?url=
+          10 = TEXT
+          10.typolink.parameter.data = getIndpEnv:TYPO3_REQUEST_URL
+          10.typolink.returnLast = url
+
+          # Add news title if on single view
+          20 = RECORDS
+          20 {
+            if.isTrue.data = GP:tx_news_pi1|news
+            tables = tx_news_domain_model_news
+            dontCheckPid = 1
+            source.data = GP:tx_news_pi1|news
+            source.intval = 1
+            conf.tx_news_domain_model_news = TEXT
+            conf.tx_news_domain_model_news {
+              field = title
+              htmlSpecialChars = 1
+              wrap = &description=|
+              rawUrlEncode = 1
+            }
+          }
+          30 = TEXT
+          30.value = &media=
+        }
+      }
+    }
+
+    # E-Mail
+    50 = COA
+    50 {
+      wrap = <li>|</li>
+      10 = TEXT
+      10.value = <a href="mailto:?subject=Empfehlung%20für%20Dich&amp;body=
+      20 = RECORDS
+      20 {
+        if.isTrue.data = GP:tx_news_pi1|news
+        tables = tx_news_domain_model_news
+        dontCheckPid = 1
+        source.data = GP:tx_news_pi1|news
+        source.intval = 1
+        conf.tx_news_domain_model_news = TEXT
+        conf.tx_news_domain_model_news {
+          field = title
+          htmlSpecialChars = 1
+          wrap = |%0D%0A%0D%0A
+          rawUrlEncode = 1
+        }
+      }
+      30 = TEXT
+      30.typolink.parameter.data = getIndpEnv:TYPO3_REQUEST_URL
+      30.typolink.returnLast = url
+      40 = TEXT
+      40.value = %0D%0A" target="_blank" title="Per E-Mail teilen"><span class="icon share-mail"></span></a>
+    }
+
+    # Copy-to-Clipboard Button
+    60 = TEXT
+    60 {
+      value = <span class="icon share-clipboard"></span>
+      wrap = <li>|</li>
+      typolink {
+        parameter = #
+        # Hier definieren wir den ATagParams, der die ID, onclick-Handler und den title setzt.
+        ATagParams = id="shareToClipboard" onclick="shareToClipboard(); return false;" title="Link kopieren"
+      }
+    }
+  }
+
+  # Social Policy Modal (unverändert)
+  20 = TEXT
+  20.value (
+    <div class="modal fade" id="socialPolicy" tabindex="-1" role="dialog" aria-labelledby="socialPolicyLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-md-left">
+                    <div class="mt-4 mb-4">
+                        <h3 id="socialPolicyLabel">Einwilligungserklärung für die Nutzung der Social Media Plugins</h3>
+                    </div>
+                    <div>
+                        <p style="font-size: 1rem;">
+                            Für die Nutzung von Social-Media Dienstangeboten diverser Unternehmen stellen wir Ihnen Social-Media-Plug-ins zur Verfügung.
+                            Diese werden in einem Zwei-Klick-Verfahren auf den Online-Angeboten der AOK eingebunden.
+                        </p>
+                        <p style="font-size: 1rem;">
+                            Die AOK erfasst selbst keinerlei personenbezogene Daten oder Informationen über deren Nutzung mittels der Social-Media-Plug-ins.
+                        </p>
+                        <p style="font-size: 1rem;">
+                            Über diese Plug-ins können jedoch Daten, auch personenbezogene Daten, an die US-amerikanischen Diensteanbieter gesendet und gegebenenfalls von diesen genutzt werden. Das hier eingesetzte Verfahren sorgt dafür, dass zunächst keine personenbezogenen Daten an die Anbieter der einzelnen Social-Media-Plug-ins weitergegeben werden, wenn Sie unser Online-Angebot nutzen. Erst wenn Sie eines der Social-Media-Plug-ins anklicken, können Daten an die Dienstanbieter übertragen und durch diese gespeichert bzw. verarbeitet werden.
+                        </p>
+                    </div>
+                    <div class="mt-4 mb-4 float-right">
+                        <button type="button" class="btn btn-primary mr-3" data-dismiss="modal" aria-labelledby="Close">Nein, ich erkläre mich nicht einverstanden</button>
+                        <button type="button" id="socialPolicyBtn" class="btn" data-dismiss="modal" aria-labelledby="Agree">Ja, ich erkläre mich einverstanden</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  )
+}

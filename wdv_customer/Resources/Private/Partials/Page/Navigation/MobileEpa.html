@@ -1,0 +1,62 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:w="WDV\WdvCustomer\ViewHelpers"
+      xmlns:n="GeorgRinger\News\ViewHelpers"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      data-namespace-typo3-fluid="true" lang="en">
+
+<div class="collapse navbar-collapse">
+    <ul class="nav first-level ml-auto d-print-none" id="mobile-navigation">
+        <li class="nav-item dropdown position-static">
+            <a class="dropdown-toggle" href="#" target="_self" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" title="Menü" aria-label="Menu">
+                <span class="icon hamburger"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <ul class="nav first-level">
+                    <f:for each="{navigation}" as="item" iteration="iterator">
+                        <f:if condition="{item.spacer}">
+                            <f:then><f:format.html>{spacer}</f:format.html></f:then>
+                            <f:else>
+                                <f:if condition="{item.children}">
+                                    <f:then>
+                                        <li class="uid-{item.data.uid} nav-item dropdown{f:if(condition: iterator.isFirst, then: ' first')}{f:if(condition: iterator.isLast, then: ' last')}">
+                                            <a class="dropdown-toggle" href="{item.link}" title="{item.title}" role="button" aria-haspopup="true" aria-expanded="false">{item.title}</a>
+                                            <ul class="nav second-level" style="">
+                                                <f:for each="{item.children}" as="child" iteration="iterator">
+                                                    <f:if condition="{child.spacer}">
+                                                        <f:then><li class="dropdown-header">{child.title}</li></f:then>
+                                                        <f:else>
+                                                            <li class="{child.data.uid}{f:if(condition: iterator.isFirst, then: ' first')}{f:if(condition: iterator.isLast, then: ' last')}">
+                                                                <a class="nav-link icon {child.data.tx_wdvcustomer_page_icon}" href="{child.link}" target="{f:if(condition: '{child.target} != \'\'', then: '{child.target}', else: '_top')}" title="{child.title}"> {child.title}
+                                                                    <f:if condition="{child.data.doktype} === 1 && {child.data.tx_wdvcustomer_page_amountnews } === 1">
+                                                                        <f:then>
+																			<span class="text-unbold">({w:getAmoutOfNewsItemsWithinSameCategory(pageuid: child.data.uid, recursive: true)})</span>
+																		</f:then>
+                                                                        <f:else>
+                                                                            <f:if condition="{child.data.doktype} === 3">
+                                                                                <span class="icon external-link"></span>
+                                                                            </f:if>
+                                                                        </f:else>
+                                                                    </f:if>
+                                                                </a>
+                                                            </li>
+                                                        </f:else>
+                                                    </f:if>
+                                                </f:for>
+                                            </ul>
+                                        </li>
+                                    </f:then>
+                                    <f:else>
+                                        <li class="uid-{item.data.uid} nav-item{f:if(condition: iterator.isFirst, then: ' first')}{f:if(condition: iterator.isLast, then: ' last')}">
+                                            <a class="nav-link" href="{item.link}" target="{f:if(condition: '{item.target}', then: '{item.target}', else: '_top')}" title="{item.title}">{item.title}</a>
+                                        </li>
+                                    </f:else>
+                                </f:if>
+                            </f:else>
+                        </f:if>
+                    </f:for>
+                </ul>               
+            </div>
+        </li>
+    </ul>
+</div>
+</html>

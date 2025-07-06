@@ -1,0 +1,24 @@
+	<ul class="playlist playlist-{data.uid}" data-player="{data.tx_mask_playeruid}" data-title="{data.tx_mask_label}">
+    <f:for each="{data.tx_mask_medium}" as="media" iteration="Iterator">
+        <li class="playlist-item playlist-{data.uid}-{Iterator.index}" data-video="{media.tx_mask_media.0.originalFile.publicUrl}" data-title="{media.tx_mask_headline}">
+            <div class="number">{Iterator.index + 1}</div>
+            <div class="playbutton"></div>
+            <h3 class="headline">{media.tx_mask_headline}</h3>
+            <div class="meta">
+                <f:if condition="{media.tx_mask_info}">
+                    <f:then>
+                        <div class="info{f:if(condition:"{media.tx_mask_desc}", then:" enabled")}">{media.tx_mask_info}&nbsp;</div>
+                    </f:then>
+                    <f:else>
+                        <div></div>
+                    </f:else>
+                </f:if>
+                <div class="duration"></div>
+            </div>
+            <div class="timeline">
+                <div class="timelinebar"></div>
+            </div>
+            <div class="description">{media.tx_mask_desc -> f:format.html()}</div>
+        </li>
+    </f:for>
+    </ul>

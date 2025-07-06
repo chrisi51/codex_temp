@@ -1,0 +1,38 @@
+<div class="family-teaser-box">
+    <f:if condition="{data.header}">
+        <h2>{data.header -> f:format.nl2br()}</h2>
+    </f:if>
+    <div class="icon-text-wrapper">
+        <figure class="figure">
+            <img class="figure-img img-fluid" src="/fileadmin/mediathek/icons/icons-illustrativ-supplementary-insurance.svg" width="50" height="50" alt="Icon">
+        </figure>
+        <f:if condition="{data.tx_mask_richtext}">
+            {data.tx_mask_richtext -> f:format.html()}
+        </f:if>
+    </div>
+
+    <f:link.typolink parameter="{data.tx_mask_cta_link}" target="_blank" class="family-button external-link" >{data.tx_mask_cta_title}
+        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.757 2.243c.15.151.243.359.243.589l-.004 8.24h-1.664l.002-6.23-8.824 8.825-1.177-1.177 8.825-8.825-6.23.003V2.004L13.168 2c.23 0 .438.093.589.243" fill="#004730" fill-rule="evenodd"/>
+        </svg>
+    </f:link.typolink>
+</div>
+
+
+<f:comment>
+
+
+<f:if condition="{data.header}">
+    {data.header -> f:format.nl2br()}
+</f:if>
+<f:if condition="{data.bodytext}">
+    {data.bodytext -> f:format.nl2br()}
+</f:if>
+<f:if condition="{data.tx_mask_cta_link}">
+    <f:link.typolink parameter="{data.tx_mask_cta_link}"></f:link.typolink>
+</f:if>
+<f:if condition="{data.tx_mask_cta_title}">
+    {data.tx_mask_cta_title}
+</f:if>
+
+</f:comment>

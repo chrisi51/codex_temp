@@ -1,0 +1,28 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  WDV\WdvCustomer\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  WDV\WdvCustomer\DataProcessing\MenuSubpagesAmountNewsItemsFilterProcessor:
+    public: true
+  WDV\WdvCustomer\DataProcessing\MenuSubpagesAmountNewsItemsDropdownProcessor:
+    public: true
+  WDV\WdvCustomer\DataProcessing\DurchstarterWorkshopDataProcessor:
+    public: true
+    autowire: false
+
+  WDV\WdvCustomer\EventListener\FlexFormParsingModifyEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'wdv_customer/set-data-structure'
+        method: 'setDataStructure'
+  WDV\WdvCustomer\EventListener\ModifyFlexformEvent:
+    tags:
+      - name: event.listener
+        identifier: 'wdv_customer/modify-flexform'
+        event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent

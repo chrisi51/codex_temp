@@ -1,0 +1,73 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:if condition="{newsItem.txWdvcustomerMultipageImpliedNews} || {newsItem.txWdvcustomerNewsImpliedFromMultipage}">
+
+	<div class="row news-item__multipage-menu mt-4 mb-5{f:if(condition: additionalCssClass, then: ' {additionalCssClass}')}">
+		<div class="col-12 col-md-8 col-print-12 offset-md-2 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0">
+
+			<ul class="nav flex-column ce-bullets multipage-links">
+
+				<f:if condition="{newsItem.txWdvcustomerMultipageImpliedNews}">
+
+					<li class="active"><span class="no">1</span> {newsItem.title}</li>
+
+					<f:for each="{newsItem.txWdvcustomerMultipageImpliedNews}" as="impliedNews" iteration="impliedNewsIterator">
+
+						<li>
+							<n:link newsItem="{impliedNews}" title="{v:math.sum(a: 1, fail: 0, b: '{impliedNewsIterator.cycle}')}. {impliedNews.title}">
+								<span class="no">{v:math.sum(a: 1, fail: 0, b: '{impliedNewsIterator.cycle}')}</span>{impliedNews.title}
+							</n:link>
+						</li>
+
+					</f:for>
+
+				</f:if>
+
+				<f:if condition="{newsItem.txWdvcustomerNewsImpliedFromMultipage}">
+
+					<f:for each="{newsItem.txWdvcustomerNewsImpliedFromMultipage}" as="NewsImpliedFromMultipage" iteration="NewsImpliedFromMultipageIterator">
+
+						<li>
+							<n:link newsItem="{NewsImpliedFromMultipage}" title="{v:math.sum(a: 1, fail: 0, b: '{NewsImpliedFromMultipageIterator.index}')}. {NewsImpliedFromMultipage.title}">
+								<span class="no">{v:math.sum(a: 1, fail: 0, b: '{NewsImpliedFromMultipageIterator.index}')}</span>{NewsImpliedFromMultipage.title}
+							</n:link>
+						</li>
+
+						<f:for each="{NewsImpliedFromMultipage.txWdvcustomerMultipageImpliedNews}" as="NewsImpliedFromMultipageImpliedNews" iteration="NewsImpliedFromMultipageImpliedNewsIterator">
+
+							<f:if condition="{NewsImpliedFromMultipageImpliedNews.uid} == {newsItem.uid}">
+								<f:then>
+
+									<li class="active">
+										<span class="no">{v:math.sum(a: 1, fail: 0, b: '{NewsImpliedFromMultipageImpliedNewsIterator.cycle}')}</span>{NewsImpliedFromMultipageImpliedNews.title}
+									</li>
+
+								</f:then>
+								<f:else>
+
+									<li>
+										<n:link newsItem="{NewsImpliedFromMultipageImpliedNews}" title="{v:math.sum(a: 1, fail: 0, b: '{NewsImpliedFromMultipageImpliedNewsIterator.cycle}')}. {NewsImpliedFromMultipageImpliedNews.title}">
+											<span class="no">{v:math.sum(a: 1, fail: 0, b: '{NewsImpliedFromMultipageImpliedNewsIterator.cycle}')}</span>{NewsImpliedFromMultipageImpliedNews.title}
+										</n:link>
+									</li>
+
+								</f:else>
+							</f:if>
+
+						</f:for>
+
+					</f:for>
+
+				</f:if>
+
+			</ul>
+
+		</div>
+	</div>
+
+</f:if>
+
+</html>

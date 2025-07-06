@@ -1,0 +1,352 @@
+mod {
+    web_layout {
+        BackendLayouts {
+
+            1 {
+                title = Seitenlayout ausschließlich für die Startseite (1-Spalter, weißer Hintergrund)
+                config {
+                    backend_layout {
+                        colCount = 12
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            2 {
+                title = Seitenlayout für normale Inhaltsseiten (1-Spalter, weißer Hintergrund)
+                config {
+                    backend_layout {
+                        colCount = 12
+                        rowCount = 3
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Dropdown-Menu
+                                        colPos = 3
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                            2 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                            3 {
+                                columns {
+                                    1 {
+                                        name = Inhalt in Kapitelnavigation
+                                        colPos = 10
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            3 {
+                title = Seitenlayout für die Seiten mit der Detailansicht eines Artikels (1-Spalter, dunkelgrauer Hintergrund)
+                config {
+                    backend_layout {
+                        colCount = 12
+                        rowCount = 2
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Dropdown-Menu
+                                        colPos = 3
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                            2 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            4 {
+                title = Seitenlayout für die Suchen-Seite (1-Spalter, hellgrauer Hintergrund)
+                config {
+                    backend_layout {
+                        colCount = 12
+                        rowCount = 2
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Dropdown-Menu
+                                        colPos = 3
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                            2 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            5 {
+                title = Seitenlayout für eine Kampagnen-Seite (1-Spalter, weisser Hintergrund)
+                config {
+                    backend_layout {
+                        colCount = 12
+                        rowCount = 2
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Dropdown-Menu
+                                        colPos = 3
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                            2 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            6 {
+                title = Seitenlayout für Seiteninhalte die in einem Popup angezeigt werden sollen
+                config {
+                    backend_layout {
+                        colCount = 12
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            7 {
+                title = Instagramm Linktree
+                config {
+                    backend_layout {
+                        colCount = 1
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            10 {
+                title = Displayanzeige
+                config {
+                    backend_layout {
+                        colCount = 1
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            20 {
+                title = Achtsamkeit - Haupttemplate
+                config {
+                    backend_layout {
+                        colCount = 1
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            30 {
+                title = Neutrales Template ohne Navigationen
+                config {
+                    backend_layout {
+                        colCount = 1
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            40 {
+                title = Soundtrack Template
+                config {
+                    backend_layout {
+                        colCount = 1
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            50 {
+                title = Familie Template
+                config {
+                    backend_layout {
+                        colCount = 1
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            60 {
+                title = EPA - Haupttemplate
+                config {
+                    backend_layout {
+                        colCount = 1
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            70 {
+                title = Schwangerschaft - Haupttemplate
+                config {
+                    backend_layout {
+                        colCount = 1
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            71 {
+                title = Schwangerschaft - Subtemplate mit Breadcrumb und Artikelnavigation
+                config {
+                    backend_layout {
+                        colCount = 1
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = Inhalt im Haupt-Bereich
+                                        colPos = 0
+                                        colspan = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="tx_mask carousel carousel-fade slide mt-4 mb-5 {f:if(condition: data.tx_wdvcustomer_content_breakoutleft, then: 'breakout-md-left')}{f:if(condition: data.tx_wdvcustomer_content_breakoutright, then: ' breakout-md-right')}" data-interval="false" data-ride="false" id="c{data.uid}">
+
+    <div class="carousel-inner">
+
+        <f:for each="{data.tx_mask_slide}" as="data_item" iteration="iterator">
+            <div class="carousel-item{f:if(condition: '{iterator.isFirst}', then: ' active')}">
+                
+                <f:for each="{data_item.tx_mask_slideimage}" as="file">
+                    <fp:image image="{file}" title="{file.title}{f:if(condition: '{file.originalFile.properties.publisher}', then: ' - Bildnachweis: © {file.originalFile.properties.publisher}')}{f:if(condition: '{file.originalFile.properties.creator}', then: ' / {file.originalFile.properties.creator}')}" alt="{file.alternative}" width="950" realCrop="false" />
+                </f:for>
+
+                <div class="carousel-caption">
+                    <span class="indicator">{iterator.cycle} / {iterator.total}</span>
+                    <h4>{data_item.tx_mask_header}</h4>
+                    <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data_item.tx_mask_slidecontent}</f:format.html>
+                </div>
+
+            </div>
+        </f:for>
+
+    </div>
+    <a class="carousel-control-prev" href="#c{data.uid}" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Vorheriges</span>
+    </a>
+    <a class="carousel-control-next" href="#c{data.uid}" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Nächstes</span>
+    </a>
+</div>
+
+</html>

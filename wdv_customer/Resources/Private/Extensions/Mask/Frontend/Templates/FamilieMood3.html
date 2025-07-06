@@ -1,0 +1,146 @@
+<div id="family-mood3-container">
+
+    <div id="family-mood3">
+        <video id="landscape-video" class="family-video" autoplay muted loop playsinline>
+            <f:for each="{data.media}" as="video_landscape">
+                <source src="{video_landscape.originalFile.publicUrl}" type="video/mp4">
+            </f:for>
+            Dein Browser unterstützt dieses Video-Format nicht.
+        </video>
+
+        <video id="square-video" class="family-video" autoplay muted loop playsinline>
+            <f:for each="{data.tx_mask_bgvideo_square}" as="video_square">
+                <source src="{video_square.originalFile.publicUrl}" type="video/mp4">
+            </f:for>
+            Dein Browser unterstützt dieses Video-Format nicht.
+        </video>
+
+
+        <div class="content">
+            <f:if condition="({data.header} || {data.tx_mask_header})">
+                <h1>
+                    <f:if condition="{data.header}">
+                        <div class="line1">{data.header -> f:format.nl2br()}</div>
+                    </f:if>
+                    <f:if condition="{data.tx_mask_header}">
+                        <div class="line2">{data.tx_mask_header -> f:format.nl2br()}</div>
+                    </f:if>
+                </h1>
+            </f:if>
+        </div>
+        <div class="content-text">
+
+            <f:if condition="{data.bodytext}">
+                {data.bodytext -> f:format.html()}
+            </f:if>
+            <p>
+                <a href="javascript:;" id="openVideoBtn" class="family-button" tabindex="0">
+                    <svg width="12" height="12" class="left"><use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/Layout/sprite.svg')}#icon_play_filled"></use></svg>
+                    <span>Video abspielen</span>
+                </a>
+
+                <!-- Lightbox-Overlay -->
+            <div id="videoLightbox" class="lightbox-overlay">
+                <span id="closeLightbox" class="close-btn">&times;</span>
+                <!-- Video-Element -->
+                <div class="lightbox-content">
+                    <video id="videoPlayer" controls>
+                        <f:for each="{data.assets}" as="asset">
+                            <source src="{asset.originalFile.publicUrl}" type="video/mp4">
+                        </f:for>
+                        Dein Browser unterstützt dieses Video-Format nicht.
+                    </video>
+                </div>
+            </div>
+
+
+            <!--  inline javascript-snippet -->
+            <script type="text/javascript">
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Elemente holen
+                    const openVideoBtn = document.getElementById("openVideoBtn");
+                    const videoLightbox = document.getElementById("videoLightbox");
+                    const closeLightbox = document.getElementById("closeLightbox");
+                    const videoPlayer = document.getElementById("videoPlayer");
+
+                    // Funktion zum Öffnen der Lightbox
+                    openVideoBtn.addEventListener("click", function() {
+                        videoLightbox.style.display = "flex"; // Zeigt die Lightbox an
+                        videoPlayer.play(); // Startet das Video automatisch
+                    });
+
+                    // Funktion zum Schließen der Lightbox
+                    closeLightbox.addEventListener("click", function() {
+                        videoLightbox.style.display = "none"; // Versteckt die Lightbox
+                        videoPlayer.pause(); // Pausiert das Video
+                        videoPlayer.currentTime = 0; // Setzt das Video zurück auf den Anfang
+                    });
+
+                    // Schließt die Lightbox, wenn außerhalb des Videos geklickt wird
+                    window.addEventListener("click", function(event) {
+                        if (event.target === videoLightbox) {
+                            videoLightbox.style.display = "none"; // Versteckt die Lightbox
+                            videoPlayer.pause(); // Pausiert das Video
+                            videoPlayer.currentTime = 0; // Setzt das Video zurück auf den Anfang
+                        }
+                    });
+                });
+            </script>
+
+
+
+            </p>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="promotion-banner">
+    <div class="promo-wrapper">
+
+        <f:render section="promo-unit" />
+        <f:render section="promo-unit" />
+        <f:render section="promo-unit" />
+        <f:render section="promo-unit" />
+
+    </div>
+</div>
+
+
+<f:section name="promo-unit">
+    <a href="https://www.aok.de/mw/rh/mitgliedsantrag/" target="_blank" class="promo-unit">
+        <img src="/fileadmin/mediathek/kampagnen/Familienkampagne/Mitglied_werden_rgb.svg" alt="Icon" class="promo-icon">
+        <span class="promo-text">
+                <strong>Jetzt Mitglied werden</strong> und von unseren Leistungen für Familien und Schwangere profitieren.
+            </span>
+    </a>
+</f:section>
+
+
+<f:comment>
+
+
+
+<f:for each="{data.media}" as="file">
+    <f:image image="{file}" width="200" />
+    {file.description}
+</f:for>
+<f:if condition="{data.header}">
+    {data.header -> f:format.nl2br()}
+</f:if>
+<f:if condition="{data.tx_mask_header}">
+    {data.tx_mask_header -> f:format.nl2br()}
+</f:if>
+<f:if condition="{data.bodytext}">
+    {data.bodytext -> f:format.html()}
+</f:if>
+<f:if condition="{data.tx_mask_videobutton_label}">
+    {data.tx_mask_videobutton_label}
+</f:if>
+<f:for each="{data.assets}" as="file">
+    <f:media file="{file}" width="200" />
+    {file.description}
+</f:for>
+
+</f:comment>

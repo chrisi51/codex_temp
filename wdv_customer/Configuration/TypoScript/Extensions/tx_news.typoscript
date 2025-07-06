@@ -1,0 +1,155 @@
+plugin.tx_news {
+
+    view {
+        templateRootPaths {
+            10 = EXT:wdv_customer/Resources/Private/Extensions/News/Templates/
+        }
+
+        partialRootPaths {
+            10 = EXT:wdv_customer/Resources/Private/Extensions/News/Partials/
+        }
+
+        layoutRootPaths {
+            10 = EXT:wdv_customer/Resources/Private/Extensions/News/Layouts/
+        }
+    }
+
+    settings {
+
+        # Decide to show news in this view, even if they are implied in an Article with type of "Multi-Page"
+        showImpliedInMultiPage = 0
+
+        cssFile >
+        analytics >
+
+        displayDummyIfNoMedia = 1
+        cropMaxCharacters = 666
+
+        timeRestrictionHigh = now
+        excludeAlreadyDisplayedNews = 1
+        enablePreviewOfHiddenRecords = 1
+
+        detail {
+            errorHandling = pageNotFoundHandler
+            showSocialShareButtons = 0
+            # media configuration
+            media {
+                image {
+                    maxWidth = 945
+                    maxHeight = 532
+                    lightbox {
+                        width = 1140
+                    }
+                }
+            }
+        }
+
+        list {
+            paginate {
+                insertAbove = false
+                insertBelow = true
+                prevNextHeaderTags = 0
+                maximumNumberOfLinks = 8
+            }
+
+            # media configuration
+            media {
+                dummyImage = EXT:wdv_customer/Resources/Public/Images/Layout/news-dummy.png
+            }
+
+            timeRestrictionHigh = now
+        }
+
+        link {
+            skipControllerAndAction = 1
+        }
+
+        facebookLocale = de_DE
+        googlePlusLocale = de
+        disqusLocale = de
+    }
+
+    # https://forge.typo3.org/issues/78002
+    features.requireCHashArgumentForActionArguments = 0
+
+    settings.ajaxPageType = 1986
+}
+
+ajax >
+ajax = PAGE
+ajax {
+    typeNum = 1986
+
+    meta.robots = noindex,nofollow
+    config {
+        additionalHeaders.10.header = Content-type:application/json
+        disableAllHeaderCode = 1
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+        no_cache = 1
+        metaCharset = utf-8
+        removeDefaultJS = 1
+        removeDefaultCss = 1
+        additionalHeaders {
+            10.header = Content-Type: text/html; charset=utf-8
+            20.header = Strict-Transport-Security: max-age=31536000
+            30.header = X-Frame-Options: SAMEORIGIN
+            40.header = X-XSS-Protection: 1; mode=block
+            50.header = X-Content-Type-Options: nosniff
+            60.header = Referrer-Policy: strict-origin
+        }
+
+        disablePrefixComment = 1
+        yoast_seo.enabled = 0
+    }
+
+    lib.yoastSEO >
+    plugin.tx_yoastseo >
+    tt_content.stdWrap.innerWrap >
+
+    10 = TEXT
+    10.value = This AJAX-Call will not work until a correct item uid (nlvceuid) is specified!
+}
+
+
+[request && traverse(request.getQueryParams(), 'nlvceuid') > 0]
+    plugin.tx_news.settings {
+        format = ajax
+        offset = 3
+        list.paginate.itemsPerPage = 4
+    }
+
+    ajax {
+        10 = RECORDS
+        10 {
+            tables = tt_content
+            source {
+                # GP:nlvceuid = Uid of the News-List-View-Content-Element
+                # which has to be rendered. This parameter is necessary
+                # Cause we can use multiple instances of tx_news on one page,
+                # e.g. in tabs like we do actually.
+                data = GP:nlvceuid
+                intval = 1
+                htmlSpecialChars = 1
+                insertData = 1
+            }
+
+            dontCheckPid = 1
+        }
+    }
+[global]
+
+# Tells the active page when browsing trough news with the paginator
+lib.actualPageInNewsPaginator = COA
+lib.actualPageInNewsPaginator {
+    if.isTrue.data = request.getQueryParams()['tx_news_pi1']['currentPage']
+    10 = TEXT
+    10 {
+        data = traverse(request.getQueryParams(), 'tx_news_pi1/currentPage')
+        intval = 1
+        htmlSpecialChars = 1
+    }
+
+    wrap = |
+}

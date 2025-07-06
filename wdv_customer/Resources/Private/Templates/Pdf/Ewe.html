@@ -1,0 +1,127 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:fpdf="http://typo3.org/ns/CodingMs/FluidFpdf/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:variable name="cellSpacing" value="   " />
+<f:variable name="cellHeightOneLiner" value="10" />
+<f:spaceless>
+    <f:format.raw>
+        <fpdf:pdf destination="S">
+            <fpdf:addPage>
+                <fpdf:setFont family="Arial" style="B" size="16" />
+                <fpdf:setFillColor red="211" green="211" blue="211" />
+                <fpdf:setDrawColor red="0" green="0" blue="0" />
+
+                <fpdf:cell width="0" height="10" text="Ihre Daten" border="1" align="C" ln="1" />
+                <fpdf:Ln height="10"/>
+
+                <fpdf:setFont family="Arial" style="" size="12" />
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}ID" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{kassennummer}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Anrede" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{anrede}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Vorname" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{vorname}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Nachname" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{nachname}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Straße" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{strasse} {hausnummer}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}PLZ" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{plz}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Ort" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{ort}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Geburtsdatum" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{geburtsdatum}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Telefon" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{phone}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Mobil" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{mobile}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}E-Mail" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{email}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+
+                <fpdf:Ln height="10"/>
+                <fpdf:setFont family="Arial" style="B" size="16" />
+                <fpdf:cell width="0" height="10" text="Einwilligungserklärung" border="1" align="C" ln="1" />
+                <fpdf:Ln height="10"/>
+
+
+                <fpdf:setFont family="Arial" style="" size="12" />
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Ja, ich bin einverstanden." border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Ja" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Aufrufende Seite (URL)" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{dokumentklasse}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Double Opt-In-Verfahren" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{sms}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Eintragungsdatum" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{zeitpunkt}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Dateneingabe Double Opt-In angekreuzt:" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{smsdoi}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Double Opt-In bestätigt" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{smsDoiConfirmed}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}Marketingfreigaben bestätigt für" border="0" fill="1" />
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{cellSpacing}{permissions}" border="0" ln="1" />
+                <fpdf:Ln height="0.5"/>
+            </fpdf:addPage>
+
+            <fpdf:addPage>
+                <fpdf:setFont family="Arial" style="" size="12" />
+                <fpdf:cell width="96" height="150.8" text="{cellSpacing}Datenschutzhinweis-Text" border="0" fill="1" />
+                <fpdf:setFont family="Arial" style="" size="10" />
+                <fpdf:multiCell width="96" height="5.6" text="{datenschutzhinweis}" border="0" />
+
+                <fpdf:Ln height="0.1"/>
+
+                <fpdf:setFont family="Arial" style="" size="12" />
+                <fpdf:cell width="96" height="55.7" text="{cellSpacing}Datennutzungstext" border="0" fill="1" />
+                <fpdf:setFont family="Arial" style="" size="10" />
+                <fpdf:multiCell width="96" height="5.6" text="{datennutzungstext}" border="0" />
+
+
+                <fpdf:Ln height="0.1"/>
+                <fpdf:setFont family="Arial" style="" size="12" />
+                <fpdf:cell width="96" height="{cellHeightOneLiner}" text="{cellSpacing}OptInMailText" border="0" fill="1" />
+
+                <fpdf:Ln height="10"/>
+                <fpdf:cell width="95" height="{cellHeightOneLiner}" text="{dokumentklasse}" border="0" fill="0" />
+
+            </fpdf:addPage>
+        </fpdf:pdf>
+    </f:format.raw>
+</f:spaceless></html>
+
+

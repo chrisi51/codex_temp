@@ -1,0 +1,9 @@
+
+
+<f:if condition="{data.tx_mask_mood}">
+    <f:for each="{data.tx_mask_mood}" as="file">
+        <div class="achtsamkeit_mood">
+            <fp:image image="{file}" title="{f:if(condition: '{file.properties.publisher}', then: 'Bildnachweis: © {file.properties.publisher}')}{f:if(condition: '{file.properties.creator}', then: ' / {file.properties.creator}')}" alt="{file.properties.alternative}" width="1440"  realCrop="false" />
+        </div>
+    </f:for>
+</f:if>

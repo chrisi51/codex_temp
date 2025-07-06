@@ -1,0 +1,26 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:kesearch="http://typo3.org/ns/TeaminmediasPluswerk\KeSearch\ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+
+    <!-- FallBack -->
+    <f:spaceless>
+        <ul class="pagination pagination-lg">
+            <f:if condition="{pagination.previous}">
+                <li class="page-item">
+                    <f:link.page additionalParams="{tx_kesearch_pi1: {page: pagination.previous}}" addQueryString="1" class="page-link prev"><span class="icon tip-left"></span><span class="sr-only">zurück</span></f:link.page>
+                </li>
+            </f:if>
+            
+            <f:for each="{pagination.pages}" as="page">
+                <li class="page-item {f:if(condition: '{page} == {pagination.currentPage}', then: 'active')}">
+                    <f:link.page additionalParams="{tx_kesearch_pi1: {page: page}}" addQueryString="1" class="page-link">{page}</f:link.page></li>
+            </f:for>
+            <f:if condition="{pagination.next}">
+                <li class="page-item">
+                    <f:link.page additionalParams="{tx_kesearch_pi1: {page: pagination.next}}" addQueryString="1" class="page-link next"><span class="icon tip-right"></span><span class="sr-only">vorwärts</span></f:link.page>
+                </li>
+            </f:if>
+        </ul>
+    </f:spaceless>
+

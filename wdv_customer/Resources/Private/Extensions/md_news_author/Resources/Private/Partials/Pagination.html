@@ -1,0 +1,78 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{pagination.firstPageNumber} != {pagination.lastPageNumber}">
+    <f:then>
+        <nav class="page-navigation" aria-label="Pagination">
+            <p class="pagination-info"><f:translate key="pagination.overall" arguments="{0:paginator.currentPageNumber, 1:pagination.paginator.numberOfPages}" /></p>
+
+            <ul class="f3-widget-paginator">
+                <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+                    <f:then>
+	                    <f:comment><!--
+                        <li class="first d-none">
+                            <a href="{f:uri.action(action:actionName, arguments:{currentPage: 1, newsAuthor:newsAuthor}, addQueryString: '1', section: '{section}')}" class="" title="{f:translate(key:'pagination.first')}">
+                                {f:translate(key: 'pagination.first')}
+                            </a>
+                        </li>
+                        --></f:comment>
+                        <li class="previous">
+                            <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber, newsAuthor:newsAuthor}, addQueryString: '1', section: '{section}')}" class="" title="{f:translate(key:'pagination.previous')}">
+                                {f:translate(key: 'pagination.previous')}
+                            </a>
+                        </li>
+                    </f:then>
+	                <f:comment><!--
+                    <f:else>
+                        <li class="first disabled d-none">
+                            <span class="">{f:translate(key: 'pagination.first')}</span>
+                        </li>
+                        <li class="previous disabled d-none">
+                            <span class="">{f:translate(key: 'pagination.previous')}</span>
+                        </li>
+                    </f:else>
+                    --></f:comment>
+                </f:if>
+                <f:if condition="{pagination.hasLessPages}">
+                    <li class="disabled"><span class="">...</span></li>
+                </f:if>
+                <f:for each="{pagination.allPageNumbers}" as="page">
+                    <li class="{f:if(condition: '{page} == {paginator.currentPageNumber}', then:'current active')}">
+                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: page, newsAuthor:newsAuthor}, addQueryString: '1', section: '{section}')}" class="">{page}</a>
+                    </li>
+                </f:for>
+                <f:if condition="{pagination.hasMorePages}">
+                    <li class="disabled"><span class="">...</span></li>
+                </f:if>
+                <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
+                    <f:then>
+                        <li class="next">
+                            <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber, newsAuthor:newsAuthor}, addQueryString: '1', section: '{section}')}" class="" title="{f:translate(key:'pagination.next')}">
+                                {f:translate(key: 'pagination.next')}
+                            </a>
+                        </li>
+	                    <f:comment><!--
+                        <li class="last d-none">
+                            <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.lastPageNumber, newsAuthor:newsAuthor}, addQueryString: '1', section: '{section}')}" class="" title="{f:translate(key:'pagination.last')}">
+                                {f:translate(key: 'pagination.last')}
+                            </a>
+                        </li>
+                        --></f:comment>
+                    </f:then>
+	                <f:comment><!--
+                    <f:else>
+                        <li class="next disabled d-none">
+                            <span class="">{f:translate(key: 'pagination.next')}</span>
+                        </li>
+                        <li class="last disabled d-none">
+                            <span class="">{f:translate(key: 'pagination.last')}</span>
+                        </li>
+                    </f:else>
+                     --></f:comment>
+                </f:if>
+            </ul>
+        </nav>
+    </f:then>
+</f:if>
+
+</html>

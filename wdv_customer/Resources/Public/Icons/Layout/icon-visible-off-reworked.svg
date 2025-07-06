@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="187px"
+   height="160px"
+   viewBox="0 0 187 160"
+   version="1.1"
+   id="svg3785"
+   sodipodi:docname="icon-visible-off-reworked.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata3791">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3789" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     id="namedview3787"
+     showgrid="false"
+     inkscape:zoom="2.6875"
+     inkscape:cx="43.204985"
+     inkscape:cy="97.376125"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Components" />
+  <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+  <title
+     id="title3766">ic_next</title>
+  <desc
+     id="desc3768">Created with Sketch.</desc>
+  <g
+     id="Components"
+     style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1">
+    <g
+       id="vigo-article-w-infocards-mobile"
+       transform="translate(-206.50004,-540.0101)">
+      <g
+         id="Content"
+         transform="translate(18,-1150)"
+         style="stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round">
+        <g
+           id="Group-3"
+           transform="translate(26,1136)">
+          <g
+             id="Card-#2"
+             transform="translate(0,338)">
+            <g
+               id="Button"
+               transform="translate(0,270)">
+              <g
+                 id="ic_visibility_off"
+                 transform="translate(244,13)">
+                <g
+                   id="Group">
+                  <g
+                     transform="translate(2,3)"
+                     id="g3775"
+                     style="stroke-width:2">
+                    <path
+                       d="M 0.20003623,9 C 1.1265769,4.4355194 5.1620842,1 10,1 14.837916,1 18.873423,4.4355194 19.799964,9 18.873423,13.564481 14.837916,17 10,17 5.1620842,17 1.1265769,13.564481 0.20003623,9 Z"
+                       id="Combined-Shape"
+                       inkscape:connector-curvature="0" />
+                    <circle
+                       id="Oval"
+                       cx="10"
+                       cy="9"
+                       r="3" />
+                    <path
+                       d="M 1,18 19,0"
+                       id="Line"
+                       inkscape:connector-curvature="0" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

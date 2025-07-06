@@ -1,0 +1,15 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+
+    <div class="schwangerschaft-headlines {classes_wrapper->f:format.trim()}">
+    <f:if condition="{data.header}">
+        <h1>{data.header -> f:format.nl2br()}</h1>
+    </f:if>
+    <f:if condition="{data.tx_mask_header}">
+        <h2>{data.tx_mask_header -> f:format.nl2br()}</h2>
+    </f:if>
+    </div>
+
+</f:section>

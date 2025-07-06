@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="48px" viewBox="0 0 40 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>Path</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="vigo-home-desktop-variante1" transform="translate(-899.000000, -1179.000000)" fill="#FFFFFF">
+            <g id="Article-Grid" transform="translate(150.000000, 60.000000)">
+                <g id="Article" transform="translate(0.000000, 140.000000)">
+                    <g id="#4" transform="translate(390.000000, 823.000000)">
+                        <g id="Play-Icon" transform="translate(311.000000, 116.000000)">
+                            <path d="M87.9985683,64.0034447 C87.9985683,65.1994019 86.778612,66.0593711 86.778612,66.0593711 L52.5358376,87.2706119 C50.039927,88.9065533 48,87.6945967 48,84.5947077 L48,43.4081819 C48,40.3002931 50.039927,39.0963362 52.5398375,40.7282778 L86.7826119,61.9475183 C86.778612,61.9475183 87.9985683,62.8074875 87.9985683,64.0034447 Z" id="Path"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

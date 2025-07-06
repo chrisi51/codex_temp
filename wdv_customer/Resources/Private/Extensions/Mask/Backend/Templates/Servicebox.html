@@ -1,0 +1,11 @@
+<b>{data.header}</b>
+<br>
+<div style="margin-top:5px;">
+ <f:for each="{data.media}" as="data_item">
+ <f:image image="{data_item}" additionalAttributes='{align:"left"}' width="100" style="margin-right:5px;" />
+ </f:for>
+ <f:for each="{data.tx_mask_content}" as="data_item">
+         {data_item.bodytext->f:format.stripTags()}
+</f:for>
+<div style="clear:both"></div>
+</div>

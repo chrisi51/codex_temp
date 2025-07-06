@@ -1,0 +1,1124 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<!--
+	=====================
+		Partials/List/Item.html
+-->
+
+<n:excludeDisplayedNews newsItem="{newsItem}"/>
+
+<v:condition.string.contains haystack="{newsItem.externalurl}" needle="gib8-achtsamkeit.de">
+    <f:then>
+        <v:variable.set name="gib8ExternalNewsLink" value="1"/>
+    </f:then>
+</v:condition.string.contains>
+
+<v:condition.string.contains haystack="{newsItem.externalurl}" needle="achtsamkeit.vigo.de">
+    <f:then>
+        <v:variable.set name="gib8ExternalNewsLink" value="1"/>
+    </f:then>
+</v:condition.string.contains>
+
+<f:switch expression="{settings.templateLayout}">
+    <!-- Listenansicht mit Teaser in Zeilen (Gerade) -->
+    <f:case value="1">
+        <f:if condition="{chunkedIterator.cycle} % 2">
+            <f:then>
+                <f:if condition="{iterator.isLast}">
+                    <f:then>
+                        <div class="col-12 col-md-4">
+                    </f:then>
+                    <f:else>
+                        <div class="col-12 col-md-8">
+                    </f:else>
+                </f:if>
+            </f:then>
+            <f:else>
+                <f:if condition="{iterator.isLast}">
+                    <f:then>
+                        <div class="col-12 col-md-8">
+                    </f:then>
+                    <f:else>
+                        <div class="col-12 col-md-4">
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+
+        <f:if condition="{newsItem.type} == 11">
+            <f:then>
+                <f:render partial="ArtikelCarousel" arguments="{newsItem: newsItem, settings: settings}"/>
+                </div>
+            </f:then>
+            <f:else>
+                <div class="news-item article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}{f:if(condition: iterator.isOdd, then: ' mb-5')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+                    <f:if condition="{newsItem.mediaPreviews}">
+                        <!-- media preview element -->
+                        <f:then>
+                            <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                                <f:if condition="{mediaElement.originalResource.type} == 2">
+                                    <div class="news-item__image">
+                                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                            <f:render partial="Detail/MediaTeaser" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                        </n:link>
+                                </f:if>
+                                <f:if condition="{mediaElement.originalResource.type} == 4">
+                                    <div class="news-item__video">
+                                        <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                                </f:if>
+                                <f:if condition="{mediaElement.originalResource.type} == 5">
+                                    <div class="news-item__image">
+                                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                            <f:image image="{mediaElement}"
+                                                     title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                                     alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                                     maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                        </n:link>
+                                </f:if>
+                            </f:alias>
+                        </f:then>
+                        <f:else>
+                            <div class="news-item__image">
+                                <f:if condition="{settings.displayDummyIfNoMedia}">
+                                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                        <f:render partial="Detail/MediaTeaser" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                    </n:link>
+                                </f:if>
+                        </f:else>
+                    </f:if>
+                </div>
+                <div class="news-item__teaser{f:if(condition: '{newsItem.type} == 2', then: ' p-5')}">
+                    <f:if condition="{newsItem.type} != 2">
+                        <div class="row news-item__teaser-desc mt-3 mb-3">
+                            <div class="col-12">
+                                <f:render partial="ArtikelTypeMeta" arguments="{newsItem: newsItem}"/>
+                            </div>
+                        </div>
+                    </f:if>
+                    <div class="row">
+                        <div class="col-12">
+                            <w:news.showNewFlag settings="{settings}" newsItem="{newsItem}">
+                                <span class="badge badge__aok text-bg-aok-badge-green text-white">NEU</span>
+                            </w:news.showNewFlag>
+                            <h2 itemprop="headline" {f:if(condition: '{newsItem.type} == 2', then: ' class="mb-1"')}>
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                            </h2>
+                            <n:removeMediaTags>
+                                <f:if condition="{newsItem.teaser}">
+                                    <f:then>
+                                        <f:if condition="{newsItem.type} == 2">
+                                            <f:then>
+                                                <h2 class="muted">{newsItem.teaser}</h2>
+                                            </f:then>
+                                            <f:else>
+                                                {newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                                            </f:else>
+                                        </f:if>
+                                    </f:then>
+                                    <f:else>
+                                        {newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                                    </f:else>
+                                </f:if>
+                            </n:removeMediaTags>
+                            <f:if condition="{newsItem.type} == 2">
+                                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="btn btn-lg">
+                                    Mehr erfahren <span class="icon right-arrow"></span>
+                                </n:link>
+                            </f:if>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </f:else>
+        </f:if>
+    </f:case>
+
+    <!-- Listenansicht mit Teaser in Zeilen (Ungerade) -->
+    <f:case value="2">
+        <f:if condition="{chunkedIterator.cycle} % 2">
+            <f:then>
+                <f:if condition="{iterator.isLast}">
+                    <f:then>
+                        <div class="col-12 col-md-4">
+                    </f:then>
+                    <f:else>
+                        <div class="col-12 col-md-8">
+                    </f:else>
+                </f:if>
+            </f:then>
+            <f:else>
+                <f:if condition="{iterator.isLast}">
+                    <f:then>
+                        <div class="col-12 col-md-8">
+                    </f:then>
+                    <f:else>
+                        <div class="col-12 col-md-4">
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+
+        <f:if condition="{newsItem.type} == 11">
+            <f:then>
+                <f:render partial="ArtikelCarousel" arguments="{newsItem: newsItem, settings: settings}"/>
+                </div>
+            </f:then>
+            <f:else>
+                <div class="news-item article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}{f:if(condition: iterator.isOdd, then: ' mb-5')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+                    <f:if condition="{newsItem.mediaPreviews}">
+                        <!-- media preview element -->
+                        <f:then>
+                            <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                                <f:if condition="{mediaElement.originalResource.type} == 2">
+                                    <div class="news-item__image">
+                                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                            <f:render partial="Detail/MediaTeaser" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                        </n:link>
+                                </f:if>
+                                <f:if condition="{mediaElement.originalResource.type} == 4">
+                                    <div class="news-item__video">
+                                        <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                                </f:if>
+                                <f:if condition="{mediaElement.originalResource.type} == 5">
+                                    <div class="news-item__image">
+                                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                            <f:image image="{mediaElement}"
+                                                     title="{mediaElement.title}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: ' - Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                                     alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                                     maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                        </n:link>
+                                </f:if>
+                            </f:alias>
+                        </f:then>
+                        <f:else>
+                            <div class="news-item__image">
+                                <f:if condition="{settings.displayDummyIfNoMedia}">
+                                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                        <f:render partial="Detail/MediaTeaser" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                    </n:link>
+                                </f:if>
+                        </f:else>
+                    </f:if>
+                </div>
+                <div class="news-item__teaser">
+                    <div class="row news-item__teaser-desc mt-3 mb-3">
+                        <div class="col-12">
+                            <f:render partial="ArtikelTypeMeta" arguments="{newsItem: newsItem}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <w:news.showNewFlag settings="{settings}" newsItem="{newsItem}">
+                                <span class="badge badge__aok text-bg-aok-badge-green text-white">NEU</span>
+                            </w:news.showNewFlag>
+                            <h2 itemprop="headline">
+                                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                            </h2>
+                            <n:removeMediaTags>
+                                <f:if condition="{newsItem.teaser}">
+                                    <f:then>
+                                        {newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                                    </f:then>
+                                    <f:else>
+                                        {newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                                    </f:else>
+                                </f:if>
+                            </n:removeMediaTags>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </f:else>
+        </f:if>
+    </f:case>
+
+    <!-- Listenansicht mit Teaser in Zeilen (volle Breite) -->
+    <f:case value="20">
+        <div class="col-12">
+            <f:if condition="{newsItem.type} == 11">
+                <f:then>
+                    <f:render partial="ArtikelCarousel" arguments="{newsItem: newsItem, settings: settings}"/>
+        </div>
+        </f:then>
+        <f:else>
+            <div class="news-item article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}{f:if(condition: iterator.isOdd, then: ' mb-5')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+                <f:if condition="{newsItem.mediaPreviews}">
+                    <!-- media preview element -->
+                    <f:then>
+                        <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                            <f:if condition="{mediaElement.originalResource.type} == 2">
+                                <div class="news-item__image">
+                                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                        <f:render partial="Detail/MediaTeaser" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                    </n:link>
+                            </f:if>
+                            <f:if condition="{mediaElement.originalResource.type} == 4">
+                                <div class="news-item__video">
+                                    <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                            </f:if>
+                            <f:if condition="{mediaElement.originalResource.type} == 5">
+                                <div class="news-item__image">
+                                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                        <f:image image="{mediaElement}"
+                                                 title="{mediaElement.title}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: ' - Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                                 alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                                 maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                    </n:link>
+                            </f:if>
+                        </f:alias>
+                    </f:then>
+                    <f:else>
+                        <div class="news-item__image">
+                            <f:if condition="{settings.displayDummyIfNoMedia}">
+                                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                    <f:render partial="Detail/MediaTeaser" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                </n:link>
+                            </f:if>
+                    </f:else>
+                </f:if>
+            </div>
+            <div class="news-item__teaser">
+                <div class="row news-item__teaser-desc mt-3 mb-3">
+                    <div class="col-12">
+                        <f:render partial="ArtikelTypeMeta" arguments="{newsItem: newsItem}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h2 itemprop="headline">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                        </h2>
+                        <n:removeMediaTags>
+                            <f:if condition="{newsItem.teaser}">
+                                <f:then>
+                                    {newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                                </f:then>
+                                <f:else>
+                                    {newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                                </f:else>
+                            </f:if>
+                        </n:removeMediaTags>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </f:else>
+        </f:if>
+    </f:case>
+
+    <!-- Listenansicht mit Karten in Zeilen -->
+    <f:case value="3">
+        <div class="col-12 col-md-4 mb-3 mb-md-5">
+            <div class="news-item card article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}{f:if(condition: " {gib8ExternalNewsLink}
+            ", then: ' gib8ExternalNewsLink')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <f:if condition="{newsItem.mediaPreviews}">
+                <!-- media preview element -->
+                <f:then>
+                    <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                        <f:if condition="{mediaElement.originalResource.type} == 2">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <fp:image image="{mediaElement}" height="360" realCrop="false"
+                                          title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                          alt="{newsItem.title}"/>
+                            </n:link>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 4">
+                            <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 5">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <f:image image="{mediaElement}"
+                                         title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                         alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                         maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                            </n:link>
+                        </f:if>
+                    </f:alias>
+                </f:then>
+                <f:else>
+                    <f:if condition="{settings.displayDummyIfNoMedia}">
+                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                            <fp:image src="{settings.list.media.dummyImage}" height="360" realCrop="false" title="" alt=""/>
+                        </n:link>
+                    </f:if>
+                </f:else>
+            </f:if>
+            <div class="news-item__teaser card-body">
+                <h2 itemprop="headline">
+                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                </h2>
+                <f:if condition="{gib8ExternalNewsLink}">
+                    <f:then>
+                        <img class="gib8ExternalNewsLinkLogo" src="/typo3conf/ext/wdv_customer/Resources/Public/Images/Logos/gib8-logo-small-invers.svg"/>
+                        <div class="gib8ExternalNewsLinkHeadline">Achtsamkeit für alle</div>
+                        <div class="gib8ExternalNewsLinkSubline">Eine Initiative der AOK Rheinland Hamburg</div>
+                    </f:then>
+                    <f:else>
+                        <div class="row news-item__teaser-desc mb-5">
+                            <div class="col-12">
+                                <f:switch expression="{newsItem.type}">
+                                    <!-- Themenspecial -->
+                                    <f:case value="3">
+                                        <f:for each="{w:getSymbolsOfImpliedNewsFromThemenspecial(news: newsItem)}" as="impliedNewsSymbol">
+                                            <span class="news-item__teaser-desc_symbol {impliedNewsSymbol.cssClass}" title="{impliedNewsSymbol.typeTitle}" aria-label="{impliedNewsSymbol.typeTitle}"></span>
+                                            <f:comment><!--
+													<span class="news-item__teaser-desc_symbol {impliedNewsSymbol}"></span>
+												--></f:comment>
+                                        </f:for>
+                                    </f:case>
+
+                                    <!-- Rezeptsammlung -->
+                                    <f:case value="8">
+                                        <f:for each="{w:getSymbolsOfImpliedNewsFromRezeptsammlung(news: newsItem)}" as="impliedNewsSymbol">
+                                            <span class="news-item__teaser-desc_symbol {impliedNewsSymbol.cssClass}" title="{impliedNewsSymbol.typeTitle}" aria-label="{impliedNewsSymbol.typeTitle}"></span>
+                                            <f:comment><!--
+													<span class="news-item__teaser-desc_symbol {impliedNewsSymbol}"></span>
+												--></f:comment>
+                                        </f:for>
+                                    </f:case>
+                                </f:switch>
+                            </div>
+                        </div>
+                        <f:for each="{newsItem.newsAuthor}" as="newsAuthor">
+                            <div class="row news-item__teaser-author">
+                                <div class="col-3">
+                                    <f:if condition="{newsAuthor.image}">
+                                        <f:image image="{newsAuthor.image}" class="img-fluid rounded-circle" title="" alt="" maxWidth="48" maxHeight="48"/>
+                                    </f:if>
+                                </div>
+                                <div class="col-9">
+                                    <strong>
+                                        {f:if(condition: '{newsAuthor.title} > ""', then: '{newsAuthor.title} ')}
+                                        {f:if(condition: '{newsAuthor.firstname} > ""', then: '{newsAuthor.firstname} ')}
+                                        {f:if(condition: '{newsAuthor.lastname} > ""', then: '{newsAuthor.lastname}')}
+                                    </strong>
+                                    <p>
+                                        {f:if(condition: '{newsAuthor.position} > ""', then: '{newsAuthor.position}')}
+                                        {f:if(condition: '{newsAuthor.txWdvcustomerNewsauthorPosition2} > ""', then: '<br/>{newsAuthor.txWdvcustomerNewsauthorPosition2}')}
+                                    </p>
+                                </div>
+                            </div>
+                        </f:for>
+                    </f:else>
+                </f:if>
+            </div>
+        </div>
+        <div class="card-background-1{f:if(condition: " {gib8ExternalNewsLink}
+        ", then: ' gib8ExternalNewsLink')}"></div>
+        <div class="card-background-2{f:if(condition: " {gib8ExternalNewsLink}
+        ", then: ' gib8ExternalNewsLink')}"></div>
+
+        </div>
+
+    </f:case>
+
+    <!-- Listenansicht mit Karten im Slider -->
+    <f:case value="4">
+        <div class="col-12 pl-0 pr-0 pl-md-3 pr-md-3 mb-3 mb-md-5">
+            <div class="news-item card article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}{f:if(condition: " {gib8ExternalNewsLink}
+            ", then: ' gib8ExternalNewsLink')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <f:if condition="{newsItem.mediaPreviews}">
+                <!-- media preview element -->
+                <f:then>
+                    <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                        <f:if condition="{mediaElement.originalResource.type} == 2">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <fp:image image="{mediaElement}" height="360" realCrop="false"
+                                          title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                          alt="{newsItem.title}"/>
+                            </n:link>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 4">
+                            <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 5">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <f:image image="{mediaElement}"
+                                         title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                         alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                         maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                            </n:link>
+                        </f:if>
+                    </f:alias>
+                </f:then>
+                <f:else>
+                    <f:if condition="{settings.displayDummyIfNoMedia}">
+                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                            <fp:image src="{settings.list.media.dummyImage}" height="360" realCrop="false" title="" alt=""/>
+                        </n:link>
+                    </f:if>
+                </f:else>
+            </f:if>
+            <div class="news-item__teaser card-body">
+                <h2 itemprop="headline">
+                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                </h2>
+
+                <f:if condition="{gib8ExternalNewsLink}">
+                    <f:then>
+                        <img class="gib8ExternalNewsLinkLogo" src="/typo3conf/ext/wdv_customer/Resources/Public/Images/Logos/gib8-logo-small-invers.svg" alt=""/>
+                        <div class="gib8ExternalNewsLinkHeadline">Achtsamkeit für alle</div>
+                        <div class="gib8ExternalNewsLinkSubline">Eine Initiative der AOK Rheinland Hamburg</div>
+                    </f:then>
+                    <f:else>
+
+                        <div class="row news-item__teaser-desc mb-5">
+                            <div class="col-12">
+                                <f:switch expression="{newsItem.type}">
+                                    <!-- Themenspecial -->
+                                    <f:case value="3">
+                                        <f:for each="{w:getSymbolsOfImpliedNewsFromThemenspecial(news: newsItem)}" as="impliedNewsSymbol">
+                                            <span class="news-item__teaser-desc_symbol {impliedNewsSymbol.cssClass}" title="{impliedNewsSymbol.typeTitle}" aria-label="{impliedNewsSymbol.typeTitle}"></span>
+                                            <f:comment><!--
+													<span class="news-item__teaser-desc_symbol {impliedNewsSymbol}"></span>
+												--></f:comment>
+                                        </f:for>
+                                    </f:case>
+
+                                    <!-- Rezeptsammlung -->
+                                    <f:case value="8">
+                                        <f:for each="{w:getSymbolsOfImpliedNewsFromRezeptsammlung(news: newsItem)}" as="impliedNewsSymbol">
+                                            <span class="news-item__teaser-desc_symbol {impliedNewsSymbol.cssClass}" title="{impliedNewsSymbol.typeTitle}" aria-label="{impliedNewsSymbol.typeTitle}"></span>
+                                            <f:comment><!--
+													<span class="news-item__teaser-desc_symbol {impliedNewsSymbol}"></span>
+												--></f:comment>
+                                        </f:for>
+                                    </f:case>
+
+                                    <!-- Landingpage -->
+                                    <f:case value="12">
+                                        <f:for each="{w:getSymbolsOfImpliedNewsFromLandingpage(news: newsItem)}" as="impliedNewsSymbol">
+                                            <span class="news-item__teaser-desc_symbol {impliedNewsSymbol.cssClass}" title="{impliedNewsSymbol.typeTitle}" aria-label="{impliedNewsSymbol.typeTitle}"></span>
+                                            <f:comment><!--
+													<span class="news-item__teaser-desc_symbol {impliedNewsSymbol}"></span>
+												--></f:comment>
+                                        </f:for>
+                                    </f:case>
+                                </f:switch>
+                            </div>
+                        </div>
+
+                        <f:for each="{newsItem.newsAuthor}" as="newsAuthor">
+                            <div class="row news-item__teaser-author">
+                                <div class="col-3">
+                                    <f:if condition="{newsAuthor.image}">
+                                        <f:image image="{newsAuthor.image}" class="img-fluid rounded-circle" title="" alt="" maxWidth="48" maxHeight="48"/>
+                                    </f:if>
+                                </div>
+                                <div class="col-9">
+                                    <strong>
+                                        {f:if(condition: '{newsAuthor.title} > ""', then: '{newsAuthor.title} ')}
+                                        {f:if(condition: '{newsAuthor.firstname} > ""', then: '{newsAuthor.firstname} ')}
+                                        {f:if(condition: '{newsAuthor.lastname} > ""', then: '{newsAuthor.lastname}')}
+                                    </strong>
+                                    <p>
+                                        {f:if(condition: '{newsAuthor.position} > ""', then: '{newsAuthor.position}')}
+                                        {f:if(condition: '{newsAuthor.txWdvcustomerNewsauthorPosition2} > ""', then: '<br/>{newsAuthor.txWdvcustomerNewsauthorPosition2}')}
+                                    </p>
+                                </div>
+                            </div>
+                        </f:for>
+                    </f:else>
+                </f:if>
+            </div>
+        </div>
+        <div class="card-background-1{f:if(condition: " {gib8ExternalNewsLink}
+        ", then: ' gib8ExternalNewsLink')}"></div>
+        <div class="card-background-2{f:if(condition: " {gib8ExternalNewsLink}
+        ", then: ' gib8ExternalNewsLink')}"></div>
+        </div>
+    </f:case>
+
+    <!-- Listenansicht mit Karten im Slider ohne Stufen -->
+    <f:case value="40">
+        <div class="col-12 pl-0 pr-0 pl-md-3 pr-md-3 mb-3 mb-md-5">
+            <div class="news-item card article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}{f:if(condition: " {gib8ExternalNewsLink}
+            ", then: ' gib8ExternalNewsLink')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <f:if condition="{newsItem.mediaPreviews}">
+                <!-- media preview element -->
+                <f:then>
+                    <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                        <f:if condition="{mediaElement.originalResource.type} == 2">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <fp:image image="{mediaElement}" height="360" realCrop="false"
+                                          title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                          alt="{newsItem.title}"/>
+                            </n:link>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 4">
+                            <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 5">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <f:image image="{mediaElement}"
+                                         title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                         alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                         maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                            </n:link>
+                        </f:if>
+                    </f:alias>
+                </f:then>
+                <f:else>
+                    <f:if condition="{settings.displayDummyIfNoMedia}">
+                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                            <fp:image src="{settings.list.media.dummyImage}" height="360" realCrop="false" title="" alt=""/>
+                        </n:link>
+                    </f:if>
+                </f:else>
+            </f:if>
+
+            <div class="news-item__teaser card-body">
+                <h2 itemprop="headline">
+                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                </h2>
+
+                <f:if condition="{gib8ExternalNewsLink}">
+                    <f:then>
+                        <img class="gib8ExternalNewsLinkLogo" src="/typo3conf/ext/wdv_customer/Resources/Public/Images/Logos/gib8-logo-small-invers.svg" alt=""/>
+                        <div class="gib8ExternalNewsLinkHeadline">Achtsamkeit für alle</div>
+                        <div class="gib8ExternalNewsLinkSubline">Eine Initiative der AOK Rheinland Hamburg</div>
+                    </f:then>
+                    <f:else>
+                        <div class="row news-item__teaser-desc mb-5">
+                            <div class="col-12">
+                                <f:switch expression="{newsItem.type}">
+                                    <!-- Themenspecial -->
+                                    <f:case value="3">
+                                        <f:for each="{w:getSymbolsOfImpliedNewsFromThemenspecial(news: newsItem)}" as="impliedNewsSymbol">
+                                            <span class="news-item__teaser-desc_symbol {impliedNewsSymbol.cssClass}" title="{impliedNewsSymbol.typeTitle}" aria-label="{impliedNewsSymbol.typeTitle}"></span>
+                                            <f:comment><!--
+													<span class="news-item__teaser-desc_symbol {impliedNewsSymbol}"></span>
+												--></f:comment>
+                                        </f:for>
+                                    </f:case>
+
+                                    <!-- Rezeptsammlung -->
+                                    <f:case value="8">
+                                        <f:for each="{w:getSymbolsOfImpliedNewsFromRezeptsammlung(news: newsItem)}" as="impliedNewsSymbol">
+                                            <span class="news-item__teaser-desc_symbol {impliedNewsSymbol.cssClass}" title="{impliedNewsSymbol.typeTitle}" aria-label="{impliedNewsSymbol.typeTitle}"></span>
+                                            <f:comment><!--
+													<span class="news-item__teaser-desc_symbol {impliedNewsSymbol}"></span>
+												--></f:comment>
+                                        </f:for>
+                                    </f:case>
+
+                                    <!-- Landingpage -->
+                                    <f:case value="12">
+                                        <f:for each="{w:getSymbolsOfImpliedNewsFromLandingpage(news: newsItem)}" as="impliedNewsSymbol">
+                                            <span class="news-item__teaser-desc_symbol {impliedNewsSymbol.cssClass}" title="{impliedNewsSymbol.typeTitle}" aria-label="{impliedNewsSymbol.typeTitle}"></span>
+                                            <f:comment><!--
+													<span class="news-item__teaser-desc_symbol {impliedNewsSymbol}"></span>
+												--></f:comment>
+                                        </f:for>
+                                    </f:case>
+                                </f:switch>
+                            </div>
+                        </div>
+
+                        <f:for each="{newsItem.newsAuthor}" as="newsAuthor">
+                            <div class="row news-item__teaser-author">
+                                <div class="col-3">
+                                    <f:if condition="{newsAuthor.image}">
+                                        <f:image image="{newsAuthor.image}" class="img-fluid rounded-circle" title="" alt="" maxWidth="48" maxHeight="48"/>
+                                    </f:if>
+                                </div>
+                                <div class="col-9">
+                                    <strong>
+                                        {f:if(condition: '{newsAuthor.title} > ""', then: '{newsAuthor.title} ')}
+                                        {f:if(condition: '{newsAuthor.firstname} > ""', then: '{newsAuthor.firstname} ')}
+                                        {f:if(condition: '{newsAuthor.lastname} > ""', then: '{newsAuthor.lastname}')}
+                                    </strong>
+                                    <p>
+                                        {f:if(condition: '{newsAuthor.position} > ""', then: '{newsAuthor.position}')}
+                                        {f:if(condition: '{newsAuthor.txWdvcustomerNewsauthorPosition2} > ""', then: '<br/>{newsAuthor.txWdvcustomerNewsauthorPosition2}')}
+                                    </p>
+                                </div>
+                            </div>
+                        </f:for>
+                    </f:else>
+                </f:if>
+            </div>
+        </div>
+        <div class="card-background-1{f:if(condition: " {gib8ExternalNewsLink}
+        ", then: ' gib8ExternalNewsLink')}"></div>
+        <div class="card-background-2{f:if(condition: " {gib8ExternalNewsLink}
+        ", then: ' gib8ExternalNewsLink')}"></div>
+        </div>
+    </f:case>
+
+    <!-- Listenansicht mit Karten im Slider ohne Stufen mit Details -->
+    <f:case value="41">
+        <div class="col-12 pl-0 pr-0 pl-md-3 pr-md-3 mb-3 mb-md-5">
+            <div class="news-item card article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}{f:if(condition: " {gib8ExternalNewsLink}
+            ", then: ' gib8ExternalNewsLink')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <f:if condition="{newsItem.mediaPreviews}">
+                <!-- media preview element -->
+                <f:then>
+                    <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                        <f:if condition="{mediaElement.originalResource.type} == 2">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <fp:image image="{mediaElement}" height="360" realCrop="false"
+                                          title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                          alt="{newsItem.title}"/>
+                            </n:link>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 4">
+                            <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 5">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <f:image image="{mediaElement}"
+                                         title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                         alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                         maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                            </n:link>
+                        </f:if>
+                    </f:alias>
+                </f:then>
+                <f:else>
+                    <f:if condition="{settings.displayDummyIfNoMedia}">
+                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                            <fp:image src="{settings.list.media.dummyImage}" height="360" realCrop="false" title="" alt=""/>
+                        </n:link>
+                    </f:if>
+                </f:else>
+            </f:if>
+            <div class="news-item__teaser card-body">
+                <h2 itemprop="headline">
+                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                </h2>
+                <f:if condition="{gib8ExternalNewsLink}">
+                    <f:then>
+                        <img class="gib8ExternalNewsLinkLogo" src="/typo3conf/ext/wdv_customer/Resources/Public/Images/Logos/gib8-logo-small-invers.svg"/>
+                        <div class="gib8ExternalNewsLinkHeadline">Achtsamkeit für alle</div>
+                        <div class="gib8ExternalNewsLinkSubline">Eine Initiative der AOK Rheinland Hamburg</div>
+                    </f:then>
+                    <f:else>
+                        <div class="teaser">
+                            <f:if condition="{newsItem.teaser}">
+                                <f:then>
+                                    {newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                                </f:then>
+                                <f:else>
+                                    {newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                                </f:else>
+                            </f:if>
+                        </div>
+                    </f:else>
+                </f:if>
+            </div>
+        </div>
+        <div class="card-background-1{f:if(condition: " {gib8ExternalNewsLink}
+        ", then: ' gib8ExternalNewsLink')}"></div>
+        <div class="card-background-2{f:if(condition: " {gib8ExternalNewsLink}
+        ", then: ' gib8ExternalNewsLink')}"></div>
+        </div>
+    </f:case>
+
+    <!-- Listenansicht News-Menüpunkte in Dropdown -->
+    <f:case value="8">
+        <li>
+            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+        </li>
+    </f:case>
+
+    <!-- Listenansicht mit Teaser ohne Bild für Dropdown -->
+    <f:case value="9">
+        <div class="row news-list dropdown-teaser">
+            <div class="col-12">
+                <div class="news-item article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')} mb-5" itemscope="itemscope" itemtype="http://schema.org/Article">
+                    <div class="news-item__teaser">
+                        <div class="row news-item__teaser-desc mt-3 mb-3">
+                            <div class="col-12">
+                                <f:render partial="ArtikelTypeMeta" arguments="{newsItem: newsItem}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 itemprop="headline">
+                                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </f:case>
+
+    <!-- Listenansicht Einzel-Teaser 'Mitmachen und gewinnen' für Dropdown -->
+    <f:case value="10">
+        <div class="row news-list dropdown-teaser">
+            <div class="col-12">
+                <div class="news-item article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')} mb-5" itemscope="itemscope" itemtype="http://schema.org/Article">
+                    <f:if condition="{newsItem.mediaPreviews}">
+                        <!-- media preview element -->
+                        <f:then>
+                            <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                                <f:if condition="{mediaElement.originalResource.type} == 2">
+                                    <div class="news-item__image">
+                                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                            <f:render partial="Detail/MediaTeaser" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                        </n:link>
+                                </f:if>
+                                <f:if condition="{mediaElement.originalResource.type} == 4">
+                                    <div class="news-item__video">
+                                        <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                                </f:if>
+                                <f:if condition="{mediaElement.originalResource.type} == 5">
+                                    <div class="news-item__image">
+                                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                            <f:image image="{mediaElement}"
+                                                     title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                                     alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                                     maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                                        </n:link>
+                                </f:if>
+                            </f:alias>
+                        </f:then>
+                        <f:else>
+                            <div class="news-item__image">
+                                <f:if condition="{settings.displayDummyIfNoMedia}">
+                                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                        <f:render partial="Detail/MediaTeaser" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                    </n:link>
+                                </f:if>
+                        </f:else>
+                    </f:if>
+                </div>
+                <div class="news-item__teaser">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 itemprop="headline" class="my-3">
+                                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">{newsItem.title}</n:link>
+                            </h2>
+                            <n:removeMediaTags>
+                                <f:if condition="{newsItem.teaser}">
+                                    <f:then>
+                                        {newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                                    </f:then>
+                                    <f:else>
+                                        {newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+                                    </f:else>
+                                </f:if>
+                            </n:removeMediaTags>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </f:case>
+
+    <!-- Soundtrack Playlist Übersicht -->
+    <f:case value="140">
+        <f:if condition="{newsItem.internalurl}">
+            <f:link.typolink parameter="{newsItem.internalurl}" class="news-item full-playlist{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+                <f:render partial="NewsImage" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator, height:310}"/>
+                <div class="news-item__teaser">
+                    <f:if condition="{newsItem.title}">
+                        <h2 itemprop="headline">
+                            {newsItem.title}
+                        </h2>
+                    </f:if>
+                    <f:if condition="{newsItem.teaser}">
+                        <h3 itemprop="subline">
+                            {newsItem.teaser}
+                        </h3>
+                    </f:if>
+                </div>
+            </f:link.typolink>
+        </f:if>
+    </f:case>
+
+    <!-- Soundtrack Playlist Inhalt -->
+    <f:case value="142">
+        <f:switch expression="{newsItem.type}">
+            <!-- Artikel -->
+            <f:case value="141">
+                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="news-item track{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+                    <f:render partial="NewsImage" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator, height:157}"/>
+                    <div class="news-item__teaser">
+                        <f:if condition="{newsItem.title}">
+                            <h2 itemprop="headline">
+                                {newsItem.title}
+                            </h2>
+                        </f:if>
+                        <f:if condition="{newsItem.teaser}">
+                            <h3 itemprop="subline">
+                                {newsItem.teaser}
+                            </h3>
+                        </f:if>
+                    </div>
+                    <span class="icon right-arrow-50eb5d"></span>
+                </n:link>
+            </f:case>
+
+            <!-- Podcast -->
+            <f:case value="142">
+                <f:if condition="{newsItem.internalurl} > ''">
+                    <f:then>
+                        <f:link.typolink parameter="{newsItem.internalurl}" class="news-item podcast{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+                            <f:render section="soundtrack_podcast" arguments="{_all}"></f:render>
+                            <div class="cta">
+                                <div><span class="icon right-arrow-005e3f"></span>Zur Folge</div>
+                            </div>
+                        </f:link.typolink>
+                    </f:then>
+                    <f:else>
+                        <div class="news-item podcast{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+                            <f:render section="soundtrack_podcast" arguments="{_all}"></f:render>
+                        </div>
+                    </f:else>
+                </f:if>
+            </f:case>
+
+            <!-- Gewinnspiel -->
+            <f:case value="143">
+                <f:if condition="{newsItem.internalurl} > ''">
+                    <f:then>
+                        <f:link.typolink parameter="{newsItem.internalurl}" class="news-item podcast{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+                            <f:render section="soundtrack_podcast" arguments="{_all}"></f:render>
+                            <div class="cta">
+                                <div><span class="icon right-arrow-005e3f"></span>Teilnehmen</div>
+                            </div>
+                        </f:link.typolink>
+                    </f:then>
+                    <f:else>
+                        <div class="news-item podcast{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+                            <f:render section="soundtrack_podcast" arguments="{_all}"></f:render>
+                        </div>
+                    </f:else>
+                </f:if>
+            </f:case>
+
+            <!-- Gewinnspiel mit Formular -->
+            <f:case value="144">
+                <f:if condition="{newsItem.internalurl} > ''">
+                    <f:then>
+                        <f:link.typolink parameter="{newsItem.internalurl}" class="news-item podcast{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+
+                            <f:render section="soundtrack_podcast" arguments="{_all}"></f:render>
+
+                            <div class="cta">
+                                <div><span class="icon right-arrow-005e3f"></span>Teilnehmen</div>
+                            </div>
+
+                        </f:link.typolink>
+                    </f:then>
+                    <f:else>
+                        <div class="news-item podcast{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+
+                            <f:render section="soundtrack_podcast" arguments="{_all}"></f:render>
+
+                        </div>
+
+                    </f:else>
+                </f:if>
+            </f:case>
+
+            <!-- Infoartikel -->
+            <f:case value="145">
+                <f:if condition="{newsItem.internalurl} > ''">
+                    <f:then>
+                        <f:link.typolink parameter="{newsItem.internalurl}" class="news-item podcast{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+                            <f:render section="soundtrack_podcast" arguments="{_all}"></f:render>
+                            <div class="cta">
+                                <div><span class="icon right-arrow-005e3f"></span>Zum Artikel</div>
+                            </div>
+                        </f:link.typolink>
+                    </f:then>
+                    <f:else>
+                        <div class="news-item podcast{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+                            <f:render section="soundtrack_podcast" arguments="{_all}"></f:render>
+                        </div>
+                    </f:else>
+                </f:if>
+            </f:case>
+
+            <!-- Veranstaltung -->
+            <f:case value="146">
+                <div class="news-item podcast{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+                    <f:render section="soundtrack_podcast" arguments="{_all}"></f:render>
+
+                    <f:if condition="{newsItem.internalurl} > ''">
+                        <f:link.typolink parameter="{newsItem.internalurl}" parts-as="parts" class="veranstaltung">
+                            <div class="cta">
+                                <div><span class="icon right-arrow-005e3f"></span>{parts.title}</div>
+                            </div>
+                        </f:link.typolink>
+                    </f:if>
+
+                    <f:if condition="{newsItem.externalurl} > ''">
+                        <f:link.typolink parameter="{newsItem.externalurl}" parts-as="parts" class="veranstaltung">
+                            <div class="cta">
+                                <div><span class="icon right-arrow-005e3f"></span>{parts.title}</div>
+                            </div>
+                        </f:link.typolink>
+                    </f:if>
+                </div>
+            </f:case>
+        </f:switch>
+    </f:case>
+
+    <!-- Soundtrack - Playlistsübersicht im Slider -->
+    <f:case value="144">
+        <f:if condition="{newsItem.internalurl}">
+            <f:link.typolink parameter="{newsItem.internalurl}" class="news-item full-playlist{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+                <f:render partial="NewsImage" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator, height:310}"/>
+                <div class="news-item__teaser">
+                    <f:if condition="{newsItem.title}">
+                        <h2 itemprop="headline">
+                            {newsItem.title}
+                        </h2>
+                    </f:if>
+                    <f:if condition="{newsItem.teaser}">
+                        <h3 itemprop="subline">
+                            {newsItem.teaser}
+                        </h3>
+                    </f:if>
+                </div>
+            </f:link.typolink>
+        </f:if>
+    </f:case>
+
+    <!-- Familie - passende vigo-Artikel  -->
+    <f:case value="151">
+        <div class="col-12 pl-0 pr-0 pl-md-3 pr-md-3 mb-3 mb-md-5">
+            <div class="news-item article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}{f:if(condition: " {gib8ExternalNewsLink}
+            ", then: ' gib8ExternalNewsLink')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <f:if condition="{newsItem.mediaPreviews}">
+                <!-- media preview element -->
+                <f:then>
+                    <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                        <f:if condition="{mediaElement.originalResource.type} == 2">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <fp:image image="{mediaElement}" height="360" realCrop="false"
+                                          title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                          alt="{newsItem.title}"/>
+                            </n:link>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 4">
+                            <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 5">
+                            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                                <f:image image="{mediaElement}"
+                                         title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                         alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                         maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                            </n:link>
+                        </f:if>
+                    </f:alias>
+                </f:then>
+                <f:else>
+                    <f:if condition="{settings.displayDummyIfNoMedia}">
+                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+                            <fp:image src="{settings.list.media.dummyImage}" height="360" realCrop="false" title="" alt=""/>
+                        </n:link>
+                    </f:if>
+                </f:else>
+            </f:if>
+
+            <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="aok-arrowlink">{newsItem.title}
+                <svg width="16" height="16">
+                    <use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/Layout/sprite.svg')}#icon_arrow_right"></use>
+                </svg>
+            </n:link>
+
+        </div>
+        </div>
+    </f:case>
+
+    <!-- ADHS - passende vigo-Artikel  -->
+    <f:case value="152">
+        <div class="news-item article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}{f:if(condition: " {gib8ExternalNewsLink}
+        ", then: ' gib8ExternalNewsLink')}" itemscope="itemscope" itemtype="http://schema.org/Article">
+        <f:if condition="{newsItem.mediaPreviews}">
+            <!-- media preview element -->
+            <f:then>
+                <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                    <f:if condition="{mediaElement.originalResource.type} == 2">
+                        <fp:image image="{mediaElement}" height="480" width="380c" realCrop="true"
+                                  title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                  class="news-item-image"
+                                  alt="{newsItem.title}"/>
+                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="news-item-link">
+                            <div class="adhs-news-caption">
+                                {newsItem.title}
+                                <svg width="16" height="16">
+                                    <use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/Layout/sprite.svg')}#icon_arrow_right"></use>
+                                </svg>
+                            </div>
+                        </n:link>
+                    </f:if>
+                    <f:if condition="{mediaElement.originalResource.type} == 4">
+                        <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, newsItem: newsItem}"/>
+                    </f:if>
+                    <f:if condition="{mediaElement.originalResource.type} == 5">
+                        <f:image image="{mediaElement}"
+                                 title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}"
+                                 class="news-item-image"
+                                 alt="{newsItem.title}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                 maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+                        <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="news-item-link">
+                            <div class="adhs-news-caption">
+                                {newsItem.title}
+                                <svg width="16" height="16">
+                                    <use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/Layout/sprite.svg')}#icon_arrow_right"></use>
+                                </svg>
+                            </div>
+                        </n:link>
+                    </f:if>
+                </f:alias>
+            </f:then>
+            <f:else>
+                <f:if condition="{settings.displayDummyIfNoMedia}">
+                    <fp:image src="{settings.list.media.dummyImage}" height="360" realCrop="false" title="" alt="" class="news-item-image"/>
+                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="news-item-link">
+                        <div class="adhs-news-caption">
+                            {newsItem.title}
+                            <svg width="16" height="16">
+                                <use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/Layout/sprite.svg')}#icon_arrow_right"></use>
+                            </svg>
+                        </div>
+                    </n:link>
+                </f:if>
+            </f:else>
+        </f:if>
+        </div>
+    </f:case>
+
+    <!-- Default -->
+    <f:defaultCase>
+        No Layout selected!
+    </f:defaultCase>
+</f:switch>
+
+<f:section name="soundtrack_podcast">
+    <div class="news-item__teaser">
+        <f:if condition="{newsItem.title}">
+            <h2 itemprop="headline">
+                {newsItem.title}
+            </h2>
+        </f:if>
+        <f:if condition="{newsItem.teaser}">
+            <h3 itemprop="subline">
+                {newsItem.teaser}
+            </h3>
+        </f:if>
+    </div>
+
+    <f:render partial="NewsImage" arguments="{newsItem: newsItem, mediaElement: mediaElement, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator, height:320}"/>
+
+    <f:format.htmlentitiesDecode>{newsItem.bodytext}</f:format.htmlentitiesDecode>
+</f:section>
+
+</html>

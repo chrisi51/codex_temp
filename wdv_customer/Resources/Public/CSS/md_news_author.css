@@ -1,0 +1,34 @@
+.newsauthor-wrapper {margin:30px 0; text-align: center;}
+.newsauthor-wrapper img.img-responsive{border-radius:100%;    box-shadow: 0 5px 10px 1px #0000009c;    border: 3px solid #fff; display: block; margin: 0 auto 20px}
+.newsauthor-wrapper figcaption{display:none;}
+.newsauthor-wrapper .name{font-weight:bold;color:#222;margin-bottom:5px;}
+.newsauthor-wrapper .position{color:#222;font-size:0.8rem}
+
+.md-newsauthor .page-navigation {display: flex;flex-direction: column-reverse;}
+.md-newsauthor .page-navigation p {text-align:center;display:none}
+.md-newsauthor .page-navigation ul {list-style:none;display:flex;justify-content:center;margin:20px 0 0;padding:0;}
+.md-newsauthor .page-navigation ul li {padding:0 10px;}
+.md-newsauthor .page-navigation ul li.current {color: var(--aok-green); font-weight:bold;}
+.md-newsauthor .page-navigation ul li a {color:#222}
+.md-newsauthor .page-navigation ul li.previous a,
+.md-newsauthor .page-navigation ul li.next a {font-size:0;}
+.md-newsauthor .page-navigation ul li.next a:after {content:"\276F"}
+.md-newsauthor .page-navigation ul li.previous a:after {content:"\276E"}
+.md-newsauthor .page-navigation ul li.previous a:after,
+.md-newsauthor .page-navigation ul li.next a:after {font-size:1rem;border:1px solid #222;padding:0 10px;}
+
+
+
+.newsauthor-detail .author-wrapper .profil{display: flex; margin: 80px 0 40px; align-items: center; flex-wrap: wrap;}
+.newsauthor-detail .author-wrapper .profil .image{margin: 0 10% 40px 0;}
+.newsauthor-detail .author-wrapper .profil .image figure{margin:0}
+.newsauthor-detail .author-wrapper .profil .image img.img-responsive{border-radius:100%;    box-shadow: 0 5px 10px 1px #0000009c;    border: 3px solid #fff; display: block; margin: 0}
+.newsauthor-detail .author-wrapper .profil .text{ max-width: 420px;}
+.newsauthor-detail .author-wrapper .profil .text h1.name{font-weight:bold;color:#222;margin-bottom:5px;}
+.newsauthor-detail .author-wrapper .profil .text .position{color:#222;font-weight: bold;}
+.newsauthor-detail  h2{margin-top:1.5rem}
+
+
+.md-newsauthor .tx_news .news-item article{margin-bottom:40px;}
+.md-newsauthor .tx_news .news-item img{width:100%; height:auto;}
+.md-newsauthor .tx_news .news-item .news-item__teaser{padding:0}

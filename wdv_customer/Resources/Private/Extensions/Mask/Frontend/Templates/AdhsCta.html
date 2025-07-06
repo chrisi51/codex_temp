@@ -1,0 +1,17 @@
+<div class="adhs-cta{f:if(condition: '{data.tx_mask_cta_space_before}', then: ' adhs-cta--spaced-top')}{f:if(condition: '{data.tx_mask_cta_space_after}', then: ' adhs-cta--spaced-bottom')}">
+    <div class="container">
+        <div class="bg-dark-green cta">
+            <f:if condition="{data.tx_mask_cta_title}">
+                <h3>{data.tx_mask_cta_title}</h3>
+            </f:if>
+            <f:if condition="{data.tx_mask_cta_text}">
+                <p class="cta-text">{data.tx_mask_cta_text -> f:format.nl2br()}</p>
+            </f:if>
+            <f:if condition="{data.tx_mask_cta_link}">
+                <p>
+                    <f:link.typolink parameter="{data.tx_mask_cta_link}" target="_blank" class="family-button">{f:if(condition: '{data.tx_mask_link}', then: '{data.tx_mask_link}', else: 'Mehr erfahren')}</f:link.typolink>
+                </p>
+            </f:if>
+        </div>
+    </div>
+</div>

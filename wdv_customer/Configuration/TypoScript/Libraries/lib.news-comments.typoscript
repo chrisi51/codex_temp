@@ -1,0 +1,25 @@
+#
+#lib.news-comments = COA
+#
+##[request && (traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0] || [traverse(request.getParsedBody(), 'tx_news_pi1/news') > 0] || [traverse(request.getQueryParams(), 'tx_news_pi1/news_preview') > 0] || [traverse(request.getParsedBody(), 'tx_news_pi1/news_preview') > 0)]
+#
+#plugin.tx_pwcomments.settings {
+#      useEntryUid = 1
+#      entryUid = TEXT
+#      entryUid.data = GP:tx_news_pi1|news
+#   }
+#
+#    lib.news-comments {
+#        10 = TEXT
+#        10.value = COMMENTS
+#        10 >
+#
+#        20 < lib.pwCommentsIndex
+#        30 < lib.pwCommentsNew
+#    }
+#
+##[END]
+#
+## by this, we completely deactivate this implemented commenting functionality
+## you can re enable it for further extending the sites functionality
+#lib.news-comments >

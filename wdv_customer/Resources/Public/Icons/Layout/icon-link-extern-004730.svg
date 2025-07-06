@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_next</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Tools" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Slider-Contentkamapgne" transform="translate(-341.000000, -481.000000)" stroke="#004730">
+            <g id="Text">
+                <g transform="translate(150.000000, 152.000000)">
+                    <g id="Button" transform="translate(40.000000, 306.000000)">
+                        <g id="ic_next" transform="translate(158.000000, 30.000000) rotate(-45.000000) translate(-158.000000, -30.000000) translate(146.000000, 18.000000)">
+                            <g id="forward">
+                                <g transform="translate(4.000000, 3.000000)" stroke-width="2">
+                                    <path d="M0,9 L16,9" id="Line"></path>
+                                    <path d="M16,9 L7.93774223,0.937742233" id="Line"></path>
+                                    <path d="M16,9 L7.93774223,17.0622578" id="Line"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

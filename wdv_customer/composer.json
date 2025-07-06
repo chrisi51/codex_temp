@@ -1,0 +1,29 @@
+{
+  "name": "wdv/wdv-customer",
+  "type": "typo3-cms-extension",
+  "description": " - ",
+  "homepage": "https://www.simple-web-solutions.de",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Dennis Metz",
+      "role": "Developer",
+      "email": "info@simple-web-solutions.de",
+      "homepage": "https://www.simple-web-solutions.de/"
+    }
+  ],
+  "version": "1.0.0",
+  "require": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "WDV\\WdvCustomer\\": "Classes/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "wdv_customer"
+    }
+  }
+}

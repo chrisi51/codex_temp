@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-01-26T15:50:12Z" product-name="vigo_quiz">
+		<header/>
+		<body>
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="quiztype.description">
+				<source>quiztype</source>
+			</trans-unit>
+			<trans-unit id="facebookcard.description">
+				<source>Show facebook card</source>
+			</trans-unit>
+			<trans-unit id="facebookcarditem.description">
+				<source>facebookcard</source>
+			</trans-unit>
+			<trans-unit id="individualfeedback.description">
+				<source>individualfeedback</source>
+			</trans-unit>
+			<trans-unit id="individualfeedbackitem.description">
+				<source>Show individual feedback</source>
+			</trans-unit>
+			<trans-unit id="resulttexts.description">
+				<source>resulttexts</source>
+			</trans-unit>
+			<trans-unit id="questions.description">
+				<source>questions</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,47 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+    <div id="schwangerschaft-mood" class="{classes_wrapper->f:format.trim()}">
+        <div class="image">
+            <f:for each="{data.media}" as="bgimage">
+                <fp:image image="{bgimage}" width="1600" realCrop="false" title="{bgimage.originalResource.title}" alt="{bgimage.originalResource.alternative}" />
+            </f:for>
+        </div>
+        <div class="container">
+            <f:if condition="({data.header} || {data.tx_mask_header})">
+                <h1>
+                    <f:if condition="{data.header}">
+                        <div class="line1">{data.header -> f:format.nl2br()}</div>
+                    </f:if>
+                    <f:if condition="{data.tx_mask_header}">
+                        <div class="line2">{data.tx_mask_header -> f:format.nl2br()}</div>
+                    </f:if>
+                </h1>
+            </f:if>
+        </div>
+
+    </div>
+    
+</f:section>
+
+
+<f:comment>
+<f:for each="{data.media}" as="file">
+    <f:image image="{file}" width="200" />
+    {file.description}
+</f:for>
+<f:if condition="{data.header}">
+    {data.header -> f:format.nl2br()}
+</f:if>
+<f:if condition="{data.tx_mask_header}">
+    {data.tx_mask_header -> f:format.nl2br()}
+</f:if>
+</f:comment>
+
+

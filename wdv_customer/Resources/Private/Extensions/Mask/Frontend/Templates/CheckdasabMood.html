@@ -1,0 +1,35 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+        xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+        data-namespace-typo3-fluid="true"
+>
+<div id="checkdasab-mood">
+    <div class="image">
+        <f:for each="{data.media}" as="bgimage">
+            <fp:image image="{bgimage}" width="1440" realCrop="false" title="{bgimage.originalResource.title}" alt="{bgimage.originalResource.alternative}" />
+        </f:for>
+    </div>
+    <div class="container">
+        <div class="content">
+            <f:if condition="{data.subheader}">
+                <h1>{data.subheader}</h1>
+            </f:if>
+            <f:if condition="{data.bodytext}">
+                {data.bodytext -> f:format.html()}
+            </f:if>
+        </div>
+    </div>
+</div>
+
+<f:comment><!--
+    <f:if condition="{data.subheader}">
+        {data.subheader}
+    </f:if>
+    <f:if condition="{data.bodytext}">
+        {data.bodytext -> f:format.html()}
+    </f:if>
+    <f:for each="{data.media}" as="file">
+        <f:image image="{file}" width="200" />
+        {file.description}
+    </f:for>
+--></f:comment>
+</html>

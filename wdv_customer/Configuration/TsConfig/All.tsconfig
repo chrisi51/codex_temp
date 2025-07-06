@@ -1,0 +1,9 @@
+#
+# PageTS for wdv
+#
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wdv_customer/Configuration/TsConfig/Page/Mod/WebLayout/BackendLayouts.tsconfig">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wdv_customer/Configuration/TsConfig/TCEFORM.tsconfig">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wdv_customer/Configuration/TsConfig/TCEMAIN.tsconfig">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wdv_customer/Configuration/TsConfig/Page/Mod/Wizards/newContentElement.tsconfig">
+
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:wdv_customer/Configuration/TsConfig/Extensions/" extensions="tsconfig">

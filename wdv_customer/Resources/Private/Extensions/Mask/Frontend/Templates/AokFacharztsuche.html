@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      xmlns:vhs="FluidTYPO3\Vhs\ViewHelpers"
+      data-namespace-typo3-fluid="true">
+    
+<div class="aok_arztsuche">
+    <div class="row">
+        <div class="col-md-5 mb-3 mb-md-4">
+            <label for="aok_arztsuche_search_{data.uid}" class="" title="">Suchbegriff</label>
+            <div class="">
+                <select class="form-control aok_arztsuche_search" id="aok_arztsuche_search_{data.uid}" name="aok_arztsuche_search">
+                    
+                    <f:if condition="{data.bodytext ->vhs:format.trim() -> f:format.nl2br() -> vhs:iterator.explode(glue: '<br />') -> f:count()} > 1">
+                        <f:then>
+                            <option value="">bitte wählen</option>
+                            <f:for each="{data.bodytext -> f:format.nl2br() -> vhs:iterator.explode(glue: '<br />')}" as="elem" iteration="fooIterator">
+                                <vhs:variable.set name="elem_exploded">{elem -> vhs:iterator.explode(glue: '|')}</vhs:variable.set>
+                                <option value="{elem_exploded.1 -> vhs:format.trim()}">{elem_exploded.0 -> vhs:format.trim()}</option>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <f:for each="{data.bodytext ->vhs:format.trim() -> f:format.nl2br() -> vhs:iterator.explode(glue: '<br />')}" as="elem" iteration="fooIterator">
+                                <vhs:variable.set name="elem_exploded">{elem -> vhs:iterator.explode(glue: '|')}</vhs:variable.set>
+                                <option value="{elem_exploded.1 -> vhs:format.trim()}" selected>{elem_exploded.0 -> vhs:format.trim()}</option>
+                            </f:for>
+                        </f:else>
+                    </f:if>
+                    
+                </select>
+            </div>
+        </div>
+        <div class="col-md-5 mb-3 mb-md-4">
+            <label for="aok_arztsuche_location_{data.uid}" class="" title="">PLZ / Ort / Straße</label>
+            <div class=""><input class="form-control aok_arztsuche_location" placeholder="z.B. 50667, Berlin, ..." autocomplete="off" id="aok_arztsuche_location_{data.uid}" type="text" name="aok_arztsuche_location" value=""></div>
+        </div>
+        <div class="col-md-2 mb-3 mb-md-4">
+            <a href="https://www.aok.de/pk/cl/uni/medizin-versorgung/arztsuche/suche/?radius=10000&initial_search=true" target="_blank">
+                <button class="btn btn-lg">Suchen<span class="icon right-arrow"></span></button>
+            </a>
+        </div>
+</div>

@@ -1,0 +1,30 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Vigo Quiz</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.selection>
+                        <exclude>0</exclude><label>Auswahl Selbsttest/Quiz</label><config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <label>Bitte wählen</label>
+                                        <value></value>
+                                    </numIndex>
+                                </items>
+                                <foreign_table>tx_vigoquiz_domain_model_vigoquiz</foreign_table>
+                                <foreign_table_where>ORDER BY uid DESC</foreign_table_where>
+                                <maxitems>1</maxitems>
+                            </config>
+                    </settings.selection>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

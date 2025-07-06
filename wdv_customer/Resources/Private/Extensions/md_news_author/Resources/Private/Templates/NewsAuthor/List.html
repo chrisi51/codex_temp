@@ -1,0 +1,65 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:md="http://typo3.org/ns/Mediadreams/MdNewsAuthor/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="main">
+	<!--TYPO3SEARCH_end-->
+	<div  class="newsauthor-list" >
+		<f:if condition="{settings.list.alphabeticalNavigation}">
+			<div class="alphabetical-nav">
+				<span class="letter first"><f:link.page><f:translate key="tx_newsauthor_domain_model_newsauthor.all"/></f:link.page></span>
+				<f:for each="{letters}" as="letter">
+					<f:if condition="{selectedLetter} == {letter}">
+						<f:then>
+							<span class="letter active"><f:link.action arguments="{selectedLetter:letter}">{letter}</f:link.action></span>
+						</f:then>
+						<f:else>
+							<f:if condition="{activeLetters.{letter}}">
+								<f:then>
+									<span class="letter"><f:link.action arguments="{selectedLetter:letter}">{letter}</f:link.action></span>
+								</f:then>
+								<f:else>
+									<span class="letter">{letter}</span>
+								</f:else>
+							</f:if>
+						</f:else>
+					</f:if>
+				</f:for>
+			</div>
+		</f:if>
+		
+		<div class="row columns four-columns mt-0 mb-0 pt-0 pb-0 aok-links">
+			<f:for each="{pagination.paginator.paginatedItems}" as="newsAuthor">
+				<div class="newsauthor-wrapper col-xs-12 col-sm-6 col-md-3 col-lg-3">
+					<f:link.action
+						pageUid="{settings.detailPid}"
+						action="show"
+						arguments="{newsAuthor : newsAuthor}"
+						class="detail"
+						title="{f:translate(key:'tx_newsauthor_domain_model_newsauthor.detailLinkTitle', arguments:'{0: \'{newsAuthor.firstname} {newsAuthor.lastname}\'}')}">
+						
+						<f:if condition="{newsAuthor.image}">
+							<f:render partial="Image" arguments="{img:newsAuthor.image, imgWidth:100, imgHeight:100, cssClass:'img-responsive'}" />
+						</f:if>
+						
+						<div class="name">
+							{md:ShowAuthorName(author: newsAuthor)}
+						</div>
+						<div class="position">
+							{newsAuthor.position}
+						</div>
+					</f:link.action>
+				</div>
+			</f:for>
+		</div>
+	
+	<f:if condition="{settings.authorList.paginate.insertBelow}">
+		<f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+	</f:if>
+</div>
+
+<!--TYPO3SEARCH_begin-->
+
+</f:section>

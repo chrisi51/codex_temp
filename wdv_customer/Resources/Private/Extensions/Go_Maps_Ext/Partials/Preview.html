@@ -1,0 +1,33 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<div class="js-gme-preview" data-cookie="{settings.preview.setCookieToShowMapAlways}">
+
+	<f:if condition="{map.previewImage}">
+		<f:then>
+			<div class="go-maps-ext-wrapper" style="background-image: url('<f:uri.image image="{map.previewImage}" />'">
+		</f:then>
+		<f:else>
+			<f:if condition="{settings.preview.image}">
+				<f:then>
+					<div class="go-maps-ext-wrapper" style="background-image: url('{settings.preview.image}'">
+				</f:then>
+				<f:else>
+					<div class="go-maps-ext-wrapper">
+				</f:else>
+			</f:if>
+		</f:else>
+	</f:if>
+
+		<div class="go-maps-ext-hint">
+			Zum Aktivieren der Google Karte klicken Sie bitte den Link. Wir möchten Sie darauf hinweisen,
+			dass nach der Aktivierung Daten an Google übermittelt werden. Weitere Informationen unter
+			<f:link.page pageUid="130" target="_blank">Datenschutzerklärung</f:link.page>
+			<br />
+			<a href="javascript:;" title="{f:translate(key:'tx_gomapsext_templates_map_preview.link')}" class="js-gme-show" data-library="{googleMapsLibrary}">Google Maps aktivieren</a>
+		</div>
+
+	</div>
+
+</div>
+
+</html>

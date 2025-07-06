@@ -1,0 +1,21 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Allgemein</sheetTitle>
+                <type>array</type>
+                <el>
+                    <rotationtime>
+                        <label>Rotation zwischen den Anzeigen in Minuten</label><config>
+                                <type>input</type>
+                                <default>1</default>
+                            </config>
+                    </rotationtime>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

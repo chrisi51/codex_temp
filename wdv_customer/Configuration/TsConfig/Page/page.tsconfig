@@ -1,0 +1,7 @@
+options.clearCache.all = 1
+
+TCAdefaults {
+	sys_file_reference {
+		showinpreview = 1
+	}
+}

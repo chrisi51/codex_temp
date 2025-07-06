@@ -1,0 +1,27 @@
+tx_gridelements.setup.color_container {
+
+	title = ColorContainer
+	description = Ein Container, der die Hintergrundfarbe setzt
+	icon = EXT:wdv_elements/Resources/Public/Icons/Gridelements/dummy.png
+	flexformDS = FILE:EXT:wdv_customer/Configuration/FlexForms/Extensions/tx_gridelements.color_container.xml
+
+	topLevelLayout = 0
+	frame = 1
+
+	config {
+
+		colCount = 1
+		rowCount = 1
+
+		rows {
+			1 {
+				columns {
+					1 {
+						name = Inhalt
+						colPos = 600
+					}
+				}
+			}
+		}
+	}
+}

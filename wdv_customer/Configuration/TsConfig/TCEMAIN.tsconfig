@@ -1,0 +1,34 @@
+####################
+#### RTE Preset ####
+####################
+RTE.default.preset = vigo
+RTE.default.buttons.link.options.removeItems = folder
+
+TCEMAIN {
+    # Frontend-Cache bei Änderungen auf Seiten / Ordner automatisch clearen
+    clearCacheCmd = 195,194,193,192,191,190,196,292,324,329,330,331
+
+    # Konfiguration für Linkhandler ab TYPO3 8.6
+    linkHandler {
+        artikel {
+            handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
+            label = Artikel
+
+            configuration {
+                table = tx_news_domain_model_news
+                storagePid = 189,292,324,905,919
+                # hidePageTree = 1
+            }
+            scanAfter = page
+        }
+        popup {
+            handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
+            label = Seiteninhalte als Popup
+
+            configuration {
+                table = pages
+            }
+            scanAfter = artikel
+        }
+    }
+}

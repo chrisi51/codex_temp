@@ -1,0 +1,121 @@
+.row.cookie-opener span.cookie-set {
+    color: #444 !important;
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #f6f5f4;
+    padding: 10px;
+    font-family: "FuturaBTWXX-Bold";
+}
+
+span.cookie-set{color: var(--aok-green) !important;}
+span.cookie-set:hover{text-decoration: underline;}
+
+
+.wx_consentbanner{
+	font-family:inherit;
+	z-index: 10000;
+}
+.wx_consentbanner .title {margin-bottom:10px;}
+.wx_consentbanner .wx_consentbanner_readonly {display: none;}
+
+.wx_consentbanner #CookieBox{
+	top: 10%;
+	width:50%;
+	max-width: 100%;
+	transform: translate(-50%,0);
+	padding:70px 20px 20px;
+	box-sizing: border-box;
+	overflow: auto;
+	max-height:89vh;
+}
+.wx_consentbanner #CookieBox a{font-size:inherit;color: #222 !important;}
+.wx_consentbanner #CookieBox h2{
+	text-align:left;
+	font-size: 1.714em !important;
+	font-weight: 400 !important;
+	color: #222 !important;
+}
+.wx_consentbanner #CookieBox p{
+	font-size: 1.143em !important;
+	line-height: 1.5 !important;
+	color: #222 !important;
+}
+#CookieBox .wx_consentbanner_category h3,
+#CookieBox .cookie-info td{
+	color: #222 !important;
+}
+.wx_consentbanner_buttons{
+	flex-flow: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.wx_consentbanner_buttons > div{
+	width:auto;
+	font-family: "FuturaBTWXX-Book";
+}
+
+
+#CookieBox .box-cookie-management-in {
+    overflow: unset;
+    max-height: unset; 
+    margin-top: 30px;
+}
+
+.wx_consentbanner #CookieBox .wx_consentbanner_buttons a.cookie-btn{
+    background-color: #00ADEF !important;
+    background-color: var(--aok-green) !important;
+    color: #FFFFFF !important;
+    padding: 15px 40px !important;
+    line-height: 1.42857 !important;
+    font-size: 1.469898em !important;
+    font-weight: 400 !important;
+    border: 1px solid var(--aok-green) !important;
+    border-radius: 4px !important;
+    margin: 15px 10px 25px;;    
+}
+.wx_consentbanner #CookieBox .wx_consentbanner_buttons a.cookie-nobtn{
+    border: 1px solid var(--aok-green) !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+    color: var(--aok-green) !important;
+    background-color: #fff !important;
+    padding: 8px 30px !important;
+    line-height: 1.42857 !important;
+    font-size: 15px !important;
+    font-weight: 400 !important;
+        font-family: "FuturaBTWXX-Bold" !important;
+    margin: 0px 10px 10px;	
+}
+
+.wx_consentbanner #CookieBox .cookie-management a::before{display:none;}
+
+.wx_consentbanner_legals{
+	justify-content: flex-start;
+	margin-top:15px;
+	margin-bottom:10px;
+	font-family:FuturaBTWXX-Bold;
+	font-size: .9rem;
+}
+
+
+@media (max-width: 1000px){
+	.wx_consentbanner #CookieBox {
+    	    width: auto !important;
+            left: 5% !important;
+            right: 5% !important;
+	    bottom: unset;
+	    padding-top: 20px;
+	    transform:none;
+	}
+}
+
+@media (max-width: 500px){
+	.wx_consentbanner_buttons > div {
+	    width: 100%;
+	}
+	.wx_consentbanner .wx_consentbanner_legals {
+	    justify-content: space-between;
+	}
+}

@@ -1,0 +1,48 @@
+/*
+ * COLORS
+ * https://www.aok.de/design/
+ */
+
+:root {
+    --aok-green:        #005e3f;
+    --aok-grass-green:  #18AB42;
+    --aok-light-green:  #50eb5d;
+    --aok-dark-green:   #004730;
+    --aok-green-hover:  #91f54a;
+    --aok-pastel-green: #eefaea;
+
+    --aok-blue:         #83eaf2;
+    --aok-light-blue:   #e8f4f2;
+    --aok-pastel-blue:  #d8ece8;
+
+    --aok-yellow:       #fff133;
+
+    --aok-black:        #293033;
+    --aok-grey:         #6f7a80;
+    --aok-grey-1:       #dfe3e6;
+    --aok-grey-3:       #afb6bc;
+    
+    --aok-softest-grey: #fafaf9;
+
+    --aok-beige:        #f5f4e9;
+    --aok-sand:         #f8f5e3;
+}
+
+.aok-grey{color:var(--aok-grey)}
+.aok-white{color:#ffffff}
+
+.aok-green{color:var(--aok-green)}
+.aok-grass-green{color:var(--aok-grass-green)}
+.aok-light-green{color:var(--aok-light-green)}
+.aok-dark-green{color:var(--aok-dark-green)}
+.aok-green-hover{color:var(--aok-green-hover)}
+.aok-pastel-green{color:var(--aok-pastel-green)}
+
+
+
+.back-aok-green{background: var(--aok-green);color:#fff;}
+.back-aok-white{background: #fff;}
+.back-aok-light-blue{background: var(--aok-light-blue);}
+.back-aok-pastel-green{background: var(--aok-pastel-green);}
+.back-aok-pastel-blue{background: var(--aok-pastel-blue);}
+.back-aok-sand{background: var(--aok-sand);}

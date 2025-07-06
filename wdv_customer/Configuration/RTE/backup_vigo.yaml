@@ -1,0 +1,169 @@
+
+# load standard
+imports:
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Processing.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml" }
+
+# overwrite settings
+editor:
+  externalPlugins:
+    icomoon:
+      resource: "EXT:wdv_customer/Resources/Public/JavaScript/rte-plugins/icomoon/"
+
+  config:
+
+    contentsCss: "EXT:wdv_customer/Resources/Public/CSS/rte.css"
+    uiColor: "#699000"
+
+    language:
+      content: "de"
+      ui: "de"
+
+    defaultContentLanguage: "de"
+    defaultLanguage: "de"
+
+    format_tags: "p;h2;h3;h4;h5"
+    # format_tags: "p"
+
+    stylesSet:
+          - { name: "Größerer Text", element: "p", attributes: { class: "lead" } }
+
+    toolbarGroups:
+      - { name: styles, groups: [ styles, format ] }
+      - { name: colors }
+      - { name: basicstyles, groups: [ basicstyles ] }
+      - { name: paragraph, groups: [ list, indent, blocks, align ] }
+      - { name: links, groups: [ links ] }
+      - { name: clipboard, groups: [ clipboard, cleanup, undo ] }
+      - { name: insert, groups: [ insert ] }
+      - { name: tools, groups: [ table, specialchar, insertcharacters ] }
+      - { name: document, groups: [ mode ] }
+      - { name: CKAwesome, groups: [Image, ckawesome] }
+
+    justifyClasses:
+      - text-left
+      - text-center
+      - text-right
+      - text-justify
+
+    extraPlugins:
+      - justify
+      - colorbutton
+      - icomoon
+
+    removePlugins:
+      - image
+      - softhyphen
+
+    removeButtons:
+      - Anchor
+      - Underline
+      - Strike
+      - Superscript
+      - Subscript
+
+    extraAllowedContent: "p(*);span(*)"
+    colorButton_colors: "white/FFF,grün/1B642A"
+    colorButton_foreStyle:
+        element: 'span'
+        styles: { 'color': '#(color)' }
+#        overrides: { 'element' : 'span' }
+
+    icomoon_css_path: 'EXT:wdv_customer/Resources/Public/CSS/iconfont.css'
+    icomoon_manifest_path: 'EXT:wdv_customer/Resources/Public/Fonts/icomoon/config.json'
+
+
+buttons:
+  link:
+    relAttribute:
+      enabled: true
+    properties:
+      class:
+        allowedClasses: 'link-internal,link-internal-btn,link-download,link-download-btn,link-download-btn-ico,link-folder,link-folder-btn,link-external,link-external-btn,link-external-btn-facebook,link-mail,link-mail-btn,link-artikel,link-artikel-btn,link-popup,link-popup-btn'
+    page:
+      properties:
+        class:
+          default: 'link-internal'
+    file:
+      properties:
+        class:
+          default: 'link-download'
+    folder:
+      properties:
+        class:
+          default: 'link-folder'
+    url:
+      properties:
+        class:
+          default: 'link-external'
+    mail:
+      properties:
+        class:
+          default: 'link-mail'
+    artikel:
+      properties:
+        class:
+          default: 'link-artikel'
+    popup:
+      properties:
+        class:
+          default: 'link-popup'
+
+classesAnchor:
+  linkInternal:
+    class: 'link-internal'
+    type: 'page'
+  linkInternalButton:
+    class: 'link-internal-btn'
+    type: 'page'
+  linkDownload:
+    class: 'link-download'
+    type: 'file'
+    target: '_blank'
+  linkDownloadButton:
+    class: 'link-download-btn'
+    type: 'file'
+    target: '_blank'
+  linkDownloadButtonIcon:
+    class: 'link-download-btn-ico'
+    type: 'file'
+    target: '_blank'
+  linkFolder:
+    class: 'link-folder'
+    type: 'folder'
+    target: '_blank'
+  linkFolderButton:
+    class: 'link-folder-btn'
+    type: 'folder'
+    target: '_blank'
+  linkExternal:
+    class: 'link-external'
+    type: 'url'
+    target: '_blank'
+  linkExternalButton:
+    class: 'link-external-btn'
+    type: 'url'
+    target: '_blank'
+  linkExternalFacebookButton:
+    class: 'link-external-btn-facebook'
+    type: 'url'
+    target: '_blank'
+  linkMail:
+    class: 'link-mail'
+    type: 'mail'
+  linkMailButton:
+    class: 'link-mail-btn'
+    type: 'mail'
+  linkArtikel:
+    class: 'link-artikel'
+    type: 'artikel'
+  linkArtikelButton:
+    class: 'link-artikel-btn'
+    type: 'artikel'
+  linkPopup:
+    class: 'link-popup'
+    type: 'popup'
+  linkPopupButton:
+    class: 'link-popup-btn'
+    type: 'popup'

@@ -1,0 +1,40 @@
+
+lib.copyrightImage = IMG_RESOURCE
+lib.copyrightImage {
+
+    file = GIFBUILDER
+    file {
+
+        XY = [10.w],[10.h]
+        format = jpg
+        quality = 100
+
+        10 = IMAGE
+        10 {
+
+            file {
+
+                import.field = imageUid
+                treatIdAsReference = 1
+                width = 500
+                height = 334c
+            }
+        }
+        20 = BOX
+        20 {
+
+            color = #FFFFFF
+            opacity = 70
+            dimensions = [10.w]-[30.w]-10,[10.h]-20,[30.w]+20,[30.h]+20
+        }
+        30 = TEXT
+        30 {
+
+            text.data = field:copyright
+            fontSize = 13
+            fontColor = #000000
+            fontFile = path/to/my/font.ttf
+            offset = [10.w]-[30.w]-5,[10.h]-5
+        }
+    }
+}

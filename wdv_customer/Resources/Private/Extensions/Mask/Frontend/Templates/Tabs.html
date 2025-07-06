@@ -1,0 +1,32 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="tx_mask tabs mt-3 mb-3 {f:if(condition: data.tx_wdvcustomer_content_breakoutleft, then: 'breakout-md-left')}{f:if(condition: data.tx_wdvcustomer_content_breakoutright, then: ' breakout-md-right')}" id="c{data.uid}">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+        <f:for each="{data.tx_mask_item}" as="data_item" iteration="iterator">
+            <li class="nav-item">
+                <a class="nav-link{f:if(condition: '{iterator.isFirst}', then: ' active', else: '')}" id="tab{data.uid}{iterator.cycle}" data-toggle="tab" href="#tab{data.uid}{iterator.cycle}content" role="tab" aria-controls="tab{data.uid}{iterator.cycle}content" aria-selected="{f:if(condition: '{iterator.isFirst}', then: 'true', else: 'false')}">
+                    {data_item.tx_mask_header}
+                </a>
+            </li>
+        </f:for>
+
+    </ul>
+    <div class="tab-content">
+
+        <f:for each="{data.tx_mask_item}" as="data_item" iteration="iterator">
+
+            <div class="tab-pane fade{f:if(condition: '{iterator.isFirst}', then: ' show active')}" id="tab{data.uid}{iterator.cycle}content" role="tabpanel" aria-labelledby="tab{data.uid}{iterator.cycle}">
+                <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data_item.tx_mask_bodytext}</f:format.html>
+            </div>
+
+        </f:for>
+
+    </div>
+</div>
+
+</html>
+

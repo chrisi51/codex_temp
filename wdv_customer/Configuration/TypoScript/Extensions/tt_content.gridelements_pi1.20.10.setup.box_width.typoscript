@@ -1,0 +1,35 @@
+
+tt_content.gridelements_pi1.20.10.setup {
+
+	box_width < lib.gridelements.defaultGridSetup
+	box_width {
+
+		cObject = FLUIDTEMPLATE
+		cObject {
+			templateName = box_width
+
+			templateRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Gridelements/Templates/
+			partialRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Gridelements/Partials/
+			layoutRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Gridelements/Layouts/
+
+			variables {
+			}
+		}
+	}
+}
+
+tt_content.b13-box_width < lib.contentElement
+tt_content.b13-box_width {
+    templateName = box_width
+    templateRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Container/Templates/
+    partialRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Container/Partials/
+    layoutRootPaths.20 = EXT:wdv_customer/Resources/Private/Extensions/Container/Layouts/
+
+    dataProcessing {
+        3100 = B13\Container\DataProcessing\ContainerProcessor
+        3100 {
+            colPos = 3100
+            as = children_3100
+        }
+    }
+}

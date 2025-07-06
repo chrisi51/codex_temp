@@ -1,0 +1,8 @@
+page {
+    includeCSS.focuspoint >
+    includeJSFooter.focuspoint >
+    jsFooterInline.1001 >
+    cssInline.1001 >
+}
+
+lib.pageBackground >

@@ -1,0 +1,35 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="tx_mask antwortbox mt-4 mb-5 {f:if(condition: data.tx_wdvcustomer_content_breakoutleft, then: 'breakout-md-left')}{f:if(condition: data.tx_wdvcustomer_content_breakoutright, then: ' breakout-md-right')}" id="c{data.uid}">
+
+    <div class="row no-gutters">
+        
+        <div class="col-12">
+            <div class="antwort">
+                <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
+                <img class="pfeil" src="typo3conf/ext/wdv_customer/Resources/Public/Images/Layout/antwort-pfeil.svg" />
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="row mt-4">
+        
+        <div class="col-9 col-md-11 text-right">
+            <div class="expert-infos">
+                <h4><f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'title')} > ''">{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'title')} </f:if><f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'firstname')} > ''">{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'firstname')}&nbsp;</f:if><f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'lastname')} > ''">{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'lastname')}</f:if></h4>
+            </div>
+        </div>
+
+        <div class="col-2 col-md-1 pl-0 text-right">
+            <f:if condition="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'image')} > ''">
+                <f:image image="{w:getAuthorInformationsFromUid(authoruid: data.tx_mask_expert, field: 'image')}" class="img-fluid rounded-circle" title="Expertenbild" alt="Expertenbild" maxWidth="48" maxHeight="48" />
+            </f:if>
+        </div>
+        
+    </div>
+</div>
+
+</html>

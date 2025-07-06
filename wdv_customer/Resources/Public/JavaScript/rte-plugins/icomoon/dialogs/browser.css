@@ -1,0 +1,4 @@
+#icomoon-browser {display:flex; flex-wrap: wrap;}
+#icomoon-browser button{display:flex; flex-direction: column; justify-content: center;align-items: center; border-radius:5px;padding:5px;}
+#icomoon-browser button.selected{background:#a5bc67;}
+#icomoon-browser button i{font-size:2em;}

@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+	<script>
+		var rotationtime = {data.flexform_rotationtime};
+	</script>
+
+
+
+	<f:render section="Content" arguments="{_all}" />
+
+</f:section>
+
+<f:section name="Content">
+
+	<div id="displayanzeige_rotator">
+		
+			{data.tx_gridelements_view_columns.600 -> f:format.raw()}
+
+	</div>
+
+</f:section>

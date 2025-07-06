@@ -1,0 +1,328 @@
+.interactContainer{
+    margin: 0 0 40px 0;
+    display: block;
+    position: relative;
+}
+.pad5{
+    padding: 0 5px;
+}
+.absolutePos{
+    position: absolute;
+    display: inline-block;
+    height: auto;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+.interactBox {
+    border: 5px solid #99BE16;
+    padding: 5px;
+    margin: 0 0 20px 0;
+    -webkit-box-shadow: 0 0px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0px 2px rgba(0, 0, 0, 0.75);
+    background: #fff;
+}
+.interactContainer ul{
+    margin: 0;
+}
+
+span.txtGrey{
+    color:#999999;
+}
+
+.center{
+    text-align: center;
+}
+.index98{
+    z-index: 98;
+}
+.index99{
+    z-index: 99;
+}
+.zindexHigh{
+    z-index: 11
+}
+.zindexLow{
+    z-index: 1
+}
+.txtGreen{
+    color: #99be16 ;
+}
+
+#interactImpfenContainer .table-condensed th,
+#interactImpfenContainer2 .table-condensed th, {
+    padding: 2px 2px;
+
+}
+.table-condensed td{
+    padding: 0;
+}
+
+#interactImpfenContainer .table th,
+#interactImpfenContainer2 .table th {
+
+}
+
+#interactImpfenContainer .table td,
+#interactImpfenContainer2 .table td {
+
+    line-height: 20px;
+    height: 40px;
+}
+
+#interactImpfenContainer td:nth-child(1):focus,
+#interactImpfenContainer2 td:nth-child(1):focus,
+#interactImpfenContainer td:nth-child(1):focus .pop-default,
+#interactImpfenContainer2 td:nth-child(1):focus .pop-default{
+    color: #fff;
+    background:#99be16;
+}
+#interactImpfenContainer th,
+#interactImpfenContainer2 th,
+#interactImpfenContainer td:nth-child(n+2),
+#interactImpfenContainer2 td:nth-child(n+2){
+    text-align: center;
+    vertical-align: middle;
+    width:30px;
+}
+
+#interactImpfenContainer td:nth-child(n+2){
+
+}
+#interactImpfenContainer  {
+
+}
+#table-impfkalender,
+#table-impfkalender2{
+    width: 100%;
+}
+
+@media (max-width: 979px) {
+
+    #table-impfkalender,
+    #table-impfkalender2	{
+
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    #interactImpfenContainer .table-condensed th,
+    #interactImpfenContainer2 .table-condensed th 	{
+        padding: 2px 2px;
+        width: 40px !important;
+    }
+
+    .pop-impfen-default .row-fluid [class*="span"] {
+        box-sizing: border-box;
+        display: block;
+        float: left;
+        margin-left: 2.12766%;
+        min-height: 1px;
+        width: 100%;
+    }
+    #interactImpfenContainer,
+    #interactImpfenContainer2{
+        overflow-x: scroll;
+        overflow-y: visible;
+    }
+    #interactImpfenContainer table th:nth-child(1),
+    #interactImpfenContainer2 table th:nth-child(1),
+    #interactImpfenContainer table td:nth-child(1),
+    #interactImpfenContainer2 table td:nth-child(1){
+        -webkit-box-shadow:1px 0 3px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow:1px 0 3px rgba(0, 0, 0, 0.1);
+        box-shadow:1px 0 3px rgba(0, 0, 0, 0.1);
+    }
+}
+@media (max-width: 767px) {
+    h3.popover-title{
+        font-size: 12px;
+    }
+    .pop-impfen-default.popover.right{
+        margin-left: -30px;
+        max-width: 160px;
+    }
+    .pop-impfen-default .arrow{
+        display: none;
+    }
+    #table-impfkalender,
+    #table-impfkalender2 {
+
+        table-layout: fixed;
+        width: 100%;
+    }
+    #interactImpfenContainer .table-condensed th,
+    #interactImpfenContainer2 .table-condensed th {
+        padding: 2px 2px;
+        width: 40px !important;
+    }
+    .pop-impfen-default .row-fluid{
+
+    }
+    .pop-impfen-default .row-fluid [class*="span"] {
+        box-sizing: border-box;
+        display: block;
+        float: left;
+        margin-left: 2.12766%;
+        min-height: 1px;
+        width: 100%;
+    }
+    #interactImpfenContainer,
+    #interactImpfenContainer2{
+        overflow-x: scroll;
+        overflow-y: visible;
+    }
+    #interactImpfenContainer table th:nth-child(1) ,
+    #interactImpfenContainer2 table th:nth-child(1) ,
+    #interactImpfenContainer table td:nth-child(1),
+    #interactImpfenContainer2 table td:nth-child(1) 	{
+        -webkit-box-shadow:1px 0 3px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow:1px 0 3px rgba(0, 0, 0, 0.1);
+        box-shadow:1px 0 3px rgba(0, 0, 0, 0.1);
+    }
+}
+#interactImpfenContainer td,
+#interactImpfenContainer2 td {
+    margin:0;
+}
+
+#interactImpfenContainer table th:nth-child(2),
+#interactImpfenContainer2 table th:nth-child(2),
+#interactImpfenContainer table td:nth-child(2),
+#interactImpfenContainer2 table td:nth-child(2) {
+
+}
+#interactImpfenContainer table th:nth-child(2) {
+
+}
+
+#interactImpfenContainer table th:nth-child(1),
+#interactImpfenContainer2 table th:nth-child(1),
+#interactImpfenContainer table td:nth-child(1),
+#interactImpfenContainer2 table td:nth-child(1) {
+    padding: 2px 0 2px 4px;
+    margin: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#interactImpfenContainer table th:nth-child(1),
+#interactImpfenContainer2 table th:nth-child(1) {
+    width: 120px !important;
+    height: 44px;
+}
+
+#interactImpfenContainer .table-striped tbody > tr:nth-child(2n+0) > td,
+#interactImpfenContainer2 .table-striped tbody > tr:nth-child(2n+0) > td,
+#interactImpfenContainer .table-striped tbody > tr:nth-child(2n+0) > th,
+#interactImpfenContainer2 .table-striped tbody > tr:nth-child(2n+0) > th {
+    background-color: #fff;
+}
+
+/* iOS */
+#table-impfkalender {
+    min-width: 450px;
+}
+
+/* Podcasts */
+
+div.achpodcast{
+    width:100%;
+    min-height:166px;
+    background-image: url(/typo3conf/ext/wdv_customer/Resources/Public/Images/Layout/gib8-podcast.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: #fdfdfd;
+    color: #fff;
+    padding: 40px 100px;
+    font-weight:bold;
+}
+
+div.achpodcast a{color: #98BF25;}
+
+
+@media (max-width: 979px) {
+    div.achpodcast{
+        padding:20px;
+    }
+}
+
+div.mipodcast{
+    width:100%;
+    min-height:166px;
+    background-image:url("/fileadmin/mediathek/kampagnen/Morphium_und_Ingwer/soundcloud-desktop.jpg");
+    background-repeat:no-repeat;
+    background-color:#fdfdfd;
+    color:#333333;
+    padding:20px 20px 20px 200px;
+    font-weight:bold;
+}
+
+@media (max-width: 979px) {
+    div.mipodcast {
+        padding: 20px;
+        background-image: url("/fileadmin/mediathek/kampagnen/Morphium_und_Ingwer/soundcloud-phone.jpg");
+    }
+
+    div.mipodcast a {
+        display: block;
+        background-color: #90b728;
+        color: #ffffff;
+        text-align: center;
+    }
+}
+
+/* Saisonkalender */
+table#saisonkalender{
+    border-collapse: collapse
+}
+
+table#saisonkalender tr{
+    height:20px;
+}
+
+table#saisonkalender tr th{
+    border-bottom:1px solid #1e4827;
+}
+
+table#saisonkalender tr td{
+    border:1px solid #fff;
+    text-align:center;
+    vertical-align:middle;
+    height:30px;
+    min-width:5%;
+    line-height:30px;
+}
+
+table#saisonkalender tr td.niedrig{
+    font-size:1em;
+    color:#1e4827;
+    background-color:#cef0cb;
+}
+
+table#saisonkalender tr td.mittel{
+    font-size:2em;
+    color:#1e4827;
+    background-color:#cef0cb;
+}
+
+table#saisonkalender tr td.hoch{
+    font-size:3em;
+    color:#1e4827;
+    background-color:#a6dba5;
+}
+
+table#saisonkalender tr td.kein{
+
+    background-color:#ffffff;
+}
+
+span.sronly{
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}

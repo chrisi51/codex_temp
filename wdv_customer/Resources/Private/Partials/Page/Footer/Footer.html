@@ -1,0 +1,96 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      data-namespace-typo3-fluid="true" lang="en">
+
+<footer class="d-print-none">
+
+<v:condition.iterator.contains needle="481" haystack="{v:page.rootline() -> v:iterator.extract(key: 'pid')}">
+    <f:then>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-8 pl-0 pr-0 pl-md-0 pr-md-0">
+					<f:cObject typoscriptObjectPath="lib.kapitel-navigation"/>
+				</div>
+			</div>
+		</div>
+    </f:then>
+ </v:condition.iterator.contains>
+
+<f:if condition="{be-layout} == 'pagets__3'">
+    <div class="container-fluid">
+        <div class="row mt-3 mb-3">
+            <div class="col-12 pl-0 pr-0 pl-md-0 pr-md-0">
+                <div class="row tx_gridelements transparent-box news-similar">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row pt-0 pb-0">
+                                <div class="col-12">
+                                    <div class="row columns two-columns mt-0 mb-0 pt-0 pb-0">
+                                        <div class="col-12 col-md-6 pl-3 pr-3 pl-md-3 pr-md-3">
+                                            <h2>Diese Inhalte könnten Sie auch<br />interessieren:</h2>
+                                        </div>
+                                        <div class="col-12 col-md-6 pl-3 pr-3 pl-md-3 pr-md-3"></div>
+                                    </div>
+
+									<f:variable name="news_similar"><f:cObject typoscriptObjectPath="lib.news-similar"></f:cObject></f:variable>
+
+									<v:condition.iterator.contains needle="Keine Nachrichten verfügbar." haystack="{news_similar}">
+										<f:then>
+											<f:cObject typoscriptObjectPath="lib.news-similar-categories"></f:cObject>
+										</f:then>
+										<f:else>
+											{news_similar->f:format.raw()}
+										</f:else>
+									</v:condition.iterator.contains>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:if>
+
+<f:if condition="{be-layout} != 'pagets__30' && {be-layout} != 'pagets__40'">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 pl-3 pr-3 col-md-10 col-print-12 offset-md-1 offset-print-0 ">
+				<!-- CONTENTBEREICH FOOTER START -->
+
+				<f:cObject typoscriptObjectPath="lib.foot-content"/>
+
+				<!-- CONTENTBEREICH FOOTER ENDE -->
+			</div>
+		</div>
+	</div>
+</f:if>
+	<div class="container-fluid">
+		<div class="row mt-3 mb-3">
+			<div class="col-12 pl-0 pr-0 pl-md-0 pr-md-0">
+				<hr />
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 pl-3 pr-3 pl-md-0 pr-md-0">
+				<div class="row mb-md-3">
+					<div class="col-12 col-md-4">
+						<f:render partial="Structure/Feature/CopyWrite" arguments="{data:data}" optional="true" />
+					</div>
+					<div class="col-12 col-md-8 mb-3">
+						<f:cObject typoscriptObjectPath="lib.foot-navigation"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row cookie-opener">
+			<f:cObject typoscriptObjectPath="lib.wx_consentbanner_opener" />
+		</div>
+	</div>
+</footer>
+
+<f:render partial="Structure/Feature/ScrollTop" arguments="{data:data}" optional="true" />
+
+</html>

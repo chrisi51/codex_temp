@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-01-31T15:44:44Z" product-name="vigo_quiz">
+		<header/>
+		<body>
+			<trans-unit id="resulttitle.description">
+				<source>resulttitle</source>
+			</trans-unit>
+			<trans-unit id="resulttext.description">
+				<source>resulttext</source>
+			</trans-unit>
+			<trans-unit id="pointrange.description">
+				<source>pointrange</source>
+			</trans-unit>
+			<trans-unit id="resultimage.description">
+				<source>resultimage</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

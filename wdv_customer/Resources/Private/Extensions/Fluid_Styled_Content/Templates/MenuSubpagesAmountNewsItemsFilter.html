@@ -1,0 +1,72 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:w="WDV\WdvCustomer\ViewHelpers"
+	  xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	  data-namespace-typo3-fluid="true" lang="en">
+
+<f:layout name="Default" />
+<f:section name="Main">
+
+	<f:if condition="{menu}">
+		
+		
+		<!-- News-Filter für Desktop -->
+		<div class="row page-filter pt-3 mt-5 mb-5 pb-3 d-none d-md-inline-block">
+			<div class="col-12">
+				<ul>
+
+					<f:if condition="{data.pid} != 108">
+						<li>
+							<f:link.page pageUid="{v:page.info(field: 'pid')}" class="btn btn-outline mr-2 mb-3"><strong>Filter aufheben &times;</strong></f:link.page>
+						</li>
+					</f:if>
+
+					<li>
+						<f:link.page pageUid="{data.pid}" class="btn btn-outline mr-2 mb-3{f:if(condition: '{data.pid} = 108', then: ' active')}"><strong>Alle Inhalte</strong> ({w:getAmoutOfNewsItemsWithinSameCategory(pageuid: data.pid, recursive: true)})</f:link.page>
+					</li>
+
+				<f:for each="{menu}" as="page">
+					<li>
+						<a class="btn btn-outline mr-2 mb-3{f:if(condition: '{page.active} = 1', then: ' active')}" href="{page.link}" target="{page.target}" title="{page.title}"><strong>{page.title}</strong> ({w:getAmoutOfNewsItemsWithinSameCategory(pageuid: page.data.uid, recursive: true)})</a>
+					</li>
+				</f:for>
+				</ul>
+			</div>
+		</div>
+		<!-- News-Filter für Desktop -->
+
+		<!-- News-Filter für Mobile -->
+		<div class="row page-filter pt-3 mt-5 mb-5 pb-3 d-md-none">
+			<div class="col-12">
+
+				<div class="dropdown show">
+
+					<a class="btn btn-outline dropdown-toggle w-100 text-left p-2 pl-3 pr-3" href="#" target="_self" id="news-filters" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="true">
+						<b>Alle Inhalte</b> ({w:getAmoutOfNewsItemsWithinSameCategory(pageuid: data.pid, recursive: true)})<span class="icon dropdown"></span>
+					</a>
+
+					<div class="dropdown-menu w-100 mt-0" aria-labelledby="news-filters">
+
+						<f:if condition="{data.pid} != 108">
+
+							<f:link.page pageUid="{v:page.info(field: 'pid')}" class="dropdown-item pl-3 pr-3"><b>Filter aufheben &times;</b></f:link.page>
+
+						</f:if>
+
+						<f:for each="{menu}" as="page">
+							<a class="dropdown-item pl-3 pr-3" href="{page.link}" target="{page.target}" title="{page.title}"><b>{page.title}</b> ({w:getAmoutOfNewsItemsWithinSameCategory(pageuid: page.data.uid, recursive: true)})</a>
+
+						</f:for>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- News-Filter für Mobile -->
+
+
+	</f:if>
+
+</f:section>
+</html>

@@ -1,0 +1,22 @@
+<div class="adhs-logos">
+    <div class="container">
+        <f:if condition="{data.tx_mask_title}">
+            <h3 class="headline">{data.tx_mask_title}</h3>
+        </f:if>
+        <f:if condition="{data.tx_mask_adhs_logos}">
+            <ul class="logos">
+                <f:for each="{data.tx_mask_adhs_logos}" as="data_item">
+                    <li class="logos-item">
+                        <f:if condition="{data_item.tx_mask_adhs_logo_link}">
+                            <f:link.typolink parameter="{data_item.tx_mask_adhs_logo_link}">
+                                <f:for each="{data_item.tx_mask_adhs_logo_file}" as="file">
+                                    <f:image image="{file}"/>
+                                </f:for>
+                            </f:link.typolink>
+                        </f:if>
+                    </li>
+                </f:for>
+            </ul>
+        </f:if>
+    </div>
+</div>

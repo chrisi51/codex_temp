@@ -1,0 +1,22 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Allgemein</sheetTitle>
+                <type>array</type>
+                <el>
+                    <cssclasses>
+                        <label>Weitere CSS Klassen</label><config>
+                                <type>input</type>
+                                <size>48</size>
+                                <eval>trim</eval>
+                            </config>
+                    </cssclasses>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

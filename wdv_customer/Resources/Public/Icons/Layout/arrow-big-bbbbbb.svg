@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="48px" viewBox="0 0 26 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Tools" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Specials-Stage" transform="translate(-1394.000000, -433.000000)" fill="#BBBBBB">
+            <g id="Arrow-Right">
+                <g transform="translate(1394.000000, 433.000000)">
+                    <path d="M22.8606573,47.4649044 L0.528567902,25.2649044 C-0.176189301,24.5644044 -0.176189301,23.4364044 0.528567902,22.7359044 L22.8606573,0.535904384 C23.5730583,-0.173595616 24.734914,-0.178095616 25.4549588,0.519404384 C26.1750035,1.21840438 26.1826473,2.35690438 25.4717751,3.06490438 L4.41314068,24.0004044 L25.4717751,44.9359044 C26.1826473,45.6439044 26.1750035,46.7824044 25.4549588,47.4814044 C25.0972295,47.8279044 24.6324872,48.0004044 24.1662162,48.0004044 C23.6923014,48.0004044 23.2199153,47.8219044 22.8606573,47.4649044 Z" id="Icon" transform="translate(13.000000, 24.000202) scale(-1, 1) translate(-13.000000, -24.000202) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,56 @@
+{namespace vh=In2code\Powermail\ViewHelpers}
+
+<fieldset
+        class="powermail_fieldwrap powermail_fieldwrap_type_radio powermail_fieldwrap_{field.marker} {field.css} <v:format.replace substring="col-md-6" replacement="col-md-{field.txWdvcustomerPowermailBootstrapCols}" caseSensitive="0">{settings.styles.framework.fieldAndLabelWrappingClasses}</v:format.replace>">
+<f:render partial="Form/FieldLegend" arguments="{_all}"/>
+<div class="{settings.styles.framework.fieldWrappingClasses}">
+    <f:for each="{field.modifiedSettings}" as="setting" iteration="index">
+        <div class="{settings.styles.framework.radioClasses} {f:if(condition: '{field.txWdvcustomerPowermailRadioHoriz} == 1', then:' custom-control-inline', else:'')} {vh:Validation.ErrorClass(field:field, class:'powermail_field_error')}">
+            <f:form.radio
+                    property="{field.marker}"
+                    name="powermail_field_{field.marker}_{index.cycle}"
+                    value="{setting.value}"
+                    checked="{vh:Misc.PrefillMultiField(field:field, mail:mail, cycle:index.cycle)}"
+                    id="powermail_field_{field.marker}_{index.cycle}"
+                    additionalAttributes="{vh:Validation.ValidationDataAttribute(field:field, iteration:index)}"
+                    class="custom-control-input"/>
+            <label class="custom-control-label" for="powermail_field_{field.marker}_{index.cycle}">
+                <vh:string.escapeLabels>{setting.label}</vh:string.escapeLabels>
+            </label>
+        </div>
+    </f:for>
+
+    <f:if condition="{settings.validation.client}">
+        <div class="powermail_field_error_container powermail_field_error_container_{field.marker}"></div>
+    </f:if>
+
+</div>
+</fieldset>
+
+<f:if condition="{field.marker} == 'aokversichert'">
+
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+
+            $(".powermail_fieldwrap_kassennummer").fadeOut('fast');
+            $(".powermail_fieldwrap_versichertennummer").fadeOut('fast');
+            $(".powermail_fieldwrap_versichertbei").fadeOut('fast');
+
+            $("#powermail_field_aokversichert_1").change(function () {
+
+                $(".powermail_fieldwrap_kassennummer").fadeIn('fast');
+                $(".powermail_fieldwrap_versichertennummer").fadeIn('fast');
+                $(".powermail_fieldwrap_versichertbei").fadeOut('fast');
+            });
+
+            $("#powermail_field_aokversichert_2").change(function () {
+
+                $(".powermail_fieldwrap_kassennummer").fadeOut('fast');
+                $(".powermail_fieldwrap_versichertennummer").fadeOut('fast');
+                $(".powermail_fieldwrap_versichertbei").fadeIn('fast');
+            });
+
+        }, false);
+    </script>
+
+</f:if>

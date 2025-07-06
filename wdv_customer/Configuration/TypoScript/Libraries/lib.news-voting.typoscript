@@ -1,0 +1,12 @@
+#lib.news-voting = COA
+##[request && (traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0] || [traverse(request.getParsedBody(), 'tx_news_pi1/news') > 0] || [traverse(request.getQueryParams(), 'tx_news_pi1/news_preview') > 0] || [traverse(request.getParsedBody(), 'tx_news_pi1/news_preview') > 0)]
+#    lib.news-voting {
+#        10 = TEXT
+#        10.value = VOTING!
+#        # 20 < plugin.tx_thrating
+#    }
+##[END]
+#
+## we delete the output
+## until it really works...
+#lib.news-voting >

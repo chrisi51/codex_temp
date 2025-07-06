@@ -1,0 +1,212 @@
+# https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.0/Feature-96874-CKEditor5.html#configuration-options
+# load standard
+imports:
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Processing.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml" }
+    - { resource: EXT:bw_icons/Configuration/RTE/IconPicker.yaml }
+
+# overwrite settings
+editor:
+  config:
+    importModules:
+      - { module: '@ckeditor/ckeditor5-font', exports: [ 'Font' ] }
+      - '@wx/ckeditor/customFontColors'
+
+    contentsCss:
+      - "EXT:wdv_customer/Resources/Public/CSS/rte.css?v=2025-05-07"
+      - "EXT:wdv_customer/Resources/Public/CSS/colors.css?v=2025-05-07"
+
+      # try
+    uiColor: "#699000"
+
+      # try
+      #    importModules:
+      #      - '@ckeditor/ckeditor5-font'
+
+    language:
+      content: "de"
+      ui: "de"
+
+    heading:
+      options:
+        - { model: 'paragraph', view: 'p', title: 'Paragraph' }
+        - { model: 'heading2', view: 'h2', title: 'Heading 2' }
+        - { model: 'heading3', view: 'h3', title: 'Heading 3' }
+        - { model: 'heading4', view: 'h4', title: 'Heading 4' }
+        - { model: 'heading5', view: 'h5', title: 'Heading 5' }
+
+    style:
+      definitions:
+        - { name: "Button Gruppe", element: "p", classes: ['btn-wrap-box'] }
+        - { name: "Größerer Text", element: "p", classes: ['lead'] }
+        - { name: "Flexbox", element: "p", classes: ['rteflexbox'] }
+
+    toolbar:
+      items:
+        - style
+        - heading
+          # try
+          #        - '|'
+          #        - fontColor
+          #        - fontBackgroundColor
+
+        - '|'
+        - bold
+        - italic
+        # grouping separator
+        - '|'
+        - fontColor
+        - fontBackgroundColor
+        - '|'
+        - bulletedList
+        - numberedList
+        - '|'
+        - indent
+        - outdent
+        - '|'
+        - alignment
+        - '|'
+        - blockQuote
+        - '|'
+        - Link
+        - '|'
+        - removeFormat
+        - '|'
+        - undo
+        - redo
+        - '|'
+        - insertTable
+        - horizontalLine
+        - '|'
+        - specialCharacters
+        - IconPicker
+        - '|'
+        - sourceEditing
+
+    alignment:
+      options:
+        - { name: 'left', className: 'text-start' }
+        - { name: 'center', className: 'text-center' }
+        - { name: 'right', className: 'text-end' }
+        - { name: 'justify', className: 'text-justify' }
+
+    extraPlugins:
+      - colorbutton
+
+    fontColor:
+      colors:
+        - { label: 'aok-green', color: '#005e3f' }
+        - { label: 'aok-light-green', color: '#50eb5d' }
+        - { label: 'aok-white', color: '#ffffff' }
+
+    fontBackgroundColor:
+      colors:
+        - { label: 'aok-white', color: '#FFFFFF' }
+        - { label: 'aok-green', color: '#005e3f' }
+        - { label: 'aok-pastel-green', color: '#eefaea' }
+        - { label: 'aok-light-blue', color: '#e8f4f2' }
+        - { label: 'aok-pastel-blue', color: '#d8ece8' }
+        - { label: 'aok-sand', color: '#f8f5e3' }
+
+    htmlSupport:
+      allow:
+        - { name: 'p', classes: true }
+        - { name: 'span', classes: true }
+        - { name: 'div', classes: true }
+
+
+
+buttons:
+  link:
+    relAttribute:
+      enabled: true
+    properties:
+      class:
+        allowedClasses: 'link-internal,link-internal-btn,link-back-btn,link-download,link-download-btn,link-download-btn-ico,link-folder,link-folder-btn,link-external,link-external-btn,link-external-btn-facebook,link-mail,link-mail-btn,link-artikel,link-artikel-btn,link-popup,link-popup-btn'
+    page:
+      properties:
+        class:
+          default: 'link-internal'
+    file:
+      properties:
+        class:
+          default: 'link-download'
+    folder:
+      properties:
+        class:
+          default: 'link-folder'
+    url:
+      properties:
+        class:
+          default: 'link-external'
+    mail:
+      properties:
+        class:
+          default: 'link-mail'
+    artikel:
+      properties:
+        class:
+          default: 'link-artikel'
+    popup:
+      properties:
+        class:
+          default: 'link-popup'
+
+classesAnchor:
+  linkInternal:
+    class: 'link-internal'
+    type: 'page'
+  linkInternalButton:
+    class: 'link-internal-btn'
+    type: 'page'
+  linkDownload:
+    class: 'link-download'
+    type: 'file'
+    target: '_blank'
+  linkDownloadButton:
+    class: 'link-download-btn'
+    type: 'file'
+    target: '_blank'
+  linkDownloadButtonIcon:
+    class: 'link-download-btn-ico'
+    type: 'file'
+    target: '_blank'
+  linkFolder:
+    class: 'link-folder'
+    type: 'folder'
+    target: '_blank'
+  linkFolderButton:
+    class: 'link-folder-btn'
+    type: 'folder'
+    target: '_blank'
+  linkExternal:
+    class: 'link-external'
+    type: 'url'
+    target: '_blank'
+  linkExternalButton:
+    class: 'link-external-btn'
+    type: 'url'
+    target: '_blank'
+  linkExternalFacebookButton:
+    class: 'link-external-btn-facebook'
+    type: 'url'
+    target: '_blank'
+  linkMail:
+    class: 'link-mail'
+    type: 'mail'
+  linkMailButton:
+    class: 'link-mail-btn'
+    type: 'mail'
+  linkArtikel:
+    class: 'link-artikel'
+    type: 'artikel'
+  linkArtikelButton:
+    class: 'link-artikel-btn'
+    type: 'artikel'
+  linkPopup:
+    class: 'link-popup'
+    type: 'popup'
+  linkPopupButton:
+    class: 'link-popup-btn'
+    type: 'popup'

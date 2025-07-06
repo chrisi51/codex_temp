@@ -1,0 +1,151 @@
+<f:if condition="!{data.header}">
+    {f:variable(name: 'familyTeaserClass', value: 'no-headline')}
+</f:if>
+
+<f:if condition="{data.tx_mask_teaser_padding_bottom}">
+    {f:variable(name: 'familyTeaserClass2', value: 'padding-bottom')}
+</f:if>
+
+<f:if condition="!{data.image -> f:count()}">
+    {f:variable(name: 'familyTeaserClass3', value: 'no-image')}
+    {f:variable(name: 'familyTeaserNoImage', value: 'true')}
+</f:if>
+
+{f:variable(name: 'familyTeaserBgColor', value: 'bg-white')}
+<f:switch expression="{data.tx_mask_bgcolour}">
+    <f:case value="white">
+        {f:variable(name: 'familyTeaserBgColor', value: 'bg-white')}
+    </f:case>
+    <f:case value="pastel-blue">
+        {f:variable(name: 'familyTeaserBgColor', value: 'bg-blue')}
+    </f:case>
+    <f:case value="pastel-green">
+        {f:variable(name: 'familyTeaserBgColor', value: 'bg-green')}
+    </f:case>
+    <f:case value="dark-green">
+        {f:variable(name: 'familyTeaserBgColor', value: 'bg-dark-green')}
+    </f:case>
+    <f:case value="sand">
+        {f:variable(name: 'familyTeaserBgColor', value: 'bg-sand')}
+    </f:case>
+</f:switch>
+
+<f:variable name="teaserImagePosition" value="{data.tx_mask_teaser_image_position}"/>
+<f:switch expression="{data.tx_mask_teaser_image_position}">
+    <f:case value="left">
+        {f:variable(name: 'familyTeaserImagePosition', value: 'image-left')}
+    </f:case>
+    <f:case value="right">
+        {f:variable(name: 'familyTeaserImagePosition', value: 'image-right')}
+    </f:case>
+</f:switch>
+
+<div class="family-teaser {familyTeaserBgColor} {familyTeaserImagePosition} {familyTeaserClass} {familyTeaserClass2} {familyTeaserClass3}">
+    <div class="family-teaser-wrapper">
+        <f:if condition="{data.header}">
+            <h2 class="family-teaser-headline">{data.header}</h2>
+        </f:if>
+
+        <div class="family-teaser-content-wrapper">
+            <div class="family-teaser-content">
+                <h3 class="family-teaser-subheadline">{data.tx_mask_hl1}</h3>
+                <h3 class="family-teaser-subheadline2">{data.tx_mask_hl2}</h3>
+                <f:if condition="{data.bodytext}">
+                    {data.bodytext -> f:format.html()}
+                </f:if>
+
+                <f:comment>
+                    <f:debug inline="true">{data.header_link}</f:debug>
+                    <f:debug inline="true"><v:condition.string.contains haystack="{data.header_link}" needle="http" then="true" /></f:debug>
+                </f:comment>
+
+                {f:variable(name: 'link-class-external', value: '')}
+                <f:if condition="{v:condition.string.contains(haystack: data.header_link, needle: 'http', then: 'true', else: '')}">
+                    {f:variable(name: 'link-class-external', value: 'external-link')}
+                </f:if>
+                {f:variable(name: 'link-text', value: 'Mehr erfahren')}
+                <f:if condition="{data.subheader}">
+                    {f:variable(name: 'link-text', value: '{data.subheader}')}
+                </f:if>
+                {f:variable(name: 'link-class-grey-button', value: 'family-button-grey')}
+                <f:if condition="{data.tx_mask_button_style} == 'green'">
+                    {f:variable(name: 'link-class-grey-button', value: '')}
+                </f:if>
+
+                <f:link.typolink parameter="{data.header_link}" class="family-button {link-class-grey-button} {link-class-external}">{link-text}</f:link.typolink>
+            </div>
+            <f:if condition="{data.image -> f:count()}">
+                <div class="family-teaser-image">
+                    <f:for each="{data.image}" as="file">
+                        <picture>
+                            <f:variable name="width" value="550"/>
+                            <source srcset="<f:uri.image image="{file}" width="{width}" fileExtension="{file.extension}" /> 1x, <f:uri.image image="{file}" width="{width * 2}" fileExtension="{file.extension}" /> 2x"  type="image/{file.extension}"/>
+
+                            <f:image image="{file}" width="{width}" title="{f:if(condition: '{file.properties.publisher}', then: 'Bildnachweis: © {file.properties.publisher}')}{f:if(condition: '{file.properties.creator}', then: ' / {file.properties.creator}')}" alt="{file.properties.alternative}"/>
+                        </picture>
+                    </f:for>
+                </div>
+            </f:if>
+        </div>
+    </div>
+</div>
+
+
+
+<f:comment>
+
+
+<f:if condition="{data.header}">
+    {data.header -> f:format.nl2br()}
+</f:if>
+<f:for each="{data.image}" as="file">
+    <f:image image="{file}" width="200" />
+    {file.description}
+</f:for>
+<f:if condition="{data.tx_mask_hl1}">
+    {data.tx_mask_hl1}
+</f:if>
+<f:if condition="{data.tx_mask_hl2}">
+    {data.tx_mask_hl2}
+</f:if>
+<f:if condition="{data.bodytext}">
+    {data.bodytext -> f:format.html()}
+</f:if>
+<f:if condition="{data.header_link}">
+    <f:link.typolink parameter="{data.header_link}"></f:link.typolink>
+</f:if>
+<f:variable name="bgcolour" value="{data.tx_mask_bgcolour}"/>
+<f:switch expression="{bgcolour}">
+    <f:case value="white">
+        {bgcolour}
+    </f:case>
+    <f:case value="pastel-blue">
+        {bgcolour}
+    </f:case>
+    <f:case value="pastel-green">
+        {bgcolour}
+    </f:case>
+</f:switch>
+<f:variable name="teaserImagePosition" value="{data.tx_mask_teaser_image_position}"/>
+<f:switch expression="{teaserImagePosition}">
+    <f:case value="left">
+        {teaserImagePosition}
+    </f:case>
+    <f:case value="right">
+        {teaserImagePosition}
+    </f:case>
+    <f:case value="no_image">
+        {teaserImagePosition}
+    </f:case>
+</f:switch>
+<f:variable name="teaserPaddingBottom" value="{data.tx_mask_teaser_padding_bottom}"/>
+<f:if condition="{teaserPaddingBottom}">
+    <f:then>
+        <f:comment><!-- Do this, if checked --></f:comment>
+    </f:then>
+    <f:else>
+        <f:comment><!-- Else do this --></f:comment>
+    </f:else>
+</f:if>
+
+</f:comment>

@@ -1,0 +1,44 @@
+<div id="family-mood2">
+    <div class="image">
+        <f:for each="{data.media}" as="bgimage">
+            <fp:image image="{bgimage}" width="1600" realCrop="false" title="{bgimage.originalResource.title}" alt="{bgimage.originalResource.alternative}" />
+        </f:for>
+    </div>
+    <div class="container">
+        <div class="content">
+            <f:if condition="({data.header} || {data.tx_mask_header})">
+                <h1>
+                    <f:if condition="{data.header}">
+                        <div class="line1">{data.header -> f:format.nl2br()}</div>
+                    </f:if>
+                    <f:if condition="{data.tx_mask_header}">
+                        <div class="line2">{data.tx_mask_header -> f:format.nl2br()}</div>
+                    </f:if>
+                </h1>
+            </f:if>
+            <f:if condition="{data.bodytext}">
+                {data.bodytext -> f:format.html()}
+            </f:if>
+        </div>
+    </div>
+
+</div>
+
+
+<f:comment>
+<f:for each="{data.media}" as="file">
+    <f:image image="{file}" width="200" />
+    {file.description}
+</f:for>
+<f:if condition="{data.header}">
+    {data.header -> f:format.nl2br()}
+</f:if>
+<f:if condition="{data.tx_mask_header}">
+    {data.tx_mask_header -> f:format.nl2br()}
+</f:if>
+<f:if condition="{data.bodytext}">
+    {data.bodytext -> f:format.html()}
+</f:if>
+</f:comment>
+
+

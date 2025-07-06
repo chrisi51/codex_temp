@@ -1,0 +1,50 @@
+plugin.tx_wxiventic_form {
+    view {
+        templateRootPaths.0 = {$plugin.tx_wxiventic_form.view.templateRootPath}
+        partialRootPaths.0 = {$plugin.tx_wxiventic_form.view.partialRootPath}
+        layoutRootPaths.0 = {$plugin.tx_wxiventic_form.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = 1070
+        recursive = 10
+    }
+    settings {
+        xmlSourcePath = /data/www/vhosts/LIVE/sites/vigo.de/iventic/xmlSourcePath/
+        xmlTargetPath = /data/www/vhosts/LIVE/sites/vigo.de/iventic/xmlTargetPath/
+        xmlErrorPath = /data/www/vhosts/LIVE/sites/vigo.de/iventic/xmlErrorPath/
+        mail {
+            subject = {$plugin.tx_wxiventic_form.settings.mail.subject}
+            recipient = {$plugin.tx_wxiventic_form.settings.mail.recipient}
+            senderName = {$plugin.tx_wxiventic_form.settings.mail.senderName}
+            senderMail = {$plugin.tx_wxiventic_form.settings.mail.senderMail}
+        }
+        list {
+            items = {$plugin.tx_wxiventic_form.settings.list.items}
+            postalStoragePid = {$plugin.tx_wxiventic_form.settings.list.postalStoragePid}
+        }
+        search {
+            distance = {$plugin.tx_wxiventic_form.settings.search.distance}
+        }
+    }
+    features {
+        skipDefaultArguments = 1
+        requireCHashArgumentForActionArguments = 0
+    }
+}
+
+[applicationContext matches "!Development/Hetzner!"]
+    plugin.tx_wxiventic_form.settings {
+        xmlSourcePath = /srv/www/htdocs/ip-adresse/devsystem/vigo.de/iventic/xmlSourcePath/
+        xmlTargetPath = /srv/www/htdocs/ip-adresse/devsystem/vigo.de/iventic/xmlTargetPath/
+        xmlErrorPath = /srv/www/htdocs/ip-adresse/devsystem/vigo.de/iventic/xmlErrorPath/
+    }
+[global]
+[applicationContext matches "!Development/Ddev!"]
+    plugin.tx_wxiventic_form.settings {
+        xmlSourcePath = /var/www/html/iventic/xmlSourcePath/
+        xmlTargetPath = /var/www/html/iventic/xmlTargetPath/
+        xmlErrorPath = /var/www/html/iventic/xmlErrorPath/
+    }
+[global]
+module.tx_wxiventic_form < plugin.tx_wxiventic_form
+

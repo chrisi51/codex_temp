@@ -1,0 +1,188 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:md="http://typo3.org/ns/Mediadreams/MdNewsAuthor/ViewHelpers"
+      xmlns:vhs="FluidTYPO3\Vhs\ViewHelpers\"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<vhs:variable.set name="phonelink" value="{vhs:format.replace(content:newsAuthor.phone, substring:' ', replacement:'')}" />
+
+    <div class="newsauthor-detail" itemscope itemtype="http://schema.org/Person">
+        <div class="author-wrapper">
+
+	    <div class="profil">
+            <f:if condition="{newsAuthor.image}">
+		<div class="image">
+                <f:render partial="Image" arguments="{img:newsAuthor.image, imgWidth:settings.detail.image.width, imgHeight:settings.detail.image.height, cssClass:'img-responsive'}" />
+		</div>
+            </f:if>
+		<div class="text">
+	            <h1 class="name">
+        	        {md:ShowAuthorName(author: newsAuthor)}
+	            </h1>
+	            <f:if condition="{newsAuthor.position}">
+        	        <div class="position">{newsAuthor.position}</div>
+	            </f:if>
+		</div>
+	    </div>
+
+            <f:if condition="{newsAuthor.bio}">
+                <div class="bio" itemprop="description">
+                    <f:format.html>{newsAuthor.bio}</f:format.html>
+                </div>
+            </f:if>
+
+            <dl class="contact-details">
+                <f:if condition="{newsAuthor.phone}">
+                    <dt>{f:translate(key:'template.phone')}</dt>
+                    <dd itemprop="telephone"><f:link.typolink parameter="tel:{phonelink}"><i class="fa fa-phone-square" aria-hidden="true"></i>{newsAuthor.phone}</f:link.typolink></dd>
+                </f:if>
+                <f:if condition="{newsAuthor.email}">
+                    <dt>{f:translate(key:'template.email')}</dt>
+                    <dd itemprop="email"><f:link.email email="{newsAuthor.email}"><i class="fa fa-envelope" aria-hidden="true"></i>{newsAuthor.email}</f:link.email></dd>
+                </f:if>
+                <f:if condition="{newsAuthor.www}">
+                    <dt>{f:translate(key:'template.www')}</dt>
+                    <dd itemprop="url"><f:link.external uri="{newsAuthor.www}"><i class="fa fa-external-link" aria-hidden="true"></i>{newsAuthor.www}</f:link.external></dd>
+                </f:if>
+                <f:if condition="{newsAuthor.facebook}">
+                    <dt>{f:translate(key:'template.facebook')}</dt>
+                    <dd><f:link.external uri="{newsAuthor.facebook}"><i class="fa fa-facebook-square" aria-hidden="true"></i>{newsAuthor.facebook}</f:link.external></dd>
+                </f:if>
+                <f:if condition="{newsAuthor.twitter}">
+                    <dt>{f:translate(key:'template.twitter')}</dt>
+                    <dd><f:link.external uri="{newsAuthor.twitter}"><i class="fa fa-twitter-square" aria-hidden="true"></i>{newsAuthor.twitter}</f:link.external></dd>
+                </f:if>
+                <f:if condition="{newsAuthor.linkedin}">
+                    <dt>{f:translate(key:'template.linkedin')}</dt>
+                    <dd><f:link.external uri="{newsAuthor.linkedin}"><i class="fa fa-linkedin-square" aria-hidden="true"></i>{newsAuthor.linkedin}</f:link.external></dd>
+                </f:if>
+                <f:if condition="{newsAuthor.xing}">
+                    <dt>{f:translate(key:'template.xing')}</dt>
+                    <dd><f:link.external uri="{newsAuthor.xing}"><i class="fa fa-xing-square" aria-hidden="true"></i>{newsAuthor.xing}</f:link.external></dd>
+                </f:if>  
+            </dl>
+            
+        </div><!-- /.author-wrapper -->
+
+        <f:if condition="{authorNews}">
+        <!--TYPO3SEARCH_end-->
+            <section class="articles-wrapper tx_news" id="author-articles">
+		<h2><f:translate key="template.show.articleHeader" arguments="{0: '{md:ShowAuthorName(author:newsAuthor)}'}" /></h2>
+
+                <f:widget.paginate objects="{authorNews}" as="paginatedAuthorNews" configuration="{itemsPerPage: '{settings.authorDetail.paginate.itemsPerPage}', insertAbove: '{settings.authorDetail.paginate.insertAbove}', insertBelow: '{settings.authorDetail.paginate.insertBelow}', maximumNumberOfLinks: '{settings.authorDetail.paginate.maximumNumberOfLinks}'}">
+
+
+		    <div class="row">
+                    <f:for each="{paginatedAuthorNews}" as="newsItem">
+
+			<vhs:variable.set name="categoryid" value="0" />
+			
+			<f:for each="{newsItem.categories}" as="category">
+				<f:if condition="{category.singlepid} > 0">
+					<vhs:variable.set name="categoryid" value="{category.singlepid}" />
+				</f:if>
+			</f:for> 
+
+
+		 	<div class="col-12 col-md-4 news-item">
+                        <article itemscope="itemscope" itemtype="http://schema.org/Article">
+                            <f:link.page pageUid="{categoryid}" additionalParams="{tx_news_pi1: {news: newsItem.uid, controller: 'News', action: 'detail'}}">
+
+				<f:image image="{newsItem.media.0}" width="286" height="200c" />
+
+
+
+
+				<div class="news-item__teaser">
+					<div class="row news-item__teaser-desc mt-3 mb-3">
+						<div class="col-12">
+							<span class="news-item__teaser-desc_symbol article"></span>
+							<span class="news-item__teaser-desc_type"><strong>Artikel</strong></span>
+							<span class="news-item__teaser-desc_duration">Lesezeit: {newsItem.txWdvcustomerNewsTime} min.</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<h3 itemprop="headline">{newsItem.title}</h3>
+                                    				<f:if condition="{newsItem.teaser}">
+                                        				<f:then>
+                                            					{newsItem.teaser -> f:format.html()}
+                                        				</f:then>
+                                        				<f:else>
+                                            					{newsItem.bodytext -> f:format.crop(maxCharacters: '200', respectWordBoundaries:'1') -> f:format.html()}
+                                        				</f:else>
+                                    				</f:if>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+<f:comment>
+
+
+
+
+ 				
+
+                                <div class="article-meta">
+                                    <span class="news-list-date">
+                                        <time datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
+                                            <f:format.date format="{f:translate(key:'template.dateFormat')}">{newsItem.datetime}</f:format.date>
+                                            <meta itemprop="datePublished" content="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}" />
+                                        </time>
+                                    </span>
+                                </div>
+
+                                <h3><span itemprop="headline">{newsItem.title}</span></h3>
+
+                                <div class="teaser-text">
+                                    <f:if condition="{newsItem.teaser}">
+                                        <f:then>
+                                            <div itemprop="description">{newsItem.teaser -> f:format.html()}</div>
+                                        </f:then>
+                                        <f:else>
+                                            <div itemprop="description">{newsItem.bodytext -> f:format.crop(maxCharacters: '200', respectWordBoundaries:'1') -> f:format.html()}</div>
+                                        </f:else>
+                                    </f:if>
+                                </div>  
+
+
+</f:comment>
+
+
+                            </f:link.page>
+                        </article>
+			</div>
+                    </f:for>
+		    </div>
+
+                </f:widget.paginate>
+            </section>
+            <!--TYPO3SEARCH_begin-->
+        </f:if>
+
+            <f:if condition="{settings.listPid}">
+                <div class="newsauthor-back">
+                    <f:link.action 
+                        pageUid="{settings.listPid}" 
+                        action="list" 
+                        class="link-artikel-btn"
+                        title="{f:translate(key:'tx_newsauthor_domain_model_newsauthor.backLinkTitle')}"
+                    >
+                        <f:translate key="tx_newsauthor_domain_model_newsauthor.backLinkLabel" />
+                    </f:link.action>
+                </div>
+            </f:if>
+
+    </div><!-- /.newsauthor-detail -->
+
+</f:section>
+
+</html>

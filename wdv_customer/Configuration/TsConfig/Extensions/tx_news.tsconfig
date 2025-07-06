@@ -1,0 +1,92 @@
+tx_news {
+    templateLayouts {
+        1 = Listenansicht mit Teaser in Zeilen (Gerade)
+        2 = Listenansicht mit Teaser in Zeilen (Ungerade)
+        20 = Listenansicht mit Teaser in Zeilen (volle Breite)
+        3 = Listenansicht mit Karten in Zeilen
+        4 = Listenansicht mit Karten im Slider
+        40 = Listenansicht mit Karten im Slider ohne Stufen
+        41 = Listenansicht mit Karten im Slider ohne Stufen mit Details
+        5 = Detailansicht eines Artikels
+        6 = Detailansicht eines Themenspecials
+        7 = Detailansicht einer Rezepte-Sammlung
+        8 = Listenansicht News-Menüpunkte in Dropdown
+        9 = Listenansicht mit Teaser ohne Bild für Dropdown
+        10 = Listenansicht Einzel-Teaser 'Mitmachen und gewinnen' für Dropdown
+        11 = Detailansicht einer Landingpage
+        30 = Detailansicht eines Achtsamkeitsartikels
+        31 = Detailansicht eines Achtsamkeitsartikels ohne Lesezeit
+        140 = Soundtrack - Playlistsübersicht
+        144 = Soundtrack - Playlistsübersicht im Slider
+        141 = Soundtrack - Playlist Mood
+        142 = Soundtrack - Playlist Inhalt
+        143 = Soundtrack - Artikel
+        151 = Familie - passende vigo-Artikel
+        152 = ADHS - passende vigo-Artikel
+        200 = Kategorien - Kachelansicht
+    }
+    showContentElementsInNewsSysFolder = 0
+}
+
+# --
+
+#  Vorschau-Seite für alle Artikel
+TCEMAIN.preview {
+    tx_news_domain_model_news {
+        # Available with latest 8.7+ only
+        # see https://forge.typo3.org/issues/78336
+
+        previewPageId = 280
+        useDefaultLanguageRecord = 0
+
+        fieldToParameterMap {
+            uid = tx_news_pi1[news_preview]
+        }
+        additionalGetParameters {
+            tx_news_pi1.controller = News
+            tx_news_pi1.action = detail
+        }
+    }
+}
+
+# Vorschau-Seite speziell für Themenspecials
+[292 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 295
+[global]
+# Vorschau-Seite speziell für Rezeptsammlungen
+[324 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 334
+[global]
+# Vorschau-Seite speziell für Landingpages
+[375 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 375
+[global]
+# Vorschau-Seiten für gib8
+[573 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 614
+[global]
+[608 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 615
+[global]
+[609 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 613
+[global]
+[607 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 612
+[global]
+[606 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 610
+[global]
+
+# Vorschau-Seite für checkDasAb
+[703 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 725
+[global]
+# Vorschau-Seite für familie
+[898 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 907
+[global]
+# Vorschau-Seite für epa
+[908 in tree.rootLineIds]
+    TCEMAIN.preview.tx_news_domain_model_news.previewPageId = 928
+[global]

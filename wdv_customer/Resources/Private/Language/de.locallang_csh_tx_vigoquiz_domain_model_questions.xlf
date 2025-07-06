@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-01-26T15:50:12Z" product-name="vigo_quiz" target-language="de">
+		<header/>
+		<body>
+			<trans-unit id="infotext.description">
+				<source>Soll dies eine Infokarte sein?</source>
+			</trans-unit>
+			<trans-unit id="infotextitem.description">
+				<source>Eingaben als Infokarte nutzen?</source>
+			</trans-unit>
+			<trans-unit id="question.description">
+				<source>Frage (Im Falle einer Infokarte hier den Titel eingeben!</source>
+			</trans-unit>
+			<trans-unit id="introtext.description">
+				<source>Optionale Einleitung (Im Falle einer Infokarte hier den Text der Infokarte eingeben!</source>
+			</trans-unit>
+			<trans-unit id="answers.description">
+				<source>Antworten</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

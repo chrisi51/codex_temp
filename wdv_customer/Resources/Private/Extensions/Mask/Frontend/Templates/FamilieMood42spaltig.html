@@ -1,0 +1,109 @@
+<div id="family-mood4" class="{f:if(condition: '{data.tx_mask_remove_spacing_bottom}', then: 'family-mood4-unspaced')}">
+
+    <div class="content">
+        <div class="left">
+            <div>
+                <f:if condition="{data.tx_mask_button}">
+                    <f:link.page pageUid="{parentRecord.pid}" class="family-button family-button-grey">
+                        <svg width="16" height="16" class="left">
+                            <use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/Layout/sprite.svg')}#icon_arrow_left"></use>
+                        </svg>
+                        Zurück
+                    </f:link.page>
+                </f:if>
+            </div>
+
+            <div class="familie">
+                <f:if condition="({data.header} || {data.tx_mask_header})">
+                    <h1 class="{f:if(condition: '{data.bodytext}', then: 'familie-small-header', else: 'familie-default-header')}">
+                        <f:if condition="{data.header}">
+                            <div class="line1">{data.header -> f:format.nl2br()}</div>
+                        </f:if>
+                        <f:if condition="{data.tx_mask_header}">
+                            <div class="line2">{data.tx_mask_header -> f:format.nl2br()}</div>
+                        </f:if>
+                    </h1>
+                </f:if>
+                <f:if condition="{data.bodytext}">
+                    <p class="family-mood-teaser">{data.bodytext -> f:format.nl2br()}</p>
+                </f:if>
+                <div class="family-button-group">
+                    <f:if condition="{data.tx_mask_linktarget} && {data.tx_mask_link}">
+                        <f:link.typolink parameter="{data.tx_mask_linktarget}" class="family-button family-button-primary">
+                            {data.tx_mask_link}
+                        </f:link.typolink>
+                    </f:if>
+                    <f:if condition="{data.assets}">
+                        <a href="javascript:;" id="openVideoBtn" class="family-button family-button-outlined" tabindex="0">
+                            <svg width="12" height="12" class="left">
+                                <use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/Layout/sprite.svg')}#icon_play_filled"></use>
+                            </svg>
+                            <span>Video abspielen</span>
+                        </a>
+
+                        <!-- Lightbox-Overlay -->
+                          <div id="videoLightbox" class="lightbox-overlay">
+                              <span id="closeLightbox" class="close-btn">&times;</span>
+                              <!-- Video-Element -->
+                              <div class="lightbox-content">
+                                  <video id="videoPlayer" controls>
+                                      <f:for each="{data.assets}" as="asset">
+                                          <source src="{asset.originalFile.publicUrl}" type="video/mp4">
+                                      </f:for>
+                                      Dein Browser unterstützt dieses Video-Format nicht.
+                                  </video>
+                              </div>
+                          </div>
+
+
+                          <!--  inline javascript-snippet -->
+                          <script type="text/javascript">
+                              document.addEventListener("DOMContentLoaded", function() {
+                                  // Elemente holen
+                                  const openVideoBtn = document.getElementById("openVideoBtn");
+                                  const videoLightbox = document.getElementById("videoLightbox");
+                                  const closeLightbox = document.getElementById("closeLightbox");
+                                  const videoPlayer = document.getElementById("videoPlayer");
+
+                                  // Funktion zum Öffnen der Lightbox
+                                  openVideoBtn.addEventListener("click", function() {
+                                      videoLightbox.style.display = "flex"; // Zeigt die Lightbox an
+                                      videoPlayer.play(); // Startet das Video automatisch
+                                  });
+
+                                  // Funktion zum Schließen der Lightbox
+                                  closeLightbox.addEventListener("click", function() {
+                                      videoLightbox.style.display = "none"; // Versteckt die Lightbox
+                                      videoPlayer.pause(); // Pausiert das Video
+                                      videoPlayer.currentTime = 0; // Setzt das Video zurück auf den Anfang
+                                  });
+
+                                  // Schließt die Lightbox, wenn außerhalb des Videos geklickt wird
+                                  window.addEventListener("click", function(event) {
+                                      if (event.target === videoLightbox) {
+                                          videoLightbox.style.display = "none"; // Versteckt die Lightbox
+                                          videoPlayer.pause(); // Pausiert das Video
+                                          videoPlayer.currentTime = 0; // Setzt das Video zurück auf den Anfang
+                                      }
+                                  });
+                              });
+                          </script>
+                    </f:if>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+
+            <div class="image">
+                <f:for each="{data.media}" as="bgimage">
+                    <f:comment>
+                        705 x 529 (4/3) (4/3 on 705 would be 528.75 what we round up to 529)
+                        "c" leads to fit the image in the min dimensions of width and height so that the image get scaled down to both until at least one dimension is hit.
+                    </f:comment>
+                    <fp:image image="{bgimage}" width="{705*2}c" height="{529*2}c"  realCrop="false" title="{bgimage.originalResource.title}" alt="{bgimage.originalResource.alternative}"/>
+                </f:for>
+            </div>
+        </div>
+    </div>
+</div>
+

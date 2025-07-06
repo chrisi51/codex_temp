@@ -1,0 +1,10 @@
+<f:if condition="{data.bodytext}">
+    {data.bodytext -> f:format.html()}
+</f:if>
+<f:if condition="{data.header_link}">
+    <f:link.typolink parameter="{data.header_link}"></f:link.typolink>
+</f:if>
+<f:for each="{data.media}" as="file">
+    <f:image image="{file}" width="200" />
+    {file.description}
+</f:for>

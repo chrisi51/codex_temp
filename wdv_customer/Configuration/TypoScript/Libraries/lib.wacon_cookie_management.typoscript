@@ -1,0 +1,43 @@
+lib.wacon_cookie_management = COA
+lib.wacon_cookie_management {
+    // Add cookie-management entry
+    10 = COA
+    10 {
+
+        20 < tt_content.list.20.waconcookiemanagement_cookiefreigabe
+        20 {
+
+            switchableControllerActions {
+                Cookie {
+                    1 = list
+                }
+            }
+            view < plugin.tx_waconcookiemanagement_cookiefreigabe.view
+            features < plugin.tx_waconcookiemanagement_cookiefreigabe.features
+            mvc < plugin.tx_waconcookiemanagement_cookiefreigabe.mvc
+
+            persistence {
+
+                storagePid = 462
+            }
+            settings {
+
+                nurLink = 0
+                dataProtection = 130
+                imprint = 132
+            }
+        }
+    }
+}
+
+#[globalString = ENV:HTTP_HOST=vigo.de.integration70.wdv.de]
+#[like(request.getNormalizedParams().getHttpHost(), 'vigo.de.integration70.wdv.de')]
+[request && (request.getNormalizedParams() && like(request.getNormalizedParams().getHttpHost(), "vigo.de.integration70.wdv.de"))]
+lib.wacon_cookie_management.10.20.persistence.storagePid = 441
+[global]
+lib.wacon_cookie_management_DOM < lib.wacon_cookie_management
+lib.wacon_cookie_management_DOM.10.20.settings.nurLink = -1
+
+lib.wacon_cookie_management_Link < lib.wacon_cookie_management
+lib.wacon_cookie_management_Link.10.20.settings.nurLink = 1
+#lib.foot-navigation.20 < lib.wacon_cookie_management_Link

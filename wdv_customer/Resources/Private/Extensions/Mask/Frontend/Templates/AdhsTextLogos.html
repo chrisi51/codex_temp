@@ -1,0 +1,25 @@
+<div class="adhs-text-logo">
+    <f:if condition="{data.tx_mask_title}">
+        <h2 class="headline">{data.tx_mask_title}</h2>
+    </f:if>
+    <f:if condition="{data.bodytext}">
+        {data.bodytext -> f:format.html()}
+    </f:if>
+    <div class="adhs-text-logo-elements">
+        <f:for each="{data.image}" as="file">
+            <f:if condition="{file.link}">
+                <f:then>
+                    <f:link.typolink parameter="{file.link}">
+                        <f:image image="{file}" width="200" class="adhs-text-logo-item"/>
+                    </f:link.typolink>
+                </f:then>
+                <f:else>
+                    <f:image image="{file}" width="200" class="adhs-text-logo-item"/>
+                </f:else>
+            </f:if>
+        </f:for>
+    </div>
+    <f:if condition="{data.subheader}">
+        <small>{data.subheader}</small>
+    </f:if>
+</div>

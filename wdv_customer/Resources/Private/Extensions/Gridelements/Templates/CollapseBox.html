@@ -1,0 +1,30 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+	<f:render section="Content" arguments="{_all}" />
+
+</f:section>
+
+<f:section name="Content">
+
+	<div class="grid-collapse mb-5 closed{f:if(condition: '{data.flexform_css_classes}!= ""', then:' {data.flexform_css_classes}')}">
+		<div class="grid-collapse-static">
+			{data.tx_gridelements_view_columns.600 -> f:format.raw()}
+		</div>
+                <div class="grid-collapse-dynamic">
+                        {data.tx_gridelements_view_columns.601 -> f:format.raw()}
+                </div>
+		<div class="grid-collapse-opener">
+			<div class="grid-collapse-caption closed">mehr anzeigen</div>
+                        <div class="grid-collapse-caption opened">weniger anzeigen</div>
+			<div class="grid-collapse-button"></div>
+		</div>
+	</div>
+
+</f:section>

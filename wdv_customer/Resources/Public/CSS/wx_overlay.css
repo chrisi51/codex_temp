@@ -1,0 +1,73 @@
+.wx_overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    z-index:-1;
+    transition: z-index 0.1s linear 0.5s;
+    display: none;
+}
+.wx_overlay > .wx_overlay_content{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-70%);
+    background: #fff;
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 30%);
+    z-index: 2;
+    opacity:0;
+    transition: opacity 0.5s, transform 1s;
+    max-width: 1000px;
+    width:100%;
+    box-sizing: border-box;
+}
+
+.wx_overlay > .wx_overlay_content > .wx_overlay_closer{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    cursor:pointer;
+}
+.wx_overlay > .wx_overlay_content > .wx_overlay_closer:before,
+.wx_overlay > .wx_overlay_content > .wx_overlay_closer:after
+{
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 30px;
+    background: #000000;
+    top: 13px;
+    left: 0px;
+    transform: rotate(45deg);
+    border-radius: 3px;
+}
+.wx_overlay > .wx_overlay_content > .wx_overlay_closer:after{
+    transform: rotate(-45deg)
+}
+
+.wx_overlay > .wx_overlay_shadow{
+    content:"";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:#000000;
+    z-index: 1;
+    opacity:0;
+    transition: opacity 0.2s linear 0.3s;
+}
+
+
+.wx_overlay.open{display:block;z-index:100;transition: z-index 0.1s;}
+.wx_overlay.open .wx_overlay_content{
+    transform: translate(-50%,-50%);opacity:1;
+    transition: opacity 0.5s, transform .5s;
+}
+.wx_overlay.open .wx_overlay_shadow{opacity:0.7;transition: opacity 0.3s;}

@@ -1,0 +1,97 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+	<f:render section="Content" arguments="{_all}" />
+
+</f:section>
+
+<f:section name="Content">
+
+    <f:switch expression="{data.flexform_layout}">
+        <f:case value="vribbon">
+            <v:variable.set name="cssClass" value=" vribbon" />
+        </f:case>
+        <f:defaultCase>
+            <v:variable.set name="cssClass" value=" default" />
+        </f:defaultCase>
+    </f:switch>
+        
+    <f:if condition="{data.flexform_bottom_space} == '1'">
+            <v:variable.set name="cssClass" value="{cssClass} bottomspace" />
+    </f:if>
+        
+    <f:if condition="{data.flexform_top_space} == '1'">
+            <v:variable.set name="cssClass" value="{cssClass} topspace" />
+    </f:if>
+
+    <f:if condition="{data.flexform_scrollbutton} != ''">
+            <v:variable.set name="cssClass" value="{cssClass} widthscrollbutton" />
+    </f:if>
+    
+    <div id="scroll_{data.uid}" class="achtsamkeit_container{cssClass}">
+		
+        <f:if condition="{data.flexform_layout} == 'vribbon'">
+            
+            <svg class="ribbon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 541.65 38.82"><path fill="#03662f" d="M541.65 0 274.26 30.99 0 0v38.82h541.65V0z"/></svg>
+        
+        </f:if> 
+        
+        <div class="content">
+            
+            <f:if condition="{data.flexform_scrollbutton} != ''">
+                <a class="scrollbutton" href="#scroll_{data.uid}">
+                    <f:if condition="{data.flexform_layout} == 'vribbon'">
+                        <f:if condition="{data.flexform_scrollbutton} == 'ribbon'">
+                            <svg class="ribbon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.21 92.28">
+                              <path fill="#14642e" d="m8.31 12.67 38.54 22.92c.35.39-46.81.07-46.84 0l8.3-22.92Z"/>
+                              <path fill="#21913c" d="M8.37 12.74 89.2 0l1.01 79.65c0 6.97-6.11 12.63-13.64 12.63H22.01c-7.53 0-13.64-5.65-13.64-12.63V12.74Z"/>
+                              <circle cx="49.22" cy="45.96" r="27" fill="#fff"/>
+                              <path fill="none" stroke="#246f63" stroke-linecap="round" stroke-width="3" d="m35.56 42.15 13.66 13.61 13.72-13.61"/>
+                            </svg>
+                        </f:if>
+                        <f:if condition="{data.flexform_scrollbutton} == 'default'">
+                            <svg class="default" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 79 79">
+                              <circle cx="39.5" cy="39.5" r="39.5" fill="#fff" opacity=".89" style="isolation:isolate"/>
+                              <path fill="none" stroke="#246f63" stroke-linecap="round" stroke-width="3" d="m19.5 34 19.96 19.88L59.5 34"/>
+                            </svg>
+                        </f:if>
+                    </f:if>
+                    <f:if condition="{data.flexform_layout} == 'default'">
+                        <f:if condition="{data.flexform_scrollbutton} == 'ribbon'">
+                            <svg class="ribbon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.16 79.54">
+                              <path fill="#14642e" d="m8.31 0 38.53 22.92c.35.39-46.81.07-46.84 0L8.31 0Z"/>
+                              <path fill="#21913c" d="M8.31 0h81.85v66.91c0 6.97-6.11 12.63-13.64 12.63H21.95c-7.53 0-13.64-5.65-13.64-12.63V0Z"/>
+                              <circle cx="49.16" cy="33.22" r="27" fill="#fff"/>
+                              <path fill="none" stroke="#246f63" stroke-linecap="round" stroke-width="3" d="m35.5 29.41 13.66 13.61 13.72-13.61"/>
+                            </svg>
+                        </f:if>
+                        <f:if condition="{data.flexform_scrollbutton} == 'default'">
+                            <svg class="default" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 79 79">
+                              <circle cx="39.5" cy="39.5" r="39.5" fill="#fff" opacity=".89" style="isolation:isolate"/>
+                              <path fill="none" stroke="#246f63" stroke-linecap="round" stroke-width="3" d="m19.5 34 19.96 19.88L59.5 34"/>
+                            </svg>
+                        </f:if>
+                    </f:if>
+                </a>
+            </f:if>
+      
+            
+			{data.tx_gridelements_view_columns.600 -> f:format.raw()}
+        </div>
+        
+        <f:if condition="{data.flexform_layout} == 'vribbon'">
+            
+            <svg class="ribbon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 541.65 46.07"><path fill="#03662f" d="m0 9.18 274.26 36.89L541.65 9.18V0H0v9.18z"/></svg>
+            
+        </f:if> 
+
+	</div>
+
+    
+</f:section>

@@ -1,0 +1,53 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:w="WDV\WdvCustomer\ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<header class="sticky-top">
+	<div class="container">
+		<!-- CONTENTBEREICH HEADER START -->
+
+
+        <div class="wx_overlay" id="overlay_languagemenu">
+            <h3>Select language</h3>
+            <div class="languages">
+                <f:for each="{languagenavigation}" as="item">
+                    <f:if condition="{item.available}">
+                        <a href="{item.link}" hreflang="{item.hreflang}" title="{item.navigationTitle}">
+                            <svg class="language-icon"><use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/flags.svg')}#{item.flag}"></use></svg>
+                            <span>{item.navigationTitle}</span>
+                        </a>
+                        <f:if condition="{item.active}">
+                            {f:variable(name: 'currentLanguageFlag', value: '{item.flag}')}
+                            {f:variable(name: 'currentLanguageTitle', value: '{item.navigationTitle}')}
+                        </f:if>
+                    </f:if>
+                </f:for>
+            </div>
+        </div>
+            
+        
+        
+		<!-- Navigation für Mobile -->
+		<nav class="navbar mobile navbar-expand d-inline-flex d-md-none w-100" aria-label="Hauptnavigation">
+			<f:cObject typoscriptObjectPath="lib.logo.mobile"/>
+            <a class="wx_overlay_opener languageMenuOpener" href="#overlay_languagemenu">
+                <svg class="language-icon"><use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/flags.svg')}#{currentLanguageFlag}"></use></svg>
+            </a>
+            <f:render partial="Navigation/MobileEpa" arguments="{_all}" />
+		</nav>
+		<!-- Navigation für Mobile -->
+
+		<!-- Navigation für Desktop -->
+		<nav class="navbar desktop navbar-expand-md d-none d-md-flex w-100" aria-label="Hauptnavigation">
+			<f:cObject typoscriptObjectPath="lib.logo.desktop"/>
+			<f:cObject typoscriptObjectPath="lib.main-navigation.desktop"/>
+            <a class="wx_overlay_opener languageMenuOpener" href="#overlay_languagemenu">
+                <svg class="language-icon"><use xlink:href="{f:uri.resource(path:'EXT:wdv_customer/Resources/Public/Icons/flags.svg')}#{currentLanguageFlag}"></use></svg>
+            </a>
+		</nav>
+		<!-- Navigation für Desktop -->
+
+ 		<!-- CONTENTBEREICH HEADER ENDE -->
+	</div>
+</header>
+</html>

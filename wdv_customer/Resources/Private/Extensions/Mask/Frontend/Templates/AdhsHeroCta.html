@@ -1,0 +1,51 @@
+<f:if condition="{data.tx_mask_cta_link}">
+    <f:then>
+        <f:link.typolink parameter="{data.tx_mask_cta_link}" class="adhs-cta-bubble">
+            <div class="scroll-container">
+                <div class="scroll-container-item scroll-container-item--hidden">
+                    <f:render section="content" arguments="{data: data}"/>
+                </div>
+                <div class="scroll-container-item scroll-container-item--hidden">
+                    <f:render section="content" arguments="{data: data}"/>
+                </div>
+                <div class="scroll-container-item scroll-container-item--hidden">
+                    <f:render section="content" arguments="{data: data}"/>
+                </div>
+                <div class="scroll-container-item">
+                    <f:render section="content" arguments="{data: data}"/>
+                </div>
+            </div>
+        </f:link.typolink>
+    </f:then>
+    <f:else>
+        <div class="adhs-cta-bubble">
+            <div class="scroll-container">
+                <div class="scroll-container-item scroll-container-item--hidden">
+                    <f:render section="content" arguments="{data: data}"/>
+                </div>
+                <div class="scroll-container-item scroll-container-item--hidden">
+                    <f:render section="content" arguments="{data: data}"/>
+                </div>
+                <div class="scroll-container-item scroll-container-item--hidden">
+                    <f:render section="content" arguments="{data: data}"/>
+                </div>
+                <div class="scroll-container-item">
+                    <f:render section="content" arguments="{data: data}"/>
+                </div>
+            </div>
+        </div>
+    </f:else>
+</f:if>
+
+<f:section name="content">
+    <f:for each="{data.image}" as="file">
+        <f:image image="{file}" width="200"/>
+        {file.description}
+    </f:for>
+    <f:if condition="{data.tx_mask_cta_title}">
+        <h2 class="title">{data.tx_mask_cta_title}</h2>
+    </f:if>
+    <f:if condition="{data.tx_mask_cta_text}">
+        <p>{data.tx_mask_cta_text}</p>
+    </f:if>
+</f:section>

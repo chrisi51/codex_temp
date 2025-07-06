@@ -1,0 +1,20 @@
+<f:if condition="{data.tx_mask_colored_teaser}">
+    <div class="colored_teaser">
+        <f:for each="{data.tx_mask_colored_teaser}" as="data_item">
+            <f:link.typolink parameter="{data_item.tx_mask_link}" class="teaser {data_item.tx_mask_bg_color}">
+                <div class="image">
+                    <f:for each="{data_item.tx_mask_image}" as="bgimage">
+                        <f:image image="{bgimage}" title="{bgimage.originalResource.title}" alt="{bgimage.originalResource.alternative}" />
+                    </f:for>
+                </div>
+                <f:if condition="({data_item.tx_mask_headline})">
+                    <h3>
+                        <f:if condition="{data_item.tx_mask_headline}">
+                            {data_item.tx_mask_headline -> f:format.nl2br()}
+                        </f:if>
+                    </h3>
+                </f:if>
+            </f:link.typolink>
+        </f:for>
+    </div>
+</f:if>

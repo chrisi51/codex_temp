@@ -1,0 +1,892 @@
+config {
+    sys_language_mode = ignore
+
+    # cache remains 15 minutes (900 seconds)
+    cache_period = 900
+
+    recordLinks {
+        artikel {
+            forceLink = 1
+            typolink {
+                parameter.stdWrap.cObject = CONTENT
+                parameter.stdWrap.cObject {
+                    table = sys_category
+                    select {
+                        orderBy = sys_category.single_pid ASC
+                        pidInList = 107
+                        selectFields = sys_category.single_pid as detailPid
+                        join = sys_category_record_mm ON sys_category_record_mm.uid_local = sys_category.uid
+                        where = sys_category_record_mm.uid_foreign = {field:uid} AND sys_category.single_pid != 0
+                        where.insertData = 1
+                        max = 1
+                    }
+
+                    renderObj = TEXT
+                    renderObj.field = detailPid
+                    renderObj.wrap = |
+                }
+
+                additionalParams.data = field:uid
+                additionalParams.wrap = &tx_news_pi1[news]=|
+            }
+        }
+
+        popup {
+            forceLink = 1
+            typolink {
+                parameter.data = field:uid
+                parameter.insertData = 1
+                additionalParams.data = field:uid
+                additionalParams.wrap = &id=|&type=1968
+                addQueryString = 1
+            }
+        }
+    }
+}
+
+page {
+    10 = FLUIDTEMPLATE
+    10 {
+        # file = EXT:wdv_customer/Resources/Private/Templates/Page/Main.html
+        templateName = Main
+        layoutRootPaths {
+            10 = EXT:wdv_customer/Resources/Private/Layouts/
+        }
+
+        partialRootPaths {
+            10 = EXT:wdv_customer/Resources/Private/Partials/Page/
+        }
+
+        templateRootPaths {
+            10 = EXT:wdv_customer/Resources/Private/Templates/Page/
+        }
+
+        variables {
+            main-content < styles.content.get
+
+            be-layout = TEXT
+            be-layout.data = pagelayout
+
+            page-uid = TEXT
+            page-uid.field = uid
+
+            headerlinksLeichtesprache = TEXT
+            headerlinksLeichtesprache.value = {$page.theme.headerlinks.leichtesprache}
+
+            headerlinksGebaerdensprache = TEXT
+            headerlinksGebaerdensprache.value = {$page.theme.headerlinks.gebaerdensprache}
+        }
+
+        ##########################
+        ### DATA PREPROCESSING ###
+        ##########################
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+            10 {
+                special = directory
+                special.value = 103
+                levels = 3
+                ### Spacer - BackendSpacer between pages
+                includeSpacer = 1
+                as = navigation
+            }
+
+           # 20 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+           # 20 {
+           #     table = tt_content
+           #     pidInList = 198
+           #     orderBy = sorting
+           #     where = colPos = 3
+           #     andWhere = hidden=0 AND deleted=0
+           #     as = search
+           #     dataProcessing {
+           #         10 = GridElementsTeam\Gridelements\DataProcessing\GridChildrenProcessor
+           #         10 {
+           #             default {
+           #                 as = children
+           #             }
+           #         }
+           #    }
+           # }
+        }
+    }
+
+    bodyTagCObject {
+
+        60 = TEXT
+        60 {
+
+            field = tx_wdvcustomer_page_background
+            noTrimWrap = | background-||
+        }
+    }
+
+    meta.viewport = width=device-width, initial-scale=1, shrink-to-fit=no
+
+    headerData.123456 = TEXT
+    headerData.123456.value (
+<link rel="preload" href="typo3conf/ext/wdv_customer/Resources/Public/Fonts/slick.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="typo3conf/ext/wdv_customer/Resources/Public/Fonts/38F7C8_2_unhinted_0.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="typo3conf/ext/wdv_customer/Resources/Public/Fonts/38F7C8_6_unhinted_0.woff2" as="font" type="font/woff2" crossorigin>
+    )
+    headerData.123457 = TEXT
+    headerData.123457.value (
+<link rel="icon" type="image/png" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/Favicons-2025/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/Favicons-2025/favicon.svg" />
+<link rel="shortcut icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/Favicons-2025/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/Favicons-2025/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="vigo" />
+<link rel="manifest" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/Favicons-2025/site.webmanifest" />
+    )
+
+
+    includeCSS {
+        10 = EXT:wdv_customer/Resources/Public/CSS/bootstrap.css
+        20 = EXT:wdv_customer/Resources/Public/CSS/fonts.css
+        21 = EXT:wdv_customer/Resources/Public/CSS/iconfont.css
+        #        30 = EXT:wdv_customer/Resources/Public/CSS/cookieconsent.css
+        #        30 = EXT:wdv_customer/Resources/Public/CSS/wacon_cookie_management.css
+        30 = EXT:wdv_customer/Resources/Public/CSS/wx_consentbanner.css
+        40 = EXT:wdv_customer/Resources/Public/CSS/ekko-lightbox.css
+        50 = EXT:wdv_customer/Resources/Public/CSS/focuspoint.css
+        60 = EXT:wdv_customer/Resources/Public/CSS/slick.css
+        70 = EXT:wdv_customer/Resources/Public/CSS/slick-theme.css
+        80 = EXT:wdv_customer/Resources/Public/CSS/customer.css
+        81 = EXT:wdv_customer/Resources/Public/CSS/moods.css
+        82 = EXT:wdv_customer/Resources/Public/CSS/colors.css
+        83 = EXT:wdv_customer/Resources/Public/CSS/adhs.css
+        90 = EXT:wdv_customer/Resources/Public/CSS/print.css
+        100 = EXT:wdv_customer/Resources/Public/CSS/impfkalender.css
+        110 = EXT:wdv_customer/Resources/Public/CSS/podcasts.css
+        120 = EXT:wdv_customer/Resources/Public/CSS/md_news_author.css
+        //190 = EXT:wdv_customer/Resources/Public/Css/ke_search_pi1.css
+        200 = EXT:wdv_customer/Resources/Public/CSS/style.css
+        210 = EXT:wdv_customer/Resources/Public/CSS/wx_overlay.css
+        220 = EXT:wdv_customer/Resources/Public/CSS/parsley.css
+    }
+
+    includeJSFooterlibs {
+        10 = EXT:wdv_customer/Resources/Public/JavaScript/jquery.js
+        10.forceOnTop = 1
+        15 = EXT:wdv_customer/Resources/Public/JavaScript/parsley.min.js
+        20 = EXT:wdv_customer/Resources/Public/JavaScript/tether.js
+        30 = EXT:wdv_customer/Resources/Public/JavaScript/bootstrap.bundle.js
+        40 = EXT:wx_consentbanner/Resources/Public/JavaScript/wxconsentbanner.js
+        51 = EXT:wdv_customer/Resources/Public/JavaScript/ekko-lightbox.js
+        52 = EXT:wdv_customer/Resources/Public/JavaScript/jquery.cookie.js
+#        53 = EXT:wdv_customer/Resources/Public/JavaScript/jquery.focuspoint.js
+        54 = EXT:wdv_customer/Resources/Public/JavaScript/jquery-unveil.js
+        55 = EXT:wdv_customer/Resources/Public/JavaScript/jquery-inputmask.min.js
+        90 = EXT:wdv_customer/Resources/Public/JavaScript/slick.js
+
+
+        // 100 not available! it is used for jquery-ui.js in ke_search configuration
+        // in file typo3conf/ext/wdv_customer/Configuration/TypoScript/Extensions/ke_search.txt
+
+        // GSAP (Animation Framework)
+        150 = EXT:wdv_customer/Resources/Public/JavaScript/gsap/gsap.min.js
+        151 = EXT:wdv_customer/Resources/Public/JavaScript/gsap/ScrollTrigger.min.js
+
+        // 130 not available! it is used for elements.js in wdv_elements configuration
+        // in file typo3conf/ext/wdv_elements/Configuration/TypoScript/setup.txt
+        // Integration of autocompletion without dynamic values to prevent lots of merged js-files from scriptmerger
+        #200 = EXT:wdv_customer/Resources/Public/JavaScript/ke_search_premium_customer.js
+
+
+        // custom scripts
+        500 = EXT:wdv_customer/Resources/Public/JavaScript/customer.js
+        510 = EXT:wdv_customer/Resources/Public/JavaScript/news.js
+        520 = EXT:wdv_customer/Resources/Public/JavaScript/wx_overlay.js
+        530 = EXT:wdv_customer/Resources/Public/JavaScript/sms_doi.js
+
+
+        // tracking
+        800 = typo3conf/ext/wdv_customer/Resources/Public/JavaScript/tracking.js
+
+
+        // AppMeasurement by TWT Interactive GmbH
+        // ALWAYS keep .min.js in filename to prevent scriptmerger minimization!
+        // 1000 = typo3conf/ext/wdv_customer/Resources/Public/JavaScript/aml.min.js
+    }
+
+    includeJSFooter.wxconsentbanner >
+    includeJSFooter.powermailJQueryFormValidation_wdv = EXT:wdv_customer/Resources/Public/JavaScript/parsley.validators.js
+
+}
+
+[siteLanguage("title") == "Arabisch"]
+    page.includeCSS.2000 = EXT:wdv_customer/Resources/Public/CSS/sites/arab.css
+[global]
+
+
+
+lib.pagename = TEXT
+lib.pagename.value = vigo_de
+
+
+api = PAGE
+api {
+    typeNum = 1696319023
+    config {
+        no_cache = 1
+        index_enable = 0
+        xhtml_cleaning = 0
+        disableAllHeaderCode = 1
+        debug = 0
+        additionalHeaders {
+            10 {
+                header = Content-Type: application/json
+                replace = 1
+            }
+        }
+    }
+
+    10 = USER_INT
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        vendorName = WDV
+        extensionName = WdvCustomer
+    }
+}
+
+smsdoisend < api
+smsdoisend {
+    typeNum = 1696319024
+    10 {
+        controller = SmsDoi
+        pluginName = SmsDoiSend
+    }
+}
+
+smsdoiverify < api
+smsdoiverify {
+    typeNum = 1696326701
+    10 {
+        controller = SmsDoi
+        pluginName = SmsDoiVerify
+    }
+}
+
+
+[traverse(page, 'backend_layout') == 'pagets__30']
+    page.bodyTagCObject {
+
+        98 = TEXT
+        98 {
+            value = bg_green
+            noTrimWrap = | ||
+        }
+    }
+[global]
+
+[site("identifier") == "www_gib8-achtsamkeit_de"]
+    //favicon
+    page.headerData.123457.value (
+		<link rel="apple-touch-icon" sizes="180x180" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsGib8/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsGib8/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsGib8/favicon-16x16.png">
+		<link rel="manifest" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsGib8/site.webmanifest">
+		<link rel="mask-icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsGib8/safari-pinned-tab.svg" color="#5bbad5">
+		<link rel="shortcut icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsGib8/favicon.ico">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="msapplication-config" content="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsGib8/browserconfig.xml">
+		<meta name="theme-color" content="#ffffff">
+    )
+
+    // tracking
+    page.includeJSFooterlibs.800 = EXT:wdv_customer/Resources/Public/JavaScript/trackingGib8.js
+
+    page.bodyTagCObject {
+
+        99 = TEXT
+        99 {
+            value = gib8
+            noTrimWrap = | ||
+        }
+    }
+[global]
+
+[site("identifier") == "achtsamkeit_vigo_de"]
+    //favicon
+    page.headerData.123457.value (
+        <link rel="apple-touch-icon" sizes="180x180" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAchtsamkeit/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAchtsamkeit/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAchtsamkeit/favicon-16x16.png">
+        <link rel="manifest" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAchtsamkeit/site.webmanifest">
+        <link rel="mask-icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAchtsamkeit/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAchtsamkeit/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAchtsamkeit/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+    )
+
+    lib.pagename.value = achtsamkeit_vigo_de
+
+    // tracking
+    page.includeJSFooterlibs.800 = EXT:wdv_customer/Resources/Public/JavaScript/trackingGib8.js
+
+    page.bodyTagCObject {
+
+        99 = TEXT
+        99 {
+            value = gib8 achtsamkeit
+            noTrimWrap = | ||
+        }
+    }
+[global]
+
+[site("identifier") == "krebs_vigo_de"]
+    //favicon
+    page.headerData.123457.value (
+        <link rel="apple-touch-icon" sizes="180x180" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsCheckdasab/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsCheckdasab/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsCheckdasab/favicon-16x16.png">
+        <link rel="manifest" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsCheckdasab/site.webmanifest">
+        <link rel="mask-icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsCheckdasab/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsCheckdasab/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsCheckdasab/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+    )
+
+    lib.pagename.value = krebs_vigo_de
+
+    // tracking
+    page.includeJSFooterlibs.800 = EXT:wdv_customer/Resources/Public/JavaScript/trackingGib8.js
+
+    page.bodyTagCObject {
+
+        99 = TEXT
+        99 {
+            value = gib8 achtsamkeit krebs
+            noTrimWrap = | ||
+        }
+    }
+
+    config.recordLinks {
+        artikel {
+            typolink {
+                parameter >
+
+                ###detailPid eintragen###
+                parameter = 725
+            }
+        }
+    }
+[global]
+
+[site("identifier") == "soundtrack_vigo_de"]
+
+    //favicon
+    page.headerData.123457.value (
+        <link rel="apple-touch-icon" sizes="180x180" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/favicon-16x16.png">
+        <link rel="manifest" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/site.webmanifest">
+        <link rel="mask-icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+        <meta name="robots" content="noindex,nofollow">
+    )
+    lib.pagename.value = soundtrack_vigo_de
+
+    page {
+        bodyTagCObject.20 >
+        bodyTagCObject.30 >
+        bodyTagCObject.40 >
+        bodyTagCObject.50 >
+        bodyTagCObject.60 >
+        bodyTagCObject {
+            99 = TEXT
+            99 {
+                value = soundtrack
+                noTrimWrap = | ||
+            }
+        }
+        10 {
+            dataProcessing {
+                100 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                100 {
+                    special = directory
+                    special.value = 892
+                    levels = 1
+                    as = legalnav
+                    expandAll = 1
+                    includeSpacer = 1
+                    titleField = nav_title // title
+                }
+            }
+        }
+        includeCSS {
+            22   = EXT:wdv_customer/Resources/Public/CSS/fonts-aokbuenosaires.css
+            1000 = EXT:wdv_customer/Resources/Public/CSS/soundtrack.css
+            1001 = EXT:wdv_customer/Resources/Public/CSS/wx_slider.css
+        }
+        includeJSFooterlibs {
+            1001 = EXT:wdv_customer/Resources/Public/JavaScript/wx_slider.js
+        }
+    }
+[global]
+
+[site("identifier") == "familie_vigo_de"]
+
+    //favicon
+    page.headerData.123457.value (
+        <link rel="apple-touch-icon" sizes="180x180" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon-16x16.png">
+        <link rel="manifest" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/site.webmanifest">
+        <link rel="mask-icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+    )
+    lib.pagename.value = familie_vigo_de
+
+    page {
+        bodyTagCObject.20 >
+        bodyTagCObject.30 >
+        bodyTagCObject.40 >
+        bodyTagCObject.50 >
+        bodyTagCObject.60 >
+        bodyTagCObject {
+            99 = TEXT
+            99 {
+                value = familie
+                noTrimWrap = | ||
+            }
+        }
+        10 {
+            dataProcessing {
+                100 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                100 {
+                    special = directory
+                    special.value = 901
+                    levels = 1
+                    as = legalnav
+                    expandAll = 1
+                    includeSpacer = 1
+                    titleField = nav_title // title
+                }
+
+                110 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                110 {
+                    special = directory
+                    # local / test:
+                    #special.value = 898,1112
+                    # LIVE:
+                    #special.value = 898,1117,1109,1181
+                    # neues Menü
+                    special.value = 1241
+                    levels = 2
+                    as = headerNav
+                    expandAll = 1
+                    includeSpacer = 1
+                    titleField = nav_title // title
+                }
+
+            }
+            variables {
+                randomStorer = CONTENT
+                randomStorer {
+                    table = tt_content
+                    select {
+                        pidInList = 914
+                        where = CType = 'mask_strer'
+                        max = 1
+                        orderBy = sorting
+                    }
+                    renderObj = FLUIDTEMPLATE
+                    renderObj {
+                        file = EXT:wdv_customer/Resources/Private/Templates/Stoerer/Stoerer_Familie.html
+                        dataProcessing {
+                            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                            10 {
+                                references.fieldName = media
+                                as = icons
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        includeCSS {
+            22   = EXT:wdv_customer/Resources/Public/CSS/fonts-aokbuenosaires.css
+            23   = EXT:wdv_customer/Resources/Public/CSS/fonts-aok-icon-font.css
+            1000 = EXT:wdv_customer/Resources/Public/CSS/sites/dark-green.css
+            1001 = EXT:wdv_customer/Resources/Public/CSS/sites/familie.css
+#            1001 = EXT:wdv_customer/Resources/Public/CSS/wx_slider.css
+        }
+        includeJSFooterlibs {
+#            1001 = EXT:wdv_customer/Resources/Public/JavaScript/wx_slider.js
+            2000 = EXT:wdv_customer/Resources/Public/JavaScript/sites/familie.js
+        }
+    }
+
+    config {
+        recordLinks {
+            artikel {
+                typolink {
+                    parameter >
+                    parameter = 907
+                }
+            }
+        }
+    }
+
+    plugin.tx_powermail.view.partialRootPaths.30 = EXT:wdv_customer/Resources/Private/Extensions/Powermail/PartialsFamilie/
+
+[global]
+
+[site("identifier") == "epa_vigo_de"]
+
+    //favicon
+#    page.headerData.123457.value (
+#        <link rel="apple-touch-icon" sizes="180x180" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/apple-touch-icon.png">
+#        <link rel="icon" type="image/png" sizes="32x32" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/favicon-32x32.png">
+#        <link rel="icon" type="image/png" sizes="16x16" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/favicon-16x16.png">
+#        <link rel="manifest" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/site.webmanifest">
+#        <link rel="mask-icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/safari-pinned-tab.svg" color="#5bbad5">
+#        <link rel="shortcut icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/favicon.ico">
+#        <meta name="msapplication-TileColor" content="#da532c">
+#        <meta name="msapplication-config" content="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsSoundtrack/browserconfig.xml">
+#        <meta name="theme-color" content="#ffffff">
+#    )
+    lib.pagename.value = epa_vigo_de
+
+    page {
+        bodyTagCObject.20 >
+        bodyTagCObject.30 >
+        bodyTagCObject.40 >
+        bodyTagCObject.50 >
+        bodyTagCObject.60 >
+        bodyTagCObject {
+            99 = TEXT
+            99 {
+                value = background-0 epa gib8 achtsamkeit
+                noTrimWrap = | ||
+            }
+        }
+        10 {
+            dataProcessing {
+                10 {
+                    special.value = 915
+                }
+
+                100 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                100 {
+                    special = directory
+                    special.value = 911
+                    levels = 1
+                    as = legalnav
+                    expandAll = 1
+                    includeSpacer = 1
+                    titleField = nav_title // title
+                }
+
+                110 = TYPO3\CMS\Frontend\DataProcessing\LanguageMenuProcessor
+                110 {
+                  languages = auto
+                  as = languagenavigation
+                }
+
+            }
+            variables {
+
+            }
+        }
+        includeCSS {
+#            22   = EXT:wdv_customer/Resources/Public/CSS/fonts-aokbuenosaires.css
+#            1000 = EXT:wdv_customer/Resources/Public/CSS/sites/dark-green.css
+            1001 = EXT:wdv_customer/Resources/Public/CSS/sites/epa.css
+#            1001 = EXT:wdv_customer/Resources/Public/CSS/wx_slider.css
+        }
+        includeJSFooterlibs {
+#            1001 = EXT:wdv_customer/Resources/Public/JavaScript/wx_slider.js
+        }
+    }
+    config {
+        htmlTag_stdWrap >
+        recordLinks {
+            artikel {
+                typolink {
+                    parameter >
+                    parameter = 928
+                }
+            }
+        }
+    }
+
+    [siteLanguage("title") == "Arabisch"]
+        page.includeCSS.2010 = EXT:wdv_customer/Resources/Public/CSS/sites/epa-arab.css
+    [global]
+
+[global]
+
+[site("identifier") == "schwangerschaft_vigo_de"]
+
+    //favicon
+    page.headerData.123457.value (
+        <link rel="apple-touch-icon" sizes="180x180" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon-16x16.png">
+        <link rel="manifest" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/site.webmanifest">
+        <link rel="mask-icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+    )
+    lib.pagename.value = schwangerschaft_vigo_de
+
+    page {
+        bodyTagCObject.20 >
+        bodyTagCObject.30 >
+        bodyTagCObject.40 >
+        bodyTagCObject.50 >
+        bodyTagCObject.60 >
+        bodyTagCObject {
+            99 = TEXT
+            99 {
+                value = schwangerschaft
+                noTrimWrap = | ||
+            }
+        }
+        10 {
+            dataProcessing {
+                10 {
+                    special.value = 1004
+                }
+
+                100 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                100 {
+                    special = directory
+                    special.value = 1024
+                    levels = 1
+                    as = legalnav
+                    expandAll = 1
+                    includeSpacer = 1
+                    titleField = nav_title // title
+                }
+                110 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                110 {
+                    special = rootline
+                    special.range = 0|-1
+                    includeNotInMenu = 0
+                    as = breadcrumb
+                }
+                120 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                120 {
+                    special = browse
+                    special.items = prev
+                    as = prevpage
+                }
+                121 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                121 {
+                    special = browse
+                    special.items = next
+                    as = nextpage
+                }
+                122 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                122 {
+                    special = browse
+                    special.items = up
+                    as = uppage
+                }
+            }
+            variables {
+
+            }
+        }
+        includeCSS {
+            22   = EXT:wdv_customer/Resources/Public/CSS/fonts-aokbuenosaires.css
+            1001 = EXT:wdv_customer/Resources/Public/CSS/sites/schwangerschaft.css
+        }
+    }
+
+[global]
+
+[site("identifier") == "durchstarter_vigo_de"]
+
+    //favicon
+    page.headerData.123457.value (
+        <link rel="apple-touch-icon" sizes="180x180" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon-16x16.png">
+        <link rel="manifest" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/site.webmanifest">
+        <link rel="mask-icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+    )
+    lib.pagename.value = durchstarter_vigo_de
+
+    page {
+        bodyTagCObject.20 >
+        bodyTagCObject.30 >
+        bodyTagCObject.40 >
+        bodyTagCObject.50 >
+        bodyTagCObject.60 >
+        bodyTagCObject {
+            99 = TEXT
+            99 {
+                value = familie
+                noTrimWrap = | ||
+            }
+        }
+        10 {
+            dataProcessing {
+                100 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                100 {
+                    special = directory
+                    special.value = 1201
+                    levels = 1
+                    as = legalnav
+                    expandAll = 1
+                    includeSpacer = 1
+                    titleField = nav_title // title
+                }
+
+                110 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                110 {
+                    special = directory
+                    special.value = 1194
+                    levels = 1
+                    as = headerNav
+                    expandAll = 1
+                    includeSpacer = 1
+                    titleField = nav_title // title
+                }
+
+            }
+´        }
+        includeCSS {
+            22   = EXT:wdv_customer/Resources/Public/CSS/fonts-aokbuenosaires.css
+            23   = EXT:wdv_customer/Resources/Public/CSS/fonts-aok-icon-font.css
+            1000 = EXT:wdv_customer/Resources/Public/CSS/sites/dark-green.css
+            1001 = EXT:wdv_customer/Resources/Public/CSS/sites/familie.css
+#            1001 = EXT:wdv_customer/Resources/Public/CSS/wx_slider.css
+        }
+        includeJSFooterlibs {
+#            1001 = EXT:wdv_customer/Resources/Public/JavaScript/wx_slider.js
+        }
+    }
+
+
+    plugin.tx_powermail.view.partialRootPaths.30 = EXT:wdv_customer/Resources/Private/Extensions/Powermail/PartialsFamilie/
+
+[global]
+
+[site("identifier") == "fuermich_vigo_de"]
+
+    //favicon
+    page.headerData.123457.value (
+        <link rel="apple-touch-icon" sizes="180x180" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon-16x16.png">
+        <link rel="manifest" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/site.webmanifest">
+        <link rel="mask-icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="/typo3conf/ext/wdv_customer/Resources/Public/Icons/FaviconsAOK/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+    )
+    lib.pagename.value = fuermich_vigo_de
+
+    page {
+        bodyTagCObject.20 >
+        bodyTagCObject.30 >
+        bodyTagCObject.40 >
+        bodyTagCObject.50 >
+        bodyTagCObject.60 >
+        bodyTagCObject {
+            99 = TEXT
+            99 {
+                value = familie
+                noTrimWrap = | ||
+            }
+        }
+        10 {
+            dataProcessing {
+                100 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                100 {
+                    special = directory
+                    special.value = 901
+                    levels = 1
+                    as = legalnav
+                    expandAll = 1
+                    includeSpacer = 1
+                    titleField = nav_title // title
+                }
+
+                110 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+                110 {
+                    special = list
+                    # local / test:
+                    #special.value = 898,1112
+                    # LIVE:
+                    special.value = 898,1117,1109,1181
+                    levels = 1
+                    as = headerNav
+                    expandAll = 1
+                    includeSpacer = 1
+                    titleField = nav_title // title
+                }
+
+            }
+        }
+        includeCSS {
+            22   = EXT:wdv_customer/Resources/Public/CSS/fonts-aokbuenosaires.css
+            23   = EXT:wdv_customer/Resources/Public/CSS/fonts-aok-icon-font.css
+            1000 = EXT:wdv_customer/Resources/Public/CSS/sites/dark-green.css
+            1001 = EXT:wdv_customer/Resources/Public/CSS/sites/familie.css
+#            1001 = EXT:wdv_customer/Resources/Public/CSS/wx_slider.css
+        }
+        includeJSFooterlibs {
+#            1001 = EXT:wdv_customer/Resources/Public/JavaScript/wx_slider.js
+        }
+    }
+
+
+    plugin.tx_powermail.view.partialRootPaths.30 = EXT:wdv_customer/Resources/Private/Extensions/Powermail/PartialsFamilie/
+
+[global]
+
+page.10.variables.pagename < lib.pagename
+
+[129 in tree.rootLineIds]
+    page.jsFooterInline {
+        10 = TEXT
+        10.value = $('.newsletter-box div').parent().remove();
+    }
+[global]
+
+[traverse(getTSFE(), 'type') == 1968]
+    config {
+        disableAllHeaderCode = 1
+        disableBodyTag = 1
+        htmlTag_stdWrap >
+    }
+
+    ajax = PAGE
+    ajax {
+        typeNum = 1968
+        # 10 = TEXT
+        # 10.data = gp:id
+        # re-use content getter from original page object
+        10 < page.10
+    }
+[global]
+
+[applicationContext matches "/(Development|Vorschau)/"]
+    config.contentObjectExceptionHandler = 0
+    page.includeJSFooterlibs.800 >
+[global]
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yoast_news/Configuration/TypoScript/setup.typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:wdv_customer/Configuration/TypoScript/Extensions/" extensions="typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:wdv_customer/Configuration/TypoScript/Libraries/" extensions="typoscript">

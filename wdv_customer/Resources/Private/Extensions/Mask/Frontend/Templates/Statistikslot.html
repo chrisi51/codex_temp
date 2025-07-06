@@ -1,0 +1,25 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="tx_mask statistikslot mt-5 mb-4" id="c{data.uid}">
+    <div class="row no-gutters justify-content-center">
+		<div class="statistikslot-inner">
+
+			<div class="prozent"><span class="auto-count-up" data-duration="3000">{data.tx_mask_prozent}</span> %</div>
+
+	    		<f:if condition="{data.bodytext}">
+    				<div class="text">{data.bodytext -> f:format.html()}</div>
+	    		</f:if>
+
+			<f:for each="{data.image}" as="file">
+				<div class="mb-4">
+				<fp:image image="{file}" title="{f:if(condition: '{file.originalFile.properties.publisher}', then: 'Bildnachweis: © {file.originalFile.properties.publisher}')}{f:if(condition: '{file.originalFile.properties.creator}', then: ' / {file.originalFile.properties.creator}')}" alt="{file.alternative}" maxWidth="400" realCrop="false" />
+				</div>
+			</f:for>
+			
+		</div>
+    </div>
+</div>
+
+</html>

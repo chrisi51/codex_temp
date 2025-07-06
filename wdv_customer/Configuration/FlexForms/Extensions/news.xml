@@ -1,0 +1,31 @@
+<sheets>
+	<additional>
+		<ROOT>
+			<el>
+				<settings.showNewFlag>
+					<label>Neu-Flag anzeigen?</label>
+					<config>
+						<type>check</type>
+					</config>
+				</settings.showNewFlag>
+				<settings.showNewFlagForDays>
+					<label>Neu-Flag für Anzahl Tage anzeigen</label>
+					<config>
+						<type>select</type>
+						<renderType>selectSingle</renderType>
+						<items type="array">
+							<numIndex index="0" type="array">
+								<label>7 Tage</label>
+								<value>7</value>
+							</numIndex>
+							<numIndex index="1" type="array">
+								<label>14 Tage</label>
+								<value>14</value>
+							</numIndex>
+						</items>
+					</config>
+				</settings.showNewFlagForDays>
+			</el>
+		</ROOT>
+	</additional>
+</sheets>

@@ -1,0 +1,63 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>Allgemein</sheetTitle>
+                <type>array</type>
+                <el>
+                    <layout>
+                        <label>Layout</label><config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <label>Standard Content mir runden Ecken</label>
+                                        <value>default</value>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <label>grünes V</label>
+                                        <value>vribbon</value>
+                                    </numIndex>
+                                </items>
+                            </config>
+                    </layout>
+                    <scrollbutton>
+                        <label>Button zum runterscrollen</label><config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <label>keiner</label>
+                                        <value></value>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <label>Pfeil im Kreis</label>
+                                        <value>default</value>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <label>Pfeil im Kreis mit grünem Ribbon</label>
+                                        <value>ribbon</value>
+                                    </numIndex>
+                                </items>
+                            </config>
+                    </scrollbutton>
+                    <top_space>
+                        <label>Extra viel Abstand am Anfang? (z.B. zum Überlappen von Elementen)</label><config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                    </top_space>
+                    <bottom_space>
+                        <label>Extra viel Abstand am Ende? (z.B. zum Überlappen von Elementen)</label><config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                    </bottom_space>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="224px" height="224px" viewBox="0 0 224 224" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>ic</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="vigo-home-desktop-variante1" transform="translate(-80.000000, -1372.000000)">
+            <rect fill="#FFFFFF" x="0" y="0" width="1440" height="5669"></rect>
+            <g id="Article-Grid" transform="translate(150.000000, 60.000000)">
+                <g id="Article" transform="translate(0.000000, 140.000000)">
+                    <g id="#3" transform="translate(0.000000, 883.000000)">
+                        <g id="Info" transform="translate(30.000000, 388.000000)">
+                            <g id="Meta-info">
+                                <g id="Reading-time">
+                                    <g id="ic_question" transform="translate(0.000000, 1.000000)">
+                                        <g id="Profile">
+                                            <g transform="translate(2.000000, 0.000000)">
+                                                <circle id="Oval" stroke="#555555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="8" cy="8" r="4"></circle>
+                                                <path d="M16,20 C16,15.581722 12.418278,12 8,12 C3.581722,12 0,15.581722 0,20" id="Oval-2" stroke="#555555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M16.954,8.074 L16.954,5.148 L17.556,5.148 C18.48,5.148 19.026,4.588 19.026,3.636 C19.026,2.768 18.634,2.292 17.92,2.292 C17.192,2.292 16.8,2.74 16.8,3.58 C16.8,3.65 16.814,3.72 16.814,3.79 L14.882,3.79 L14.882,3.566 C14.882,1.886 16.128,0.766 18.032,0.766 C19.866,0.766 21.028,1.872 21.028,3.706 C21.028,5.12 20.258,6.016 18.83,6.31 L18.83,8.074 L16.954,8.074 Z M17.892,11.266 C17.234,11.266 16.716,10.72 16.716,10.09 C16.716,9.432 17.248,8.928 17.892,8.928 C18.536,8.928 19.068,9.432 19.068,10.09 C19.068,10.734 18.55,11.266 17.892,11.266 Z" id="?" fill="#555555"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

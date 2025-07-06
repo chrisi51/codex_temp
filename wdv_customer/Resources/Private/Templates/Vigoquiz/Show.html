@@ -1,0 +1,168 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+    <h2>{title}</h2>
+
+    <f:flashMessages />
+    <div id="quiz" class="quiz-wrapper">
+        <div class="quiz--center">
+            <div class="swiper-container swiper-container-v" data-track-score="true">
+                <div class="swiper-wrapper">
+
+                    <f:for each="{cards}" as="card" reverse="false" iteration="iterator">
+                        <f:if condition="{card.type}=='infocard'">
+                            <f:then>
+                                <!-- ..................... Quiz INFO-KARTE Start ..................... -->
+                                <div class="swiper-slide quizcard intro with-image card" data-hash="{iterator.index}" data-question-type="multiple" data-title="01 Intro 1">
+                                    <div class="qc-text card-body introcard d-flex flex-column">
+                                        <f:if condition="{card.data.question}">
+                                            <f:then>
+                                                <h3>{card.data.question}</h3>
+                                            </f:then>
+                                        </f:if>
+                                        <hr>
+                                        <p>{card.data.introtext}</p>
+                                        <p class="quiz-btn-pos mb-0">
+                                            <a href="#" class="btn btn-lg mr-2 mb-0 d-inline-block icon-prev icon-prev2 swiper-button-prev swiper-button-disabled"><span class="icon left-arrow"></span>Zurück</a>
+                                            <a href="#" class="btn btn-lg mb-0 d-inline-block icon-next icon-next2 swiper-button-next swiper-button-disabled--wdv">OK und weiter<span class="icon right-arrow"></span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- ..................... Quiz INFO-KARTE Ende ................................. -->
+                            </f:then>
+                        </f:if>
+                        <f:if condition="{card.type}=='question'">
+                            <f:then>
+                                <!-- ..................... Quiz FRAGE Start ..................... -->
+                                <div class="swiper-slide quizcard question with-image card" data-hash="{iterator.index}" data-question-type="multiple" data-title="03 Frage {iterator.index}">
+                                    <div class="question__text-wrapper">
+                                        <div class="question__question">
+                                            <p class="lead mb-0">Frage {card.current} von {countQuestions}:</p>
+                                            <f:if condition="{card.data.introtext}">
+                                                <div class="question__description"><p class="mb-0 mt-3">{card.data.introtext}</p></div>
+                                            </f:if>
+                                            <h3>{card.data.question}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="questAnswer-wrapper card-body d-flex flex-column">
+                                        <p class="quiz-alert">Bitte beantworten Sie die Frage, um fortzufahren.</p>
+
+                                        <f:for each="{card.data.answers}" as="answer"reverse="false" iteration="iterator2">
+                                            <!-- ..................... Quiz ANTWORT Start ..................... -->
+                                            <div class="input-wrapper">
+                                                <div class="input">
+                                                    <input type="radio" id="card-{iterator.index}-radio-{iterator2.cycle} custom-control-label" name="radio{iterator.index}" data-correct="{f:if(condition: '{answer.points} == 0', then: 'false', else: 'true')}" data-index="{iterator2.cycle}" data-score="{answer.points}">
+                                                    <label for="card-{iterator.index}-radio-{iterator2.cycle} custom-control-label">
+                        <span class="radio"><span>
+                        </span></span>
+                                                        <span class="radio-text">{answer.answer}</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- ..................... Quiz ANTWORT Ende ................................. -->
+                                        </f:for>
+                                        <p class="quiz-btn-pos mb-0">
+                                            <a href="#" class="btn btn-grey btn-lg mr-2 mb-0 d-inline-block icon-prev icon-prev2 swiper-button-prev swiper-button-disabled"><span class="icon left-arrow"></span>Zurück</a>
+                                            <a href="#" class="btn btn-lg mb-0 d-inline-block icon-next icon-next2 swiper-button-next swiper-button-disabled--wdv">OK und weiter<span class="icon right-arrow"></span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- ..................... Quiz FRAGE Ende ................................. -->
+
+                            </f:then>
+                        </f:if>
+                        <f:if condition="{card.type}=='feedback'">
+                            <f:then>
+                                <div class="swiper-slide quizcard result not-answered card" data-hash="{iterator.index}" data-question-type="multiple" data-title="03 Frage {iterator.index}">
+                                    <f:for each="{card.data.answers}" as="answer"reverse="false" iteration="iterator3">
+                                        <!-- ..................... Quiz FEEDBACK Start ..................... -->
+                                        <div class="result-content-answer-{iterator3.cycle}">
+                                            <div class="result__text-wrapper">
+                                                <div class="result-images">
+                                                    <div class="d-flex">
+                                                        <f:if condition="{quizType} == 1">
+                                                            <f:then>
+                                                                <span class="icon {f:if(condition: '{answer.points} == 0', then: 'sad-face', else: 'happy-face')}"></span><div class="hwrapper"><h2 class=".d-inline-flex">{f:if(condition: '{answer.points} == 0', then: 'Falsch', else: 'Richtig')}</h2></div>
+                                                            </f:then>
+                                                            <f:else>
+                                                                <span class="icon info"></span><div class="hwrapper"><h2 class=".d-inline-flex">Hinweis</h2></div>
+                                                            </f:else>
+                                                        </f:if>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="result-answer-text card-body d-flex flex-column">
+                                                <p>{answer.feedback}</p>
+                                                <p class="quiz-btn-pos mb-0">
+                                                    <a href="#" class="btn btn-lg mb-0 d-inline-block icon-next icon-next2 swiper-button-next swiper-button-disabled--wdv">Nächste Frage<span class="icon right-arrow"></span></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- ..................... Quiz FEEDBACK Ende ................................. -->
+                                    </f:for>
+                                </div>
+                            </f:then>
+                        </f:if>
+                        <f:if condition="{card.type}=='facebookcard'">
+                            <f:then>
+                                <div class="swiper-slide quizcard result not-answered facebookshare card" data-hash="{iterator.index}" data-question-type="multiple" data-title="03 Frage 1">
+                                    <f:for each="{card.data}" as="facebookcard" reverse="false" iteration="iterator4">
+                                        <div class="final-result__alternative" data-point-range="{facebookcard.pointrange}">
+                                            <div class="result__text-wrapper">
+                                                <div class="result-images">
+                                                    <h3>{facebookcard.resulttitle}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="result-answer-text card-body d-flex flex-column">
+                                                <f:image src="{facebookcard.resultimage.originalResource.publicUrl}" alt="" title="" class="facebookcard" />
+                                                <p class="quiz-btn-pos mb-0">
+                                                    <a href="#" class="btn btn-lg mb-0 d-inline-block icon-next icon-next2 swiper-button-next swiper-button-disabled--wdv">Zur Auswertung<span class="icon right-arrow"></span></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </f:for>
+                                </div>
+                            </f:then>
+                        </f:if>
+                        <f:if condition="{card.type}=='finalresult'">
+                            <f:then>
+                                <div class="swiper-slide quizcard final-result with-image swiper-slide-next card" data-hash="{iterator.index}" data-question-type="multiple" data-title="07 result">
+                                    <f:for each="{card.data}" as="resultfinal" reverse="false" iteration="iterator4">
+                                        <!-- ..................... Quiz AUSWERTUNGSTEXT Start ................................. -->
+                                        <div class="final-result__alternative" data-point-range="{resultfinal.pointrange}">
+                                            <div class="result__text-wrapper">
+                                                <div class="result-images">
+                                                    <h3>{resultfinal.resulttitle}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="result-answer-text card-body d-flex flex-column">
+                                                {resultfinal.resulttext -> f:format.raw()}
+                                                <f:comment>
+                                                    <p><a href='<f:uri.typolink parameter="{link}" />' target="_self" class="btn btn-lg mt-4 mb-0">Quiz wiederholen<span class="icon right-arrow"></span></a></p>
+                                                </f:comment>
+                                                <p class="quiz-btn-pos mb-0"><a href="{repeatLink}" target="_self" class="btn btn-lg mt-4 mb-0">Quiz wiederholen<span class="icon right-arrow"></span></a></p>
+                                            </div>
+                                        </div>
+                                        <!-- ..................... Quiz AUSWERTUNGSTEXT Ende ................................. -->
+                                    </f:for>
+                                </div>
+                            </f:then>
+                        </f:if>
+                    </f:for>
+
+                </div>
+            </div>
+            <!--i class="fa fa-arrow-right fa-2x icon-next icon-next2 swiper-button-next hidden-xs swiper-button-disabled--wdv"></i>
+            <i class="fa fa-arrow-left fa-2x icon-prev icon-prev2 swiper-button-prev hidden-xs swiper-button-disabled"></i-->
+            <div class="bg-card-1"></div>
+            <div class="bg-card-2"></div>
+            <div class="progress progress-v">
+                <div class="progress-value"></div>
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width: 0%;"></div>
+            </div>
+        </div>
+    </div>
+
+</f:section>

@@ -1,0 +1,546 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+>
+<f:layout name="General"/>
+
+<f:section name="content">
+    <!-- ==== Templates/News/List.html ==== -->
+    <!--TYPO3SEARCH_end-->
+    <f:if condition="{news}">
+        <f:then>
+            <f:switch expression="{settings.templateLayout}">
+                <!-- Listenansicht mit Teaser in Zeilen (Gerade) -->
+                <f:case value="1">
+                    <f:if condition="{settings.hidePagination}">
+                        <f:then>
+                            <f:for each="{news -> v:iterator.chunk(count: 2)}" as="chunkedNewsItems" iteration="chunkedIterator">
+                                <f:if condition="{chunkedIterator.isLast}">
+                                    <f:then>
+                                        <div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '1', else: '2')} last">
+                                    </f:then>
+                                    <f:else>
+                                        <div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '1', else: '2')} mb-5">
+                                    </f:else>
+                                </f:if>
+                                <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                </f:for>
+                                </div>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <f:for each="{pagination.paginator.paginatedItems -> v:iterator.chunk(count: 2)}" as="chunkedNewsItems" iteration="chunkedIterator">
+                                <f:if condition="{chunkedIterator.isLast}">
+                                    <f:then>
+                                        <div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '1', else: '2')} last">
+                                    </f:then>
+                                    <f:else>
+                                        <div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '1', else: '2')} mb-5">
+                                    </f:else>
+                                </f:if>
+
+                                <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                </f:for>
+                                </div>
+                            </f:for>
+
+                            <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}"/>
+
+                            <f:if condition="{news -> f:count()} > {settings.list.paginate.itemsPerPage}">
+                                <f:if condition="{f:cObject(typoscriptObjectPath: 'lib.actualPageInNewsPaginator')} == ''">
+                                    <div class="row news-more pt-3 mt-5 mb-5 pb-5">
+                                        <div class="col-12">
+                                            <p class="text-center mb-0">
+                                                <a href="#" target="_self" class="btn btn-lg d-none d-md-inline-block load-more" role="Button" aria-label="Weitere Themen laden">Weitere Themen laden <span class="icon loadmore"></span></a>
+                                                <a href="#" target="_self" class="btn btn-lg d-inline-block d-md-none load-more" role="Button" aria-label="Weitere Themen laden">Weitere Themen laden <span class="icon loadmore"></span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </f:if>
+                            </f:if>
+                        </f:else>
+                    </f:if>
+                </f:case>
+
+                <!-- Listenansicht mit Teaser in Zeilen (Ungerade) -->
+                <f:case value="2">
+                    <f:if condition="{settings.hidePagination}">
+                        <f:then>
+                            <f:for each="{news -> v:iterator.chunk(count: 2)}" as="chunkedNewsItems" iteration="chunkedIterator">
+                                <f:if condition="{chunkedIterator.isLast}">
+                                    <f:then>
+                                        <div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '2', else: '1')} last">
+                                    </f:then>
+                                    <f:else>
+                                        <div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '2', else: '1')} mb-5">
+                                    </f:else>
+                                </f:if>
+                                <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                </f:for>
+                                </div>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <f:for each="{pagination.paginator.paginatedItems -> v:iterator.chunk(count: 2)}" as="chunkedNewsItems" iteration="chunkedIterator">
+                                <f:if condition="{chunkedIterator.isLast}">
+                                    <f:then>
+                                        <div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '2', else: '1')} last">
+                                    </f:then>
+                                    <f:else>
+                                        <div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '2', else: '1')} mb-5">
+                                    </f:else>
+                                </f:if>
+
+                                <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                </f:for>
+                                </div>
+                            </f:for>
+
+                            <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}"/>
+
+                            <f:if condition="{news -> f:count()} > {settings.list.paginate.itemsPerPage}">
+                                <f:if condition="{f:cObject(typoscriptObjectPath: 'lib.actualPageInNewsPaginator')} == ''">
+                                    <div class="row news-more pt-3 mt-5 mb-5 pb-5">
+                                        <div class="col-12">
+                                            <p class="text-center mb-0">
+                                                <a href="#" target="_self" class="btn btn-lg d-none d-md-inline-block load-more" role="Button" aria-label="Weitere Themen laden">Weitere Themen laden <span class="icon loadmore"></span></a>
+                                                <a href="#" target="_self" class="btn btn-lg d-inline-block d-md-none load-more" role="Button" aria-label="Weitere Themen laden">Weitere Themen laden <span class="icon loadmore"></span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </f:if>
+                            </f:if>
+                        </f:else>
+                    </f:if>
+                </f:case>
+
+                <!-- Listenansicht mit Teaser in Zeilen (volle Breite) -->
+                <f:case value="20">
+                    <f:if condition="{settings.hidePagination}">
+                        <f:then>
+                            <f:for each="{news -> v:iterator.chunk(count: 2)}" as="chunkedNewsItems" iteration="chunkedIterator">
+                                <div class="row news-list v20">
+                                    <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                        <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                    </f:for>
+                                </div>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <f:for each="{pagination.paginator.paginatedItems}" as="chunkedNewsItems" iteration="chunkedIterator">
+                                <div class="row news-list v20">
+                                    <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                        <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                    </f:for>
+                                </div>
+                            </f:for>
+
+                            <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}"/>
+
+                            <f:if condition="{news -> f:count()} > {settings.list.paginate.itemsPerPage}">
+                                <f:if condition="{f:cObject(typoscriptObjectPath: 'lib.actualPageInNewsPaginator')} == ''">
+                                    <div class="row news-more pt-3 mt-5 mb-5 pb-5">
+                                        <div class="col-12">
+                                            <p class="text-center mb-0">
+                                                <a href="#" target="_self" class="btn btn-lg d-none d-md-inline-block load-more" role="Button" aria-label="Weitere Themen laden">Weitere Themen laden <span class="icon loadmore"></span></a>
+                                                <a href="#" target="_self" class="btn btn-lg d-inline-block d-md-none load-more" role="Button" aria-label="Weitere Themen laden">Weitere Themen laden <span class="icon loadmore"></span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </f:if>
+                            </f:if>
+                        </f:else>
+                    </f:if>
+                </f:case>
+
+                <!-- Listenansicht mit Karten in Zeilen -->
+                <f:case value="3">
+                    <f:if condition="{settings.hidePagination}">
+                        <f:then>
+                            <f:for each="{news -> v:iterator.chunk(count: 3)}" as="chunkedNewsItems" iteration="chunkedIterator">
+                                <f:if condition="{chunkedIterator.isLast}">
+                                    <f:then>
+                                        <div class="row news-list card-items last">
+                                    </f:then>
+                                    <f:else>
+                                        <div class="row news-list card-items mb-3">
+                                    </f:else>
+                                </f:if>
+                                <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                </f:for>
+                                </div>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <f:for each="{pagination.paginator.paginatedItems -> v:iterator.chunk(count: 3)}" as="chunkedNewsItems" iteration="chunkedIterator">
+                                <f:if condition="{chunkedIterator.isLast}">
+                                    <f:then>
+                                        <div class="row news-list card-items last">
+                                    </f:then>
+                                    <f:else>
+                                        <div class="row news-list card-items mb-3">
+                                    </f:else>
+                                </f:if>
+
+                                <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}"/>
+                                </f:for>
+                                </div>
+                            </f:for>
+
+                            <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}"/>
+
+                            <f:if condition="{news -> f:count()} > {settings.list.paginate.itemsPerPage}">
+                                <f:if condition="{f:cObject(typoscriptObjectPath: 'lib.actualPageInNewsPaginator')} == ''">
+                                    <div class="row news-more pt-3 mt-5 mb-5 pb-5">
+                                        <div class="col-12">
+                                            <p class="text-center mb-0">
+                                                <a href="#" target="_self" class="btn btn-lg d-none d-md-inline-block load-more" role="Button" aria-label="Weitere Themen laden">Weitere Themen laden <span class="icon loadmore"></span></a>
+                                                <a href="#" target="_self" class="btn btn-lg d-inline-block d-md-none load-more" role="Button" aria-label="Weitere Themen laden">Weitere Themen laden <span class="icon loadmore"></span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </f:if>
+                            </f:if>
+                        </f:else>
+                    </f:if>
+                </f:case>
+
+                <!-- Listenansicht mit Karten im Slider -->
+                <f:case value="4">
+                    <div class="news-list card-items slide-them">
+                        <div class="row slider"
+                             data-slick='{
+								"dots": true,
+								"arrows": false,
+								"slidesToShow": 3,
+								"slidesToScroll": 3,
+								"autoplay": true,
+								"autoplaySpeed": 5000,
+								"responsive": [{
+									"breakpoint": 768,
+									"settings": {
+										"fade": true,
+										"cssEase": "linear",
+										"adaptiveHeight": true,
+										"arrows": false,
+                                        "dots": <f:if condition="{news -> f:count()} < 11"><f:then>true</f:then><f:else>false</f:else></f:if>,
+										"slidesToShow": 1,
+										"slidesToScroll": 1}
+									}
+								]}'>
+                            <f:for each="{news}" as="newsItem" iteration="iterator">
+                                <f:render partial="List/Item" arguments="{newsItem: newsItem,settings:settings,iterator:iterator}"/>
+                            </f:for>
+                        </div>
+                    </div>
+                </f:case>
+
+                <!-- Listenansicht mit Karten im Slider -->
+                <f:case value="40">
+                    <div class="news-list card-items slide-them no-stairs">
+                        <div class="row slider"
+                             data-slick='{
+								"dots": true,
+								"arrows": false,
+								"slidesToShow": 3,
+								"slidesToScroll": 3,
+								"autoplay": true,
+								"autoplaySpeed": 5000,
+								"responsive": [{
+									"breakpoint": 768,
+									"settings": {
+										"fade": true,
+										"cssEase": "linear",
+										"adaptiveHeight": true,
+										"arrows": false,
+                                        "dots": <f:if condition="{news -> f:count()} < 11"><f:then>true</f:then><f:else>false</f:else></f:if>,
+										"slidesToShow": 1,
+										"slidesToScroll": 1}
+									}
+								]}'>
+
+                            <f:for each="{news}" as="newsItem" iteration="iterator">
+                                <f:render partial="List/Item" arguments="{newsItem: newsItem,settings:settings,iterator:iterator}"/>
+                            </f:for>
+                        </div>
+                    </div>
+                </f:case>
+
+                <!-- Listenansicht mit Karten im Slider mit Details-->
+                <f:case value="41">
+                    <div class="news-list card-items slide-them no-stairs">
+                        <div class="row slider"
+                             data-slick='{
+								"dots": true,
+								"arrows": false,
+								"slidesToShow": 3,
+								"slidesToScroll": 3,
+								"autoplay": true,
+								"autoplaySpeed": 5000,
+								"responsive": [{
+									"breakpoint": 768,
+									"settings": {
+										"fade": true,
+										"cssEase": "linear",
+										"adaptiveHeight": true,
+										"arrows": false,
+                                        "dots": <f:if condition="{news -> f:count()} < 11"><f:then>true</f:then><f:else>false</f:else></f:if>,
+										"slidesToShow": 1,
+										"slidesToScroll": 1}
+									}
+								]}'>
+
+                            <f:for each="{news}" as="newsItem" iteration="iterator">
+                                <f:render partial="List/Item" arguments="{newsItem: newsItem,settings:settings,iterator:iterator}"/>
+                            </f:for>
+                        </div>
+                    </div>
+                </f:case>
+
+                <!-- Soundtrack Playlist Übersicht -->
+                <f:case value="140">
+                    <div class="playlist-overview">
+                        <v:variable.set name="foundnewstypes" value="{topnews:{}, normal:{}}"/>
+                        <f:for each="{news}" as="newsItem" iteration="iterator">
+                            <f:if condition="{newsItem.istopnews}">
+                                <f:then>
+                                    <v:variable.set name="foundnewstypes.topnews" value="{foundnewstypes.topnews -> v:iterator.push(add: newsItem, key: iterator.index)}"/>
+                                </f:then>
+                                <f:else>
+                                    <v:variable.set name="foundnewstypes.normal" value="{foundnewstypes.normal -> v:iterator.push(add: newsItem, key: iterator.index)}"/>
+                                </f:else>
+                            </f:if>
+                        </f:for>
+
+                        <v:variable.set name="number_topnews" value="{foundnewstypes.topnews -> f:count()}"/>
+                        <f:if condition="{number_topnews} > 0">
+                            <h1>Dein Top-Mix</h1>
+                            <div class="holder {f:if(condition:'{number_topnews}>1', then:'multi', else:'single')}">
+                                <f:for each="{foundnewstypes.topnews}" as="newsItem" iteration="iterator">
+                                    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}"/>
+                                </f:for>
+                            </div>
+                        </f:if>
+
+                        <v:variable.set name="number_normal" value="{foundnewstypes.normal -> f:count()}"/>
+                        <f:if condition="{number_normal} > 0">
+                            <h1>Weitere Inhalte</h1>
+                            <div class="holder {f:if(condition:'{number_normal}>1', then:'multi', else:'single')}">
+                                <f:for each="{foundnewstypes.normal}" as="newsItem" iteration="iterator">
+                                    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}"/>
+                                </f:for>
+                            </div>
+                        </f:if>
+                    </div>
+                </f:case>
+
+                <!-- Soundtrack - Playlistsübersicht im Slider -->
+                <f:case value="144">
+                    <div class="playlist-overview">
+                        <v:variable.set name="foundnewstypes" value="{topnews:{}, normal:{}}"/>
+                        <f:if condition="{overwriteDemand.categories}">
+                            <f:then>
+                                <f:for each="{news}" as="newsItem" iteration="iterator">
+                                    <w:condition.iterator.contains needle="{overwriteDemand.categories}" haystack="{newsItem.categories}">
+                                        <f:then>
+                                            <v:variable.set name="foundnewstypes.topnews" value="{foundnewstypes.topnews -> v:iterator.push(add: newsItem, key: iterator.index)}"/>
+                                        </f:then>
+                                        <f:else>
+                                            <v:variable.set name="foundnewstypes.normal" value="{foundnewstypes.normal -> v:iterator.push(add: newsItem, key: iterator.index)}"/>
+                                        </f:else>
+                                    </w:condition.iterator.contains>
+                                </f:for>
+                            </f:then>
+                            <f:else>
+                                <f:for each="{news}" as="newsItem" iteration="iterator">
+                                    <f:if condition="{newsItem.istopnews}">
+                                        <f:then>
+                                            <v:variable.set name="foundnewstypes.topnews" value="{foundnewstypes.topnews -> v:iterator.push(add: newsItem, key: iterator.index)}"/>
+                                        </f:then>
+                                        <f:else>
+                                            <v:variable.set name="foundnewstypes.normal" value="{foundnewstypes.normal -> v:iterator.push(add: newsItem, key: iterator.index)}"/>
+                                        </f:else>
+                                    </f:if>
+                                </f:for>
+                            </f:else>
+                        </f:if>
+
+                        <v:variable.set name="number_topnews" value="{foundnewstypes.topnews -> f:count()}"/>
+                        <f:if condition="{number_topnews} > 0">
+                            <h1>Dein Top-Mix</h1>
+                            <div class="holder {f:if(condition:'{number_topnews} > 1', then:'multi', else:'single')}">
+                                <f:for each="{foundnewstypes.topnews}" as="newsItem" iteration="iterator">
+                                    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}"/>
+                                </f:for>
+                            </div>
+                        </f:if>
+
+                        <v:variable.set name="number_normal" value="{foundnewstypes.normal -> f:count()}"/>
+                        <f:if condition="{number_normal} > 0">
+                            <h1>Weitere Inhalte</h1>
+
+                            <div class="news-list card-items slide-them no-stairs soundtrack-slider">
+                                <div class="row slider" data-slick='{
+									"dots": true,
+									"arrows": false,
+									"slidesToShow": 2,
+									"slidesToScroll": 1,
+									"autoplay": false,
+                                    "infinite": false,
+									"autoplaySpeed": 5000,
+									"responsive": [
+										{
+											"breakpoint": 768,
+											"settings": {
+                                                "infinite": false,
+												"fade": false,
+												"cssEase": "linear",
+												"adaptiveHeight": true,
+												"arrows": false,
+												"dots": true,
+												"slidesToShow": 2,
+												"slidesToScroll": 1
+											}
+										}
+									]}'>
+                                    <f:for each="{foundnewstypes.normal}" as="newsItem" iteration="iterator">
+                                        <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}"/>
+                                    </f:for>
+                                </div>
+                            </div>
+                        </f:if>
+                    </div>
+                </f:case>
+
+                <!-- Soundtrack Playlist Inhalt -->
+                <f:case value="142">
+                    <div class="playlist">
+                        <div class="wx_slider">
+                            <div class="slidercontent">
+                                <div class="scene">
+                                    <v:variable.set name="newstypes" value="{141:'Tracks', 142:'Podcast', 143:'Gewinnspiel', 144:'Gewinnspiel', 145:'Artikel', 146:'Events'}"/>
+                                    <v:variable.set name="foundnewstypes" value="{141:{}, 142:{}, 143:{}, 144:{}, 145:{}, 146:{}}"/>
+
+                                    <f:for each="{news}" as="newsItem" iteration="iterator">
+                                        <v:variable.set name="foundnewstypes.{newsItem.type}" value="{foundnewstypes.{newsItem.type} -> v:iterator.push(add: newsItem, key: iterator.index)}"/>
+                                    </f:for>
+
+                                    <nav>
+                                        <f:for each="{newstypes}" as="type" key="typekey" iteration="iterator">
+                                            <f:if condition="{foundnewstypes.{typekey} -> f:count()} > 0">
+                                                <div class="item">{type}</div>
+                                            </f:if>
+                                        </f:for>
+                                    </nav>
+
+                                    <ul class="no-style">
+                                        <f:for each="{newstypes}" as="type" key="typekey" iteration="iterator">
+                                            <f:if condition="{foundnewstypes.{typekey} -> f:count()} > 0">
+                                                <li class="{type -> f:format.case(mode:'lower')}">
+                                                    <f:for each="{foundnewstypes.{typekey}}" as="newsItem" iteration="iterator">
+                                                        <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}"/>
+                                                    </f:for>
+                                                </li>
+                                            </f:if>
+                                        </f:for>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </f:case>
+
+                <!-- Familie - passende vigo-Artikel  -->
+                <f:case value="151">
+                    <div class="news-list slide-them no-stairs">
+                        <div class="row slider"
+                             data-slick='{
+								"dots": true,
+								"arrows": false,
+								"slidesToShow": 3,
+								"slidesToScroll": 3,
+								"autoplay": true,
+								"autoplaySpeed": 5000,
+								"responsive": [{
+									"breakpoint": 768,
+									"settings": {
+										"fade": true,
+										"cssEase": "linear",
+										"adaptiveHeight": true,
+										"arrows": false,
+                                        "dots": <f:if condition="{news -> f:count()} < 11"><f:then>true</f:then><f:else>false</f:else></f:if>,
+										"slidesToShow": 1,
+										"slidesToScroll": 1}
+									}
+								]}'>
+
+                            <f:for each="{news}" as="newsItem" iteration="iterator">
+                                <f:render partial="List/Item" arguments="{newsItem: newsItem,settings:settings,iterator:iterator}"/>
+                            </f:for>
+                        </div>
+                    </div>
+                </f:case>
+
+                <!-- Familie - passende vigo-Artikel  -->
+                <f:case value="152">
+                    <div class="adhs-news-slider bg-dark-green">
+                        <div class="container">
+                            <h2 class="title">
+                                <span class="line1">Unsere Leistungen für Familien</span>
+                                <span class="line2">und alle, die es werden wollen.</span>
+                            </h2>
+
+                            <div class="news-list slide-them no-stairs">
+                                <div class="row slider"
+                                     data-slick='{
+                                        "dots": false,
+                                        "arrows": true,
+                                        "slidesToShow": 3,
+                                        "infinite": false,
+                                        "slidesToScroll": 1,
+                                        "autoplay": true,
+                                        "autoplaySpeed": 5000,
+                                        "responsive": [{
+                                            "breakpoint": 768,
+                                            "settings": {
+                                                "fade": true,
+                                                "cssEase": "linear",
+                                                "adaptiveHeight": true,
+                                                "arrows": true,
+                                                "dots": false,
+                                                "slidesToShow": 1,
+                                                "slidesToScroll": 1}
+                                            }
+                                        ]}'>
+
+                                    <f:for each="{news}" as="newsItem" iteration="iterator">
+                                        <f:render partial="List/Item" arguments="{newsItem: newsItem,settings:settings,iterator:iterator}"/>
+                                    </f:for>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </f:case>
+
+                <!-- Default (Original-Zustand von tx_news) -->
+                <f:defaultCase>
+                    No List-Layout selected!
+                </f:defaultCase>
+            </f:switch>
+        </f:then>
+        <f:else>
+            <div class="no-news-found">
+                <f:translate key="list_nonewsfound"/>
+            </div>
+        </f:else>
+    </f:if>
+    <!--TYPO3SEARCH_begin-->
+</f:section>
+</html>

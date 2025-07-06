@@ -1,0 +1,125 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:layout name="General" />
+<!--
+	=====================
+		Templates/News/List.html
+-->
+
+<f:section name="content">
+    <!-- ==== Templates/News/List.ajax ==== -->
+	<!--TYPO3SEARCH_end-->
+	<f:if condition="{news}">
+		<f:then>
+
+			<f:switch expression="{settings.templateLayout}">
+
+				<!-- Listenansicht mit Teaser in Zeilen (Gerade) -->
+				<f:case value="1">
+
+					<div class="ajax-content">
+
+							<f:for each="{pagination.paginator.paginatedItems -> v:iterator.chunk(count: 2)}" as="chunkedNewsItems" iteration="chunkedIterator">
+								<f:if condition="{chunkedIterator.isLast}">
+									<f:then>
+										<div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '1', else: '2')} last">
+									</f:then>
+									<f:else>
+										<div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '1', else: '2')} mb-5">
+									</f:else>
+								</f:if>
+
+								<f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+									<f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}" />
+								</f:for>
+								</div>
+							</f:for>
+
+                    </div>
+
+				</f:case>
+
+				<!-- Listenansicht mit Teaser in Zeilen (Ungerade) -->
+				<f:case value="2">
+
+					<div class="ajax-content">
+                        <f:for each="{pagination.paginator.paginatedItems -> v:iterator.chunk(count: 2)}" as="chunkedNewsItems" iteration="chunkedIterator">
+                            <f:if condition="{chunkedIterator.isLast}">
+                                <f:then>
+                                    <div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '2', else: '1')} last">
+                                </f:then>
+                                <f:else>
+                                    <div class="row news-list v{f:if(condition: '{chunkedIterator.cycle} % 2', then: '2', else: '1')} mb-5">
+                                </f:else>
+                            </f:if>
+
+                            <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}" />
+                            </f:for>
+                            </div>
+                        </f:for>
+                    </div>
+
+				</f:case>
+
+				<!-- Listenansicht mit Karten in Zeilen -->
+				<f:case value="3">
+
+				    <div class="ajax-content">
+
+                        <f:for each="{pagination.paginator.paginatedItems -> v:iterator.chunk(count: 3)}" as="chunkedNewsItems" iteration="chunkedIterator">
+                            <f:if condition="{chunkedIterator.isLast}">
+                                <f:then>
+                                    <div class="row news-list card-items last">
+                                </f:then>
+                                <f:else>
+                                    <div class="row news-list card-items mb-3">
+                                </f:else>
+                            </f:if>
+
+                            <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}" />
+                            </f:for>
+                            </div>
+                        </f:for>
+				    </div>
+
+				</f:case>
+
+				<!-- Default (Original-Zustand von tx_news) -->
+				<f:defaultCase>
+
+					<div class="news-list-view" id="news-container-{contentObjectData.uid}">
+						<f:if condition="{settings.hidePagination}">
+							<f:then>
+								<f:for each="{news}" as="newsItem" iteration="iterator">
+									<f:render partial="List/Item" arguments="{newsItem: newsItem,settings:settings,iterator:iterator}" />
+								</f:for>
+							</f:then>
+							<f:else>
+                                <f:for each="{pagination.paginator.paginatedItems}" as="chunkedNewsItems" iteration="chunkedIterator">
+                                    <f:for each="{chunkedNewsItems}" as="newsItem" iteration="iterator">
+                                        <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, chunkedIterator: chunkedIterator, iterator: iterator}" />
+                                    </f:for>
+                                </f:for>
+
+							</f:else>
+						</f:if>
+					</div>
+
+				</f:defaultCase>
+			</f:switch>
+
+		</f:then>
+		<f:else>
+			<div class="no-news-found">
+				<f:translate key="list_nonewsfound" />
+			</div>
+		</f:else>
+	</f:if>
+	<!--TYPO3SEARCH_begin-->
+</f:section>
+</html>

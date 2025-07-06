@@ -1,0 +1,441 @@
+lib.main-navigationGib8 = COA
+lib.main-navigationGib8 {
+    10 = HMENU
+    10 {
+        depth = 1
+
+        special = directory
+        special.value = 481
+
+        1 = TMENU
+        1 {
+            wrap = <ul>|</ul>
+            expAll = 1
+
+            NO = 1
+            NO {
+                allWrap = <li>|</li>
+                stdWrap.cObject = COA
+                stdWrap.cObject {
+                    10 = TEXT
+                    10 {
+
+                        field = title
+                        stdWrap.htmlSpecialChars = 1
+                    }
+                }
+            }
+
+            ACT < .NO
+            ACT.allWrap = <li class="active">|</li>
+        }
+    }
+}
+
+lib.main-navigationAchtsamkeit = COA
+lib.main-navigationAchtsamkeit {
+    10 = HMENU
+    10 {
+        depth = 1
+
+        special = directory
+        special.value = 604
+
+        1 = TMENU
+        1 {
+            wrap = <ul>|</ul>
+            expAll = 1
+
+            NO = 1
+            NO {
+                allWrap = <li>|</li>
+                stdWrap.cObject = COA
+                stdWrap.cObject {
+                    10 = TEXT
+                    10 {
+
+                        field = title
+                        stdWrap.htmlSpecialChars = 1
+                    }
+                }
+            }
+
+            ACT < .NO
+            ACT.allWrap = <li class="active">|</li>
+        }
+    }
+}
+
+lib.main-navigationAchtsamkeit_lvl2 = COA
+lib.main-navigationAchtsamkeit_lvl2 {
+    10 = HMENU
+    10 {
+        depth = 2
+
+        special = directory
+        special.value = 604
+
+        1 = TMENU
+        1 {
+            expAll = 1
+            NO = 1
+            NO.doNotShowLink = 1
+
+        }
+        2 = TMENU
+        2 {
+            wrap = <ul>|</ul>
+            expAll = 1
+
+            NO = 1
+            NO {
+                allWrap = <li>|</li>
+                stdWrap.cObject = COA
+                stdWrap.cObject {
+                    10 = TEXT
+                    10 {
+                        field = title
+                        stdWrap.htmlSpecialChars = 1
+                    }
+                }
+            }
+
+            ACT < .NO
+            ACT.allWrap = <li class="active">|</li>
+        }
+    }
+}
+
+lib.main-navigationAchtsamkeit_mobile = COA
+lib.main-navigationAchtsamkeit_mobile {
+    10 = HMENU
+    10 {
+        depth = 2
+
+        special = directory
+        special.value = 604
+
+        1 = TMENU
+        1 {
+            expAll = 1
+            NO = 1
+            NO {
+                allWrap = <div class="lvl1">|
+                wrapItemAndSub = |</div>
+                ATagTitle.field = title
+                stdWrap.cObject = COA
+                stdWrap.cObject {
+                    10 = TEXT
+                    10 {
+
+                        field = title
+                        stdWrap.htmlSpecialChars = 1
+                    }
+                }
+            }
+
+            ACT < .NO
+            ACT.ATagParams = class="active"
+        }
+
+        2 = TMENU
+        2 {
+            wrap = <ul class="lvl2">|</ul>
+            expAll = 1
+
+            NO = 1
+            NO {
+                allWrap = <li>|</li>
+                stdWrap.cObject = COA
+                stdWrap.cObject {
+                    10 = TEXT
+                    10 {
+
+                        field = title
+                        stdWrap.htmlSpecialChars = 1
+                    }
+                }
+            }
+
+            ACT < .NO
+            ACT.allWrap = <li class="active">|</li>
+        }
+    }
+}
+
+[site("identifier") == "krebs_vigo_de"]
+    lib.main-navigationKrebs = COA
+    lib.main-navigationKrebs {
+        10 = HMENU
+        10 {
+            depth = 1
+
+            special = directory
+            special.value = 714
+
+            1 = TMENU
+            1 {
+                wrap = <ul>|</ul>
+                expAll = 1
+                NO = 1
+                NO {
+                    allWrap = <li>|</li>
+                    stdWrap.cObject = COA
+                    stdWrap.cObject {
+                        10 = TEXT
+                        10 {
+
+                            field = title
+                            stdWrap.htmlSpecialChars = 1
+                        }
+                    }
+                }
+
+                ACT < .NO
+                ACT.allWrap = <li class="active">|</li>
+            }
+        }
+    }
+
+    lib.main-navigationKrebs_mobile = COA
+    lib.main-navigationKrebs_mobile {
+        10 = HMENU
+        10 {
+            depth = 2
+
+            special = directory
+            special.value = 714
+
+            1 = TMENU
+            1 {
+                expAll = 1
+
+                NO = 1
+                NO {
+                    allWrap = <div class="lvl1">|
+                    wrapItemAndSub = |</div>
+                    ATagTitle.field = title
+
+                    stdWrap.cObject = COA
+                    stdWrap.cObject {
+                        10 = TEXT
+                        10 {
+
+                            field = title
+                            stdWrap.htmlSpecialChars = 1
+                        }
+                    }
+                }
+
+                ACT < .NO
+                ACT.ATagParams = class="active"
+            }
+
+            2 = TMENU
+            2 {
+                wrap = <ul class="lvl2">|</ul>
+                expAll = 1
+                NO = 1
+                NO {
+                    allWrap = <li>|</li>
+
+                    stdWrap.cObject = COA
+                    stdWrap.cObject {
+                        10 = TEXT
+                        10 {
+
+                            field = title
+                            stdWrap.htmlSpecialChars = 1
+                        }
+                    }
+                }
+
+                ACT < .NO
+                ACT.allWrap = <li class="active">|</li>
+            }
+        }
+    }
+[global]
+
+lib.main-navigation = COA
+lib.main-navigation {
+    desktop = COA
+    desktop {
+        wrap = <div class="collapse navbar-collapse">|</div>
+
+        10 = HMENU
+        10 {
+            depth = 1
+            wrap = <ul class="nav first-level mr-auto ml-auto d-print-none" id="main-navigation">|</ul>
+
+            special = directory
+            special.value = 103
+
+            1 = TMENU
+            1 {
+                expAll = 1
+                noBlur = 1
+                wrap = |
+
+                NO {
+                    allWrap = |
+                    allStdWrap.insertData = 1
+
+                    linkWrap = |
+                    doNotLinkIt = 0
+                    ATagBeforeWrap = 1
+
+                    # ATagParams = class=""
+                    ATagTitle.field = abstract // description // title
+
+                    wrapItemAndSub = <li class="uid-{field:uid} first">|</li>|*|<li class="uid-{field:uid}">|</li>|*|<li class="uid-{field:uid} last">|</li>
+                    wrapItemAndSub.insertData = 1
+
+                    stdWrap >
+                    stdWrap {
+                        cObject = COA
+                        cObject {
+                            10 = CASE
+                            10 {
+                                key.field = doktype
+
+                                default = COA
+                                default {
+                                    10 = TEXT
+                                    10 {
+                                        field = nav_title // title
+                                        stdWrap.htmlSpecialChars = 1
+                                    }
+                                }
+
+                                # Externe URL
+                                3 = TEXT
+                                3 {
+                                    field = nav_title // title
+                                    # typolink.parameter.field = url
+                                    # typolink.target.field = target
+
+                                    noTrimWrap = || <span class="icon external-link"></span>|
+                                    stdWrap.htmlSpecialChars = 1
+                                }
+                            }
+
+                            20 = TEXT
+                            20 {
+                                override {
+                                    field = tx_wdvcustomer_page_icon
+                                    if.isTrue.field = tx_wdvcustomer_page_icon
+
+                                    noTrimWrap = |<span class="icon |"></span>|
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ACT < .NO
+                ACT = 1
+                ACT {
+                    wrapItemAndSub = <li class="uid-{field:uid} nav-item dropdown position-static active first">|</li>|*|<li class="uid-{field:uid} nav-item dropdown position-static active">|</li>|*|<li class="uid-{field:uid} nav-item dropdown position-static active last">|</li>
+                    ATagParams = class="active nav-link"
+                }
+
+                IFSUB < .NO
+                IFSUB = 1
+                IFSUB {
+                    wrapItemAndSub = <li class="uid-{field:uid} nav-item dropdown position-static first">|</li>|*|<li class="uid-{field:uid} nav-item dropdown position-static">|</li>|*|<li class="uid-{field:uid} nav-item dropdown position-static last">|</li>
+                    ATagParams = class="dropdown-toggle" data-target="#dropdown-desktop-{field:uid}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"
+
+                    # Contents aus Bereich "Inhalt im Dropdown-Menu" der jeweiligen Seite
+                    stdWrap2.append = CONTENT
+                    stdWrap2.append {
+                        required = 1
+                        wrap = <div id="dropdown-desktop-{field:uid}" class="dropdown-menu w-100"><button type="button" class="close" data-dismiss="dropdown-menu-{field:uid}" aria-label="Schließen"><span aria-hidden="true">&times;</span></button>|</div>
+
+                        table = tt_content
+                        select {
+                            pidInList.stdWrap.data = field:uid
+                            orderBy = sorting
+                            where = colPos = 3
+                            andWhere = hidden=0 AND deleted=0
+                        }
+                    }
+                }
+
+                ACTIFSUB < .IFSUB
+                ACTIFSUB = 1
+                ACTIFSUB {
+                    wrapItemAndSub = <li class="uid-{field:uid} nav-item dropdown position-static active first">|</li>|*|<li class="uid-{field:uid} nav-item dropdown position-static active">|</li>|*|<li class="uid-{field:uid} nav-item dropdown position-static active last">|</li>
+                    ATagParams = class="active dropdown-toggle" data-target="#dropdown-desktop-{field:uid}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"
+                }
+            }
+        }
+
+        20 < .10
+        20 {
+            wrap = <ul class="nav first-level ml-auto d-print-none" id="tool-navigation">|</ul>
+
+            special.value = 197
+
+            # prevent duplicate id "ke_search_sword"
+            # therefore, replacing some html-attributes with another value
+            stdWrap {
+                replacement.10.search = id="ke_search_sword"
+                replacement.10.replace = id="ke_search_sword_top"
+                replacement.20.search = id="form_kesearch_pi1"
+                replacement.20.replace = id="form_kesearch_pi1_top"
+                replacement.30.search = name="form_kesearch_pi1"
+                replacement.30.replace = name="form_kesearch_pi1_top"
+            }
+        }
+    }
+
+    mobile = COA
+    mobile {
+        # Contents von Seite "Suchen"
+        10 = CONTENT
+        10 {
+            wrap = |
+
+            table = tt_content
+            select {
+                pidInList = 198
+                orderBy = sorting
+                where = colPos = 3
+                andWhere = hidden=0 AND deleted=0
+            }
+
+            # prevent duplicate id "ke_search_sword"
+            # therefore, replacing some html-attributes with another value
+            stdWrap {
+                replacement.10.search = id="ke_search_sword"
+                replacement.10.replace = id="ke_search_sword_mobile"
+                replacement.20.search = id="form_kesearch_pi1"
+                replacement.20.replace = id="form_kesearch_pi1_mobile"
+                replacement.30.search = name="form_kesearch_pi1"
+                replacement.30.replace = name="form_kesearch_pi1_mobile"
+                replacement.40.search = id="c37"
+                replacement.40.replace = id="c37_mobile"
+                replacement.50.search = id="c35"
+                replacement.50.replace = id="c35_mobile"
+                replacement.60.search = id="c9079"
+                replacement.60.replace = id="c9079_mobile"
+                replacement.70.search = id="c9579"
+                replacement.70.replace = id="c9579_mobile"
+                replacement.80.search = id="c36"
+                replacement.80.replace = id="c36_mobile"
+            }
+        }
+    }
+}
+
+[site("identifier") == "epa_vigo_de"]
+    lib.main-navigation {
+        desktop {
+            10 {
+                special.value = 915
+            }
+            20 >
+        }
+    }
+[global]

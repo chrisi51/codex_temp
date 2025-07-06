@@ -1,0 +1,3 @@
+#
+#// prevent double slashes in news urls when preparing google sitemap
+#tx_ddgooglesitemap.tx_news.skipControllerAndAction = 1

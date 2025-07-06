@@ -1,0 +1,236 @@
+
+temp.sectionname = TEXT
+temp.sectionname {
+
+     field = header
+     trim = 1
+     case = lower
+
+     stdWrap.replacement {
+          1 {
+               search.char = 32
+               replace = -
+          }
+          2 {
+               search.char = 33
+               replace = -
+          }
+          3 {
+               search.char = 34
+               replace = -
+          }
+          4 {
+               search.char = 35
+               replace = -
+          }
+          5 {
+               search.char = 36
+               replace = -
+          }
+          6 {
+               search.char = 37
+               replace = -
+          }
+          7 {
+               search.char = 38
+               replace = -
+          }
+          8 {
+               search.char = 39
+               replace = -
+          }
+          9 {
+               search.char = 40
+               replace = -
+          }
+          10 {
+               search.char = 41
+               replace = -
+          }
+          11 {
+               search.char = 42
+               replace = -
+          }
+          12 {
+               search.char = 43
+               replace = -
+          }
+          13 {
+               search.char = 44
+               replace = -
+          }
+          14 {
+               search.char = 46
+               replace = -
+          }
+          15 {
+               search.char = 47
+               replace = -
+          }
+          16 {
+               search.char = 58
+               replace = -
+          }
+          17 {
+               search.char = 59
+               replace = -
+          }
+          18 {
+               search.char = 60
+               replace = -
+          }
+          19 {
+               search.char = 61
+               replace = -
+          }
+          20 {
+               search.char = 62
+               replace = -
+          }
+          21 {
+               search.char = 63
+               replace = -
+          }
+          22 {
+               search.char = 64
+               replace = -
+          }
+          23 {
+               search.char = 91
+               replace = -
+          }
+          24 {
+               search.char = 92
+               replace = -
+          }
+          25 {
+               search.char = 93
+               replace = -
+          }
+          26 {
+               search.char = 94
+               replace = -
+          }
+          27 {
+               search.char = 95
+               replace = -
+          }
+          28 {
+               search.char = 96
+               replace = -
+          }
+          29 {
+               search.char = 123
+               replace = -
+          }
+          30 {
+               search.char = 124
+               replace = -
+          }
+          31 {
+               search.char = 125
+               replace = -
+          }
+          32 {
+               search.char = 126
+               replace = -
+          }
+          33 {
+               search = /(ä|Ä)/
+               useRegExp = 1
+               replace = ae
+          }
+          34 {
+               search = /(ö|Ö)/
+               useRegExp = 1
+               replace = oe
+          }
+          35 {
+               search = /(ü|Ü)/
+               useRegExp = 1
+               replace = ue
+          }
+          36 {
+               search = ß
+               replace = ss
+          }
+     }
+}
+
+temp.uid = TEXT
+temp.uid {
+     field = uid
+}
+
+lib.sprung-navigation = COA
+lib.sprung-navigation {
+     desktop = COA
+     desktop {
+          wrap = <div class="collapse navbar-collapse">|</div>
+
+          10 = CONTENT
+          10 {
+               wrap = <ul class="nav first-level mr-auto ml-auto d-print-none" id="main-navigation">|</ul>
+
+               table = tt_content
+               select {
+                    pidInList = this
+                    orderBy = sorting
+
+                    where = colPos=0
+                    andWhere = deleted=0
+                    andWhere = hidden=0
+
+                    languageField = sys_language_uid
+               }
+               renderObj = COA
+               renderObj {
+                    10 = TEXT
+                    10.value = <a href="#
+
+                    20 = TEXT
+                    20 < temp.sectionname
+
+                    30 = TEXT
+                    30.value = " alt="" title="">
+
+                    40 = TEXT
+                    40.dataWrap = {field:header}
+                    40.insertData = 1
+
+                    50 = TEXT
+                    50.value = </a>
+
+                    # if.isTrue.field = header
+
+                    isTrue.cObject = COA
+                    isTrue.cObject {
+
+                         10 = TEXT
+                         10.field = header
+
+                         20 = TEXT
+                         20.field = tx_gridelements_backend_layout
+                    }
+                    wrap = <li>|</li>
+               }
+          }
+          20 < lib.main-navigation.desktop.20
+     }
+     mobile < lib.main-navigation.mobile
+     mobile {
+          wrap = <div class="collapse navbar-collapse">|</div>
+
+          40 >
+          40 < lib.sprung-navigation.desktop.10
+     }
+}
+
+# cwirsing, 31.10.2019
+# due to informations from a. nacke, this content naigation is not necessary.
+# instead, we use the standard main-navigation until the customer decides something other.
+# internal note: this content navigation was not yet ready and functional at this point of time!
+# todo: implement rendering that only respects only gridelement box-containers for rendering (row 249 to 257)
+# todo: implement javascript for smooth scrolling to anchor point
+lib.sprung-navigation >
+lib.sprung-navigation < lib.main-navigation

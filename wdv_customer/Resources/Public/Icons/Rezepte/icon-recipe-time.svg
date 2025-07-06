@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="vigo-rezept-desktop-(1)" transform="translate(-404.000000, -1097.000000)" fill="#555555">
+            <g id="Info" transform="translate(345.000000, 1097.000000)">
+                <path d="M83,45.75 C95.0315,45.75 104.75,36.03 104.75,24 C104.75,11.97 95.0315,2.25 83,2.25 C70.97,2.25 61.25,11.97 61.25,24 C61.25,36.03 70.97,45.75 83,45.75 Z M83,0 C96.2375,0 107,10.7625 107,24 C107,37.2375 96.2375,48 83,48 C69.7625,48 59,37.2375 59,24 C59,10.7625 69.7625,0 83,0 Z M83,9.1026 C83.594,9.1026 84.08,9.5871 84.08,10.1826 L84.08,23.5641 L92.5085,31.9701 C92.7125,32.1741 92.825,32.4471 92.825,32.7381 C92.825,33.0306 92.7125,33.3051 92.5085,33.5091 C92.084,33.9306 91.3955,33.9306 90.9695,33.5091 L82.2425,24.7581 C82.034,24.5496 81.92,24.2796 81.92,24.0006 L81.92,10.1826 C81.92,9.5871 82.406,9.1026 83,9.1026 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

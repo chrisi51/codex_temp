@@ -1,0 +1,27 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      data-namespace-typo3-fluid="true" lang="en">
+
+<footer class="d-print-none">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12 pl-3 pr-3 pl-md-0 pr-md-0">
+				<div class="row mb-md-3">
+					<div class="col-12 col-md-4">
+						<f:render partial="Structure/Feature/CopyWrite" arguments="{data:data}" optional="true" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 col-md-12 mb-3">
+						<f:cObject typoscriptObjectPath="lib.foot-navigation"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<f:render partial="Structure/Feature/ScrollTop" arguments="{data:data}" optional="true" />
+
+</html>

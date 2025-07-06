@@ -1,0 +1,173 @@
+plugin.tx_powermail {
+    view {
+        templateRootPaths {
+            20 = EXT:wdv_customer/Resources/Private/Extensions/Powermail/Templates/
+        }
+        partialRootPaths {
+            20 = EXT:wdv_customer/Resources/Private/Extensions/Powermail/Partials/
+        }
+        layoutRootPaths {
+        }
+    }
+    settings {
+        setup {
+            validators {
+                1 {
+                    class = WDV\WdvCustomer\Domain\Validator\KvValidator
+                }
+                2 {
+                    class = WDV\WdvCustomer\Domain\Validator\EweValidator
+                }
+                3 {
+                    class = WDV\WdvCustomer\Domain\Validator\PrivacyNoticeValidator
+                }
+                4 {
+                    class = WDV\WdvCustomer\Domain\Validator\MinAgeValidator
+                }
+                5 {
+                    class = WDV\WdvCustomer\Domain\Validator\RhOnlyValidator
+                }
+            }
+            dataProcessors {
+                1 {
+                    class = WDV\WdvCustomer\DataProcessing\DurchstarterWorkshopDataProcessor
+
+                    config {
+                        # KEY ist die uid des PowerMail-Formulars (NICHT tt_content.uid)
+
+                        # Konfiguration für das PowerMail-Formular mit der uid=1
+                        1 {
+                            anwenden = 1
+                        }
+                    }
+                }
+            }
+            finishers {
+                1 {
+                    class = WDV\WdvCustomer\Finisher\CreateSubscriberPowermailFinisher
+
+                    config {
+                        # KEY ist die uid des PowerMail-Formulars (NICHT tt_content.uid)
+
+                        # Konfiguration für das PowerMail-Formular mit der uid=1
+                        1 {
+                            anwenden = 1
+                        }
+                        # Konfiguration für das PowerMail-Formular mit der uid=89 => gib8
+                        89 {
+                            anwenden = 1
+                        }
+                    }
+                }
+                2 {
+                    class = WDV\WdvCustomer\Finisher\QueoewePowermailFinisher
+
+                    config {
+                        # KEY ist die uid des PowerMail-Formulars (NICHT tt_content.uid)
+
+                        # Konfiguration für das PowerMail-Formular mit der uid=1
+                        1 {
+                            anwenden = 1
+                        }
+                    }
+                }
+                3 {
+                    class = WDV\WdvCustomer\Finisher\CheckEventRegistrationsFinisher
+
+                    config {
+                        676 {
+                            field_uid = 1832
+                            receivers {
+                                1 = chris@webxass.de
+                                2 = m.gutbier@gms.de
+                            }
+                            events {
+                                oberhausen1 = 4
+                                oberhausen2 = 100
+                                aachen1 = 22
+                            }
+                        }
+                    }
+                }
+            }
+            debug.spamshield = 0
+
+            misc {
+                htmlForHtmlFields = 1
+                htmlForLabels = 1
+                addQueryString = 1
+            }
+
+            receiver {
+                overwrite {
+                    senderName.value = vigo Redaktion
+                    senderEmail.value = no-reply@vigo.aok-rh.de
+                }
+            }
+            # distanceHor and distanceVer (lower left corner of the first letter!!!)
+            captcha.default {
+                image = EXT:wdv_customer/Resources/Private/Image/captcha_bg.png
+                # textColor = #FFFFFF
+                textSize = 24
+                textAngle = -5,5
+                distanceHor = 30,90
+                distanceVer = 35,45
+            }
+        }
+    }
+    _LOCAL_LANG.de {
+        validationerror_mandatory = Bitte füllen Sie dieses Feld aus.
+        validationerror_validation.10 = Bitte überprüfen Sie Ihre Eingabe!
+        optin_mail_confirm_done = Die E-Mail wurde bereits bestätigt.
+    }
+}
+
+# Add new Field Properties
+config.tx_extbase {
+    objects {
+        In2code\Powermail\Domain\Repository\FormRepository.className = WDV\WdvCustomer\Domain\Repository\FormRepository
+    }
+}
+
+#[326 in tree.rootLineIds]
+#    plugin.tx_powermail.settings.db.enable = 0
+#[end]
+
+# Benennung im Frontend steht im wdv_customer/Configuration/TsConfig/Extensions/tx_powermail.tsconfig
+plugin.tx_powermail.settings.setup.receiver.predefinedReceiver {
+    receiverContact.email = CASE
+    receiverContact.email {
+        key.data = GP:tx_powermail_pi1|field|receiver
+
+        1 = TEXT
+        1.value (
+            m.gutbier@gms.de
+            angela.wild@rh.aok.de
+        )
+        2 = TEXT
+        2.value (
+            m.gutbier@gms.de
+            angela.wild@rh.aok.de
+        )
+        3 = TEXT
+        3.value (
+            m.gutbier@gms.de
+            angela.wild@rh.aok.de
+        )
+        default = TEXT
+        default.value (
+            m.gutbier@gms.de
+            angela.wild@rh.aok.de
+        )
+    }
+}
+
+[applicationContext matches "/(Development)/"]
+    plugin.tx_powermail {
+        settings.setup {
+            spamshield {
+                _enable = 0
+            }
+        }
+    }
+[global]

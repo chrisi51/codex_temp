@@ -1,0 +1,46 @@
+plugin.tx_mdnewsauthor {
+    #    view {
+    #        templateRootPath.0 = EXT:wdv_customer/Resources/Private/Extensions/md_news_author/Resources/Private/Templates/
+    #        partialRootPath.0 = EXT:wdv_customer/Resources/Private/Extensions/md_news_author/Resources/Private/Partials/
+    #        layoutRootPath.0 = EXT:wdv_customer/Resources/Private/Extensions/md_news_author/Resources/Private/Layouts/
+    #    }
+    persistence {
+        storagePid = 294
+    }
+    settings {
+        authorDetailPid = {$plugin.tx_mdnewsauthor.settings.authorDetailPid}
+        # this will be used on authors profile page to link authors news
+        newsDetailPid = {$plugin.tx_mdnewsauthor.settings.newsDetailPid}
+        authorList {
+            letters = {$plugin.tx_mdnewsauthor.settings.authorList.letters}
+            paginate {
+                itemsPerPage = 8
+                insertAbove = {$plugin.tx_mdnewsauthor.settings.authorList.paginate.insertAbove}
+                insertBelow = {$plugin.tx_mdnewsauthor.settings.authorList.paginate.insertBelow}
+                maximumNumberOfLinks = {$plugin.tx_mdnewsauthor.settings.authorList.paginate.maximumNumberOfLinks}
+            }
+        }
+        authorDetail {
+            paginate {
+                itemsPerPage = 3
+                insertAbove = {$plugin.tx_mdnewsauthor.settings.authorDetail.paginate.insertAbove}
+                insertBelow = {$plugin.tx_mdnewsauthor.settings.authorDetail.paginate.insertBelow}
+                maximumNumberOfLinks = {$plugin.tx_mdnewsauthor.settings.authorDetail.paginate.maximumNumberOfLinks}
+            }
+        }
+    }
+    _LOCAL_LANG {
+        ## Default Text = Englisch
+        default {
+            tx_newsauthor_domain_model_newsauthor.backLinkLabel = Back to experts list
+            tx_newsauthor_domain_model_newsauthor.backLinkTitle = Show all experts
+            template.show.articleHeader = Articles from this field
+        }
+        ## Deutscher Text
+        de {
+            tx_newsauthor_domain_model_newsauthor.backLinkLabel = zurück zur Expertenübersicht
+            tx_newsauthor_domain_model_newsauthor.backLinkTitle = Zeige alle Experten
+            template.show.articleHeader = Artikel aus dem Bereich
+        }
+    }
+}

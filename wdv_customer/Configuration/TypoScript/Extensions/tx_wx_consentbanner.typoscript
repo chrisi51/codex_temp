@@ -1,0 +1,172 @@
+page.includeJS {
+    ajquery >
+}
+
+plugin.tx_wxconsentbanner_script {
+    view {
+        templateRootPaths.10 = EXT:wdv_customer/Resources/Private/Extensions/wxconsentbanner/Templates/
+        layoutRootPaths.10 = EXT:wdv_customer/Resources/Private/Extensions/wxconsentbanner/Layouts/
+        partialRootPaths.10 = EXT:wdv_customer/Resources/Private/Extensions/wxconsentbanner/Partials/
+    }
+}
+
+plugin.tx_wxconsentbanner_cookiefreigabe {
+    view {
+        templateRootPaths.10 = EXT:wdv_customer/Resources/Private/Extensions/wxconsentbanner/Templates/
+        layoutRootPaths.10 = EXT:wdv_customer/Resources/Private/Extensions/wxconsentbanner/Layouts/
+        partialRootPaths.10 = EXT:wdv_customer/Resources/Private/Extensions/wxconsentbanner/Partials/
+    }
+}
+
+lib.wx_consentbanner = COA
+lib.wx_consentbanner {
+    10 {
+        persistence {
+            # folder id where your cookies are stored
+            storagePid = 500
+        }
+
+        settings {
+            # delete all cookies, which are not managed or are disallowed by website user
+            removeBadCookies = 0
+            # url or page uid to your privacy policy and imprint
+            url_privacypolicy = 499
+            url_imprint = 497
+        }
+    }
+}
+
+[site("identifier") == "www_vigo_de"]
+    lib.wx_consentbanner = COA
+    lib.wx_consentbanner {
+        10 {
+            persistence {
+                # folder id where your cookies are stored
+                storagePid = 462
+            }
+
+            settings {
+                # url or page uid to your privacy policy and imprint
+                url_privacypolicy = 130
+                url_imprint = 132
+            }
+        }
+    }
+[global]
+
+[site("identifier") == "achtsamkeit_vigo_de"]
+    lib.wx_consentbanner = COA
+    lib.wx_consentbanner {
+        10 {
+            persistence {
+                # folder id where your cookies are stored
+                storagePid = 571
+            }
+
+            settings {
+                # url or page uid to your privacy policy and imprint
+                url_privacypolicy = 625
+                url_imprint = 624
+            }
+        }
+    }
+[global]
+
+[site("identifier") == "krebs_vigo_de"]
+    lib.wx_consentbanner = COA
+    lib.wx_consentbanner {
+        10 {
+            persistence {
+                # folder id where your cookies are stored
+                storagePid = 705
+            }
+
+            settings {
+                # url or page uid to your privacy policy and imprint
+                url_privacypolicy = 711
+                url_imprint = 710
+            }
+        }
+    }
+[global]
+
+[site("identifier") == "soundtrack_vigo_de"]
+    lib.wx_consentbanner = COA
+    lib.wx_consentbanner {
+        10 {
+            persistence {
+                # folder id where your cookies are stored
+                storagePid = 896
+            }
+
+            settings {
+                # url or page uid to your privacy policy and imprint
+                url_privacypolicy = 893
+                url_imprint = 894
+            }
+        }
+    }
+[global]
+
+[site("identifier") == "familie_vigo_de"]
+    lib.wx_consentbanner = COA
+    lib.wx_consentbanner {
+        10 {
+            persistence {
+                # folder id where your cookies are stored
+                storagePid = 900
+            }
+
+            settings {
+                # url or page uid to your privacy policy and imprint
+                url_privacypolicy = 902
+                url_imprint = 903
+            }
+        }
+    }
+[global]
+
+
+[site("identifier") == "epa_vigo_de"]
+    lib.wx_consentbanner = COA
+    lib.wx_consentbanner {
+        10 {
+            persistence {
+                # folder id where your cookies are stored
+                storagePid = 910
+            }
+
+            settings {
+                # url or page uid to your privacy policy and imprint
+                url_privacypolicy = 912
+                url_imprint = 913
+            }
+        }
+    }
+[global]
+
+[site("identifier") == "schwangerschaft_vigo_de"]
+    lib.wx_consentbanner = COA
+    lib.wx_consentbanner {
+        10 {
+            persistence {
+                # folder id where your cookies are stored
+                storagePid = 1002
+            }
+
+            settings {
+                # url or page uid to your privacy policy and imprint
+                url_privacypolicy = 1022
+                url_imprint = 1023
+            }
+        }
+    }
+[global]
+
+lib.wx_consentbanner_banner < lib.wx_consentbanner
+lib.wx_consentbanner_banner.10.settings.banner = 1
+lib.wx_consentbanner_banner.10.settings.opener = 0
+
+lib.wx_consentbanner_opener < lib.wx_consentbanner
+lib.wx_consentbanner_opener.10.settings.banner = 0
+lib.wx_consentbanner_opener.10.settings.opener = 1

@@ -1,0 +1,211 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:w="http://typo3.org/ns/WDV/WdvCustomer/ViewHelpers"
+	xmlns:fp="http://typo3.org/ns/HDNET/Focuspoint/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+<f:if condition="{media}">
+	<f:then>
+
+		<f:for each="{media}" as="mediaElement">
+
+			<f:switch expression="{settings.templateLayout}">
+
+				<!-- Detailansicht für Themenspecials -->
+				<f:case value="6">
+
+					<f:if condition="{mediaElement.originalResource.type} == 2 || {mediaElement.originalResource.type} == 5">
+
+						<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>
+
+					</f:if>
+
+					<f:if condition="{mediaElement.originalResource.type} == 3 || {mediaElement.originalResource.type} == 4">
+
+						<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings:settings}"/>
+
+					</f:if>
+
+				</f:case>
+
+				<!-- Detailansicht für Rezeptsammlung -->
+				<f:case value="7">
+
+					<f:if condition="{mediaElement.originalResource.type} == 2 || {mediaElement.originalResource.type} == 5">
+
+						<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>
+
+					</f:if>
+
+					<f:if condition="{mediaElement.originalResource.type} == 3 || {mediaElement.originalResource.type} == 4">
+
+						<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings:settings}"/>
+
+					</f:if>
+
+				</f:case>
+
+
+
+				<!-- Detailansicht für Achtsamkeitsnews -->
+				<f:case value="30">
+
+					<f:if condition="{mediaElement.originalResource.type} == 2 || {mediaElement.originalResource.type} == 5">
+
+						<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>
+
+					</f:if>
+
+					<f:if condition="{mediaElement.originalResource.type} == 3 || {mediaElement.originalResource.type} == 4">
+
+						<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings:settings}"/>
+
+					</f:if>
+
+				</f:case>
+
+				<!-- Detailansicht einer Achtsamkeitsnews ohne Lesezeit-->
+				<f:case value="31">
+
+					<f:if condition="{mediaElement.originalResource.type} == 2 || {mediaElement.originalResource.type} == 5">
+
+						<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>
+
+					</f:if>
+
+					<f:if condition="{mediaElement.originalResource.type} == 3 || {mediaElement.originalResource.type} == 4">
+
+						<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings:settings}"/>
+
+					</f:if>
+
+				</f:case>
+
+
+				<!-- Alle anderen -->
+				<f:defaultCase>
+
+					<f:if condition="{mediaElement.originalResource.type} == 2 || {mediaElement.originalResource.type} == 5">
+
+						<div class="news-item__image">
+							<div class="row mt-3 mb-md-4">
+							<v:condition.iterator.contains needle="100" haystack="{v:page.rootline() -> v:iterator.extract(key: 'uid')}">
+							<f:then>
+								<div class="col-12 col-md-10 col-print-12 offset-md-1 offset-print-0 pl-md-0 pr-md-0">
+							</f:then>
+							<f:else>
+								<div class="col-12 col-print-12 offset-print-0">
+							</f:else>
+							</v:condition.iterator.contains>
+
+									<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>
+
+							<v:condition.iterator.contains needle="100" haystack="{v:page.rootline() -> v:iterator.extract(key: 'uid')}">
+							<f:then>
+									<p class="pl-3 pr-3 pl-md-0 pr-md-0 figure-caption teaser-caption mb-0">
+							</f:then>
+							<f:else>
+									<p class="figure-caption teaser-caption mb-0">
+							</f:else>
+							</v:condition.iterator.contains>
+
+										<f:if condition="{mediaElement.originalResource.originalFile.properties.caption} && {mediaElement.originalResource.originalFile.properties.caption} != {mediaElement.originalResource.originalFile.properties.title}">
+
+											<f:then>
+
+												<!-- {mediaElement.originalResource.originalFile.properties.caption} - Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher} / {mediaElement.originalResource.originalFile.properties.creator} -->
+												{mediaElement.originalResource.originalFile.properties.caption}
+
+											</f:then>
+											<f:else>
+
+												<f:if condition="{mediaElement.originalResource.originalFile.properties.publisher}">
+
+													Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher} / {mediaElement.originalResource.originalFile.properties.creator}
+
+												</f:if>
+
+											</f:else>
+
+										</f:if>
+
+									</p>
+
+					</f:if>
+
+					<f:if condition="{mediaElement.originalResource.type} == 3 || {mediaElement.originalResource.type} == 4">
+
+						<div class="news-item__video">
+							<div class="row mt-3 mb-md-4">
+							<v:condition.iterator.contains needle="100" haystack="{v:page.rootline() -> v:iterator.extract(key: 'uid')}">
+							<f:then>
+								<div class="col-12 col-md-10 col-print-12 offset-md-1 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0">
+							</f:then>
+							<f:else>
+								<div class="col-12 col-print-12 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0">
+							</f:else>
+							</v:condition.iterator.contains>
+
+									<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings:settings}"/>
+
+									<p class="pl-3 pr-3 pl-md-0 pr-md-0 figure-caption teaser-caption mb-0">{mediaElement.title}</p>
+
+					</f:if>
+
+								</div>
+							</div>
+						</div>
+
+				</f:defaultCase>
+
+			</f:switch>
+
+		</f:for>
+
+	</f:then>
+	<f:else>
+
+		<f:switch expression="{settings.templateLayout}">
+
+			<!-- Detailansicht für Themenspecials -->
+			<f:case value="6">
+
+				<fp:image src="{settings.list.media.dummyImage}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" width="1440" realCrop="false" />
+
+			</f:case>
+
+			<!-- Detailansicht für Rezeptsammlung -->
+			<f:case value="7">
+
+				<fp:image src="{settings.list.media.dummyImage}" title="{f:if(condition: '{mediaElement.originalResource.originalFile.properties.publisher}', then: 'Bildnachweis: © {mediaElement.originalResource.originalFile.properties.publisher}')}{f:if(condition: '{mediaElement.originalResource.originalFile.properties.creator}', then: ' / {mediaElement.originalResource.originalFile.properties.creator}')}" width="1440" realCrop="false" />
+
+			</f:case>
+
+			<!-- Alle anderen -->
+			<f:defaultCase>
+
+				<div class="news-item__image">
+					<div class="row mt-3 mb-0">
+					<v:condition.iterator.contains needle="100" haystack="{v:page.rootline() -> v:iterator.extract(key: 'uid')}">
+					<f:then>
+						<div class="col-12 col-md-10 col-print-12 offset-md-1 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0">
+					</f:then>
+					<f:else>
+						<div class="col-12 col-print-12 offset-print-0 pl-0 pr-0 pl-md-0 pr-md-0">
+					</f:else>
+					</v:condition.iterator.contains>
+
+							<fp:image src="{settings.list.media.dummyImage}" title="" width="750" realCrop="false" />
+
+						</div>
+					</div>
+				</div>
+
+			</f:defaultCase>
+
+		</f:switch>
+
+	</f:else>
+
+</f:if>
+</html>

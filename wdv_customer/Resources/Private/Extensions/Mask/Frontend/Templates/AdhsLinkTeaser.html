@@ -1,0 +1,7 @@
+<f:for each="{data.image}" as="file">
+    <f:image image="{file}" width="200" />
+    {file.description}
+</f:for>
+<f:if condition="{data.tx_mask_cta_link}">
+    <f:link.typolink parameter="{data.tx_mask_cta_link}"></f:link.typolink>
+</f:if>

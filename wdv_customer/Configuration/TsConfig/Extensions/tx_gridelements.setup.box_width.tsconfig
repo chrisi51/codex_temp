@@ -1,0 +1,27 @@
+tx_gridelements.setup.box_width {
+
+	title = Achtsamkeits-Breiten-Container
+	description = ein Breitenlimitierer für das Achtsamkeits-Layout
+	icon = EXT:wdv_elements/Resources/Public/Icons/Gridelements/dummy.png
+	flexformDS = FILE:EXT:wdv_customer/Configuration/FlexForms/Extensions/tx_gridelements.box_width.xml
+
+	topLevelLayout = 0
+	frame = 1
+
+	config {
+
+		colCount = 1
+		rowCount = 1
+
+		rows {
+			1 {
+				columns {
+					1 {
+						name = Inhalt
+						colPos = 600
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,44 @@
+<div class="adhs">
+    <div class="{f:if(condition: '{data.tx_mask_family_bgcolor}', then: '{data.tx_mask_family_bgcolor}', else: 'bg-blue')}">
+        <div class="container container--spaced">
+            <f:if condition="{data.tx_mask_title}">
+                <h2 class="headline">{data.tx_mask_title}</h2>
+            </f:if>
+            <f:if condition="{data.tx_mask_show_banner}">
+                <f:if condition="{data.header_link} && {data.image}">
+                    <f:link.typolink parameter="{data.header_link}" class="adhs-image-link">
+                        <f:image image="{data.image.0}" alt="{data.image.alternative}" width="1410"/>
+                    </f:link.typolink>
+                </f:if>
+            </f:if>
+            <f:if condition="{data.tx_mask_adhs_card}">
+                <ul class="adhs-cards">
+                    <f:for each="{data.tx_mask_adhs_card}" as="data_item">
+                        <li class="adhs-card">
+                            <f:link.typolink parameter="{data_item.tx_mask_adhs_card_link}" class="adhs-card-link">
+                                <f:for each="{data_item.tx_mask_adhs_card_image}" as="file">
+                                    <picture class="adhs-card-picture">
+
+                                        <f:variable name="width" value="449"/>
+                                         <source srcset="<f:uri.image image="{file}" width="{width}" height="{width / 4 * 3}c" fileExtension="{file.extension}" /> 1x, <f:uri.image image="{file}" width="{width * 2}" height="{width * 2 / 4 * 3}c" fileExtension="{file.extension}" /> 2x"  type="image/{file.extension}"/>
+
+                                        <f:image image="{file}" width="449" height="300c" class="adhs-card-image" title="{f:if(condition: '{file.properties.publisher}', then: 'Bildnachweis: © {file.properties.publisher}')}{f:if(condition: '{file.properties.creator}', then: ' / {file.properties.creator}')}" alt="{file.properties.alternative}"/>
+                                    </picture>
+                                </f:for>
+                                <f:if condition="{data_item.tx_mask_adhs_card_subtitle}">
+                                    <h3 class="adhs-card-subtitle">{data_item.tx_mask_adhs_card_subtitle}</h3>
+                                </f:if>
+                                <f:if condition="{data_item.tx_mask_adhs_card_title}">
+                                    <h2 class="adhs-card-title">{data_item.tx_mask_adhs_card_title}</h2>
+                                </f:if>
+                                <f:if condition="{data_item.tx_mask_adhs_card_text}">
+                                    <p>{data_item.tx_mask_adhs_card_text -> f:format.nl2br()}</p>
+                                </f:if>
+                            </f:link.typolink>
+                        </li>
+                    </f:for>
+                </ul>
+            </f:if>
+        </div>
+    </div>
+</div>

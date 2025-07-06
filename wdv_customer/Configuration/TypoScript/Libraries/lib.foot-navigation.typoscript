@@ -1,0 +1,83 @@
+
+lib.foot-navigation = COA
+lib.foot-navigation {
+
+	wrap = <div id="foot-navigation"><ul class="nav flex-column flex-md-row justify-content-md-end">|</ul></div>
+
+	1 = HMENU
+	1 {
+		wrap = |
+
+		special = directory
+		special.value = 104
+
+		1 = TMENU
+		1 {
+			noBlur = 1
+			wrap = |
+
+			NO {
+				# allWrap = <li>|</li>
+				allWrap = <li class="nav-item first">|</li>|*|<li class="nav-item">|</li>|*|<li class="nav-item last">|</li>
+
+				ATagParams = class="nav-link"
+				ATagTitle.field = abstract // description // subtitle
+				ATagBeforeWrap = 1
+
+				stdWrap >
+				stdWrap {
+					cObject = COA
+					cObject {
+
+						10 = CASE
+						10 {
+							key.field = doktype
+
+							default = TEXT
+							default {
+
+								field = nav_title // title
+								stdWrap.htmlSpecialChars = 1
+							}
+							# Externe URL
+							3 = TEXT
+							3 {
+								field = nav_title // title
+								# typolink.parameter.field = url
+								# typolink.target.field = target
+
+								noTrimWrap = || <span class="icon external-link"></span>|
+								stdWrap.htmlSpecialChars = 1
+							}
+						}
+					}
+				}
+			}
+			ACT < .NO
+			ACT = 1
+			ACT.allWrap = <li class="first active">|</li>|*|<li class="active">|</li>|*|<li class="last active">|</li>
+		}
+	}
+}
+
+[site("identifier") == "www_gib8-achtsamkeit_de"]
+lib.foot-navigation.1.special.value = 496
+[global]
+[site("identifier") == "achtsamkeit_vigo_de"]
+lib.foot-navigation.1.special.value = 622
+[global]
+[site("identifier") == "krebs_vigo_de"]
+lib.foot-navigation.1.special.value = 706
+[global]
+[site("identifier") == "familie_vigo_de"]
+lib.foot-navigation.1.special.value = 932
+[global]
+[site("identifier") == "epa_vigo_de"]
+lib.foot-navigation.1.special.value = 937
+[global]
+[site("identifier") == "durchstarter_vigo_de"]
+lib.foot-navigation.1.special.value = 1195
+[global]
+[site("identifier") == "fuermich_vigo_de"]
+lib.foot-navigation.1.special.value = 1219
+[global]

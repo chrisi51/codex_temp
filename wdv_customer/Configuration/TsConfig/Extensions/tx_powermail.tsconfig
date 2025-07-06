@@ -1,0 +1,66 @@
+
+tx_powermail.flexForm.addField.settings\.flexform\.main\.kvcheck._sheet = main
+tx_powermail.flexForm.addField.settings\.flexform\.main\.kvcheck.label = Prüfung von KV-Nummer aktivieren? (Felder mit den Markern 'kassennummer' und 'versichertennummer' müssen vorhanden sein!)
+tx_powermail.flexForm.addField.settings\.flexform\.main\.kvcheck.config.type = check
+
+tx_powermail.flexForm.addField.settings\.flexform\.main\.ewecheck._sheet = main
+tx_powermail.flexForm.addField.settings\.flexform\.main\.ewecheck.label = EWE-Prüfung aktivieren? (Felder mit den Markern 'geburtsdatum' und 'ewe' müssen vorhanden sein!)
+tx_powermail.flexForm.addField.settings\.flexform\.main\.ewecheck.config.type = check
+
+tx_powermail.flexForm.type.addFieldOptions.broschcheck = Broschüren Checkbox
+tx_powermail.flexForm.addField.settings\.flexform\.main\.broschcheck._sheet = main
+tx_powermail.flexForm.addField.settings\.flexform\.main\.broschcheck.label = Max. Anzahl Broschüren, die ein User auswählen darf (Anwendung nur in Verbindung mit Feldtyp "Broschüren Checkbox!")
+tx_powermail.flexForm.addField.settings\.flexform\.main\.broschcheck.config.type = input
+tx_powermail.flexForm.addField.settings\.flexform\.main\.broschcheck.config.size = 1
+#tx_powermail.flexForm.addField.settings\.flexform\.main\.broschcheck.config.eval = int
+tx_powermail.flexForm.addField.settings\.flexform\.main\.broschcheck.config.range.lower = 1
+tx_powermail.flexForm.addField.settings\.flexform\.main\.broschcheck.config.range.upper = 10
+
+tx_powermail.flexForm.addField.settings\.flexform\.main\.campaigncheck._sheet = main
+tx_powermail.flexForm.addField.settings\.flexform\.main\.campaigncheck.label = Kampagnenparameter für Queo-EWE (bspw. durchstarter 2019)
+tx_powermail.flexForm.addField.settings\.flexform\.main\.campaigncheck.config.type = input
+
+tx_powermail.flexForm.addField.settings\.flexform\.main\.durchstarterworkshopcheck._sheet = main
+tx_powermail.flexForm.addField.settings\.flexform\.main\.durchstarterworkshopcheck.label = Durchstarter-Workshop-Prüfung aktivieren? (Feld mit den Marker 'schonteilgenommen' muss vorhanden sein!)
+tx_powermail.flexForm.addField.settings\.flexform\.main\.durchstarterworkshopcheck.config.type = check
+
+tx_powermail.flexForm.addField.settings\.flexform\.main\.minage._sheet = main
+tx_powermail.flexForm.addField.settings\.flexform\.main\.minage.label = Mindestalter für Anmeldung
+tx_powermail.flexForm.addField.settings\.flexform\.main\.minage.config.type = input
+
+
+
+tx_powermail.flexForm.addField.settings\.flexform\.main\.maileon_newsletter._sheet = main
+tx_powermail.flexForm.addField.settings\.flexform\.main\.maileon_newsletter.label = Maileon-Newsletter-Eintrag?
+tx_powermail.flexForm.addField.settings\.flexform\.main\.maileon_newsletter.config.type = check
+
+tx_powermail.flexForm.addField.settings\.flexform\.main\.maileon_kursanmeldung._sheet = main
+tx_powermail.flexForm.addField.settings\.flexform\.main\.maileon_kursanmeldung.label = Maileon-Onlinekurs-Eintrag? (Feld mit den Marker 'kurs')
+tx_powermail.flexForm.addField.settings\.flexform\.main\.maileon_kursanmeldung.config.type = check
+
+
+tx_powermail.flexForm.addField.settings\.flexform\.main\.rh_customer_only._sheet = main
+tx_powermail.flexForm.addField.settings\.flexform\.main\.rh_customer_only.label = nur RH Kunde?
+tx_powermail.flexForm.addField.settings\.flexform\.main\.rh_customer_only.config.type = check
+
+tx_powermail.flexForm.addField.settings\.flexform\.main\.rh_customer_only_text._sheet = main
+tx_powermail.flexForm.addField.settings\.flexform\.main\.rh_customer_only_text.label = nur RH Kunde?
+tx_powermail.flexForm.addField.settings\.flexform\.main\.rh_customer_only_text.config.type = text
+tx_powermail.flexForm.addField.settings\.flexform\.main\.rh_customer_only_text.config.enableRichtext = true
+tx_powermail.flexForm.addField.settings\.flexform\.main\.rh_customer_only_text.config.default = Sie müssen im Einzugsgebiet der AOK RH wohnen, um teilnehmen zu können.
+
+tx_powermail.flexForm.validation.addFieldOptions.110 = EWE Check
+tx_powermail.flexForm.predefinedReceivers.addFieldOptions.receiverContact = Kontaktempfänger
+
+TCEFORM {
+    tx_powermail_domain_model_form {
+        css {
+            removeItems = layout1, layout2, layout3
+            addItems {
+                pm_gewinnspiel = Gewinnspiel (Frage - 2 Antworten)
+            }
+        }
+    }
+    tx_powermail_domain_model_page < .tx_powermail_domain_model_form
+    tx_powermail_domain_model_field < .tx_powermail_domain_model_form
+}
