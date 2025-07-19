@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    WX\WxVideoListing\Command\VideoListingCommand:
+        tags:
+            -
+                name: 'console.command'
+                command: 'wx:videoListing'
+                description: 'Entfernt Metadaten aus PDF-Dateien und prüft deren Integrität.'
+

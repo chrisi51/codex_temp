@@ -1,0 +1,22 @@
+{
+    "name": "wx/wx-video-listing",
+    "version": "1.0.0",
+    "type": "typo3-cms-extension",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Christian Hillebrand",
+            "role": "Freelancer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "WX\\WxVideoListing\\": "Classes"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "wx_video_listing"
+        }
+    }
+}
