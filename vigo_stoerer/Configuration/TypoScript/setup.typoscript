@@ -1,0 +1,34 @@
+
+page {
+    1734261321 = FLUIDTEMPLATE
+    1734261321 {
+        # file = EXT:vigo_stoerer/Resources/Private/Templates/Stoerer.html
+        templateName = Stoerer
+        layoutRootPaths {
+            0 = EXT:vigo_stoerer/Resources/Private/Layouts/
+        }
+        partialRootPaths {
+            0 = EXT:vigo_stoerer/Resources/Private/Partials/
+        }
+        templateRootPaths {
+            0 = EXT:vigo_stoerer/Resources/Private/Templates/
+        }
+
+        variables {
+            page-uid = TEXT
+            page-uid.field = uid
+
+            news-uid = TEXT
+            news-uid.data = GP:tx_news_pi1|news
+            news-uid.data.override = GP:tx_news_pi1|news_preview
+            news-uid.data.override.if {
+                isTrue.data = GP:tx_news_pi1|news_preview
+            }
+
+        }
+    }
+
+    includeCSS {
+        1734261321 = EXT:vigo_stoerer/Resources/Public/CSS/stoerer.css
+    }
+}

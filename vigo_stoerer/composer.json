@@ -1,0 +1,25 @@
+{
+  "name": "vigo/vigo-stoerer",
+  "type": "typo3-cms-extension",
+  "description": " - ",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Christian Hillebrand"
+    }
+  ],
+  "version": "1.0.0",
+  "require": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "VIGO\\VigoStoerer\\": "Classes/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "vigo_stoerer"
+    }
+  }
+}
